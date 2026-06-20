@@ -2,8 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b5w1ad1cltbtw" path="res://scenes/consoleThing.tscn" id="1_1ywsh"]
 [ext_resource type="Script" uid="uid://0kq78j6rijnm" path="res://Scripts/impo/main.gd" id="1_8gj0p"]
-[ext_resource type="PackedScene" uid="uid://c7c1p606qfkbq" path="res://scenes/imgonnafreakout/expie.tscn" id="2_8gj0p"]
-[ext_resource type="PackedScene" uid="uid://bbiuiqx0e45ds" path="res://scenes/objects/landmine.tscn" id="4_rpihv"]
+[ext_resource type="PackedScene" uid="uid://c7c1p606qfkbq" path="res://scenes/imgonnafreakout/expie.tscn" id="4_1ywsh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -61,10 +60,6 @@ script = SubResource("GDScript_gct8d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SideL" unique_id=1825212476]
 shape = SubResource("WorldBoundaryShape2D_fn1ne")
 
-[node name="Char" parent="." unique_id=1929009500 instance=ExtResource("2_8gj0p")]
-position = Vector2(1297, 484)
-scale = Vector2(2, 2)
-
-[node name="Body" parent="." unique_id=371602465 instance=ExtResource("4_rpihv")]
-position = Vector2(287, 383)
-scale = Vector2(2.2649527, 2.2649527)
+[node name="Char" parent="." unique_id=1929009500 instance=ExtResource("4_1ywsh")]
+position = Vector2(550, 191)
+scale = Vector2(2.2018907, 2.2018907)
