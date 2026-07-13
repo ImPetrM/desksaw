@@ -10,13 +10,17 @@ config_version=5
 
 [application]
 
-config/name="deskthing"
+config/name="desktop expie"
 run/main_scene="uid://nbfrphs14wxt"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="deedee14/expet"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 run/low_processor_mode=true
-config/icon="uid://dt85xunyle8kl"
+config/icon="uid://4undqe3g2m5"
+
+[audio]
+
+buses/default_bus_layout="uid://q8b4l6lsyv7h"
 
 [autoload]
 

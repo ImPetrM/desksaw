@@ -33,11 +33,11 @@ looking back now that im publicizing this this probably isnt even right anymore
 
 var data = {}
 var text = {}
-
 var settings = {}
 
-var template = "res://Scripts/singletons/SaveTemplate.json"
+var skinData = []
 
+var template = "res://Scripts/singletons/SaveTemplate.json"
 
 
 # DO NOT FORGET TO DISABLE THIS WHENBUILDING 
@@ -47,7 +47,7 @@ var devMode = true
 var savePath = "user://SAVE.json"
 var transPath = "user://TRANSLATION.json"
 var conPath = "user://CONFIG.json"
-
+var skinfilepath = "user://skin"
 func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
@@ -73,6 +73,16 @@ func _ready():
 			print("Settings loaded from disk")
 	else:
 		newConfig()
+
+	if DirAccess.dir_exists_absolute(skinfilepath):
+		skinData = loadSkin()
+		print(skinData)
+		#load file
+		pass
+		#settings = loadjson(conPath)
+	else:
+		newSkinFile()
+
 
 	InitAutosave()
 
@@ -105,6 +115,33 @@ func newConfig():
 
 	settings = loadjson(configFile).duplicate(true)
 	savetodisk(conPath, settings)
+
+func newSkinFile():
+	var readMeF = skinfilepath + "/READ.txt"
+	
+
+	if not DirAccess.dir_exists_absolute(skinfilepath):
+		var error = DirAccess.make_dir_recursive_absolute(skinfilepath)
+		
+		if error == OK:
+			var txt = FileAccess.open(readMeF, FileAccess.WRITE)
+			
+
+			if txt:
+				txt.store_line("Drop the Body folder of your skin into this folder!")
+				txt.close()
+
+
+func loadSkin():
+		var added = []
+		var pt = skinfilepath + "/Body"
+		if DirAccess.dir_exists_absolute(pt):
+			var files = DirAccess.get_files_at(pt)
+			for file in files:
+				if file.get_extension().to_lower() == "png":
+					added.append(skinfilepath.path_join(file))
+		return added
+
 # my favorite helpers!
 #theyre gone nvm
 func loadjson(filepath: String):

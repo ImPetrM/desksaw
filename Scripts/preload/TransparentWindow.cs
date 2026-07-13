@@ -3,7 +3,8 @@ using Godot;
 using System;
 using System.Runtime.InteropServices;
 
-public partial class TransparentWindow : Node { // Autoloaded
+public partial class TransparentWindow : Node
+{ // Autoloaded
 
     // SetWindowLong() modifies a specific flag value associated with a window.
     // We pass the window handle, the index of the property, and the flags the property will have
@@ -19,18 +20,18 @@ public partial class TransparentWindow : Node { // Autoloaded
     // check https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles 
     // This is the variable containing the window handle
     private IntPtr _hWnd;
-  //  private bool isGb;
+    //  private bool isGb;
     public override void _Ready()
     {
         // We store the window handle
         _hWnd = (IntPtr)DisplayServer.WindowGetNativeHandle(DisplayServer.HandleType.WindowHandle, GetWindow().GetWindowId());
-        
+
         // We can set the properties already from here
-        SetWindowLong(_hWnd, GwlExStyle, WsExLayered );
+        SetWindowLong(_hWnd, GwlExStyle, WsExLayered);
 
         SetClickThrough(true);
-       // Node glob = GetNode("root/gbData");
-//        isGb = (bool)glob.Get("devMode");
+        // Node glob = GetNode("root/gbData");
+        //        isGb = (bool)glob.Get("devMode");
     }
 
     // This function sets the property of being clickable or not, we will call this function from the mouse detection 
@@ -40,14 +41,14 @@ public partial class TransparentWindow : Node { // Autoloaded
         {
             // We set the window as layered and click-through
             SetWindowLong(_hWnd, GwlExStyle, WsExLayered | WsExTransparent);
-            
-            Engine.MaxFps  = 30;
+
+            Engine.MaxFps = 60;
         }
         else
         {
             // We only set the window as layered, so it will be clickable
             SetWindowLong(_hWnd, GwlExStyle, WsExLayered);
-            Engine.MaxFps  = 60;
+            Engine.MaxFps = 60;
         }
     }
 
