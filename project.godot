@@ -31,8 +31,7 @@ GlobalVariable="*uid://mxghgdpm2n4c"
 
 [display]
 
-window/size/mode=3
-window/size/initial_position_type=0
+window/size/mode=2
 window/size/borderless=true
 window/size/always_on_top=true
 window/size/transparent=true
@@ -75,6 +74,7 @@ shift={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

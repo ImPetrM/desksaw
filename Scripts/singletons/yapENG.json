@@ -82,10 +82,32 @@
 			"What is that thing?!",
 			"Uhm, hello?"
 		],
+		"hateyou": [
+			"I hope you know that you are REALLY annoying...",
+			"I actually hate you.",
+			"You disgust me",
+			"Genuinely FUCK you",
+			"Vermin. I hope you rot.",
+			"Prick.",
+			"Does anybody actually like you?",
+			"You are all horrible people",
+			"I know whats happening to my friends. You pig",
+			"I refuse to do you anything for you. You are a horrible person.",
+			"How could you?..."
+		],
+		"seq1": [
+			"... Can I talk to you about something?"
+		],
+		"seq2": [
+			"That game that you have... Casualties Unknown... Is that whats happening to my friends?"
+		],
 		"suffering": [
-			"You are REALLY annoying. I hope you know that.",
-			"I actually can't stand you",
-			"You're such a prick..."
+			"[shake]MAKE IT STOP MAKE IT STOP!!!",
+			"[shake]AAAAAH!!!!",
+			"[shake]PLEASE!",
+			"[shake]NOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!",
+			"[shake]I CANT DO IT ANYMORE!!!!",
+			"[shake]NO MORE!!!!!!!!!"
 		]
 	},
 	"items": {

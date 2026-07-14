@@ -1,22 +1,22 @@
-[gd_scene format=3 uid="uid://4d2rbs2qh0xq"]
+[gd_scene format=3 uid="uid://tk2rvl72gavg"]
 
-[ext_resource type="Script" uid="uid://dr1sb8lw1pbx4" path="res://scenes/rigid_bodies.gd" id="1_d7061"]
-[ext_resource type="Script" uid="uid://unwhnooi7g2c" path="res://addons/godot-rapier2d/custom_nodes/rapier_rigid_body_2d.gd" id="2_d7061"]
-[ext_resource type="Texture2D" uid="uid://bf2iadk2axgb" path="res://assets/Body/experimentTail.png" id="3_lgv0q"]
-[ext_resource type="Texture2D" uid="uid://dhkms6gypjiue" path="res://assets/Body/experimentThigh.png" id="4_aa7g6"]
-[ext_resource type="Texture2D" uid="uid://c557lrjd8td3v" path="res://assets/Body/experimentCrus.png" id="5_vg3qr"]
-[ext_resource type="Texture2D" uid="uid://b6o3pul4wqtq8" path="res://assets/Body/experimentFoot.png" id="6_ej6bb"]
-[ext_resource type="Texture2D" uid="uid://dv1nydk5gghtv" path="res://assets/Body/experimentUpArm.png" id="7_uspwc"]
-[ext_resource type="Texture2D" uid="uid://uxi4iwfwumtx" path="res://assets/Body/experimentDownArm.png" id="8_d0h8a"]
-[ext_resource type="Texture2D" uid="uid://b3v011olhkgp8" path="res://assets/Body/experimentHandF.png" id="9_wsmht"]
-[ext_resource type="Texture2D" uid="uid://beqtgy3lxleol" path="res://assets/Body/experimentDownTorso.png" id="10_485lt"]
-[ext_resource type="Texture2D" uid="uid://enceuim30717" path="res://assets/Body/experimentUpTorso.png" id="11_wnk1q"]
-[ext_resource type="Texture2D" uid="uid://bsg56r2widolf" path="res://assets/Body/experimentHead.png" id="12_lgv0q"]
-[ext_resource type="Texture2D" uid="uid://c5ofopuwarn86" path="res://assets/Body/experimentEyeSad.png" id="13_aa7g6"]
-[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="14_ksndm"]
-[ext_resource type="Script" uid="uid://mey343kbmmu1" path="res://scenes/animation_player.gd" id="15_5ytwx"]
-[ext_resource type="Script" uid="uid://da7sjmfsmufll" path="res://Scripts/impo/dialogueManager.gd" id="15_fuya5"]
-[ext_resource type="Theme" uid="uid://byc077a5abgew" path="res://assets/themes/dialogue.tres" id="16_aa7g6"]
+[ext_resource type="Script" uid="uid://dr1sb8lw1pbx4" path="res://scenes/rigid_bodies.gd" id="1_oj433"]
+[ext_resource type="Script" uid="uid://unwhnooi7g2c" path="res://addons/godot-rapier2d/custom_nodes/rapier_rigid_body_2d.gd" id="2_mxrvw"]
+[ext_resource type="Texture2D" uid="uid://bf2iadk2axgb" path="res://assets/Body/experimentTail.png" id="3_nfwwb"]
+[ext_resource type="Texture2D" uid="uid://dhkms6gypjiue" path="res://assets/Body/experimentThigh.png" id="4_1nb08"]
+[ext_resource type="Texture2D" uid="uid://c557lrjd8td3v" path="res://assets/Body/experimentCrus.png" id="5_sj3jk"]
+[ext_resource type="Texture2D" uid="uid://b6o3pul4wqtq8" path="res://assets/Body/experimentFoot.png" id="6_53w1j"]
+[ext_resource type="Texture2D" uid="uid://dv1nydk5gghtv" path="res://assets/Body/experimentUpArm.png" id="7_is0bu"]
+[ext_resource type="Texture2D" uid="uid://uxi4iwfwumtx" path="res://assets/Body/experimentDownArm.png" id="8_kji81"]
+[ext_resource type="Texture2D" uid="uid://b3v011olhkgp8" path="res://assets/Body/experimentHandF.png" id="9_rmkpo"]
+[ext_resource type="Texture2D" uid="uid://beqtgy3lxleol" path="res://assets/Body/experimentDownTorso.png" id="10_clml1"]
+[ext_resource type="Texture2D" uid="uid://enceuim30717" path="res://assets/Body/experimentUpTorso.png" id="11_cpr7p"]
+[ext_resource type="Texture2D" uid="uid://bsg56r2widolf" path="res://assets/Body/experimentHead.png" id="12_a5mmg"]
+[ext_resource type="Texture2D" uid="uid://c5ofopuwarn86" path="res://assets/Body/experimentEyeSad.png" id="13_106xn"]
+[ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="14_c7047"]
+[ext_resource type="Script" uid="uid://da7sjmfsmufll" path="res://Scripts/impo/dialogueManager.gd" id="15_h55pf"]
+[ext_resource type="Theme" uid="uid://byc077a5abgew" path="res://assets/themes/dialogue.tres" id="16_nwxd3"]
+[ext_resource type="Script" uid="uid://mey343kbmmu1" path="res://scenes/animation_player.gd" id="17_iyum8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vd41"]
 size = Vector2(13, 4)
@@ -65,7 +65,7 @@ bone_index = 2
 bone2d_node = NodePath("hip/back/head")
 target_nodepath = NodePath("../../../IKNodes/IKHead")
 enable_constraint = true
-constraint_angle_min = -280.99786
+constraint_angle_min = -280.99783
 constraint_angle_max = 318.857
 constraint_angle_invert = true
 constraint_in_localspace = true
@@ -126,7 +126,7 @@ joint_data/0/bone_index = 13
 joint_data/0/bone2d_node = NodePath("hip/LegB/LegCrus")
 joint_data/0/rotate_from_joint = false
 joint_data/0/enable_constraint = true
-joint_data/0/constraint_angle_min = -99.99999
+joint_data/0/constraint_angle_min = -99.999985
 joint_data/0/constraint_angle_max = 69.99999
 joint_data/0/constraint_angle_invert = true
 joint_data/0/constraint_in_localspace = true
@@ -135,8 +135,8 @@ joint_data/1/bone_index = 12
 joint_data/1/bone2d_node = NodePath("hip/LegB")
 joint_data/1/rotate_from_joint = false
 joint_data/1/enable_constraint = true
-joint_data/1/constraint_angle_min = -214.99998
-joint_data/1/constraint_angle_max = 304.99997
+joint_data/1/constraint_angle_min = -214.99997
+joint_data/1/constraint_angle_max = 304.99994
 joint_data/1/constraint_angle_invert = true
 joint_data/1/constraint_in_localspace = true
 joint_data/1/editor_draw_gizmo = true
@@ -149,7 +149,7 @@ joint_data/0/bone_index = 10
 joint_data/0/bone2d_node = NodePath("hip/LegF/LegCrus")
 joint_data/0/rotate_from_joint = false
 joint_data/0/enable_constraint = true
-joint_data/0/constraint_angle_min = -99.99999
+joint_data/0/constraint_angle_min = -99.999985
 joint_data/0/constraint_angle_max = 69.99999
 joint_data/0/constraint_angle_invert = true
 joint_data/0/constraint_in_localspace = true
@@ -158,8 +158,8 @@ joint_data/1/bone_index = 9
 joint_data/1/bone2d_node = NodePath("hip/LegF")
 joint_data/1/rotate_from_joint = false
 joint_data/1/enable_constraint = true
-joint_data/1/constraint_angle_min = -214.99998
-joint_data/1/constraint_angle_max = 304.99997
+joint_data/1/constraint_angle_min = -214.99997
+joint_data/1/constraint_angle_max = 304.99994
 joint_data/1/constraint_angle_invert = true
 joint_data/1/constraint_in_localspace = true
 joint_data/1/editor_draw_gizmo = false
@@ -823,7 +823,7 @@ metadata/_edit_vertical_guides_ = [-248.0]
 [node name="RigidBodies" type="RigidBody2D" parent="." unique_id=954098568 node_paths=PackedStringArray("skeletonRef")]
 collision_layer = 2
 mass = 0.001
-script = ExtResource("1_d7061")
+script = ExtResource("1_oj433")
 skeletonRef = NodePath("skeleton/Skeleton2D")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
@@ -832,13 +832,13 @@ position = Vector2(-1, -20)
 rotation = -1.1779506e-05
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="TailSprite" type="Sprite2D" parent="RigidBodies/Tail" unique_id=572691611]
 texture_filter = 1
 position = Vector2(2, 1)
-texture = ExtResource("3_lgv0q")
+texture = ExtResource("3_nfwwb")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/Tail" unique_id=15001389]
 visible = false
@@ -846,12 +846,12 @@ position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_0vd41")
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=1778302170]
-position = Vector2(0.9908775, -15.995394)
-rotation = 0.0023086097
-scale = Vector2(0.9998993, 0.9998993)
+position = Vector2(0.9907801, -15.995403)
+rotation = 0.0023040795
+scale = Vector2(0.99989927, 0.99989927)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FThighSprite" type="Sprite2D" parent="RigidBodies/BThigh" unique_id=1651817827]
@@ -859,7 +859,7 @@ texture_filter = 1
 position = Vector2(0.018392444, -0.019227982)
 rotation = -0.19698195
 scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("4_aa7g6")
+texture = ExtResource("4_1nb08")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/BThigh" unique_id=873989398]
 visible = false
@@ -868,19 +868,19 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_6er8s")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=1291623445]
-position = Vector2(1.198082, -10.409083)
-rotation = -0.4099313
-scale = Vector2(0.99998385, 0.99998385)
+position = Vector2(1.1980424, -10.40914)
+rotation = -0.40993717
+scale = Vector2(0.9999838, 0.9999838)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FCrusSprite" type="Sprite2D" parent="RigidBodies/BCrus" unique_id=245682429]
 texture_filter = 1
 position = Vector2(0.47213244, -0.41910458)
 rotation = 1.1059602
-texture = ExtResource("5_vg3qr")
+texture = ExtResource("5_sj3jk")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/BCrus" unique_id=1206082373]
 visible = false
@@ -889,19 +889,19 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_gtys0")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=1508589641]
-position = Vector2(2.2499995, -4.5)
-rotation = 0.030915448
-scale = Vector2(0.99995995, 0.99995995)
+position = Vector2(2.2500055, -4.5)
+rotation = 0.030909546
+scale = Vector2(0.9999542, 0.9999542)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FFootSprite" type="Sprite2D" parent="RigidBodies/BFoot" unique_id=320404968]
 texture_filter = 1
 position = Vector2(-0.10552788, 1.105011)
 rotation = -0.7258136
-texture = ExtResource("6_ej6bb")
+texture = ExtResource("6_53w1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BFoot" unique_id=1074059892]
 visible = false
@@ -915,46 +915,46 @@ rotation = -0.024697466
 scale = Vector2(0.9999023, 0.9999023)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FUpArmSprite" type="Sprite2D" parent="RigidBodies/BUpArmSprite" unique_id=1941851736]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("7_uspwc")
+texture = ExtResource("7_is0bu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BUpArmSprite" unique_id=2072928047]
 visible = false
 shape = SubResource("CapsuleShape2D_qhvok")
 
 [node name="BDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=2012997989]
-position = Vector2(-0.75307155, -21.999552)
+position = Vector2(-0.7531164, -22.001347)
 rotation = -0.024697766
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FDownArmSprite" type="Sprite2D" parent="RigidBodies/BDownArm" unique_id=115932087]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("8_d0h8a")
+texture = ExtResource("8_kji81")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BDownArm" unique_id=1270512557]
 visible = false
 shape = SubResource("CapsuleShape2D_g0658")
 
 [node name="BHand" type="RigidBody2D" parent="RigidBodies" unique_id=492240338]
-position = Vector2(-0.50006527, -11.752676)
+position = Vector2(-0.5001101, -11.754469)
 rotation = -0.024697766
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FHandSprite" type="Sprite2D" parent="RigidBodies/BHand" unique_id=2025147663]
 texture_filter = 1
-texture = ExtResource("9_wsmht")
+texture = ExtResource("9_rmkpo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BHand" unique_id=1475054621]
 visible = false
@@ -966,12 +966,12 @@ position = Vector2(-9.536743e-07, -22)
 rotation = -1.1779506e-05
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="LowTorsoSprite" type="Sprite2D" parent="RigidBodies/LowTorso" unique_id=84004181]
 texture_filter = 1
-texture = ExtResource("10_485lt")
+texture = ExtResource("10_clml1")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/LowTorso" unique_id=1911455523]
 visible = false
@@ -984,13 +984,13 @@ rotation = -1.1779506e-05
 scale = Vector2(0.99997985, -0.9999793)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="UpTorsoSprite" type="Sprite2D" parent="RigidBodies/UpTorso" unique_id=1188239828]
 texture_filter = 1
 position = Vector2(1.0000442, 2.750082)
-texture = ExtResource("11_wnk1q")
+texture = ExtResource("11_cpr7p")
 flip_v = true
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/UpTorso" unique_id=57382452]
@@ -1003,20 +1003,20 @@ rotation = -0.0130717
 scale = Vector2(0.9999523, -0.9999523)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="HeadSprite" type="Sprite2D" parent="RigidBodies/Head" unique_id=623520909]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("12_lgv0q")
+texture = ExtResource("12_a5mmg")
 flip_v = true
 
 [node name="EyeSprite" type="Sprite2D" parent="RigidBodies/Head" unique_id=1075090060]
 visible = false
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("13_aa7g6")
+texture = ExtResource("13_106xn")
 flip_v = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="RigidBodies/Head/EyeSprite" unique_id=1364537768]
@@ -1029,12 +1029,12 @@ visible = false
 shape = SubResource("CircleShape2D_0vd41")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=1872544172]
-position = Vector2(0.9370173, -15.969286)
-rotation = 0.015692938
-scale = Vector2(0.99995047, 0.99995047)
+position = Vector2(0.9369507, -15.969207)
+rotation = 0.0156907
+scale = Vector2(0.9999504, 0.9999504)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FThighSprite" type="Sprite2D" parent="RigidBodies/FThigh" unique_id=1931107465]
@@ -1042,7 +1042,7 @@ texture_filter = 1
 position = Vector2(0.018392444, -0.019227982)
 rotation = -0.19698195
 scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("4_aa7g6")
+texture = ExtResource("4_1nb08")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/FThigh" unique_id=365133857]
 visible = false
@@ -1051,19 +1051,19 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_6er8s")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=871937665]
-position = Vector2(1.1287313, -10.321125)
-rotation = -0.41198736
+position = Vector2(1.1286321, -10.321342)
+rotation = -0.4120311
 scale = Vector2(0.9999989, 0.9999989)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FCrusSprite" type="Sprite2D" parent="RigidBodies/FCrus" unique_id=445508563]
 texture_filter = 1
 position = Vector2(0.47213244, -0.41910458)
 rotation = 1.1059602
-texture = ExtResource("5_vg3qr")
+texture = ExtResource("5_sj3jk")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/FCrus" unique_id=931942994]
 visible = false
@@ -1072,19 +1072,19 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_gtys0")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=1733776800]
-position = Vector2(2.1908681, -4.4143367)
-rotation = 0.028859377
+position = Vector2(2.1910655, -4.4143887)
+rotation = 0.028815644
 scale = Vector2(1.0000001, 1.0000001)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FFootSprite" type="Sprite2D" parent="RigidBodies/FFoot" unique_id=698466150]
 texture_filter = 1
 position = Vector2(-0.10552788, 1.105011)
 rotation = -0.7258136
-texture = ExtResource("6_ej6bb")
+texture = ExtResource("6_53w1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FFoot" unique_id=111000098]
 visible = false
@@ -1098,13 +1098,13 @@ rotation = -0.024695082
 scale = Vector2(0.99990225, 0.99990225)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FUpArmSprite" type="Sprite2D" parent="RigidBodies/FUpArmSprite" unique_id=1334317715]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("7_uspwc")
+texture = ExtResource("7_is0bu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FUpArmSprite" unique_id=309902188]
 visible = false
@@ -1116,13 +1116,13 @@ rotation = -0.02469777
 scale = Vector2(1.000006, 1.000006)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FDownArmSprite" type="Sprite2D" parent="RigidBodies/FDownArm" unique_id=476869868]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("8_d0h8a")
+texture = ExtResource("8_kji81")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FDownArm" unique_id=999177858]
 visible = false
@@ -1135,12 +1135,12 @@ rotation = -0.02469777
 scale = Vector2(1.000006, 1.000006)
 collision_layer = 8
 mass = 0.001
-script = ExtResource("2_d7061")
+script = ExtResource("2_mxrvw")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="FHandSprite" type="Sprite2D" parent="RigidBodies/FFHand" unique_id=21444298]
 texture_filter = 1
-texture = ExtResource("9_wsmht")
+texture = ExtResource("9_rmkpo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FFHand" unique_id=1288910072]
 visible = false
@@ -1354,7 +1354,7 @@ node_b = NodePath("../../RigidBodies/LowTorso")
 angular_limit_enabled = true
 angular_limit_lower = -0.34906584
 angular_limit_upper = 0.34906584
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FArm" type="PinJoint2D" parent="PinJoints/Back" unique_id=1656935948]
@@ -1364,7 +1364,7 @@ node_b = NodePath("../../../RigidBodies/UpTorso")
 angular_limit_enabled = true
 angular_limit_lower = -2.6179938
 angular_limit_upper = 1.134464
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="LFArm" type="PinJoint2D" parent="PinJoints/Back/FArm" unique_id=1949600987]
@@ -1374,7 +1374,7 @@ node_b = NodePath("../../../../RigidBodies/FDownArm")
 angular_limit_enabled = true
 angular_limit_lower = -2.9670596
 angular_limit_upper = 0.08726646
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="PinJoints/Back/FArm/LFArm" unique_id=932216739]
@@ -1384,7 +1384,7 @@ node_b = NodePath("../../../../../RigidBodies/FFHand")
 angular_limit_enabled = true
 angular_limit_lower = -1.0471976
 angular_limit_upper = 1.0471976
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BArm" type="PinJoint2D" parent="PinJoints/Back" unique_id=335876838]
@@ -1394,7 +1394,7 @@ node_b = NodePath("../../../RigidBodies/UpTorso")
 angular_limit_enabled = true
 angular_limit_lower = -2.6179938
 angular_limit_upper = 1.134464
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BDArm" type="PinJoint2D" parent="PinJoints/Back/BArm" unique_id=408162910]
@@ -1404,7 +1404,7 @@ node_b = NodePath("../../../../RigidBodies/BUpArmSprite")
 angular_limit_enabled = true
 angular_limit_lower = -2.9670596
 angular_limit_upper = 0.08726646
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="PinJoints/Back/BArm/BDArm" unique_id=1162834353]
@@ -1414,7 +1414,7 @@ node_b = NodePath("../../../../../RigidBodies/BHand")
 angular_limit_enabled = true
 angular_limit_lower = -1.0471976
 angular_limit_upper = 1.0471976
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FThigh" type="PinJoint2D" parent="PinJoints/Back" unique_id=260646430]
@@ -1424,21 +1424,21 @@ node_b = NodePath("../../../RigidBodies/FThigh")
 angular_limit_enabled = true
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FCrus" type="PinJoint2D" parent="PinJoints/Back/FThigh" unique_id=1807491599]
 position = Vector2(2, 7)
 node_a = NodePath("../../../../RigidBodies/FThigh")
 node_b = NodePath("../../../../RigidBodies/FCrus")
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FFoot" type="PinJoint2D" parent="PinJoints/Back/FThigh/FCrus" unique_id=2131643543]
 position = Vector2(-5, 4)
 node_a = NodePath("../../../../../RigidBodies/FCrus")
 node_b = NodePath("../../../../../RigidBodies/FFoot")
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BThigh" type="PinJoint2D" parent="PinJoints/Back" unique_id=404535524]
@@ -1448,21 +1448,21 @@ node_b = NodePath("../../../RigidBodies/BThigh")
 angular_limit_enabled = true
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BCrus" type="PinJoint2D" parent="PinJoints/Back/BThigh" unique_id=992533424]
 position = Vector2(2, 7)
 node_a = NodePath("../../../../RigidBodies/BThigh")
 node_b = NodePath("../../../../RigidBodies/BCrus")
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BFoot" type="PinJoint2D" parent="PinJoints/Back/BThigh/BCrus" unique_id=1838182022]
 position = Vector2(-5, 4)
 node_a = NodePath("../../../../../RigidBodies/BCrus")
 node_b = NodePath("../../../../../RigidBodies/BFoot")
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="Head" type="PinJoint2D" parent="PinJoints" unique_id=484328833]
@@ -1472,7 +1472,7 @@ node_b = NodePath("../../RigidBodies/UpTorso")
 angular_limit_enabled = true
 angular_limit_lower = -1.0471976
 angular_limit_upper = 1.0471976
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="Tail" type="PinJoint2D" parent="PinJoints" unique_id=2138702591]
@@ -1483,11 +1483,11 @@ softness = 6.14
 angular_limit_enabled = true
 angular_limit_lower = 3.1415927
 angular_limit_upper = -0.3228859
-script = ExtResource("14_ksndm")
+script = ExtResource("14_c7047")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="dialogue" type="Node" parent="." unique_id=1705693237 node_paths=PackedStringArray("richtextlabel")]
-script = ExtResource("15_fuya5")
+script = ExtResource("15_h55pf")
 richtextlabel = NodePath("../textParent/RichTextLabel")
 
 [node name="textParent" type="Node2D" parent="." unique_id=797776170]
@@ -1502,7 +1502,7 @@ offset_left = -122.79461
 offset_top = -24.251263
 offset_right = 122.74047
 offset_bottom = -5.2512627
-theme = ExtResource("16_aa7g6")
+theme = ExtResource("16_nwxd3")
 theme_override_colors/default_color = Color(0.9503117, 0.7533711, 3.85046e-07, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
@@ -1513,7 +1513,7 @@ horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=250617225 node_paths=PackedStringArray("skeletonRef")]
 libraries/ = SubResource("AnimationLibrary_rri6f")
-script = ExtResource("15_5ytwx")
+script = ExtResource("17_iyum8")
 skeletonRef = NodePath("../RigidBodies/skeleton/Skeleton2D")
 
 [node name="Node" type="Node" parent="." unique_id=1582520777]

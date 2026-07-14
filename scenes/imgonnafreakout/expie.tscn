@@ -1432,8 +1432,8 @@ shape = SubResource("CapsuleShape2D_8yhbw")
 
 [node name="BUpperArm" type="RigidBody2D" parent="Ragdoll/GBHB" unique_id=187194708]
 position = Vector2(7.051215, -14.663136)
-rotation = 0.44255462
-scale = Vector2(0.999979, 0.999979)
+rotation = 0.44255474
+scale = Vector2(0.9999791, 0.9999791)
 collision_layer = 8
 mass = 0.001
 angular_damp = 32.544
@@ -1453,9 +1453,9 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_8xarg")
 
 [node name="BForeArm" type="RigidBody2D" parent="Ragdoll/GBHB" unique_id=1094801779]
-position = Vector2(-2.798637, 6.121358)
-rotation = 0.48600462
-scale = Vector2(0.99997747, 0.99997747)
+position = Vector2(-2.7986434, 6.1213627)
+rotation = 0.48600468
+scale = Vector2(0.9999774, 0.9999774)
 collision_layer = 8
 mass = 0.001
 angular_damp = 32.544
@@ -1474,9 +1474,9 @@ position = Vector2(-0.14026499, 7.3280773)
 shape = SubResource("RectangleShape2D_7i5i7")
 
 [node name="BHand" type="RigidBody2D" parent="Ragdoll/GBHB" unique_id=2023872310]
-position = Vector2(-12.657436, 26.924728)
-rotation = 0.48600462
-scale = Vector2(0.99997747, 0.99997747)
+position = Vector2(-12.657444, 26.924728)
+rotation = 0.48600468
+scale = Vector2(0.9999774, 0.9999774)
 collision_layer = 8
 mass = 0.001
 angular_damp = 32.544
@@ -1841,7 +1841,7 @@ remote_path = NodePath("../../../../../UpperTorso")
 
 [node name="Head" type="Bone2D" parent="Ragdoll/GBHB/Bones/Skeleton2D/Hip/Back" unique_id=1606197458]
 position = Vector2(0, -28)
-rotation = -0.023851207
+rotation = -0.023851203
 scale = Vector2(0.9998952, 0.9998952)
 rest = Transform2D(0.99978465, 0.015911827, -0.015911827, 0.99978465, 0, -28)
 auto_calculate_length_and_angle = false
@@ -1900,7 +1900,7 @@ remote_path = NodePath("../../../../../../BUpperArm")
 
 [node name="BFore" type="Bone2D" parent="Ragdoll/GBHB/Bones/Skeleton2D/Hip/Back/BUarm" unique_id=2080187590]
 position = Vector2(1.3589859e-05, 23.000805)
-rotation = 0.043449838
+rotation = 0.04344983
 scale = Vector2(0.9999989, 0.9999989)
 rest = Transform2D(1.0000001, 0, 0, 1.0000001, 3.5762787e-07, 23.00082)
 editor_settings/show_bone_gizmo = false

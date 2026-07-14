@@ -71,13 +71,13 @@ shape = SubResource("WorldBoundaryShape2D_fn1ne")
 position = Vector2(336, 564)
 
 [node name="Body2" parent="." unique_id=1454990188 instance=ExtResource("3_skb85")]
-position = Vector2(865, 175)
+position = Vector2(113, 248)
 
 [node name="Body3" parent="." unique_id=442801934 instance=ExtResource("3_skb85")]
 position = Vector2(259, 175)
 
 [node name="Body4" parent="." unique_id=493739656 instance=ExtResource("3_skb85")]
-position = Vector2(537, 160)
+position = Vector2(117, 413)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=431600723]
 visible = false
@@ -92,4 +92,4 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("5_kw42e")]
-position = Vector2(646, 753)
+position = Vector2(634, 644)
