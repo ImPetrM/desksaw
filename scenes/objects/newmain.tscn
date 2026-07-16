@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://0kq78j6rijnm" path="res://Scripts/impo/main.gd" id="1_kw42e"]
 [ext_resource type="PackedScene" uid="uid://b5w1ad1cltbtw" path="res://scenes/consoleThing.tscn" id="2_wpfx3"]
-[ext_resource type="PackedScene" uid="uid://cydyko0hjl4jh" path="res://scenes/objects/crate.tscn" id="3_skb85"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
 [ext_resource type="PackedScene" uid="uid://dde5yo7tagp11" path="res://scenes/expie part 8.tscn" id="5_kw42e"]
 
@@ -66,18 +65,6 @@ script = SubResource("GDScript_gct8d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SideL" unique_id=1825212476]
 shape = SubResource("WorldBoundaryShape2D_fn1ne")
-
-[node name="Body" parent="." unique_id=371602465 instance=ExtResource("3_skb85")]
-position = Vector2(891, 656)
-
-[node name="Body2" parent="." unique_id=1454990188 instance=ExtResource("3_skb85")]
-position = Vector2(885, 457)
-
-[node name="Body3" parent="." unique_id=442801934 instance=ExtResource("3_skb85")]
-position = Vector2(1158, 557)
-
-[node name="Body4" parent="." unique_id=493739656 instance=ExtResource("3_skb85")]
-position = Vector2(848, 210)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=431600723]
 visible = false

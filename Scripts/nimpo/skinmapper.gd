@@ -4,13 +4,16 @@ extends Node
 var bodyRoot: NodePath
 @export
 var currtextures: Array = []
+@export
+var alltextures: Array = []
 #paths
 var resPath = "res://assets/Body/"
 var userSkinPath = "user://skin/Body/"
-
+#furry girlfirend 
 signal mappe(currtextures: Dictionary)
 func _ready() -> void:
 	mapSkin()
+	loadAllTextures()
 
 func mapSkin():
 	var skinList = gbData.skinData
@@ -40,20 +43,28 @@ func swapTex(sprite: Sprite2D, skinFileNames: Dictionary):
 	if tex == null:
 		return null
 
-	var fileName = tex.resource_path.get_file()
-	if not skinFileNames.has(fileName):
-		return tex # no matching skin entry (or no skin at all) — keep default
+	var file_name = tex.resource_path.get_file()
 
-	var newPath = userSkinPath + fileName
-	var newTex = loadUserTex(newPath)
+	if not skinFileNames.has(file_name):
+		return {
+			"name": file_name,
+			"texture": tex
+		}
 
-	if newTex:
-		sprite.texture = newTex
-		return newTex
-	else:
-		print("could not load:", newPath)
-		return tex
-		
+	var new_path = userSkinPath + file_name
+	var new_tex = loadUserTex(new_path)
+
+	if new_tex:
+		sprite.texture = new_tex
+		return {
+			"name": file_name,
+			"texture": new_tex
+		}
+
+	return {
+		"name": file_name,
+		"texture": tex
+	}
 func loadUserTex(userPath: String):
 	if not FileAccess.file_exists(userPath):
 		return null
@@ -76,3 +87,37 @@ func getspr(node: Node) -> Array:
 
 func getAppliedTextures() -> Array:
 	return currtextures
+
+func loadAllTextures():
+	alltextures.clear()
+
+	var dir := DirAccess.open(resPath)
+	if dir == null:
+		return
+
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+
+		if dir.current_is_dir():
+			continue
+
+		if file.get_extension() in ["png", "webp", "jpg"]:
+			var tex: Texture2D
+
+
+			var user_tex = loadUserTex(userSkinPath + file)
+			if user_tex:
+				tex = user_tex
+			else:
+				tex = load(resPath + file)
+
+			alltextures.append({
+				"name": file,
+				"texture": tex
+			})
+
+	dir.list_dir_end()

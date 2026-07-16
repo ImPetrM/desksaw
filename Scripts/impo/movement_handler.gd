@@ -19,7 +19,7 @@ enum states {
 }
 var currstate = states.idle
 func _ready() -> void:
-	animplay.play("idleagain")
+	animplay.play("dance")
 	pass
 func _physics_process(delta: float) -> void:
 	dir = Input.get_axis("testl", "testr")
@@ -42,7 +42,7 @@ func initswithc(state: states):
 	match state:
 		states.idle:
 			animplay.speed_scale = 1
-			animplay.play("idleagain")
+			animplay.play("dance")
 			pass
 
 	pass

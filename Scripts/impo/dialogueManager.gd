@@ -131,11 +131,7 @@ func test():
 		passive_timer = get_tree().create_timer(randi_range(12, 12))
 		await passive_timer.timeout
 		if not is_inside_tree(): return
-		pool = data.noticing
-		speedMod = 1.2
-		send()
 
-		await get_tree().create_timer(5).timeout
 		pool = data.test2
 		speedMod = 1.2
 		send()

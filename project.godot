@@ -44,7 +44,7 @@ project/assembly_name="StartingOver"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-console/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-console/plugin.cfg", "res://addons/soupik/plugin.cfg")
 
 [input]
 
