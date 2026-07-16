@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5w1ad1cltbtw" path="res://scenes/consoleThing.tscn" id="2_wpfx3"]
 [ext_resource type="PackedScene" uid="uid://cydyko0hjl4jh" path="res://scenes/objects/crate.tscn" id="3_skb85"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
-[ext_resource type="PackedScene" uid="uid://tk2rvl72gavg" path="res://scenes/expie part 7.tscn" id="5_kw42e"]
+[ext_resource type="PackedScene" uid="uid://dde5yo7tagp11" path="res://scenes/expie part 8.tscn" id="5_kw42e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -92,4 +92,4 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("5_kw42e")]
-position = Vector2(628, 754)
+position = Vector2(617, 590)
