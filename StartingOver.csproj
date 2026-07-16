@@ -3,5 +3,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
+
+    <!-- CRITICAL FIXES FOR .NET 10+ MSB3094 ERRORS -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <IsPublishable>true</IsPublishable>
   </PropertyGroup>
 </Project>

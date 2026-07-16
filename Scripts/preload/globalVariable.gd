@@ -10,7 +10,7 @@ var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
 var clickZoneSum: int = 0
 
-
+signal skinswap()
 signal pet(t: bool)
 signal console(t: bool)
 signal raisemood(t: int)
@@ -18,6 +18,9 @@ signal feed(t: int)
 #signal bus shit this probably has like one thing in it
 func petf(t: bool):
     pet.emit(t)
+
+func skinswapFunc(data):
+    skinswap.emit(data)
 
 func consoleF(t: bool):
     console.emit(t)

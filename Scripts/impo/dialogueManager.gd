@@ -6,6 +6,8 @@ class_name Dialogue
 @export var textspeed: float = 0.04
 
 var pause: Array = [",", ".", "!"]
+var vowls: Array = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"]
+var bb: Array = ["[shake]", "[wave]"]
 var isTyping: bool = false
 @onready var mood = gbData.data.save.mood
 var pool: Array = []
@@ -15,14 +17,12 @@ signal starttalking()
 signal stoptalking()
 
 var tre: int = 0
-# 1. Create a variable to track our background routine
+
 var passive_timer: SceneTreeTimer = null
 
 func _ready() -> void:
-	richtextlabel.visible_characters = 10
 	richtextlabel.add_theme_font_size_override("normal_font_size", gbData.settings.expieDialogueSize)
-	run_passive_sequence() # Changed name to represent the full sequence
-
+	test()
 func typeOut(string: String, speed_multiplier: float = 1.0):
 	tre += 1
 	var h = tre
@@ -63,26 +63,79 @@ func typeOut(string: String, speed_multiplier: float = 1.0):
 	if tre == h:
 		richtextlabel.visible_characters = 0
 
+func stupify(str: String) -> String:
+	randomize()
+	var chance = .2
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var text = str
+	var vowls = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+
+	var result = ""
+	var words := text.split(" ")
+
+	for wo in words.size():
+		var word = words[wo]
+		var _ex = ""
+		var in_tag = false
+
+		for i in word.length():
+			var c = word[i]
+
+			if c == "[":
+				in_tag = true
+				_ex += c
+				continue
+			if c == "]":
+				in_tag = false
+				_ex += c
+				continue
+			if in_tag:
+				_ex += c
+				continue
+
+			#stuttering. randomly repeat a letter occasionally
+			if i == 0 and rng.randf() < chance:
+				_ex += c + "-"
+
+			if rng.randf() < chance:
+				c = c.to_upper()
+
+			_ex += c
+
+			# extend vowels
+			if rng.randf() < chance:
+				var extejnd = rng.randi_range(1, 3)
+				if vowls.has(c):
+					_ex += c.repeat(extejnd)
+
+		result += _ex
+		if wo < words.size() - 1:
+			result += " "
+
+	return result
+
 func send():
 	if pool.size() > 0:
-		typeOut(pool.pick_random(), speedMod)
+		var text: String = pool.pick_random()
 
-# 2. Optimized, safe sequence runner
-func run_passive_sequence():
-	# First Delay
-	passive_timer = get_tree().create_timer(randi_range(12, 15))
-	await passive_timer.timeout
-	if not is_inside_tree(): return # Prevents crashes if node was destroyed
-	
-	pool = data.seq1
-	speedMod = 1.2
-	send()
+		if text.find("[stupid]") != -1:
+			text = text.replace("[stupid]", "")
+			text = stupify(text)
+			speedMod -= .3
 
-	# Second Delay
-	passive_timer = get_tree().create_timer(5)
-	await passive_timer.timeout
-	if not is_inside_tree(): return
-	
-	pool = data.seq2
-	speedMod = 1.2
-	send()
+		typeOut(text, speedMod)
+
+func test():
+	while true:
+		passive_timer = get_tree().create_timer(randi_range(12, 12))
+		await passive_timer.timeout
+		if not is_inside_tree(): return
+		pool = data.noticing
+		speedMod = 1.2
+		send()
+
+		await get_tree().create_timer(5).timeout
+		pool = data.test2
+		speedMod = 1.2
+		send()

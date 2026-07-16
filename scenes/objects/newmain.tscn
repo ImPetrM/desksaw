@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5w1ad1cltbtw" path="res://scenes/consoleThing.tscn" id="2_wpfx3"]
 [ext_resource type="PackedScene" uid="uid://cydyko0hjl4jh" path="res://scenes/objects/crate.tscn" id="3_skb85"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
-[ext_resource type="PackedScene" uid="uid://4d2rbs2qh0xq" path="res://scenes/expie part 6.tscn" id="5_kw42e"]
+[ext_resource type="PackedScene" uid="uid://tk2rvl72gavg" path="res://scenes/expie part 7.tscn" id="5_kw42e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -68,16 +68,16 @@ script = SubResource("GDScript_gct8d")
 shape = SubResource("WorldBoundaryShape2D_fn1ne")
 
 [node name="Body" parent="." unique_id=371602465 instance=ExtResource("3_skb85")]
-position = Vector2(336, 564)
+position = Vector2(891, 656)
 
 [node name="Body2" parent="." unique_id=1454990188 instance=ExtResource("3_skb85")]
-position = Vector2(113, 248)
+position = Vector2(885, 457)
 
 [node name="Body3" parent="." unique_id=442801934 instance=ExtResource("3_skb85")]
-position = Vector2(259, 175)
+position = Vector2(1158, 557)
 
 [node name="Body4" parent="." unique_id=493739656 instance=ExtResource("3_skb85")]
-position = Vector2(117, 413)
+position = Vector2(848, 210)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=431600723]
 visible = false
@@ -92,4 +92,4 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("5_kw42e")]
-position = Vector2(634, 644)
+position = Vector2(628, 754)

@@ -108,6 +108,31 @@
 			"[shake]NOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!",
 			"[shake]I CANT DO IT ANYMORE!!!!",
 			"[shake]NO MORE!!!!!!!!!"
+		],
+		"lastmoments": [
+			"[shake]I don't... want to die... I don't want to die...",
+			"[shake]Please... Please... Someone save... Save me...",
+			"[shake]I don't want to die... Please... Please...",
+			"[shake]Not... Not like this... Please... Help me...",
+			"[shake]H-help... Someone... I don't w-want to die...",
+			"[shake]I don't... I don't want to leave this world...",
+			"[shake]Save me... Save me... S-save me... Please...",
+			"[shake]This.. Is... H-h... Is this how... How it ends...",
+			"[shake]All... Everything I've done... To... To lead up to t-this... Save m-me...",
+			"[shake]No.. No.... N-no... Please... Please... I don't... I-I don't want to d-die... Help me...",
+			"[shake]Ffhh... Gh.... Help me... Please... Anyone...",
+			"[shake]Nhh... Not like t-this... Please... P-please... Save me...",
+			"[shake]Please... I don't... I don't want to die... Save me... Anyone... Anything... I-I'm not r-ready...",
+			"[shake]W-Will it be.. Over s-soon..?",
+			"[shake]Stop... Stop... Stop... Please... S-stop... Not l-like this... Save me...",
+			"[shake]Fuck... Fuck... Help me... I don't... Want to d-die... H-h.."
+		],
+		"noticing": [
+			"Hello?"
+		],
+		"test2": [
+			"[shake][stupid]Ow... That... That hurt....",
+			"[shake][stupid]Why?... What... What was that for"
 		]
 	},
 	"items": {

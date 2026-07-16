@@ -133,14 +133,18 @@ func newSkinFile():
 
 
 func loadSkin():
+		var _ifliterallyanythingisthere = false
 		var added = []
 		var pt = skinfilepath + "/Body"
 		if DirAccess.dir_exists_absolute(pt):
 			var files = DirAccess.get_files_at(pt)
 			for file in files:
 				if file.get_extension().to_lower() == "png":
+					_ifliterallyanythingisthere = true
 					added.append(skinfilepath.path_join(file))
+			
 		return added
+
 
 # my favorite helpers!
 #theyre gone nvm

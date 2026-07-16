@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://unwhnooi7g2c" path="res://addons/godot-rapier2d/custom_nodes/rapier_rigid_body_2d.gd" id="3_qcy87"]
 [ext_resource type="Script" uid="uid://bywm70l38861" path="res://Scripts/impo/otherManager.gd" id="4_5udqb"]
 [ext_resource type="Texture2D" uid="uid://r38d8wb5mgc5" path="res://assets/Limblets/thighUPD.png" id="4_nio1u"]
-[ext_resource type="Script" uid="uid://qkv62uqdall2" path="res://Scripts/consoleinstancer.gd" id="5_2fa61"]
+[ext_resource type="Script" uid="uid://qkv62uqdall2" path="res://Scripts/nimpo/consoleinstancer.gd" id="5_2fa61"]
 [ext_resource type="Texture2D" uid="uid://kuqu4noi17mv" path="res://assets/Limblets/Calf.png" id="5_xtemb"]
 [ext_resource type="Script" uid="uid://copxchuwf8rlq" path="res://Scripts/impo/dragEXj.gd" id="6_es5rn"]
 [ext_resource type="Texture2D" uid="uid://cy1vmp7357aj7" path="res://assets/Limblets/UpperArm.png" id="7_pkcyl"]
