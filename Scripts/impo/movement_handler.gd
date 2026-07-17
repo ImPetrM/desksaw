@@ -5,13 +5,18 @@ extends Node
 @export var animplay: AnimationPlayer
 @export var eyes: Sprite2D
 @export var tail: Bone2D
+@export var skelparent: Node2D
+@export var headIk: Node2D
+@export var headIkControl: SoupLookAt
+
+var lookback = false
 var flip = false
 var backwards = false
 var dir: float = -0.1
-var new_texture = preload("res://assets/Body/experimentEyeSad.png")
+
 var friction: float = 30.0
 var speedacc: float = 20.0
-var maxspeed: float = 351.0 # you will understand what the one is for later
+var maxspeed: float = 320.0 # you will understand what the one is for later
 #i literally forgot what the one was for
 var notragdolled = true
 enum states {
@@ -19,7 +24,7 @@ enum states {
 }
 var currstate = states.idle
 func _ready() -> void:
-	animplay.play("dance")
+	animplay.play("idleagain")
 	pass
 func _physics_process(delta: float) -> void:
 	dir = Input.get_axis("testl", "testr")
@@ -29,12 +34,26 @@ func _physics_process(delta: float) -> void:
 	else:
 		initswithc(states.idle)
 	
-	phystate()
+	phystate(delta)
 
 	if abs(rigid.linear_velocity.x) > maxspeed + 520:
 		bully()
+	detFlip()
+	headIKf()
 	pass
 
+func headIKf():
+	var dirx: float = sign(rigid.get_global_mouse_position().x - rigid.global_position.x)
+	var facing: float = -1.0 if flip else 1.0
+
+	var mouse_pos: Vector2 = headIk.get_global_mouse_position()
+	lookback = dirx != facing
+	#print(lookback)
+	if dirx != facing:
+		mouse_pos.x = rigid.global_position.x - (mouse_pos.x - rigid.global_position.x)
+		mouse_pos.y = (rigid.global_position.y - 300) - (mouse_pos.y - rigid.global_position.y)
+
+	headIk.global_position = headIk.global_position.lerp(mouse_pos, .05)
 
 func initswithc(state: states):
 	if currstate == state: return
@@ -42,12 +61,12 @@ func initswithc(state: states):
 	match state:
 		states.idle:
 			animplay.speed_scale = 1
-			animplay.play("dance")
+			animplay.play("idleagain")
 			pass
 
 	pass
 
-func phystate():
+func phystate(delta: float):
 	match currstate:
 		states.idle:
 			rigid.linear_velocity.x = move_toward(rigid.linear_velocity.x, 0, friction)
@@ -57,8 +76,10 @@ func phystate():
 			var tempmax = maxspeed
 			#apply movement based on direction
 			if backwards:
-				tempmax = tempmax / 2
-			if abs(rigid.linear_velocity.x) < tempmax:
+				tempmax = (tempmax / 2) + 40
+			var moving_same_direction = sign(rigid.linear_velocity.x) == dir
+
+			if !moving_same_direction or abs(rigid.linear_velocity.x) < tempmax:
 				rigid.apply_central_force(Vector2(dir, 0) * speedacc)
 
 		
@@ -71,6 +92,7 @@ func phystate():
 				animplay.play(target_anim)
 
 			animplay.speed_scale = (normlized / 2) + .2
+			
 			#print(clamp(rigid.linear_velocity.x, -maxspeed, maxspeed))
 			pass
 
@@ -80,6 +102,20 @@ func bully():
 
 
 func detFlip():
+	var dirx: float = sign(rigid.get_global_mouse_position().x - rigid.global_position.x)
+	var facing: float = -1.0 if flip else 1.0
+
+		
+	if dirx == dir:
+		if dir != 0:
+			skelparent.scale.x = dir
+		if dir == 1:
+			flip = false
+		else:
+			flip = true
+
+
+		pass
 	#determine when you gotta FLIPPPP
 	pass
 
@@ -89,12 +125,13 @@ func ragdoll(val: bool):
 	
 	var descendants = skeleton.find_children("*", "", true, false)
 	var moredesc = rigid.find_children("*", "", true, false)
-	eyes.texture = new_texture
+
 	for child in descendants:
 		if child is RemoteTransform2D:
 			var rtt: RemoteTransform2D = child
 			rtt.update_position = val
 			rtt.update_rotation = val
+			rtt.update_scale = val
 
 	for child in moredesc:
 		if child is RigidBody2D:

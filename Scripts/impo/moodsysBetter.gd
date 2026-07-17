@@ -4,6 +4,8 @@ extends Node
 @export var headNode: Sprite2D
 @export var loadedspritesData: Node
 @export var dialogue: Node
+
+@export var backtoggle: Node
 var currentEmotion := "sad"
 var talking := false
 var blinking := false
@@ -23,9 +25,9 @@ var heads = {
 }
 
 func _ready() -> void:
-	setEmotion("happy")
+	setEmotion("normal")
 	blinkLoop()
-
+	eyedir()
 	dialogue.starttalking.connect(startTalking)
 	dialogue.stoptalking.connect(stopTalking)
 
@@ -66,7 +68,7 @@ func stopTalking():
 
 func talkLoop():
 	while talking:
-		setHeadTexture(heads["open"])
+		setHeadTexture(heads["default"])
 		await get_tree().create_timer(randf_range(0.08, 0.18)).timeout
 
 		if !talking:
@@ -78,6 +80,16 @@ func talkLoop():
 	setHeadTexture(heads["default"])
 
 
+func eyedir():
+	while get_tree():
+		await get_tree().create_timer(.2).timeout
+		if !blinking:
+			if backtoggle.lookback:
+					setEyeTexture(eyes[currentEmotion]["back"])
+			else:
+					setEyeTexture(eyes[currentEmotion]["open"])
+
+
 func blink():
 	if blinking:
 		return
@@ -86,7 +98,11 @@ func blink():
 
 	setEyeTexture(eyes[currentEmotion]["closed"])
 	await get_tree().create_timer(0.15).timeout
-	setEyeTexture(eyes[currentEmotion]["open"])
+
+	if backtoggle.lookback:
+		setEyeTexture(eyes[currentEmotion]["back"])
+	else:
+		setEyeTexture(eyes[currentEmotion]["open"])
 
 	blinking = false
 

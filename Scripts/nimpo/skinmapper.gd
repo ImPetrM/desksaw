@@ -31,6 +31,7 @@ func mapSkin():
 			skinFileNames[fileName] = true
 
 	for sprite in sprites:
+		sprite.flip_v = false
 		var appliedTex = swapTex(sprite, skinFileNames)
 		if appliedTex:
 			currtextures.append(appliedTex)

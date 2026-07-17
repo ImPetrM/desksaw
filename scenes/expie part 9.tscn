@@ -1654,8 +1654,8 @@ shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
 position = Vector2(0.46427536, -10.820672)
-rotation = -0.25913715
-scale = Vector2(0.99985784, 0.99985784)
+rotation = -0.25913712
+scale = Vector2(0.999858, 0.999858)
 collision_layer = 8
 mass = 0.001
 script = ExtResource("1_4bkw2")
