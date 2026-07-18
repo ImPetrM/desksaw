@@ -4,16 +4,18 @@ extends Node
 @onready
 
 var settings = gbData.settings
-
+@export var list: Control
 
 var sMAP = {
 	"deathBool": {"key": "deathEnabled", "type": "toggle"},
+	"lobotomize": {"key": "lobotomize", "type": "toggle"},
+	"pixel": {"key": "pixel", "type": "toggle"},
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
-	# "s":      { "key": "someVolume",          "type": "slider" },
+	"normalize": {"key": "normalize", "type": "text"},
 }
 
 
@@ -50,7 +52,7 @@ func _initset() -> void:
 
 # 
 func findSettingN(node_name: String) -> Node:
-	for child in $ItemList.get_children():
+	for child in list.get_children():
 		if child.name == node_name:
 			return child
 	return null

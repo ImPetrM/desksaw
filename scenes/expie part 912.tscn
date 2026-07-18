@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://cu82jmt2fea41" path="res://Scripts/nimpo/skinmapper.gd" id="17_t80p5"]
 [ext_resource type="Script" uid="uid://7c5ffi5w6il5" path="res://Scripts/impo/movement_handler.gd" id="18_rcu3s"]
 [ext_resource type="Script" uid="uid://da7sjmfsmufll" path="res://Scripts/impo/dialogueManager.gd" id="19_pi57w"]
-[ext_resource type="Script" uid="uid://pg0ohwt8ba8h" path="res://Scripts/impo/moodsysBetter.gd" id="20_3xyg0"]
+[ext_resource type="Script" uid="uid://pg0ohwt8ba8h" path="res://Scripts/impo/faceSys.gd" id="20_3xyg0"]
 [ext_resource type="Theme" uid="uid://byc077a5abgew" path="res://assets/themes/dialogue.tres" id="21_iwwnn"]
 
 [sub_resource type="Animation" id="Animation_d7061"]

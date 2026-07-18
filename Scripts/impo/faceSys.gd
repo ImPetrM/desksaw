@@ -6,6 +6,8 @@ extends Node
 @export var dialogue: Node
 
 @export var backtoggle: Node
+
+
 var currentEmotion := "sad"
 var talking := false
 var blinking := false

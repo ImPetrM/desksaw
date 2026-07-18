@@ -3,11 +3,14 @@
 		"x": 400.0,
 		"y": 300.0
 	},
-	"expieDialogueSize": 10.0,
+	"expieDialogueSize": 7.0,
 	"minMood": -100.0,
 	"maxMood": 100.0,
 	"hungerDecayRate": 0.1,
-	"deathEnabled": true,
+	"deathEnabled": false,
+	"pixel": true,
+	"lobotomize": false,
 	"messageEnabled": true,
+	"normalize": 1.0,
 	"placeHodler": true
 }

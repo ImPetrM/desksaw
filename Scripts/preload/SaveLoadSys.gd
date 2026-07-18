@@ -70,6 +70,7 @@ func _ready():
 	if FileAccess.file_exists(conPath):
 		settings = loadjson(conPath)
 		if gbData.devMode:
+			#newConfig()
 			print("Settings loaded from disk")
 	else:
 		newConfig()
@@ -84,7 +85,7 @@ func _ready():
 		newSkinFile()
 
 
-	InitAutosave()
+	#InitAutosave()
 
 func newsave():
 	# Read the save template

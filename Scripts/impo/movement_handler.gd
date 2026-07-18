@@ -17,19 +17,22 @@ var lookback = false
 var flip = false
 var backwards = false
 var dir: float = 0.0
-
+var wander = true
 var friction: float = 30.0
 var speedacc: float = 20.0
 var maxspeed: float = 280.0 # you will understand what the one is for later
 #i literally forgot what the one was for
 var notragdolled = true
+
+@export var defheadnose: Node2D
+
 enum states {
 	moving, idle, ragdoll
 }
 var currstate = states.idle
 func _ready() -> void:
 	animplay.play("idleagain")
-	randomdir()
+	#randomdir()
 	pass
 func _physics_process(delta: float) -> void:
 	if dir != 0.0:
@@ -50,13 +53,18 @@ func headIKf():
 	var facing: float = -1.0 if flip else 1.0
 
 	var mouse_pos: Vector2 = headIk.get_global_mouse_position()
-	lookback = dirx != facing
-	#print(lookback)
-	if dirx != facing:
-		mouse_pos.x = rigid.global_position.x - (mouse_pos.x - rigid.global_position.x)
-		mouse_pos.y = (rigid.global_position.y - 300) - (mouse_pos.y - rigid.global_position.y)
+	var dist: float = rigid.global_position.distance_to(headIk.get_global_mouse_position())
 
-	headIk.global_position = headIk.global_position.lerp(mouse_pos, .05)
+	if dist <= 300.0:
+		lookback = dirx != facing
+		if dirx != facing:
+			mouse_pos.x = rigid.global_position.x - (mouse_pos.x - rigid.global_position.x)
+			mouse_pos.y = (rigid.global_position.y - 300) - (mouse_pos.y - rigid.global_position.y)
+
+		headIk.global_position = headIk.global_position.lerp(mouse_pos, .05)
+	else:
+		lookback = false
+		headIk.global_position = headIk.global_position.lerp(defheadnose.global_position, .05)
 
 func initswithc(state: states):
 	if currstate == state: return
@@ -163,8 +171,8 @@ func checkpositive(num):
 
 
 func randomdir():
-	while get_tree():
+	while wander:
 		await get_tree().create_timer(randi_range(4, 8)).timeout
 		dir = randi_range(-1, 1)
-		await get_tree().create_timer(randi_range(1, 1)).timeout
+		await get_tree().create_timer(randf_range(.5, 2.0)).timeout
 		dir = 0

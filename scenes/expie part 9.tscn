@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://7c5ffi5w6il5" path="res://Scripts/impo/movement_handler.gd" id="16_246si"]
 [ext_resource type="Script" uid="uid://b4u1tvhlw4d2g" path="res://addons/soupik/modifications/soup_look_at.gd" id="16_eaf17"]
 [ext_resource type="Script" uid="uid://da7sjmfsmufll" path="res://Scripts/impo/dialogueManager.gd" id="17_7wlwu"]
-[ext_resource type="Script" uid="uid://pg0ohwt8ba8h" path="res://Scripts/impo/moodsysBetter.gd" id="18_bkyng"]
+[ext_resource type="Script" uid="uid://pg0ohwt8ba8h" path="res://Scripts/impo/faceSys.gd" id="18_bkyng"]
 [ext_resource type="Theme" uid="uid://byc077a5abgew" path="res://assets/themes/dialogue.tres" id="19_1dpdp"]
 
 [sub_resource type="Animation" id="Animation_d7061"]

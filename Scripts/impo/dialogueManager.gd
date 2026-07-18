@@ -127,3 +127,6 @@ func send():
 
 		typeOut(text, speedMod)
 
+func setDia(stra, speed: float):
+	typeOut(stra, speed)
+	pass

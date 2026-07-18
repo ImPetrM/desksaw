@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://0kq78j6rijnm" path="res://Scripts/impo/main.gd" id="1_kw42e"]
 [ext_resource type="PackedScene" uid="uid://b5w1ad1cltbtw" path="res://scenes/consoleThing.tscn" id="2_wpfx3"]
+[ext_resource type="Script" uid="uid://dv3fk2oja8ogf" path="res://Scripts/nimpo/pixeltoggle.gd" id="3_wpfx3"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
-[ext_resource type="PackedScene" uid="uid://cydyko0hjl4jh" path="res://scenes/objects/crate.tscn" id="5_kw42e"]
 [ext_resource type="PackedScene" uid="uid://bbgdbg120vky0" path="res://scenes/expie part 9122.tscn" id="6_skb85"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
@@ -26,22 +26,8 @@ shader = ExtResource("4_6uavn")
 shader_parameter/pixelation = 0.0030000001425
 shader_parameter/opacity = 1.0
 
-[node name="newmain" type="Node2D" unique_id=827416073 node_paths=PackedStringArray("console")]
+[node name="newmain" type="Node2D" unique_id=827416073]
 script = ExtResource("1_kw42e")
-console = NodePath("ConsoleContainer")
-
-[node name="ConsoleContainer" parent="." unique_id=2061047100 instance=ExtResource("2_wpfx3")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 1060.0
-offset_top = 118.0
-offset_right = 1408.0
-offset_bottom = 316.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1727446454]
 collision_layer = 9
@@ -68,7 +54,7 @@ script = SubResource("GDScript_gct8d")
 shape = SubResource("WorldBoundaryShape2D_fn1ne")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=431600723]
-visible = false
+script = ExtResource("3_wpfx3")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=590503007]
 material = SubResource("ShaderMaterial_1ywsh")
@@ -79,8 +65,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Body" parent="." unique_id=371602465 instance=ExtResource("5_kw42e")]
-position = Vector2(677, 330)
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1718764187]
+
+[node name="ConsoleContainer" parent="CanvasLayer2" unique_id=2061047100 instance=ExtResource("2_wpfx3")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -419.0
+offset_top = -568.0
+offset_right = -71.0
+offset_bottom = -370.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("6_skb85")]
 position = Vector2(877, 464)
+
+[node name="Node2D3" parent="." unique_id=54008582 instance=ExtResource("6_skb85")]
+position = Vector2(729, 489)
+
+[node name="Node2D4" parent="." unique_id=2065521408 instance=ExtResource("6_skb85")]
+position = Vector2(578, 498)
+
+[node name="Node2D5" parent="." unique_id=1173896935 instance=ExtResource("6_skb85")]
+position = Vector2(224, 412)
+
+[node name="Node2D6" parent="." unique_id=666906449 instance=ExtResource("6_skb85")]
+position = Vector2(883, 604)
+
+[node name="Node2D7" parent="." unique_id=1992268958 instance=ExtResource("6_skb85")]
+position = Vector2(170, 611)
+
+[node name="Node2D8" parent="." unique_id=1400738004 instance=ExtResource("6_skb85")]
+position = Vector2(1088, 246)
+
+[node name="Node2D2" parent="." unique_id=989977881 instance=ExtResource("6_skb85")]
+position = Vector2(395, 490)

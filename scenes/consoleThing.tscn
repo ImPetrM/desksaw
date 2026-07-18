@@ -119,7 +119,7 @@ mouse_filter = 2
 script = ExtResource("1_spxfo")
 root = NodePath("../../..")
 
-[node name="Settings" type="Container" parent="Main" unique_id=1394294527]
+[node name="Settings" type="Container" parent="Main" unique_id=1394294527 node_paths=PackedStringArray("list")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0125
@@ -129,10 +129,12 @@ anchor_bottom = 1.0557454
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_uf3cf")
+list = NodePath("ItemList")
 metadata/_edit_use_anchors_ = true
 
 [node name="ItemList" type="VBoxContainer" parent="Main/Settings" unique_id=726029026]
 layout_mode = 2
+alignment = 1
 
 [node name="deathBool" type="Button" parent="Main/Settings/ItemList" unique_id=1748848974]
 custom_minimum_size = Vector2(50, 50)
@@ -199,6 +201,64 @@ offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
 text = "Toggles disclaimer at the start"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="lobotomize" type="Button" parent="Main/Settings/ItemList" unique_id=677617191]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/lobotomize" unique_id=2134535334]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Disable actually needing to take care of them"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="pixel" type="Button" parent="Main/Settings/ItemList" unique_id=808715694]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/pixel" unique_id=117636492]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "pixel filter (this looks really ugly dont bother with it)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -291,6 +351,29 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="normalize" type="LineEdit" parent="Main/Settings/ItemList" unique_id=89219244]
+layout_mode = 2
+placeholder_text = "10"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/normalize" unique_id=1275015230]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = 0.5
+anchor_right = 10.28
+anchor_bottom = 0.5
+offset_left = 526.1
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mood normalization
+"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="Control" type="Control" parent="Main/Settings" unique_id=620316955]
 layout_mode = 2
 
@@ -318,3 +401,5 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="text_submitted" from="Main/Settings/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ItemList/normalize" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ItemList/normalize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
