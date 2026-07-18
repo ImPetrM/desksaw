@@ -16,6 +16,8 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="deedee14/expet"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 run/low_processor_mode=true
+boot_splash/bg_color=Color(0.14117648, 0.14117648, 0.14117648, 0)
+boot_splash/show_image=false
 config/icon="uid://4undqe3g2m5"
 
 [audio]
@@ -81,6 +83,7 @@ testl={
 3d/physics_engine="Jolt Physics"
 2d/time_before_sleep=0.31
 2d/solver/solver_iterations=10
+rapier/solver/num_iterations=3
 
 [rendering]
 

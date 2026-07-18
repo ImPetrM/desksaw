@@ -1,15 +1,14 @@
 extends Node
 class_name Dialogue
 
+@onready var mood = gbData.data.save.mood
 @onready var data = gbData.text.diaGlobal
 @export var richtextlabel: RichTextLabel
 @export var textspeed: float = 0.04
-
 var pause: Array = [",", ".", "!"]
 var vowls: Array = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"]
 var bb: Array = ["[shake]", "[wave]"]
 var isTyping: bool = false
-@onready var mood = gbData.data.save.mood
 var pool: Array = []
 var speedMod: float = 1.0
 
@@ -18,11 +17,13 @@ signal stoptalking()
 
 var tre: int = 0
 
+@export var fasdfasdfasddfas: Node
 var passive_timer: SceneTreeTimer = null
 
 func _ready() -> void:
 	richtextlabel.add_theme_font_size_override("normal_font_size", gbData.settings.expieDialogueSize)
-	test()
+
+	
 func typeOut(string: String, speed_multiplier: float = 1.0):
 	tre += 1
 	var h = tre
@@ -69,7 +70,7 @@ func stupify(str: String) -> String:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var text = str
-	var vowls = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+
 
 	var result = ""
 	var words := text.split(" ")
@@ -126,12 +127,3 @@ func send():
 
 		typeOut(text, speedMod)
 
-func test():
-	while true:
-		passive_timer = get_tree().create_timer(randi_range(12, 12))
-		await passive_timer.timeout
-		if not is_inside_tree(): return
-
-		pool = data.test2
-		speedMod = 1.2
-		send()

@@ -23,7 +23,7 @@ var global_bottom_right: Vector2 = global_position + size
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	_on_tab_switch_item_selected(0)
+	_on_tab_switch_item_selected(1)
 	pass
 
 func _process(_delta: float) -> void:
@@ -45,6 +45,7 @@ func _upDrag() -> void:
 
 func _hide(_t: bool) -> void:
 	self.visible = false
+	$ClickArea.enabled = self.visible
 	pass # Replace with function body.
 
 

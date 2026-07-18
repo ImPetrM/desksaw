@@ -9,14 +9,18 @@ extends Node
 @export var headIk: Node2D
 @export var headIkControl: SoupLookAt
 
+
+@export var ragdollspeed: float = 610.0
+
+signal sigragdoll()
 var lookback = false
 var flip = false
 var backwards = false
-var dir: float = -0.1
+var dir: float = 0.0
 
 var friction: float = 30.0
 var speedacc: float = 20.0
-var maxspeed: float = 320.0 # you will understand what the one is for later
+var maxspeed: float = 280.0 # you will understand what the one is for later
 #i literally forgot what the one was for
 var notragdolled = true
 enum states {
@@ -25,10 +29,9 @@ enum states {
 var currstate = states.idle
 func _ready() -> void:
 	animplay.play("idleagain")
+	randomdir()
 	pass
 func _physics_process(delta: float) -> void:
-	dir = Input.get_axis("testl", "testr")
-
 	if dir != 0.0:
 		initswithc(states.moving)
 	else:
@@ -36,10 +39,10 @@ func _physics_process(delta: float) -> void:
 	
 	phystate(delta)
 
-	if abs(rigid.linear_velocity.x) > maxspeed + 520:
-		bully()
+
 	detFlip()
 	headIKf()
+	
 	pass
 
 func headIKf():
@@ -91,14 +94,10 @@ func phystate(delta: float):
 			if animplay.current_animation != target_anim:
 				animplay.play(target_anim)
 
-			animplay.speed_scale = (normlized / 2) + .2
+			animplay.speed_scale = (normlized / 2) + .1
 			
 			#print(clamp(rigid.linear_velocity.x, -maxspeed, maxspeed))
 			pass
-
-func bully():
-	ragdoll(false)
-	await get_tree().create_timer(4).timeout
 
 
 func detFlip():
@@ -139,6 +138,8 @@ func ragdoll(val: bool):
 			if val == false:
 				child.linear_velocity = rigid.linear_velocity
 				child.angular_velocity = rigid.angular_velocity
+	if !val:
+		GlobalVariable.ragaa()
 	if val: # fix the weird bug with teleporting
 		print(rigidtorso.global_position)
 		rigid.global_position = rigidtorso.global_position + Vector2(100, -20)
@@ -159,3 +160,11 @@ func checkpositive(num):
 			return true
 		else:
 			return false
+
+
+func randomdir():
+	while get_tree():
+		await get_tree().create_timer(randi_range(4, 8)).timeout
+		dir = randi_range(-1, 1)
+		await get_tree().create_timer(randi_range(1, 1)).timeout
+		dir = 0

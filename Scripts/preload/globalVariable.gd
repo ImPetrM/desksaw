@@ -9,7 +9,7 @@ var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
 var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
 var clickZoneSum: int = 0
-
+signal raga()
 signal skinswap()
 signal pet(t: bool)
 signal console(t: bool)
@@ -19,6 +19,8 @@ signal feed(t: int)
 func petf(t: bool):
     pet.emit(t)
 
+func ragaa():
+    raga.emit()
 func skinswapFunc(data):
     skinswap.emit(data)
 

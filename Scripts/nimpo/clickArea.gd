@@ -9,7 +9,7 @@ was on this shit for like 3 hours and some dude on reddit had the solution
 why did i fucking think of that when i was killing myself on that damn plane!!???
 """
 
-
+@export var enabled = true
 var cur: bool = false
 
 func _process(_delta: float) -> void:
@@ -29,6 +29,8 @@ func change(t: bool) -> void:
 	if gbData.devMode:
 		print(t)
 	if t:
+		if !enabled:
+			return
 		GlobalVariable.clickZoneSum += 1
 		pass
 	else:

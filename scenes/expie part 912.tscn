@@ -2384,6 +2384,7 @@ offset_top = -24.251263
 offset_right = 122.74047
 offset_bottom = -5.2512627
 theme = ExtResource("21_iwwnn")
+theme_override_colors/default_color = Color(0.97141486, 0.76168233, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "sdfasdf"

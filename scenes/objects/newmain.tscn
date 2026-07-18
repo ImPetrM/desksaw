@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://0kq78j6rijnm" path="res://Scripts/impo/main.gd" id="1_kw42e"]
 [ext_resource type="PackedScene" uid="uid://b5w1ad1cltbtw" path="res://scenes/consoleThing.tscn" id="2_wpfx3"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
-[ext_resource type="PackedScene" uid="uid://dc41jhxx5rx7u" path="res://scenes/expie part 912.tscn" id="4_y8505"]
+[ext_resource type="PackedScene" uid="uid://cydyko0hjl4jh" path="res://scenes/objects/crate.tscn" id="5_kw42e"]
+[ext_resource type="PackedScene" uid="uid://bbgdbg120vky0" path="res://scenes/expie part 9122.tscn" id="6_skb85"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -78,5 +79,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Node2D2" parent="." unique_id=2077787481 instance=ExtResource("4_y8505")]
-position = Vector2(492, 407)
+[node name="Body" parent="." unique_id=371602465 instance=ExtResource("5_kw42e")]
+position = Vector2(677, 330)
+
+[node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("6_skb85")]
+position = Vector2(877, 464)

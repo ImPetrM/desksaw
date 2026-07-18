@@ -28,10 +28,8 @@
 			"[shake]I- I don't want to be here!"
 		],
 		"Ragdolled1": [
-			"Woah!",
-			"Ouch!",
-			"Hey!",
-			"[shake]Agh!"
+			"[shake]AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!",
+			"[shake]WAHHHHHHHHHHHHHHHG!!"
 		],
 		"Ouchies": [
 			"[shake]Stop!",
@@ -42,14 +40,36 @@
 			"?",
 			"..?"
 		],
-		"Hungry": [
-			"Hey, uhm. Got anything to eat?.",
-			"Im a bit hungry."
-		],
+		"Hungry": [],
 		"VeryHungry": [
-			"Can you PLEASE get me something to eat?",
+			"I'm starving.",
+			"I really want to eat.",
+			"So hungry...",
+			"I'm REALLY hungry.",
+			"I need to eat... Please.",
+			"I feel malnourished.",
+			"I'm gonna bite my arm off.",
+			"Really hungry.",
 			"I'm starving!",
-			"I need to eat!"
+			"Starving...",
+			"I'm so hungry... I could eat a... uhh... a... uhm...?",
+			"I'm starving for a bite to eat.",
+			"I'd kill to eat something.",
+			"I feel so weak... I'm hungry...",
+			"I'm SO hungry!",
+			"I'm really starving here.",
+			"I'm malnourished.",
+			"I'd eat anything right now!",
+			"I'm gonna starve...",
+			"My stomach's hurting for food...",
+			"Uggh... Hunger pains...",
+			"Ghh... stomach... hungry.",
+			"need.. food...",
+			"Food...",
+			"Uuuugh. I really want a bite to eat.",
+			"My stomach's really empty.",
+			"Ghh... I'm STARVING!",
+			"My body is wasting away..."
 		],
 		"FoodBad": [
 			"Ew!",
@@ -110,29 +130,28 @@
 			"[shake]NO MORE!!!!!!!!!"
 		],
 		"lastmoments": [
-			"[shake]I don't... want to die... I don't want to die...",
-			"[shake]Please... Please... Someone save... Save me...",
-			"[shake]I don't want to die... Please... Please...",
-			"[shake]Not... Not like this... Please... Help me...",
-			"[shake]H-help... Someone... I don't w-want to die...",
-			"[shake]I don't... I don't want to leave this world...",
-			"[shake]Save me... Save me... S-save me... Please...",
-			"[shake]This.. Is... H-h... Is this how... How it ends...",
-			"[shake]All... Everything I've done... To... To lead up to t-this... Save m-me...",
-			"[shake]No.. No.... N-no... Please... Please... I don't... I-I don't want to d-die... Help me...",
-			"[shake]Ffhh... Gh.... Help me... Please... Anyone...",
-			"[shake]Nhh... Not like t-this... Please... P-please... Save me...",
-			"[shake]Please... I don't... I don't want to die... Save me... Anyone... Anything... I-I'm not r-ready...",
-			"[shake]W-Will it be.. Over s-soon..?",
-			"[shake]Stop... Stop... Stop... Please... S-stop... Not l-like this... Save me...",
-			"[shake]Fuck... Fuck... Help me... I don't... Want to d-die... H-h.."
+			"[stupid][shake]I don't... want to die... I don't want to die...",
+			"[stupid][shake]Please... Please... Someone save... Save me...",
+			"[stupid][shake]I don't want to die... Please... Please...",
+			"[stupid][shake]Not... Not like this... Please... Help me...",
+			"[stupid][shake]H-help... Someone... I don't w-want to die...",
+			"[stupid][shake]I don't... I don't want to leave this world...",
+			"[stupid][shake]Save me... Save me... S-save me... Please...",
+			"[stupid][shake]This.. Is... H-h... Is this how... How it ends...",
+			"[stupid][shake]All... Everything I've done... To... To lead up to t-this... Save m-me...",
+			"[stupid][shake]No.. No.... N-no... Please... Please... I don't... I-I don't want to d-die... Help me...",
+			"[stupid][shake]Ffhh... Gh.... Help me... Please... Anyone...",
+			"[stupid][shake]Nhh... Not like this... Please... Please... Save me...",
+			"[stupid][shake]Please... I don't... I don't want to die... Save me... Anyone... Anything... I-I'm not r-ready...",
+			"[stupid][shake]W-Will it be.. Over s-soon..?",
+			"[stupid][shake]Stop... Stop... Stop... Please... S-stop... Not l-like this... Save me...",
+			"[stupid][shake]Fuck... Fuck... Help me... I don't... Want to d-die... H-h.."
 		],
 		"noticing": [
 			"Hello?"
 		],
 		"test2": [
-			"[shake][stupid]THIS IS YOUR FAULT!",
-			"[shake][stupid]ILL END MY OWN LIFE. ILL STAIN YOUR FUCKING SCREEN WITH MY BLOOD"
+			"[wave]The quick brown fox jumped over the lazy dog."
 		]
 	},
 	"items": {

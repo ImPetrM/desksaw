@@ -94,28 +94,36 @@ func loadAllTextures():
 
 	var dir := DirAccess.open(resPath)
 	if dir == null:
+		print("DIR OPEN FAILED: ", resPath)
 		return
 
 	dir.list_dir_begin()
 
 	while true:
-		var file = dir.get_next()
-		if file == "":
+		var entry = dir.get_next()
+		if entry == "":
 			break
 
 		if dir.current_is_dir():
 			continue
 
-		if file.get_extension() in ["png", "webp", "jpg"]:
-			var tex: Texture2D
+		var file: String
 
+		if entry.ends_with(".import"):
+			file = entry.get_basename()
+		elif entry.get_extension() in ["png", "jpg"]: # fir debugging
+			file = entry
+		else:
+			continue
 
-			var user_tex = loadUserTex(userSkinPath + file)
-			if user_tex:
-				tex = user_tex
-			else:
-				tex = load(resPath + file)
+		var tex: Texture2D
+		var user_tex = loadUserTex(userSkinPath + file)
+		if user_tex:
+			tex = user_tex
+		else:
+			tex = load(resPath + file)
 
+		if tex:
 			alltextures.append({
 				"name": file,
 				"texture": tex

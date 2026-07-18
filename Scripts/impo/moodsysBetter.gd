@@ -31,6 +31,7 @@ func _ready() -> void:
 	dialogue.starttalking.connect(startTalking)
 	dialogue.stoptalking.connect(stopTalking)
 
+
 func setEmotion(emotion: String):
 	if !eyes.has(emotion):
 		return
