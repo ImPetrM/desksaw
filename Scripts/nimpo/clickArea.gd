@@ -1,21 +1,16 @@
 extends Control
 class_name ClickAreaControl
-"""
-	theres a fun line of text you will see if you go back to a really old commit and go to this file
 
-	handles clickthrough toggling (not the actual thing itself)
-
-	go to the singular .CS file for that, ask ZeadenTheBirb about it i dont know anything about c#
 """
 
+was on this shit for like 3 hours and some dude on reddit had the solution
+"just make it passthrough whenever its over an object you want it to pass through"
 
-@export var enabled: bool = true:
-	set(value):
-		enabled = value
-		_sync_contribution()
+why did i fucking think of that when i was killing myself on that damn plane!!???
+"""
 
+@export var enabled = true
 var cur: bool = false
-var contributing: bool = false
 
 func _process(_delta: float) -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
@@ -33,14 +28,15 @@ func change(t: bool) -> void:
 	cur = t
 	if gbData.devMode:
 		print(t)
-	_sync_contribution()
-
-func _sync_contribution() -> void:
-	var should_contribute: bool = cur and enabled
-	if should_contribute == contributing:
-		return
-	contributing = should_contribute
-	GlobalVariable.clickZoneSum += 1 if contributing else -1
+	if t:
+		if !enabled:
+			return
+		GlobalVariable.clickZoneSum += 1
+		pass
+	else:
+		GlobalVariable.clickZoneSum -= 1
+		pass
 	if gbData.devMode:
 		print(GlobalVariable.clickZoneSum)
 	TransparentWindow.SetClickThrough(GlobalVariable.clickZoneSum <= 0)
+   # TransparentWindow.SetClickThrough(false)
