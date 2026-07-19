@@ -33,13 +33,18 @@ func _setmood(val: float):
 	gbData.savetodisk("user://SAVE.json", gbData.data)
 	return val
 
-func _additem():
+
+func _additem(item: String = "crate"):
 # add crate only for now
-	var scene = preload("res://scenes/objects/crate.tscn")
+	var path = "res://scenes/objects/" + item + ".tscn"
+	if !ResourceLoader.exists(path):
+		Console.error("No such object '" + item + "'")
+		return
+	var scene = load(path)
 	var instance = scene.instantiate()
 	get_tree().current_scene.add_child(instance)
 	instance.position = get_viewport().get_mouse_position()
-					
+	instance.owner = get_tree().current_scene
 
 func resize(nx, ny):
 	var ex = str(nx).to_float()
