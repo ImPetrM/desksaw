@@ -14,14 +14,17 @@ var console: Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if gbData.settings["messageEnabled"] == true:
-		OS.alert("DD14 here \n \n This project is in a VERY VERY EARLY state, expect a lot of weird stuff. \n\n 
-		 This is an open source project and I encourage you to add your own features by downloading the github repo at https://github.com/dee-dee-catorce. \n\n
-		 I am fine with the distribution of modded copies as long as I am credited and they aren't a virus or something \n\n 
-		 I apologize if this project didnt meet expectations, I promised alot without taking into consideration that this is my 2nd ever godot project")
+		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
+		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
+
+		 Also! this is the first test build! Thank you!
+")
 	
 	GlobalVariable.console.connect(yeah)
 	#fix()
 	createBorders()
+
+	
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,6 +48,7 @@ func fix():
 
 
 func createBorders():
+	taskbarPos = clampi(taskbarPos, 0, screenHeight)
 	$Floor.position = Vector2(screenWidth / 2, taskbarPos)
 	$SideL.position = Vector2(0, screenHeight / 2)
 	$SideR.position = Vector2(screenWidth, screenHeight / 2)

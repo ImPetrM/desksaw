@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dv3fk2oja8ogf" path="res://Scripts/nimpo/pixeltoggle.gd" id="3_wpfx3"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
 [ext_resource type="PackedScene" uid="uid://bbgdbg120vky0" path="res://scenes/sawianBase.tscn" id="6_skb85"]
+[ext_resource type="PackedScene" uid="uid://cydyko0hjl4jh" path="res://scenes/objects/crate.tscn" id="6_wpfx3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -61,6 +62,10 @@ material = SubResource("ShaderMaterial_1ywsh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 25.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -73,12 +78,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -555.0
-offset_top = -272.0
-offset_right = -207.0
-offset_bottom = -74.0
+offset_left = -512.0
+offset_top = -195.0
+offset_right = -164.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("6_skb85")]
 position = Vector2(877, 464)
+scale = Vector2(4, 4)
+
+[node name="Body" parent="." unique_id=371602465 instance=ExtResource("6_wpfx3")]
+position = Vector2(523, 125)
+scale = Vector2(8.86425, 8.86425)

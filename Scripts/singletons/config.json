@@ -10,6 +10,7 @@
 	"deathEnabled": false,
 	"pixel": true,
 	"lobotomize": false,
+	"mute": true,
 	"messageEnabled": true,
 	"normalize": 1.0,
 	"placeHodler": true

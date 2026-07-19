@@ -142,6 +142,7 @@ alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
+disabled = true
 toggle_mode = true
 icon = ExtResource("6_7udsa")
 alignment = 2
@@ -162,21 +163,40 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "Enable death"
+text = "Enable death (unavailable)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/deathBool" unique_id=1727237654]
-layout_mode = 0
-offset_left = 187.0
-offset_top = -7.0
-offset_right = 515.0
-offset_bottom = 62.0
-text = "hey quick note literally none of these have limits. im too focused on getting this out 
-to add them at the moment.  good luck "
+[node name="lobotomize" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=677617191]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+disabled = true
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/lobotomize" unique_id=2134535334]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mood stuff (unavailable at the moment)"
 scroll_active = false
-horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="openAlert" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=180859308]
 custom_minimum_size = Vector2(50, 50)
@@ -203,35 +223,6 @@ offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
 text = "Toggles disclaimer at the start"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="lobotomize" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=677617191]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme = ExtResource("1_gicfb")
-toggle_mode = true
-icon = ExtResource("6_7udsa")
-alignment = 2
-icon_alignment = 1
-expand_icon = true
-metadata/type = "bool"
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/lobotomize" unique_id=2134535334]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = -3.66
-anchor_right = 10.28
-anchor_bottom = -3.66
-offset_left = 526.1
-offset_top = 187.975
-offset_right = 20.0
-offset_bottom = 227.975
-grow_horizontal = 2
-grow_vertical = 2
-text = "Mood stuff (EXPERIMENTAL!)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -290,7 +281,7 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "pixel filter (this looks really ugly dont bother with it)"
+text = "pixel filter"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -334,7 +325,8 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "The lowest the expies mood can go"
+text = "The lowest the expies mood can go (does nothing as mood stuff
+is unavailable at the moment)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -356,7 +348,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "The highest the expies mood can go"
+text = "The highest the expies mood can go ( same thing)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

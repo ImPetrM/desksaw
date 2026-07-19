@@ -28,16 +28,18 @@ buses/default_bus_layout="uid://q8b4l6lsyv7h"
 
 gbData="*uid://cxvm0bn8psfuw"
 Console="*uid://dc5wc5117h2vk"
-TransparentWindow="*uid://k5nqeptmbi8r"
 GlobalVariable="*uid://mxghgdpm2n4c"
+TransparentWindow="*uid://cckj4pyg78xfg"
 
 [display]
 
-window/size/mode=2
+window/size/mode=3
 window/size/borderless=true
 window/size/always_on_top=true
 window/size/transparent=true
 window/size/sharp_corners=true
+window/size/minimize_disabled=true
+window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
 
 [dotnet]
