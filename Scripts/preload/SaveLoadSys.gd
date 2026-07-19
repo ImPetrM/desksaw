@@ -53,7 +53,7 @@ func _ready():
 	if FileAccess.file_exists(savePath):
 		data = loadjson(savePath)
 		if gbData.devMode:
-			newsave()
+			#snewsave()
 			pass
 	else:
 		newsave()
@@ -85,7 +85,7 @@ func _ready():
 		newSkinFile()
 
 
-	#InitAutosave()
+	InitAutosave()
 
 func newsave():
 	# Read the save template

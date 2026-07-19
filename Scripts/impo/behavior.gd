@@ -11,10 +11,11 @@ extends Node
 @onready var settings = gbData.settings
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	panicAttack(-100.0)
 	moveSys.randomdir()
-	faceSys.setEmotion("sad")
-	
+	faceSys.setEmotion("default")
+
+	#panicAttack()
+
 	pass # Replace with function body.
 
 
@@ -23,17 +24,13 @@ func _process(delta: float) -> void:
 	pass
 
 
-func panicAttack(mood: float):
-	faceSys.setEmotion("sad")
+func panicAttack():
+	if moodSys.tick > -4.5 or moodSys.mood >= 20.0 or settings.lobotomize:
+		return
 
-	
-	await get_tree().create_timer(8).timeout
-	if mood >= -40.0:
-		#idk bro theyre overreacting
-		return
-	if settings.lobotomize:
-		return
+
 	#run towards one side of the screen
+	faceSys.setEmotion("sad")
 	if moveSys.rigid.global_position.x < float(GlobalVariable.screenWidth / 2): moveSys.dir = 1
 	else: moveSys.dir = -1
 
@@ -51,16 +48,11 @@ func panicAttack(mood: float):
 	moveSys.animplay.play("dance")
 
 	await get_tree().create_timer(2).timeout
-	ohno()
 	
-
+	
 func checkifnearborder():
-	var pos = moveSys.rigid.globalpo
-
-
-func ohno():
 	while true:
-			dialogueSys.pool = data.VeryLowPassive
+			await get_tree().create_timer(randf_range(10.0, 25.5)).timeout
+			dialogueSys.pool = data.HappyPassive
 			dialogueSys.speedMod = 1.3
 			dialogueSys.send()
-			await get_tree().create_timer(10).timeout

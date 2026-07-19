@@ -73,33 +73,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -419.0
-offset_top = -568.0
-offset_right = -71.0
-offset_bottom = -370.0
+offset_left = -555.0
+offset_top = -272.0
+offset_right = -207.0
+offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("6_skb85")]
 position = Vector2(877, 464)
-
-[node name="Node2D3" parent="." unique_id=54008582 instance=ExtResource("6_skb85")]
-position = Vector2(729, 489)
-
-[node name="Node2D4" parent="." unique_id=2065521408 instance=ExtResource("6_skb85")]
-position = Vector2(578, 498)
-
-[node name="Node2D5" parent="." unique_id=1173896935 instance=ExtResource("6_skb85")]
-position = Vector2(224, 412)
-
-[node name="Node2D6" parent="." unique_id=666906449 instance=ExtResource("6_skb85")]
-position = Vector2(883, 604)
-
-[node name="Node2D7" parent="." unique_id=1992268958 instance=ExtResource("6_skb85")]
-position = Vector2(170, 611)
-
-[node name="Node2D8" parent="." unique_id=1400738004 instance=ExtResource("6_skb85")]
-position = Vector2(1088, 246)
-
-[node name="Node2D2" parent="." unique_id=989977881 instance=ExtResource("6_skb85")]
-position = Vector2(395, 490)

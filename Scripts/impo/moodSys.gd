@@ -22,7 +22,6 @@ func _ready() -> void:
 	moodLoop()
 
 
-
 #make sure things are updated
 
 func _sync_mood() -> void:
@@ -35,25 +34,38 @@ func _sync_mood() -> void:
 #main mood loop
 func moodLoop() -> void:
 	while true:
-		await get_tree().create_timer(3).timeout
-
-		var normalize = mood / 250.0
-
-		#clamp the tickrate to 5
-		tick = clamp(tick, -5.0, 5.0)
+		await get_tree().create_timer(10).timeout
 
 
-		#test.emit()
-
-		#clamp to min and maxmood
-		mood = clamp(lerp(mood, 0.0, 0.01) + tick, minmood, maxmood)
+		mood += calcmood(1.0)
 		#showly neutralize in lerp but im going to be honesst they basically do nothing
-		tick = lerp(tick, 0.0, 0.01)
-		#round
+
 		mood = snappedf(mood, 0.01)
 
-		_sync_mood()
+		if gbData.settings["lobotomize"]:
+			mood = 0.0
 
+		mood = clamp(mood, minmood, maxmood)
 		if gbData.devMode:
 			print(str("mood: ", mood))
-			print(str("tick: ", tick))
+			print(str("tick: ", calcmood(1.0)))
+		_sync_mood()
+			
+func calcmood(total: float):
+	#health
+	total -= clamp(((1.0 - (gbData.data.save["health"] * 0.01)) * 3), 0.0, 3)
+	#hunger
+	total -= clamp(((1.0 - (gbData.data.save["hunger"] * 0.01)) * 1), 0.0, 1)
+	#trust
+	total -= clamp(((1.0 - (gbData.data.save["trust"] * 0.01)) * 1), 0.0, 1)
+
+	if gbData.data.save["trust"] >= 60.0:
+		total += 0.25
+	if gbData.data.save["hunger"] >= 85.0:
+		total += 0.25
+	#clamp to user settings
+	total = clamp(total, minmood, maxmood)
+	#undo all of it
+
+	print(total)
+	return total

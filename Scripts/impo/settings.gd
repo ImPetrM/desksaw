@@ -6,6 +6,8 @@ extends Node
 var settings = gbData.settings
 @export var list: Control
 
+
+@export var partent: Control
 var sMAP = {
 	"deathBool": {"key": "deathEnabled", "type": "toggle"},
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
@@ -27,6 +29,7 @@ func _ready() -> void:
 
 
 func _initset() -> void:
+	$ScrollContainer.custom_minimum_size = partent.size
 	for node_name in sMAP:
 		var node = findSettingN(node_name)
 		if node == null:
@@ -64,6 +67,7 @@ func sett(key: String, value) -> void:
 
 
 func _saveSettings() -> void:
+	$ScrollContainer.custom_minimum_size = partent.size
 	gbData.savetodisk(gbData.conPath, gbData.settings)
 	if gbData.devMode:
 		print("Settings saved")

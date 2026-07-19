@@ -119,24 +119,26 @@ mouse_filter = 2
 script = ExtResource("1_spxfo")
 root = NodePath("../../..")
 
-[node name="Settings" type="Container" parent="Main" unique_id=1394294527 node_paths=PackedStringArray("list")]
+[node name="Settings" type="Container" parent="Main" unique_id=1394294527 node_paths=PackedStringArray("list", "partent")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0125
-anchor_top = 0.08074534
-anchor_right = 0.9625
-anchor_bottom = 1.0557454
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_uf3cf")
-list = NodePath("ItemList")
-metadata/_edit_use_anchors_ = true
+list = NodePath("ScrollContainer/ItemList")
+partent = NodePath("..")
 
-[node name="ItemList" type="VBoxContainer" parent="Main/Settings" unique_id=726029026]
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/Settings" unique_id=2080831334]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 2
+
+[node name="ItemList" type="VBoxContainer" parent="Main/Settings/ScrollContainer" unique_id=726029026]
 layout_mode = 2
 alignment = 1
 
-[node name="deathBool" type="Button" parent="Main/Settings/ItemList" unique_id=1748848974]
+[node name="deathBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1748848974]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -147,7 +149,7 @@ icon_alignment = 1
 expand_icon = true
 metadata/type = "bool"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/deathBool" unique_id=1562381313]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/deathBool" unique_id=1562381313]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -165,7 +167,7 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Main/Settings/ItemList/deathBool" unique_id=1727237654]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/deathBool" unique_id=1727237654]
 layout_mode = 0
 offset_left = 187.0
 offset_top = -7.0
@@ -176,7 +178,7 @@ to add them at the moment.  good luck "
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="openAlert" type="Button" parent="Main/Settings/ItemList" unique_id=180859308]
+[node name="openAlert" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=180859308]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -187,7 +189,7 @@ icon_alignment = 1
 expand_icon = true
 metadata/type = "bool"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/openAlert" unique_id=1809018078]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/openAlert" unique_id=1809018078]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -205,7 +207,7 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="lobotomize" type="Button" parent="Main/Settings/ItemList" unique_id=677617191]
+[node name="lobotomize" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=677617191]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -216,7 +218,7 @@ icon_alignment = 1
 expand_icon = true
 metadata/type = "bool"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/lobotomize" unique_id=2134535334]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/lobotomize" unique_id=2134535334]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -229,12 +231,12 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "Disable actually needing to take care of them"
+text = "Mood stuff (EXPERIMENTAL!)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="pixel" type="Button" parent="Main/Settings/ItemList" unique_id=808715694]
+[node name="mute" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=926247112]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -245,7 +247,37 @@ icon_alignment = 1
 expand_icon = true
 metadata/type = "bool"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/pixel" unique_id=117636492]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/mute" unique_id=1661101866]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "make them not talk
+"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="pixel" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=808715694]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/pixel" unique_id=117636492]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -263,11 +295,11 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="expieFontSize" type="LineEdit" parent="Main/Settings/ItemList" unique_id=390047042]
+[node name="expieFontSize" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=390047042]
 layout_mode = 2
 placeholder_text = "10"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/expieFontSize" unique_id=1670461292]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/expieFontSize" unique_id=1670461292]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -285,33 +317,11 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="hungerRate" type="LineEdit" parent="Main/Settings/ItemList" unique_id=1340945447]
+[node name="minMood" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=569389834]
 layout_mode = 2
 placeholder_text = "10"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/hungerRate" unique_id=347915579]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = 0.5
-anchor_right = 10.28
-anchor_bottom = 0.5
-offset_left = 526.1
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Hunger decay (i highly recommend keeping this between .1- 1)"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="minMood" type="LineEdit" parent="Main/Settings/ItemList" unique_id=569389834]
-layout_mode = 2
-placeholder_text = "10"
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/minMood" unique_id=501940725]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/minMood" unique_id=501940725]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -329,11 +339,11 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="maxMood" type="LineEdit" parent="Main/Settings/ItemList" unique_id=374514981]
+[node name="maxMood" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=374514981]
 layout_mode = 2
 placeholder_text = "10"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/maxMood" unique_id=1644388755]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/maxMood" unique_id=1644388755]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -350,32 +360,6 @@ text = "The highest the expies mood can go"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="normalize" type="LineEdit" parent="Main/Settings/ItemList" unique_id=89219244]
-layout_mode = 2
-placeholder_text = "10"
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/ItemList/normalize" unique_id=1275015230]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = 0.5
-anchor_right = 10.28
-anchor_bottom = 0.5
-offset_left = 526.1
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Mood normalization
-"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Control" type="Control" parent="Main/Settings" unique_id=620316955]
-layout_mode = 2
 
 [node name="ClickArea" type="Control" parent="." unique_id=1277571415]
 layout_mode = 1
@@ -394,12 +378,8 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="pressed" from="Handle" to="." method="_drag"]
 [connection signal="pressed" from="Handle/Close" to="." method="_hide" binds= [true]]
 [connection signal="item_selected" from="Handle/TabSwitch" to="." method="_on_tab_switch_item_selected"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/expieFontSize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/hungerRate" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/hungerRate" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/minMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/normalize" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ItemList/normalize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/expieFontSize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
