@@ -150,7 +150,7 @@ func ragdoll(val: bool):
 		GlobalVariable.ragaa()
 	if val: # fix the weird bug with teleporting
 		print(rigidtorso.global_position)
-		rigid.global_position = rigidtorso.global_position + Vector2(100, -20)
+		rigid.global_position = rigidtorso.global_position + Vector2(100, -10)
 
 """
 literally useless function that i added because i saw that older games source code had helper functions for everything because

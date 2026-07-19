@@ -43,8 +43,8 @@ func _additem(item: String = "crate"):
 	var scene = load(path)
 	var instance = scene.instantiate()
 	get_tree().current_scene.add_child(instance)
-	instance.position = get_viewport().get_mouse_position()
 	instance.owner = get_tree().current_scene
+	instance.position = get_viewport().get_mouse_position()
 
 func resize(nx, ny):
 	var ex = str(nx).to_float()
