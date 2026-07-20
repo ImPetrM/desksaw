@@ -46,6 +46,7 @@ func _upDrag() -> void:
 func showw() -> void:
 	self.visible = true
 	$ClickArea.enabled = self.visible
+	print("enable")
 	pass # Replace
 
 func _hide(_t: bool) -> void:

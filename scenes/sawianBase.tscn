@@ -1675,6 +1675,7 @@ height = 47.5
 [node name="Node2D" type="Node2D" unique_id=2077787481]
 metadata/_edit_vertical_guides_ = [-248.0]
 metadata/_edit_horizontal_guides_ = [-89.0]
+metadata/item = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=250617225]
 libraries/ = SubResource("AnimationLibrary_rri6f")
@@ -1710,8 +1711,9 @@ position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_bitre")
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.33960962, -15.576893)
-rotation = 0.31542605
+position = Vector2(-0.33960938, -15.576893)
+rotation = 0.315426
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1732,9 +1734,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.2266626, -9.810148)
-rotation = -0.007382908
-scale = Vector2(0.9999999, 0.9999999)
+position = Vector2(-5.2266617, -9.810149)
+rotation = -0.0073829084
+scale = Vector2(0.9999998, 0.9999998)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1754,9 +1756,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-4.867566, -4.6748033)
+position = Vector2(-4.8675656, -4.6748037)
 rotation = 0.4334638
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -2040,6 +2042,7 @@ angular_limit_enabled = true
 angular_limit_lower = -0.34906584
 angular_limit_upper = 0.34906584
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FArm" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=1656935948]
@@ -2052,6 +2055,7 @@ angular_limit_enabled = true
 angular_limit_lower = -2.6179938
 angular_limit_upper = 1.134464
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="LFArm" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/FArm" unique_id=1949600987]
@@ -2062,6 +2066,7 @@ angular_limit_enabled = true
 angular_limit_lower = -2.9670596
 angular_limit_upper = 0.08726646
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/FArm/LFArm" unique_id=932216739]
@@ -2072,6 +2077,7 @@ angular_limit_enabled = true
 angular_limit_lower = -1.0471976
 angular_limit_upper = 1.0471976
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BArm" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=335876838]
@@ -2084,6 +2090,7 @@ angular_limit_enabled = true
 angular_limit_lower = -2.6179938
 angular_limit_upper = 1.134464
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BDArm" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/BArm" unique_id=408162910]
@@ -2094,6 +2101,7 @@ angular_limit_enabled = true
 angular_limit_lower = -2.9670596
 angular_limit_upper = 0.08726646
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/BArm/BDArm" unique_id=1162834353]
@@ -2104,6 +2112,7 @@ angular_limit_enabled = true
 angular_limit_lower = -1.0471976
 angular_limit_upper = 1.0471976
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FThigh" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=260646430]
@@ -2114,6 +2123,7 @@ angular_limit_enabled = true
 angular_limit_lower = 0.099483766
 angular_limit_upper = 1.5707964
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FCrus" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/FThigh" unique_id=1807491599]
@@ -2124,6 +2134,7 @@ angular_limit_enabled = true
 angular_limit_lower = 0.3403392
 angular_limit_upper = -1.4119713
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FFoot" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/FThigh/FCrus" unique_id=2131643543]
@@ -2132,6 +2143,7 @@ node_a = NodePath("../../../../../../FCrus")
 node_b = NodePath("../../../../../../FFoot")
 angular_limit_enabled = true
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BThigh" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=404535524]
@@ -2142,6 +2154,7 @@ angular_limit_enabled = true
 angular_limit_lower = 0.099483766
 angular_limit_upper = 1.5707964
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BCrus" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/BThigh" unique_id=992533424]
@@ -2152,6 +2165,7 @@ angular_limit_enabled = true
 angular_limit_lower = 0.3403392
 angular_limit_upper = -1.4119713
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BFoot" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/BThigh/BCrus" unique_id=1838182022]
@@ -2160,6 +2174,7 @@ node_a = NodePath("../../../../../../BCrus")
 node_b = NodePath("../../../../../../BFoot")
 angular_limit_enabled = true
 script = ExtResource("13_re48v")
+ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="Head" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints" unique_id=484328833]

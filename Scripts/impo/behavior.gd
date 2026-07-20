@@ -59,7 +59,7 @@ func tempRagdoll() -> void:
 
 	while true:
 		await get_tree().create_timer(5.0).timeout
-		if beingDragged or abs(moveSys.rigidtorso.linear_velocity.x) > 100.0:
+		if beingDragged or abs(moveSys.rigidtorso.linear_velocity.x + moveSys.rigidtorso.linear_velocity.y) > 10.0:
 			continue
 		break
 
