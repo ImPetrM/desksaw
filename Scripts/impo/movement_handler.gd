@@ -10,7 +10,7 @@ extends Node
 @export var headIkControl: SoupLookAt
 
 
-@export var ragdollspeed: float = 610.0
+@export var ragdollspeed: float = 700.0
 
 signal sigragdoll()
 var lookback = false
@@ -147,10 +147,7 @@ func ragdoll(val: bool):
 				child.linear_velocity = rigid.linear_velocity
 				child.angular_velocity = rigid.angular_velocity
 	if !val:
-		GlobalVariable.ragaa()
-	if val: # fix the weird bug with teleporting
-		print(rigidtorso.global_position)
-		rigid.global_position = rigidtorso.global_position + Vector2(100, -20)
+		sigragdoll.emit()
 
 """
 literally useless function that i added because i saw that older games source code had helper functions for everything because
@@ -170,9 +167,3 @@ func checkpositive(num):
 			return false
 
 
-func randomdir():
-	while wander:
-		await get_tree().create_timer(randi_range(4, 8)).timeout
-		dir = randi_range(-1, 1)
-		await get_tree().create_timer(randf_range(.5, 2.0)).timeout
-		dir = 0

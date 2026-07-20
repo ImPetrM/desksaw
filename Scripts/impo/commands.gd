@@ -33,6 +33,23 @@ func _setmood(val: float):
 	gbData.savetodisk("user://SAVE.json", gbData.data)
 	return val
 
+func spawnExpie():
+	var path = "res://scenes/sawianBase.tscn"
+	var scene = load(path)
+	var instance = scene.instantiate()
+
+	var wrapper = Node2D.new()
+	wrapper.scale = Vector2(4.0, 4.0)
+
+	get_tree().current_scene.add_child(wrapper)
+	wrapper.owner = get_tree().current_scene
+
+	wrapper.add_child(instance)
+	instance.owner = get_tree().current_scene
+
+	instance.global_position.x = GlobalVariable.screenWidth / 2
+	instance.global_position.y = - GlobalVariable.screenHeight * 2
+
 
 func _additem(item: String = "crate"):
 # add crate only for now
@@ -78,7 +95,8 @@ func _ready():
 	Console.create_command("resizeConsole", resize, "resize the console")
 	##Console.create_command("killExpie", killExpie, "Yeha")
 	Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
-	Console.create_command("spawn", _additem, "spawn shit")
+	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")
+	Console.create_command("spawnExpie", spawnExpie, "spawns another one of them. they cant interact yet.")
 	Console.create_command("openSkinFolder", openskinfold, "opens the skin folder")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
@@ -90,3 +108,19 @@ func applySettings():
 	## resize
 	root.size.x = gbData.settings.ConsoleSize.x
 	root.size.y = gbData.settings.ConsoleSize.y
+
+func _scaleVisualsAndShapes(node: Node, factor: float) -> void:
+	for child in node.get_children():
+		if child is Sprite2D or child is AnimatedSprite2D:
+			child.scale *= factor
+		elif child is CollisionShape2D and child.shape:
+			child.shape = child.shape.duplicate()
+			if child.shape is CircleShape2D:
+				child.shape.radius *= factor
+			elif child.shape is RectangleShape2D:
+				child.shape.size *= factor
+			elif child.shape is CapsuleShape2D:
+				child.shape.radius *= factor
+				child.shape.height *= factor
+			child.position *= factor
+		_scaleVisualsAndShapes(child, factor)

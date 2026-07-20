@@ -15,7 +15,7 @@ var sMAP = {
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
-	"mute": {"key": "messageEnabled", "type": "toggle"},
+	"mute": {"key": "mute", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},

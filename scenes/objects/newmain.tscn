@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://dv3fk2oja8ogf" path="res://Scripts/nimpo/pixeltoggle.gd" id="3_wpfx3"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
 [ext_resource type="PackedScene" uid="uid://bbgdbg120vky0" path="res://scenes/sawianBase.tscn" id="6_skb85"]
-[ext_resource type="PackedScene" uid="uid://cydyko0hjl4jh" path="res://scenes/objects/crate.tscn" id="6_wpfx3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -27,8 +26,9 @@ shader = ExtResource("4_6uavn")
 shader_parameter/pixelation = 0.0030000001425
 shader_parameter/opacity = 1.0
 
-[node name="newmain" type="Node2D" unique_id=827416073]
+[node name="newmain" type="Node2D" unique_id=827416073 node_paths=PackedStringArray("console")]
 script = ExtResource("1_kw42e")
+console = NodePath("CanvasLayer2/ConsoleContainer")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1727446454]
 collision_layer = 9
@@ -62,10 +62,6 @@ material = SubResource("ShaderMaterial_1ywsh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -531.0
-offset_top = -155.0
-offset_right = -531.0
-offset_bottom = -155.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -88,7 +84,3 @@ grow_vertical = 2
 [node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("6_skb85")]
 position = Vector2(877, 464)
 scale = Vector2(4, 4)
-
-[node name="Body" parent="." unique_id=371602465 instance=ExtResource("6_wpfx3")]
-position = Vector2(778, -781)
-scale = Vector2(1.5298939, 1.4701273)

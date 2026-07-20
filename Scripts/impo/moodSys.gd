@@ -42,13 +42,13 @@ func moodLoop() -> void:
 
 		mood = snappedf(mood, 0.01)
 
-		if gbData.settings["lobotomize"]:
-			mood = 0.0
 
 		mood = clamp(mood, minmood, maxmood)
 		if gbData.devMode:
 			print(str("mood: ", mood))
 			print(str("tick: ", calcmood(1.0)))
+		if !gbData.settings["lobotomize"]:
+			mood = 0.0
 		_sync_mood()
 			
 func calcmood(total: float):

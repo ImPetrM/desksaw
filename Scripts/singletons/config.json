@@ -9,8 +9,8 @@
 	"hungerDecayRate": 0.1,
 	"deathEnabled": false,
 	"pixel": true,
-	"lobotomize": false,
-	"mute": true,
+	"lobotomize": true,
+	"mute": false,
 	"messageEnabled": true,
 	"normalize": 1.0,
 	"placeHodler": true

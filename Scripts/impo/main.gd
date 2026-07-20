@@ -18,6 +18,8 @@ func _ready():
 		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
 
 		 Also! this is the first test build! Thank you!
+
+		 PS: Control + Click on the expie to reopen the menu
 ")
 	
 	GlobalVariable.console.connect(yeah)
@@ -34,6 +36,7 @@ func _process(delta: float) -> void:
 
 func yeah(t: bool):
 	console.visible = true
+	console.showw()
 	print("yeah")
 
 

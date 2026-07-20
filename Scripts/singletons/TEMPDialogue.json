@@ -1,10 +1,31 @@
 {
 	"diaGlobal": {
-
-		"test": [
-			"This test is kinda [wave]boring....",
+		"THIS IS ALL PLACEHOLDERS!!! FINAL ONE WONT BE THIS BORING! IN THE MEAN TIME HAVE FUN MESSING AROUND WITH THIS": [],
+		"passive": [
+			"This test is kinda boring....",
+			"What exactly are we testing this time?..",
+			"What kind of test is this?...",
+			"This is really weird....",
+			"Im very bored",
+			"When can I go back?...",
+			"This test kinda sucks....",
+			"waow"
+		],
+		"screamBIG": [
+			"[shake]WAHHHAHHHHHHHHHHHHHHH!!!!!!",
+			"[shake]HEY!!!!!!",
+			"[shake]AAAAAAAAAAHHHHHHHH!!!!!!",
+			"[shake]WOAHHHHHH!!"
+		],
+		"getUp": [
+			"[wave]Ugh... no more please!",
+			"[wave]Ow!",
+			"[wave]Please never do that again!",
+			"[wave]Stop that!"
+		],
+		"start": [
 			"... Hello?",
-			"Can anyone hear me?"
+			"Uhhhhh....."
 		]
 	}
 }
