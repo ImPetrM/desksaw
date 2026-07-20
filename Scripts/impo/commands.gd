@@ -63,6 +63,10 @@ func _additem(item: String = "crate"):
 	instance.position = get_viewport().get_mouse_position()
 	instance.owner = get_tree().current_scene
 
+func nukesettings():
+	#command that fixes the "terror" bug
+	gbData.killEverything()
+
 func resize(nx, ny):
 	var ex = str(nx).to_float()
 	var ey = str(ny).to_float()
@@ -98,6 +102,7 @@ func _ready():
 	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")
 	Console.create_command("spawnExpie", spawnExpie, "spawns another one of them. they cant interact yet.")
 	Console.create_command("openSkinFolder", openskinfold, "opens the skin folder")
+	Console.create_command("nukeSettings", nukesettings, "run if your expie is in a constant state of terror (resets EVERYTHING)")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
 	#setting stuff that would probably have a better solution to it
@@ -108,4 +113,3 @@ func applySettings():
 	## resize
 	root.size.x = gbData.settings.ConsoleSize.x
 	root.size.y = gbData.settings.ConsoleSize.y
-

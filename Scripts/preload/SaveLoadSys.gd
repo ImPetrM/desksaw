@@ -177,3 +177,11 @@ func InitAutosave():
 			print("saved")
 		savetodisk(savePath, data)
 		savetodisk(conPath, settings)
+
+
+func killEverything():
+	newsave()
+	newTrans()
+	newSkinFile()
+	newConfig()
+	pass
