@@ -44,10 +44,12 @@ var template = "res://Scripts/singletons/SaveTemplate.json"
 var devMode = false
 
 
-var savePath = "user://SAVE.json"
-var transPath = "user://TRANSLATION.json"
-var conPath = "user://CONFIG.json"
-var skinfilepath = "user://skin"
+const savePath = "user://SAVE.json"
+const transPath = "user://TRANSLATION.json"
+const conPath = "user://CONFIG.json"
+const skinfilepath = "user://skin"
+
+const URL = "https://raw.githubusercontent.com/godotengine/godot/refs/heads/master/README.md"
 func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
@@ -59,8 +61,7 @@ func _ready():
 	# Load translation file
 	if FileAccess.file_exists(transPath):
 		text = loadjson(transPath)
-		if gbData.devMode:
-			newTrans()
+
 	else:
 		newTrans()
 
