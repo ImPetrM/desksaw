@@ -15,7 +15,7 @@ var _hovering := false
 var _currLine := 0.0
 var _dragging := false
 var _dragger: StaticBody2D
-var _joint: DampedSpringJoint2D
+var _joint: RapierPinJoint2D
 var ogscale = .8
 
 func _ready() -> void:
@@ -73,7 +73,7 @@ func _isMouseOver(mousePos: Vector2) -> bool:
 func _startDrag(mousePos: Vector2) -> void:
 	_dragging = true
 	_dragger = StaticBody2D.new()
-	_joint = DampedSpringJoint2D.new()
+	_joint = RapierPinJoint2D.new()
 	_joint.node_a = ""
 	_joint.node_b = ""
 	_dragger.add_child(_joint)
@@ -88,9 +88,7 @@ func _startDrag(mousePos: Vector2) -> void:
 	_dragger.global_position = mousePos
 	_joint.node_a = _dragger.get_path()
 	_joint.node_b = get_parent().get_path()
-	_joint.stiffness = 20000
-	_joint.damping = 200
-	_joint.length = 0
+
 
 	if gbData.devMode:
 		print("drag started")

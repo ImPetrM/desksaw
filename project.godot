@@ -33,11 +33,11 @@ TransparentWindow="*uid://cckj4pyg78xfg"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/size/borderless=true
 window/size/always_on_top=true
 window/size/transparent=true
-window/size/sharp_corners=true
+window/size/no_focus=true
 window/size/minimize_disabled=true
 window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
