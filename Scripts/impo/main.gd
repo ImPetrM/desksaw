@@ -20,6 +20,8 @@ func _ready():
 		 Also! this is the first test build! Thank you!
 
 		 PS: Control + Click on the expie to reopen the menu
+		Run openSkinFolder in the command section to start with skin stuff!
+		 IM AWARE THAT THIS SHOULD NOT BE 200 MEGABYTES!!!!! ITS A GODOT THING IM WORKING ON FIXING!
 ")
 	
 	GlobalVariable.console.connect(yeah)

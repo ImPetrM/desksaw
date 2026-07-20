@@ -109,18 +109,3 @@ func applySettings():
 	root.size.x = gbData.settings.ConsoleSize.x
 	root.size.y = gbData.settings.ConsoleSize.y
 
-func _scaleVisualsAndShapes(node: Node, factor: float) -> void:
-	for child in node.get_children():
-		if child is Sprite2D or child is AnimatedSprite2D:
-			child.scale *= factor
-		elif child is CollisionShape2D and child.shape:
-			child.shape = child.shape.duplicate()
-			if child.shape is CircleShape2D:
-				child.shape.radius *= factor
-			elif child.shape is RectangleShape2D:
-				child.shape.size *= factor
-			elif child.shape is CapsuleShape2D:
-				child.shape.radius *= factor
-				child.shape.height *= factor
-			child.position *= factor
-		_scaleVisualsAndShapes(child, factor)

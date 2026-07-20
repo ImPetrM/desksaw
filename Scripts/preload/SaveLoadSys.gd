@@ -41,7 +41,7 @@ var template = "res://Scripts/singletons/SaveTemplate.json"
 
 
 # DO NOT FORGET TO DISABLE THIS WHENBUILDING 
-var devMode = true
+var devMode = false
 
 
 var savePath = "user://SAVE.json"
@@ -52,9 +52,7 @@ func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
 		data = loadjson(savePath)
-		if gbData.devMode:
-			#snewsave()
-			pass
+
 	else:
 		newsave()
 	
@@ -69,15 +67,13 @@ func _ready():
 	# Load settings/config file
 	if FileAccess.file_exists(conPath):
 		settings = loadjson(conPath)
-		if gbData.devMode:
-			#newConfig()
-			print("Settings loaded from disk")
+
 	else:
 		newConfig()
 
 	if DirAccess.dir_exists_absolute(skinfilepath):
 		skinData = loadSkin()
-		print(skinData)
+		#print(skinData)
 		#load file
 		pass
 		#settings = loadjson(conPath)
@@ -129,7 +125,9 @@ func newSkinFile():
 			
 
 			if txt:
-				txt.store_line("Drop the Body folder of your skin into this folder!")
+				txt.store_line("Drop the Body folder of your skin into this folder! \n \n
+				In theory, everything on https://skin.cat-bot.de/ should be compatible with this!
+				")
 				txt.close()
 
 
