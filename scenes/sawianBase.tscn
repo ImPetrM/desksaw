@@ -2549,3 +2549,6 @@ script = ExtResource("22_un334")
 script = ExtResource("19_xvb24")
 richtextlabel = NodePath("../../textParent/RichTextLabel")
 fasdfasdfasddfas = NodePath("../movementHandler")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=809829603]
+max_polyphony = 10
