@@ -26,11 +26,17 @@ func _load_sounds(path: String) -> Array[AudioStream]:
 
 		while file_name != "":
 			if not dir.current_is_dir():
-				# match the files with the format and ignore imported stufff
-				if (file_name.ends_with(".wav") or file_name.ends_with(".ogg")) and not file_name.ends_with(".import"):
-					var stream := load(path + file_name) as AudioStream
-					if stream:
+				#clean up filetypes because exporting breaks this func
+				var clean_name := file_name.replace(".import", "").replace(".remap", "")
+				
+				if clean_name.ends_with(".wav") or clean_name.ends_with(".ogg") or clean_name.ends_with(".mp3"):
+					var full_path := path + clean_name
+					var stream := load(full_path) as AudioStream
+					
+					# avoid dupes
+					if stream and not streams.has(stream):
 						streams.append(stream)
+						
 			file_name = dir.get_next()
 	else:
 		push_error("there is no file at this path: ", path)
