@@ -15,8 +15,12 @@ var console: Node
 func _ready():
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
-
-
+	#i snooped around on a linux vm that uses wayland until the issue went away
+	#forced it to run x11  and then changed the window setting when it runs linux
+	#it works on my end. theres like 2 bajillion different versions of linux i know oneof them is bound to break
+	#go bandage on amputated limb fix!
+	if OS.get_name() == "Linux":
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 	if gbData.settings["messageEnabled"] == true:
 		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
 		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
