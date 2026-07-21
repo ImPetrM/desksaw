@@ -11,6 +11,14 @@
 			"This test kinda sucks....",
 			"waow"
 		],
+		"pet": [
+			"T-That feels nice.",
+			"T-thanks!",
+			"This is nice..",
+			"...I like it.",
+			"...that's nice.",
+			"...uh, thank you?..."
+		],
 		"screamBIG": [
 			"[shake]WAHHHAHHHHHHHHHHHHHHH!!!!!!",
 			"[shake]HEY!!!!!!",
@@ -22,6 +30,9 @@
 			"[wave]Ow!",
 			"[wave]Please never do that again!",
 			"[wave]Stop that!"
+		],
+		"getUpPet": [
+			"[wave]That was a bit too much... but I liked it."
 		],
 		"start": [
 			"... Hello?",

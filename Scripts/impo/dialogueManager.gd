@@ -3,6 +3,7 @@ class_name Dialogue
 
 @onready var mood = gbData.data.save.mood
 @onready var data = gbData.text.diaGlobal
+@onready var dialogueTimer = $dialogueTimer
 @export var richtextlabel: RichTextLabel
 @export var textspeed: float = 0.04
 var pause: Array = [",", ".", "!"]
@@ -22,6 +23,7 @@ var passive_timer: SceneTreeTimer = null
 
 func _ready() -> void:
 	richtextlabel.add_theme_font_size_override("normal_font_size", gbData.settings.expieDialogueSize)
+	print("LOADED DIALOGUE KEYS: ", data.keys())
 
 	
 func typeOut(string: String, speed_multiplier: float = 1.0):
@@ -116,7 +118,11 @@ func stupify(str: String) -> String:
 
 	return result
 
-func send():
+func send(cooldown: float = 0.0, ignoreCooldown: bool = false) -> void:
+	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
+		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
+		return
+
 	if pool.size() > 0:
 		var text: String = pool.pick_random()
 
@@ -126,7 +132,23 @@ func send():
 			speedMod -= .3
 
 		typeOut(text, speedMod)
+		
+		await stoptalking
 
-func setDia(stra, speed: float):
+		if cooldown > 0.0:
+			dialogueTimer.start(cooldown)
+
+
+func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = false) -> void:
+	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
+		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
+		return
+
 	typeOut(stra, speed)
-	pass
+	await stoptalking
+
+	if cooldown > 0.0:
+		dialogueTimer.start(cooldown)
+
+func is_dialogue_playing() -> bool:
+	return isTyping

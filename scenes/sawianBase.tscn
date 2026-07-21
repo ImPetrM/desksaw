@@ -12,12 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://enceuim30717" path="res://assets/Body/experimentUpTorso.png" id="10_7eycm"]
 [ext_resource type="Texture2D" uid="uid://bjta7yk5pd8fh" path="res://assets/Body/experimentHeadBack.png" id="11_yydv3"]
 [ext_resource type="Texture2D" uid="uid://b0630p6hqbjso" path="res://assets/Body/experimentEyeOpen.png" id="12_li2bu"]
-[ext_resource type="Script" uid="uid://copxchuwf8rlq" path="res://Scripts/impo/dragEXj.gd" id="13_6mwry"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="13_re48v"]
-[ext_resource type="Script" uid="uid://cburu6b4ckehs" path="res://addons/godot-rapier2d/custom_nodes/rapier_area_2d.gd" id="14_3pkli"]
 [ext_resource type="Script" uid="uid://clgwtw4irp0fp" path="res://addons/soupik/modifications/soup_modification.gd" id="14_4p4nk"]
 [ext_resource type="Script" uid="uid://bnso0mph1tb11" path="res://addons/soupik/modifications/soup_two_bone_ik.gd" id="15_6ydbj"]
 [ext_resource type="Script" uid="uid://b4u1tvhlw4d2g" path="res://addons/soupik/modifications/soup_look_at.gd" id="16_r1kx6"]
+[ext_resource type="Script" uid="uid://c7ow8pxs33wgv" path="res://scenes/detection.gd" id="17_6mwry"]
 [ext_resource type="Script" uid="uid://cu82jmt2fea41" path="res://Scripts/nimpo/skinmapper.gd" id="17_67p0r"]
 [ext_resource type="Script" uid="uid://bwycbhxscshio" path="res://Scripts/impo/behavior.gd" id="18_8de8m"]
 [ext_resource type="Script" uid="uid://7c5ffi5w6il5" path="res://Scripts/impo/movement_handler.gd" id="18_ry0af"]
@@ -1847,19 +1846,6 @@ texture = ExtResource("9_rm4cm")
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_k8iha")
 
-[node name="Detector" type="Area2D" parent="RigidBodies/LowTorso" unique_id=638487831]
-script = ExtResource("14_3pkli")
-metadata/_custom_type_script = "uid://cburu6b4ckehs"
-
-[node name="detector" type="CollisionShape2D" parent="RigidBodies/LowTorso/Detector" unique_id=1388149837]
-position = Vector2(0.058938622, 1.999321)
-shape = SubResource("CircleShape2D_3pkli")
-
-[node name="Select2" type="Node" parent="RigidBodies/LowTorso" unique_id=1789463357 node_paths=PackedStringArray("sprite", "behaviornode")]
-script = ExtResource("13_6mwry")
-sprite = NodePath("../LowTorsoSprite")
-behaviornode = NodePath("../../../behavior")
-
 [node name="UpTorso" type="RigidBody2D" parent="RigidBodies" unique_id=455497122]
 position = Vector2(-0.49999624, -30.000072)
 rotation = -1.1779506e-05
@@ -2494,6 +2480,10 @@ bone_node = NodePath("../../../hip/back/head")
 target_node = NodePath("../../../hip/IKNodes/IKHead")
 metadata/_custom_type_script = "uid://b4u1tvhlw4d2g"
 
+[node name="detection" type="Node" parent="RigidBodies" unique_id=1792843160 node_paths=PackedStringArray("behaviornode")]
+script = ExtResource("17_6mwry")
+behaviornode = NodePath("../../behavior")
+
 [node name="textParent" type="Node2D" parent="." unique_id=797776170]
 position = Vector2(-0.16188101, -40.91855)
 rotation = -1.1779506e-05
@@ -2549,3 +2539,8 @@ script = ExtResource("22_un334")
 script = ExtResource("19_xvb24")
 richtextlabel = NodePath("../../textParent/RichTextLabel")
 fasdfasdfasddfas = NodePath("../movementHandler")
+
+[node name="dialogueTimer" type="Timer" parent="behavior/dialogue" unique_id=1048411103]
+one_shot = true
+
+[connection signal="input_event" from="RigidBodies" to="RigidBodies" method="_on_input_event"]
