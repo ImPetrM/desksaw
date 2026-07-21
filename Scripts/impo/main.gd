@@ -13,6 +13,11 @@ var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 var console: Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
+	DisplayServer.window_set_position(DisplayServer.screen_get_position())
+
+
 	if gbData.settings["messageEnabled"] == true:
 		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
 		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n

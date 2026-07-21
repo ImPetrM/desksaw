@@ -33,6 +33,10 @@ func _setmood(val: float):
 	gbData.savetodisk("user://SAVE.json", gbData.data)
 	return val
 
+func reload():
+	get_tree().change_scene_to_file("res://scenes/newmain.tscn")
+
+
 func spawnExpie():
 	var path = "res://scenes/sawianBase.tscn"
 	var scene = load(path)
@@ -86,6 +90,9 @@ func nukesettings():
 	#command that fixes the "terror" bug
 	gbData.killEverything()
 
+func setmonitor(monitorIndex: int = 1):
+	DisplayServer.window_set_current_screen(monitorIndex)
+
 func resize(nx, ny):
 	var ex = str(nx).to_float()
 	var ey = str(ny).to_float()
@@ -116,6 +123,8 @@ func deathLoop():
 func _ready():
 	Console.create_command("log", _log, "Log a string to the console.")
 	Console.create_command("resizeConsole", resize, "resize the console")
+	#dont use this it breaks alot of shit Console.create_command("reload", reload, "reload everything")
+	Console.create_command("setMonitor", setmonitor, "temporary command")
 	##Console.create_command("killExpie", killExpie, "Yeha")
 	Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
 	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")

@@ -14,7 +14,7 @@ config/name="desktop expie"
 config/version="0.0.2"
 run/main_scene="uid://cqg8h324jtya"
 config/use_custom_user_dir=true
-config/custom_user_dir_name="deedee14/deskpiePRE-RELEASE"
+config/custom_user_dir_name="deedee14/desksawPRE-RELEASE"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0.14117648, 0.14117648, 0.14117648, 0)
@@ -35,7 +35,6 @@ TransparentWindow="*uid://cckj4pyg78xfg"
 
 [display]
 
-window/size/mode=2
 window/size/borderless=true
 window/size/always_on_top=true
 window/size/transparent=true
