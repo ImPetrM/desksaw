@@ -408,7 +408,7 @@ script = ExtResource("7_emer2")
 layout_mode = 2
 columns = 5
 
-[node name="FolderAcces" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=762259672]
+[node name="FolderAccess" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=762259672]
 layout_mode = 2
 text = "Open Folder"
 
@@ -427,7 +427,7 @@ text = "Spawn"
 layout_mode = 2
 text = ">"
 
-[node name="Label" type="Label" parent="Main/SkinSpawner/GridContainer" unique_id=341281014]
+[node name="SkinName" type="Label" parent="Main/SkinSpawner/GridContainer" unique_id=341281014]
 layout_mode = 2
 text = "Default Skin:"
 
@@ -581,3 +581,7 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/FolderAccess" to="Main/SkinSpawner" method="_on_folder_access_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Previous" to="Main/SkinSpawner" method="_on_previous_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Select" to="Main/SkinSpawner" method="_on_select_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Next" to="Main/SkinSpawner" method="_on_next_pressed"]

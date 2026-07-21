@@ -8,6 +8,8 @@ var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
 
 var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
+var userSkinPath = "user://skin/Body/"
+
 var clickZoneSum: int = 0
 signal raga()
 signal skinswap()

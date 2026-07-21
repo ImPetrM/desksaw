@@ -8,10 +8,11 @@ var currtextures: Array = []
 var alltextures: Array = []
 #paths
 var resPath = "res://assets/Body/"
-var userSkinPath = "user://skin/Body/"
+var userSkinPath = GlobalVariable.userSkinPath
 #furry girlfirend 
 signal mappe(currtextures: Dictionary)
 func _ready() -> void:
+	print("Using '", userSkinPath, "' for new expie's skin")
 	mapSkin()
 	loadAllTextures()
 
