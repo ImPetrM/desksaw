@@ -11,12 +11,12 @@ var settings = gbData.settings
 var sMAP = {
 	"deathBool": {"key": "deathEnabled", "type": "toggle"},
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
-	"soundBool": {"key": "soundEnabled", "type": "toggle"},
 	"pixel": {"key": "pixel", "type": "toggle"},
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
 	"mute": {"key": "mute", "type": "toggle"},
+	"soundBool": {"key": "soundEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},
