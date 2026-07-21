@@ -17,7 +17,7 @@ func _ready():
 		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
 		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
 
-		 Also! this is the first test build! Thank you!
+		 Build 2! this fixes a few bugs that were reported in build 1!
 
 		 PS: Control + Click on the expie to reopen the menu
 		Run openSkinFolder in the command section to start with skin stuff!

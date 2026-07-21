@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://npkviyjb3h34"
-path="res://.godot/imported/shin.png-22e21d9f335bf7dd75b111ee61a0569e.ctex"
+uid="uid://b18hymnuqflqn"
+path="res://.godot/imported/loolll.png-2d5803249e147c4794005a0cb0551416.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/shin.png"
-dest_files=["res://.godot/imported/shin.png-22e21d9f335bf7dd75b111ee61a0569e.ctex"]
+source_file="res://assets/objectSpr/loolll.png"
+dest_files=["res://.godot/imported/loolll.png-2d5803249e147c4794005a0cb0551416.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu4f1rxb3rmc4"
-path="res://.godot/imported/Hands-Sheet.png-92d31229e3d20b3a271f225e55cdf8ae.ctex"
+uid="uid://kuqu4noi17mv"
+path="res://.godot/imported/Calf.png-0900d8f55d4bdf424c1cfa1e19754795.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/Hands-Sheet.png"
-dest_files=["res://.godot/imported/Hands-Sheet.png-92d31229e3d20b3a271f225e55cdf8ae.ctex"]
+source_file="res://scenes/OLD/Limblets/Calf.png"
+dest_files=["res://.godot/imported/Calf.png-0900d8f55d4bdf424c1cfa1e19754795.ctex"]
 
 [params]
 

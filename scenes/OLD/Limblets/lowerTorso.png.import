@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dymyjhcie2or0"
-path="res://.godot/imported/giraf.png-ea2a6b05214b84e84ffdce59df57852b.ctex"
+uid="uid://cvlnmqlu7l8db"
+path="res://.godot/imported/lowerTorso.png-5075517bf1b69acc7fa2cc7c1302ce6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/giraf.png"
-dest_files=["res://.godot/imported/giraf.png-ea2a6b05214b84e84ffdce59df57852b.ctex"]
+source_file="res://scenes/OLD/Limblets/lowerTorso.png"
+dest_files=["res://.godot/imported/lowerTorso.png-5075517bf1b69acc7fa2cc7c1302ce6b.ctex"]
 
 [params]
 

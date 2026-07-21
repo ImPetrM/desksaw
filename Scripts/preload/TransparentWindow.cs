@@ -44,7 +44,7 @@ public partial class TransparentWindow : Node
             GetWindow().Transparent = true;
             GetWindow().TransparentBg = true;
             GetWindow().MousePassthrough = true;
-            Engine.MaxFps = 30;
+            Engine.MaxFps = 45;
         }
     }
 
@@ -58,7 +58,7 @@ public partial class TransparentWindow : Node
             {
                 // We set the window as layered and click-through
                 SetWindowLong(_hWnd, GwlExStyle, WsExLayered | WsExTransparent);
-                Engine.MaxFps = 40;
+                Engine.MaxFps = 45;
             }
             else
             {
@@ -70,7 +70,7 @@ public partial class TransparentWindow : Node
         else
         {
             GetWindow().MousePassthrough = clickthrough;
-            Engine.MaxFps = clickthrough ? 40 : 60;
+            Engine.MaxFps = clickthrough ? 45 : 60;
         }
     }
 

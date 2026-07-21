@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r38d8wb5mgc5"
-path="res://.godot/imported/thighUPD.png-173124f389468955a583ec4b78991820.ctex"
+uid="uid://ctiq335o2t31p"
+path="res://.godot/imported/tail.png-6c57d71bc856215e32d105b79d4b9282.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/thighUPD.png"
-dest_files=["res://.godot/imported/thighUPD.png-173124f389468955a583ec4b78991820.ctex"]
+source_file="res://scenes/OLD/Limblets/tail.png"
+dest_files=["res://.godot/imported/tail.png-6c57d71bc856215e32d105b79d4b9282.ctex"]
 
 [params]
 

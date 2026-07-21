@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bya10kmarjsct"
-path="res://.godot/imported/Thigh.png-49b2512e8eebe73f352d80503e1eec0b.ctex"
+uid="uid://dymyjhcie2or0"
+path="res://.godot/imported/giraf.png-59b02c1a7b12b3c24a274165f3f38c33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/Thigh.png"
-dest_files=["res://.godot/imported/Thigh.png-49b2512e8eebe73f352d80503e1eec0b.ctex"]
+source_file="res://scenes/OLD/Limblets/giraf.png"
+dest_files=["res://.godot/imported/giraf.png-59b02c1a7b12b3c24a274165f3f38c33.ctex"]
 
 [params]
 

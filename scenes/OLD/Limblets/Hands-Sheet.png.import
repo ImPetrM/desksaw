@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwoted7wdudvw"
-path="res://.godot/imported/Eyes.png-f09056331a2af8893498b0375be1f95c.ctex"
+uid="uid://bu4f1rxb3rmc4"
+path="res://.godot/imported/Hands-Sheet.png-2757f9315bb984d90832d9c0d0d33334.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/FaceStuff/Eyes.png"
-dest_files=["res://.godot/imported/Eyes.png-f09056331a2af8893498b0375be1f95c.ctex"]
+source_file="res://scenes/OLD/Limblets/Hands-Sheet.png"
+dest_files=["res://.godot/imported/Hands-Sheet.png-2757f9315bb984d90832d9c0d0d33334.ctex"]
 
 [params]
 

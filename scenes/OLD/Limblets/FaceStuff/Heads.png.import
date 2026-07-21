@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvlnmqlu7l8db"
-path="res://.godot/imported/lowerTorso.png-5d3cfb083dd9bdb6d5ba98777321635a.ctex"
+uid="uid://c2gk0qhmg7k52"
+path="res://.godot/imported/Heads.png-08f3edf91c4a96f801ab61168ae460b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/lowerTorso.png"
-dest_files=["res://.godot/imported/lowerTorso.png-5d3cfb083dd9bdb6d5ba98777321635a.ctex"]
+source_file="res://scenes/OLD/Limblets/FaceStuff/Heads.png"
+dest_files=["res://.godot/imported/Heads.png-08f3edf91c4a96f801ab61168ae460b3.ctex"]
 
 [params]
 

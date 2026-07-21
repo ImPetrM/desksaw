@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p3fsantvkni6"
-path="res://.godot/imported/ForeArm.png-2fc55dccb52788bc7aa9760f8d46e223.ctex"
+uid="uid://r38d8wb5mgc5"
+path="res://.godot/imported/thighUPD.png-968155102a459fd1d989966f9a12912e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/ForeArm.png"
-dest_files=["res://.godot/imported/ForeArm.png-2fc55dccb52788bc7aa9760f8d46e223.ctex"]
+source_file="res://scenes/OLD/Limblets/thighUPD.png"
+dest_files=["res://.godot/imported/thighUPD.png-968155102a459fd1d989966f9a12912e.ctex"]
 
 [params]
 

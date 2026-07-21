@@ -1711,8 +1711,9 @@ position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_bitre")
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.33960962, -15.576893)
-rotation = 0.31542605
+position = Vector2(-0.33960938, -15.576893)
+rotation = 0.315426
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1733,9 +1734,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.2266626, -9.810148)
-rotation = -0.007382908
-scale = Vector2(0.9999999, 0.9999999)
+position = Vector2(-5.2266617, -9.810149)
+rotation = -0.0073829084
+scale = Vector2(0.9999998, 0.9999998)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1755,9 +1756,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-4.867566, -4.6748033)
+position = Vector2(-4.8675656, -4.6748037)
 rotation = 0.4334638
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -2031,7 +2032,6 @@ shape = SubResource("CapsuleShape2D_hln7x")
 [node name="skeleton" type="Node2D" parent="RigidBodies" unique_id=875824417]
 
 [node name="PinJoints" type="Node2D" parent="RigidBodies/skeleton" unique_id=1224169096]
-visible = false
 
 [node name="Back" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints" unique_id=1049038305]
 position = Vector2(-1, -26)
@@ -2045,7 +2045,6 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FArm" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=1656935948]
-visible = false
 position = Vector2(0, -7.25)
 rotation = -0.12780386
 node_a = NodePath("../../../../FUpArmSprite")
@@ -2069,7 +2068,7 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/FArm/LFArm" unique_id=932216739]
-position = Vector2(0.07879649, 6.117023)
+position = Vector2(0.039981052, 8.380537)
 node_a = NodePath("../../../../../../FDownArm")
 node_b = NodePath("../../../../../../FFHand")
 angular_limit_enabled = true
@@ -2080,7 +2079,6 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BArm" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=335876838]
-visible = false
 position = Vector2(0, -7.25)
 rotation = -0.12780386
 node_a = NodePath("../../../../BUpArmSprite")
@@ -2104,7 +2102,7 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back/BArm/BDArm" unique_id=1162834353]
-position = Vector2(0.07879649, 6.117023)
+position = Vector2(0.039981052, 8.380537)
 node_a = NodePath("../../../../../../BDownArm")
 node_b = NodePath("../../../../../../BHand")
 angular_limit_enabled = true
@@ -2115,6 +2113,7 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="FThigh" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=260646430]
+visible = false
 position = Vector2(0, 6)
 node_a = NodePath("../../../../LowTorso")
 node_b = NodePath("../../../../FThigh")
@@ -2146,6 +2145,7 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BThigh" type="PinJoint2D" parent="RigidBodies/skeleton/PinJoints/Back" unique_id=404535524]
+visible = false
 position = Vector2(0, 6)
 node_a = NodePath("../../../../LowTorso")
 node_b = NodePath("../../../../BThigh")

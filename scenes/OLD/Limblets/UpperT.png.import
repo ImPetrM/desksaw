@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy1vmp7357aj7"
-path="res://.godot/imported/UpperArm.png-2db28587c0824d3a4431449af95ed328.ctex"
+uid="uid://clxk44sw6c2p2"
+path="res://.godot/imported/UpperT.png-a6c581a4a4778b9effa80400d155e63f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/UpperArm.png"
-dest_files=["res://.godot/imported/UpperArm.png-2db28587c0824d3a4431449af95ed328.ctex"]
+source_file="res://scenes/OLD/Limblets/UpperT.png"
+dest_files=["res://.godot/imported/UpperT.png-a6c581a4a4778b9effa80400d155e63f.ctex"]
 
 [params]
 

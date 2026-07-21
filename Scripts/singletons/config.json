@@ -13,5 +13,6 @@
 	"mute": false,
 	"messageEnabled": true,
 	"normalize": 1.0,
+	"outdated": false,
 	"placeHodler": true
 }

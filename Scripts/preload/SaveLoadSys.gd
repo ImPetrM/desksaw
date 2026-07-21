@@ -43,13 +43,14 @@ var template = "res://Scripts/singletons/SaveTemplate.json"
 # DO NOT FORGET TO DISABLE THIS WHENBUILDING 
 var devMode = false
 
+const currver = "v0.0.2"
 
 const savePath = "user://SAVE.json"
 const transPath = "user://TRANSLATION.json"
 const conPath = "user://CONFIG.json"
 const skinfilepath = "user://skin"
 
-const URL = "https://raw.githubusercontent.com/godotengine/godot/refs/heads/master/README.md"
+
 func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
@@ -83,6 +84,7 @@ func _ready():
 
 
 	InitAutosave()
+
 
 func newsave():
 	# Read the save template
@@ -186,3 +188,16 @@ func killEverything():
 	newSkinFile()
 	newConfig()
 	pass
+
+func outdated():
+	if settings.outdated:
+		print("what")
+		return
+	settings.outdated = true
+	killEverything()
+
+func checkupdated():
+	if !settings.outdated: return
+	print("what")
+	settings.outdated = false
+	killEverything()

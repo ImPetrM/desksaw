@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clxk44sw6c2p2"
-path="res://.godot/imported/UpperT.png-eca438b320d8d0c3656703c01e919a47.ctex"
+uid="uid://ckeps0v7cqbor"
+path="res://.godot/imported/pls update.png-943217dc6a370d8255845c15a50b9b72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Limblets/UpperT.png"
-dest_files=["res://.godot/imported/UpperT.png-eca438b320d8d0c3656703c01e919a47.ctex"]
+source_file="res://assets/objectSpr/pls update.png"
+dest_files=["res://.godot/imported/pls update.png-943217dc6a370d8255845c15a50b9b72.ctex"]
 
 [params]
 
