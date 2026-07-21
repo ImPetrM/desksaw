@@ -24,6 +24,8 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	_on_tab_switch_item_selected(1)
+
+	position = Vector2i(GlobalVariable.screenWidth / 2, GlobalVariable.screenHeight / 2)
 	pass
 
 func _process(_delta: float) -> void:
