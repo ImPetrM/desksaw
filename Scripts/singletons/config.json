@@ -11,6 +11,7 @@
 	"pixel": false,
 	"lobotomize": true,
 	"mute": false,
+	"soundEnabled": true,
 	"messageEnabled": true,
 	"normalize": 1.0,
 	"outdated": false,

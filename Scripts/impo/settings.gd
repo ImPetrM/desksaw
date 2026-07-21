@@ -11,6 +11,7 @@ var settings = gbData.settings
 var sMAP = {
 	"deathBool": {"key": "deathEnabled", "type": "toggle"},
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
+	"soundBool": {"key": "soundEnabled", "type": "toggle"},
 	"pixel": {"key": "pixel", "type": "toggle"},
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},

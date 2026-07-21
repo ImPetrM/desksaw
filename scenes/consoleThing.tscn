@@ -255,7 +255,34 @@ text = "make them not talk
 "
 scroll_active = false
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="soundBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=670932247]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/soundBool" unique_id=1882356057]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toggle expie sounds"
+scroll_active = false
+vertical_alignment = 1
 
 [node name="pixel" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=808715694]
 custom_minimum_size = Vector2(50, 50)
@@ -371,7 +398,7 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="pressed" from="Handle/Close" to="." method="_hide" binds= [true]]
 [connection signal="item_selected" from="Handle/TabSwitch" to="." method="_on_tab_switch_item_selected"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/expieFontSize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
+[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
