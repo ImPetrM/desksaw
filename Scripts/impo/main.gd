@@ -21,6 +21,10 @@ func _ready():
 	#go bandage on amputated limb fix!
 	if OS.get_name() == "Linux":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
+	if DisplayServer.get_name() == "Wayland":
+		OS.alert("This message is popping up because you are using wayland. \n \n Most if not all features will not work due to waylands security measures. \n\n Sorry
+")
 	if gbData.settings["messageEnabled"] == true:
 		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
 		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
