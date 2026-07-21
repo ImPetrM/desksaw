@@ -41,6 +41,7 @@ window/size/transparent=true
 window/size/minimize_disabled=true
 window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
+display_server/driver.linuxbsd="x11"
 
 [dotnet]
 

@@ -135,6 +135,7 @@ func _ready():
 	Console.create_command("nukeSettings", nukesettings, "run if your expie is in a constant state of terror (resets EVERYTHING)")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
+	Console.execute("setMonitor 0")
 	#setting stuff that would probably have a better solution to it
 
 	applySettings()
