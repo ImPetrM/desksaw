@@ -128,9 +128,7 @@ func newSkinFile():
 			
 
 			if txt:
-				txt.store_line("Drop the Body folder of your skin into this folder! \n \n
-				In theory, everything on https://skin.cat-bot.de/ should be compatible with this!
-				")
+				txt.store_line("Drop the Body folder of your skin into this folder!\n\nIn theory, everything on https://skin.cat-bot.de/ should be compatible with this!")
 				txt.close()
 
 

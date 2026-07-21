@@ -1,0 +1,3 @@
+Added sound for text being typed out by expie
+Makes expie mute work, so that it doesn't speak
+Adds message to console to tell how to reopen console if closed

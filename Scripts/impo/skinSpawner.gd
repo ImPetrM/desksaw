@@ -1,0 +1,3 @@
+extends Container
+
+# skin spawning manager goes here...

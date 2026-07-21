@@ -10,6 +10,7 @@ extends Control
 @export var ConsoleN: Control
 @export var SettingsN: Control
 @export var StatN: Control
+@export var SkinsN: Control
 #@export var Statistics: Control
 var offset = Vector2.ZERO
 var dragging = false
@@ -58,21 +59,24 @@ func _hide(_t: bool) -> void:
 
 
 func _on_tab_switch_item_selected(index: int) -> void:
+	ConsoleN.visible = false
+	SettingsN.visible = false
+	SkinsN.visible = false
 	match index:
 		0:
-			ConsoleN.visible = false
-			SettingsN.visible = false
 			if gbData.devMode:
 				print("Statistics")
 		1:
 			ConsoleN.visible = true
-			SettingsN.visible = false
 			if gbData.devMode:
 				print("Console")
 		2:
-			ConsoleN.visible = false
 			SettingsN.visible = true
 			if gbData.devMode:
 				print("Settings")
+		3:
+			SkinsN.visible = true
+			if gbData.devMode:
+				print("Skin Change")
 
 	pass # Replace with function body.
