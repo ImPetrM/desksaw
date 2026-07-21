@@ -92,6 +92,7 @@ func nukesettings():
 
 func setmonitor(monitorIndex: int = 1):
 	DisplayServer.window_set_current_screen(monitorIndex)
+	GlobalVariable.Fresize()
 
 func resize(nx, ny):
 	var ex = str(nx).to_float()

@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION = "0.0.2"
+const VERSION = "0.0.3"
 const RELEASES = "https://api.github.com/repos/dee-dee-catorce/deskpublic/releases"
 
 var http: HTTPRequest

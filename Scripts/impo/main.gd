@@ -13,7 +13,6 @@ var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 var console: Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
 
@@ -33,7 +32,7 @@ func _ready():
 	#fix()
 	createBorders()
 
-	
+	GlobalVariable.resize.connect(updateBorders)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,18 +46,22 @@ func yeah(t: bool):
 	print("yeah")
 
 
-func fix():
-	#fallback incase the clickthrough number ever fucks itself
-	#this was probably NOT at ALL the right way to do this
-	while true:
-		await get_tree().create_timer(.5).timeout
-		#tagged out due to being a nuisaince
-		#GlobalVariable.clickZoneSum = 0
-	pass
-
-
 func createBorders():
 	taskbarPos = clampi(taskbarPos, 0, screenHeight)
 	$Floor.position = Vector2(screenWidth / 2, taskbarPos)
 	$SideL.position = Vector2(0, screenHeight / 2)
 	$SideR.position = Vector2(screenWidth, screenHeight / 2)
+
+
+func updateBorders():
+	var oldheight = screenHeight
+	screenWidth = DisplayServer.screen_get_usable_rect().size.x
+	screenHeight = DisplayServer.screen_get_usable_rect().size.y
+	taskbarPos = DisplayServer.screen_get_usable_rect().end.y
+
+	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
+	DisplayServer.window_set_position(DisplayServer.screen_get_position())
+	for child in get_tree().current_scene.get_children():
+			if child.has_meta("entity") or child.has_meta("object"):
+				child.position.y -= screenHeight - oldheight
+	createBorders()

@@ -1625,7 +1625,6 @@ _data = {
 }
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kv3oh"]
-friction = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bitre"]
 size = Vector2(13, 4)
@@ -1711,8 +1710,9 @@ position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_bitre")
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.33960962, -15.576893)
-rotation = 0.31542605
+position = Vector2(-0.33960938, -15.576893)
+rotation = 0.315426
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1733,9 +1733,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.2266626, -9.810148)
-rotation = -0.007382908
-scale = Vector2(0.9999999, 0.9999999)
+position = Vector2(-5.2266617, -9.810149)
+rotation = -0.0073829084
+scale = Vector2(0.9999998, 0.9999998)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1755,9 +1755,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-4.867566, -4.6748033)
+position = Vector2(-4.8675656, -4.6748037)
 rotation = 0.4334638
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
