@@ -18,8 +18,7 @@ func _ready():
 
 
 	if gbData.settings["messageEnabled"] == true:
-		OS.alert("NOT DD14 HERE. THIS IS A FORK OF THE OFFICIAL BUILD.  I ADDED LIMB DRAGGING AND THE ABILITY TO PET WITH THE RMB. ENJOY\n \n
-		DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
+		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
 		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
 
 		 Build 2! this fixes a few bugs that were reported in build 1!
