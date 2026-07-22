@@ -11,19 +11,17 @@
 			"This test kinda sucks....",
 			"waow"
 		],
-		"pet": [
-			"T-That feels nice.",
-			"T-thanks!",
-			"This is nice..",
-			"...I like it.",
-			"...that's nice.",
-			"...uh, thank you?..."
-		],
 		"screamBIG": [
 			"[shake]WAHHHAHHHHHHHHHHHHHHH!!!!!!",
 			"[shake]HEY!!!!!!",
 			"[shake]AAAAAAAAAAHHHHHHHH!!!!!!",
 			"[shake]WOAHHHHHH!!"
+		],
+		"beingDragged": [
+			"[shake]Put me down! Please...",
+			"I don't like this...",
+			"[wave]Awawawawa...",
+			"Can you put me down? Please?!"
 		],
 		"getUp": [
 			"[wave]Ugh... no more please!",
@@ -32,7 +30,17 @@
 			"[wave]Stop that!"
 		],
 		"getUpPet": [
-			"[wave]That was a bit too much... but I liked it."
+			"[wave]That was a bit too much... but I liked it.",
+			"[wave]I feel so dizzy...",
+			"[wave]Ugh... I didn't expect that."
+		],
+		"pet": [
+			"T-That feels nice.",
+			"T-thanks!",
+			"This is nice..",
+			"...I like it.",
+			"...that's nice.",
+			"...uh, thank you?..."
 		],
 		"start": [
 			"... Hello?",

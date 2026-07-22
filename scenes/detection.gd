@@ -1,5 +1,9 @@
 extends Node
 
+#basically dragEXJ but rewritten pretty heavily to handle all limbs
+#instead of just using one detector area we are able to drag every
+#rigidbody2d node
+
 @onready var rigid_bodies_container: Node2D = get_parent() as Node2D
 @export var outlineWidth: int = 4
 @export var behaviornode: Node
@@ -39,12 +43,12 @@ func _process(_delta: float) -> void:
 			return
 
 	# check our cursor pos if we're hovering in transparent space
-	# since we have click through we need thise else the cursor
+	# since we have click through we need this else the cursor
 	# will never register as entering a limb
 	elif GlobalVariable.clickZoneSum <= 0:
 		_isMouseOver()
 
-
+##Function that checks if the mouse is currently hovering over rigidbodies.
 func _isMouseOver() -> void:
 	var space_state := rigid_bodies_container.get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
@@ -79,7 +83,7 @@ func _on_body_part_exited(body: RigidBody2D) -> void:
 	_update_hover_state()
 
 
-
+##Func for handling clicking on rigidbodies.
 func _on_body_part_input(_viewport: Node, event: InputEvent, _shape_idx: int, body: RigidBody2D) -> void:
 	if event is not InputEventMouseButton: 
 		return
@@ -87,6 +91,9 @@ func _on_body_part_input(_viewport: Node, event: InputEvent, _shape_idx: int, bo
 	if event.pressed and not _hovered_bodies.is_empty() and _hovered_bodies.back() == body and not _dragging:
 		#dragging
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			if Input.is_action_pressed("ctrl"):
+				GlobalVariable.consoleF(true)
+				return
 			var mouse_pos := rigid_bodies_container.get_global_mouse_position()
 			_startDrag(body, mouse_pos)
 		#pet limb
@@ -102,7 +109,10 @@ func _update_hover_state() -> void:
 	else:
 		GlobalVariable.clickZoneSum = 0
 
-	# change cursor icon
+	#change cursor icon
+	#due to GODOT forcefully changing cursor icons when you stop hovering
+	#over rigidbodies, the cursor will flicker if you drag and have your
+	#cursor outside of the expie collision areas. dunno how to fix it
 	if _dragging:
 		Input.set_default_cursor_shape(Input.CURSOR_MOVE)
 	elif is_hovering:

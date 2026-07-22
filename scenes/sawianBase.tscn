@@ -1656,9 +1656,6 @@ height = 4.0
 radius = 3.0
 height = 10.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3pkli"]
-radius = 8.99671
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7p3rp"]
 radius = 3.0
 height = 10.0
@@ -2541,6 +2538,9 @@ richtextlabel = NodePath("../../textParent/RichTextLabel")
 fasdfasdfasddfas = NodePath("../movementHandler")
 
 [node name="dialogueTimer" type="Timer" parent="behavior/dialogue" unique_id=1048411103]
+one_shot = true
+
+[node name="petTimer" type="Timer" parent="behavior" unique_id=1538254726]
 one_shot = true
 
 [connection signal="input_event" from="RigidBodies" to="RigidBodies" method="_on_input_event"]

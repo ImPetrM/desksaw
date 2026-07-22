@@ -118,7 +118,7 @@ func stupify(str: String) -> String:
 
 	return result
 
-func send(cooldown: float = 0.0, ignoreCooldown: bool = false) -> void:
+func send(cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
 	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
 		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
 		return
@@ -139,7 +139,7 @@ func send(cooldown: float = 0.0, ignoreCooldown: bool = false) -> void:
 			dialogueTimer.start(cooldown)
 
 
-func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = false) -> void:
+func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
 	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
 		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
 		return
@@ -150,5 +150,6 @@ func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: b
 	if cooldown > 0.0:
 		dialogueTimer.start(cooldown)
 
+##Getter proc.
 func is_dialogue_playing() -> bool:
 	return isTyping

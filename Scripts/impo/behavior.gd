@@ -9,14 +9,33 @@ extends Node
 @onready var data = gbData.text.diaGlobal
 
 @onready var settings = gbData.settings
-@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-var beingDragged = false
-var ragdolled = false
-var launchflag = false
-var wander = true
-var shocked = false
-var recentlyPet = false
+##Timer used for keeping time since the last recent pet.
+@onready var pet_timer: Timer = $petTimer
+##How much does the pet timer last. Keep it higher getUpTimer so the wrong dialogue
+##doesn't get sent.
+var pet_timer_inc := 6.0
+##How many times has the node been pet recently.
+var pet_count := 0
+
+##Is the node being currently dragged.
+var beingDragged := false
+##Is the node currently in ragdoll mode.
+var ragdolled := false
+##Did the node get launched by the player.
+var launchflag := false
+##Is the node currently in wandering mode.
+var wander: = true
+##Is the node currently in shocked mode.
+var shocked := false
+
+#might be worth it change most of the timers in this script with variables
+#so we can avoid magic numbers
+##How long does it take the node to get up after being ragdolled.
+var getUpTimer := 5.0
+##How long does it take for the node to send dialogue after getting up.
+var getUpTimerMsg := 3.0
+
 
 
 func _ready() -> void:
@@ -47,7 +66,7 @@ func shock():
 
 	dialogueSys.pool = data.screamBIG
 	dialogueSys.speedMod = 1.3
-	dialogueSys.send(0, true)
+	dialogueSys.send()
 	await get_tree().create_timer(2).timeout
 	faceSys.setEmotion("scared")
 	await get_tree().create_timer(5).timeout
@@ -63,8 +82,12 @@ func tempRagdoll() -> void:
 	ragdolled = true
 
 	while true:
-		await get_tree().create_timer(8.0).timeout
-		if beingDragged or abs(moveSys.rigidtorso.linear_velocity.x + moveSys.rigidtorso.linear_velocity.y) > 10.0:
+		await get_tree().create_timer(getUpTimer).timeout
+		if beingDragged:
+			dialogueSys.pool = data.beingDragged
+			dialogueSys.send(10, false)
+			continue
+		if abs(moveSys.rigidtorso.linear_velocity.x + moveSys.rigidtorso.linear_velocity.y) > 10.0:
 			continue
 		break
 
@@ -72,21 +95,22 @@ func tempRagdoll() -> void:
 	moveSys.ragdoll(true)
 
 	ragdolled = false
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(getUpTimerMsg).timeout
 
 	if launchflag:
-		if recentlyPet:
+		if not pet_timer.is_stopped() and pet_count >= 5:
 			dialogueSys.pool = data.getUpPet
-			recentlyPet = false
 		else:
 			dialogueSys.pool = data.getUp
 
 	else:
 		dialogueSys.pool = data.start
 	dialogueSys.speedMod = 1.3
-	dialogueSys.send(0, true)
+	dialogueSys.send()
 	AudioManager.play_sfx(AudioManager.expie_whine)
 	launchflag = true
+	pet_count = 0
+	pet_timer.stop()
 
 func panicAttack():
 	if moodSys.tick > -4.5 or moodSys.mood >= 20.0 or settings.lobotomize:
@@ -115,9 +139,10 @@ func passivetalk():
 	while true:
 		if !gbData.settings["mute"]:
 			await get_tree().create_timer(randf_range(24.5, 55.5)).timeout
-			dialogueSys.pool = data.passive
-			dialogueSys.speedMod = 1.3
-			dialogueSys.send()
+			if not beingDragged:
+				dialogueSys.pool = data.passive
+				dialogueSys.speedMod = 1.3
+				dialogueSys.send()
 		await get_tree().create_timer(.1).timeout
 		print("no")
 
@@ -149,7 +174,8 @@ func petLimb(limb: RigidBody2D):
 		
 	print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
-	recentlyPet = true
+	pet_timer.start(pet_timer_inc)
+	pet_count += 1
 	
 	#we can't tween the actual rigid body, its position doesn't update while tweening
 	var sprite := limb.get_node_or_null("Sprite2D") as CanvasItem
@@ -169,7 +195,7 @@ func petLimb(limb: RigidBody2D):
 	if not dialogueSys.is_dialogue_playing():
 		dialogueSys.pool = data.pet
 		dialogueSys.speedMod = 0.7
-		dialogueSys.send(2)
+		dialogueSys.send(2, false)
 		
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("normal")
