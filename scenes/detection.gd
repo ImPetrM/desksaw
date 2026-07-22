@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 			_dragger.global_position = mouse_pos
 
 		#stop dragging
-		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			_stopDrag()
 			return
 
@@ -47,6 +47,9 @@ func _process(_delta: float) -> void:
 	# will never register as entering a limb
 	elif GlobalVariable.clickZoneSum <= 0:
 		_isMouseOver()
+	#if we are hovering, we have to make sure the cursor didn't slip off the expie
+	else:
+		_validateHoverState()
 
 ##Function that checks if the mouse is currently hovering over rigidbodies.
 func _isMouseOver() -> void:
@@ -66,13 +69,40 @@ func _isMouseOver() -> void:
 			_on_body_part_entered(collider as RigidBody2D)
 			break
 
+#reused code, bleehh. it works at least
+##Validates the currently hovered bodies to prevent the click-through from getting stuck.
+func _validateHoverState() -> void:
+	if _hovered_bodies.is_empty():
+		return
+
+	var space_state := rigid_bodies_container.get_world_2d().direct_space_state
+	var query := PhysicsPointQueryParameters2D.new()
+	query.position = rigid_bodies_container.get_global_mouse_position()
+	query.collide_with_bodies = true
+	query.collide_with_areas = false
+
+	var results := space_state.intersect_point(query)
+
+	#store every detected collider in an array
+	var current_colliders: Array = []
+	for res in results:
+		current_colliders.append(res["collider"])
+
+	#loop backwards through the array and delete delements if need be
+	for i in range(_hovered_bodies.size() - 1, -1, -1):
+		var body: RigidBody2D = _hovered_bodies[i]
+			
+		#if the expie somehow disappeared, or we are actually not hovering
+		#over a limb anymore, forcefully exit
+		if not is_instance_valid(body) or not current_colliders.has(body):
+			_on_body_part_exited(body)
 
 func _on_body_part_entered(body: RigidBody2D) -> void:
 	if _hovered_bodies.has(body):
 		return
 		
 	_hovered_bodies.append(body)
-	_update_hover_state()
+	_updateHoverState()
 
 
 func _on_body_part_exited(body: RigidBody2D) -> void:
@@ -80,7 +110,7 @@ func _on_body_part_exited(body: RigidBody2D) -> void:
 		return
 	
 	_hovered_bodies.erase(body)
-	_update_hover_state()
+	_updateHoverState()
 
 
 ##Func for handling clicking on rigidbodies.
@@ -90,18 +120,18 @@ func _on_body_part_input(_viewport: Node, event: InputEvent, _shape_idx: int, bo
 		
 	if event.pressed and not _hovered_bodies.is_empty() and _hovered_bodies.back() == body and not _dragging:
 		#dragging
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if Input.is_action_pressed("ctrl"):
 				GlobalVariable.consoleF(true)
 				return
 			var mouse_pos := rigid_bodies_container.get_global_mouse_position()
 			_startDrag(body, mouse_pos)
 		#pet limb
-		if event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			behaviornode.petLimb(body)
 
 
-func _update_hover_state() -> void:
+func _updateHoverState() -> void:
 	var is_hovering := not _hovered_bodies.is_empty()
 	
 	if is_hovering or _dragging:
@@ -147,7 +177,7 @@ func _startDrag(body: RigidBody2D, mouse_pos: Vector2) -> void:
 	_joint.node_b = _joint.get_path_to(_dragged_body)
 	_joint.softness = 9.0
 
-	_update_hover_state()
+	_updateHoverState()
 	print("we dragging: ", body.name)
 
 
@@ -163,5 +193,5 @@ func _stopDrag() -> void:
 		_dragger = null
 		_joint = null
 
-	_update_hover_state()
+	_updateHoverState()
 	print("DRAG STOPPED")

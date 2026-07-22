@@ -39,18 +39,14 @@ func _load_sounds(path: String) -> Array[AudioStream]:
 
 	while file_name != "":
 		if not dir.current_is_dir():
-			# if we're debugging then skip imports
-			if OS.is_debug_build() and file_name.ends_with(".import"):
-				file_name = dir.get_next()
-				continue
-
-			# otherwise if we're exporting clean up the formats
-			var clean_name := file_name.replace(".import", "").replace(".remap", "")
+			# skip exported suffixes
+			var clean_name := file_name.trim_suffix(".import").trim_suffix(".remap")
 
 			if clean_name.ends_with(".wav") or clean_name.ends_with(".ogg") or clean_name.ends_with(".mp3"):
 				var full_path := path + clean_name
 				var stream := load(full_path) as AudioStream
 
+				# dupe check for debug environment
 				if stream and not streams.has(stream):
 					streams.append(stream)
 
