@@ -23,7 +23,11 @@ func skinFolderScan():
 			file_name = dir.get_next()
 	else:
 		print("You don't got any skins buddy")
-	print("Looked for skin folders. Found: ", SkinFolders)
+	if len(SkinFolders) == 0:
+		SkinFolders = ["Body"]
+		print("Looked for skin folders. Found None.")
+	else:
+		print("Looked for skin folders. Found: ", SkinFolders)
 
 func refreshDisplayExpie():
 	GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
