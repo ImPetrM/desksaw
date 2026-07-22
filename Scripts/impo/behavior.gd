@@ -14,7 +14,7 @@ extends Node
 @onready var pet_timer: Timer = $petTimer
 ##How much does the pet timer last. Keep it higher getUpTimer so the wrong dialogue
 ##doesn't get sent.
-var pet_timer_inc := 6.0
+var pet_timer_inc := 10.0
 ##How many times has the node been pet recently.
 var pet_count := 0
 
@@ -45,7 +45,6 @@ func _ready() -> void:
 
 	moveSys.rigid.global_position.x = GlobalVariable.screenWidth / 2
 	moveSys.rigid.global_position.y = - GlobalVariable.screenHeight * 2
-	AudioManager.play_sfx(AudioManager.expie_whine)
 	tempRagdoll()
 	wandering()
 	passivetalk()
@@ -67,13 +66,13 @@ func shock():
 	dialogueSys.pool = data.screamBIG
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
+	AudioManager.play_sfx(AudioManager.expie_whine)
 	await get_tree().create_timer(2).timeout
 	faceSys.setEmotion("scared")
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("sad")
 	await get_tree().create_timer(13).timeout
 	faceSys.setEmotion("normal")
-	AudioManager.play_sfx(AudioManager.expie_whine)
 
 	shocked = false
 
@@ -82,8 +81,9 @@ func tempRagdoll() -> void:
 	ragdolled = true
 
 	while true:
-		await get_tree().create_timer(getUpTimer).timeout
+		await get_tree().create_timer(getUpTimer + randf_range(0, 5)).timeout
 		if beingDragged:
+			AudioManager.play_sfx(AudioManager.expie_whine)
 			dialogueSys.pool = data.beingDragged
 			dialogueSys.send(10, false)
 			continue
@@ -122,7 +122,7 @@ func panicAttack():
 	dialogueSys.pool = data.VeryLowPassive
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
-	AudioManager.play_sfx(AudioManager.expie_whine)
+	
 
 	await get_tree().create_timer(3).timeout
 
