@@ -406,11 +406,15 @@ script = ExtResource("7_emer2")
 
 [node name="GridContainer" type="GridContainer" parent="Main/SkinSpawner" unique_id=1101962334]
 layout_mode = 2
-columns = 5
+columns = 6
 
 [node name="FolderAccess" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=762259672]
 layout_mode = 2
 text = "Open Folder"
+
+[node name="Refresh" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=1526966236]
+layout_mode = 2
+text = "↻"
 
 [node name="VSeparator" type="VSeparator" parent="Main/SkinSpawner/GridContainer" unique_id=549618703]
 layout_mode = 2
@@ -429,9 +433,10 @@ text = ">"
 
 [node name="SkinName" type="Label" parent="Main/SkinSpawner/GridContainer" unique_id=341281014]
 layout_mode = 2
-text = "Default Skin:"
+text = "Body:"
 
 [node name="DisplayExpie" type="Node2D" parent="Main/SkinSpawner" unique_id=1206904640]
+visible = false
 position = Vector2(100, 250)
 scale = Vector2(4, 4)
 
@@ -559,6 +564,17 @@ rotation = -0.16399373
 scale = Vector2(0.9999992, 0.9999992)
 texture = ExtResource("14_cld0n")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/SkinSpawner" unique_id=1065473906]
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/SkinSpawner/HBoxContainer" unique_id=588263579]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+text = "this is a long string of text to test this thing"
+
 [node name="ClickArea" type="Control" parent="." unique_id=1277571415]
 layout_mode = 1
 anchors_preset = 15
@@ -582,6 +598,7 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/FolderAccess" to="Main/SkinSpawner" method="_on_folder_access_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Refresh" to="Main/SkinSpawner" method="_on_refresh_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Previous" to="Main/SkinSpawner" method="_on_previous_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Select" to="Main/SkinSpawner" method="_on_select_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Next" to="Main/SkinSpawner" method="_on_next_pressed"]

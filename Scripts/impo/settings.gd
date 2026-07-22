@@ -73,3 +73,7 @@ func _saveSettings() -> void:
 	gbData.savetodisk(gbData.conPath, gbData.settings)
 	if gbData.devMode:
 		print("Settings saved")
+
+
+func _on_refresh_pressed() -> void:
+	pass # Replace with function body.

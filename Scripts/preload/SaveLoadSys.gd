@@ -128,7 +128,7 @@ func newSkinFile():
 			
 
 			if txt:
-				txt.store_line("Drop the Body folder of your skin into this folder!\n\nIn theory, everything on https://skin.cat-bot.de/ should be compatible with this!")
+				txt.store_line("Drop the Body folder of your skin into this folder!\n\nIn theory, everything on https://skin.cat-bot.de/ should be compatible with this!\nIf you want multiple skins, just rename the 'Body' folder to whatever you want to call it.")
 				txt.close()
 
 
