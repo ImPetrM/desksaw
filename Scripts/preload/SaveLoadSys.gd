@@ -128,8 +128,27 @@ func newSkinFile():
 			
 
 			if txt:
-				txt.store_line("Drop the Body folder of your skin into this folder!\n\nIn theory, everything on https://skin.cat-bot.de/ should be compatible with this!\nIf you want multiple skins, just rename the 'Body' folder to whatever you want to call it.")
+				txt.store_line("""Drop the Body folder of your skin into this folder!
+
+
+In theory, everything on https://skin.cat-bot.de/ should be compatible with this!
+
+If you want multiple skins, just rename your 'Body' folder to whatever you want to call it, then use the skin spawner.
+(however you have to keep a 'Body' folder with any skin in it for it to work!)
+
+If your skin is only on the head, try restarting the app. That usually fixes it.""")
 				txt.close()
+	
+	var folder_to_copy = "res://assets/Body"
+	
+	var new_dir_path : String = "user://skin/Body"
+	DirAccess.make_dir_absolute(new_dir_path)
+	
+	#Copy each file and folder into the new folder
+	var old_files : PackedStringArray = DirAccess.get_files_at(folder_to_copy)
+	for f : String in old_files:
+		DirAccess.copy_absolute(folder_to_copy + "/" + f, new_dir_path + "/" + f)
+	var old_directories : PackedStringArray = DirAccess.get_directories_at(folder_to_copy)
 
 
 func loadSkin():

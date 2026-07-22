@@ -6,13 +6,13 @@ var SkinFolders = []
 var skinIndx = 0
 
 func _ready():
-	SkinNameN.text = "Body:"
+	SkinNameN.text = "Default:"
 	skinFolderScan()
 	refreshDisplayExpie()
 
 
 func skinFolderScan():
-	SkinFolders = []
+	SkinFolders = ["Default"]
 	var dir = DirAccess.open("user://skin")
 	if dir:
 		dir.list_dir_begin()
@@ -23,14 +23,16 @@ func skinFolderScan():
 			file_name = dir.get_next()
 	else:
 		print("You don't got any skins buddy")
-	if len(SkinFolders) == 0:
-		SkinFolders = ["Body"]
+	if len(SkinFolders) == 1:
 		print("Looked for skin folders. Found None.")
 	else:
-		print("Looked for skin folders. Found: ", SkinFolders)
+		print("Looked for skin folders. Found: ", SkinFolders.slice(1))
 
 func refreshDisplayExpie():
-	GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
+	if skinIndx == 0:
+		GlobalVariable.userSkinPath = "res://skin/Body/"
+	else:
+		GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
 	reloadDisplayExpie()
 	SkinNameN.text = SkinFolders[skinIndx] + ":"
 
@@ -82,6 +84,19 @@ func _on_folder_access_pressed():
 func _on_refresh_pressed():
 	skinIndx = 0
 	skinFolderScan()
+	
+	# refresh skinData, as to update expie only being a head
+	var _ifliterallyanythingisthere = false
+	var added = []
+	var pt = gbData.skinfilepath + "/Body"
+	if DirAccess.dir_exists_absolute(pt):
+		var files = DirAccess.get_files_at(pt)
+		for file in files:
+			if file.get_extension().to_lower() == "png":
+				_ifliterallyanythingisthere = true
+				added.append(gbData.skinfilepath.path_join(file))
+	added = gbData.skinData
+	
 	refreshDisplayExpie()
 
 func _on_previous_pressed():
