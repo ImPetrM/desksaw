@@ -50,7 +50,3 @@ func set_soft_ccd(value: float) -> void:
 
 func set_massless(value: bool) -> void:
 	RapierPhysicsServer2D.body_set_extra_param(get_rid(), RapierPhysicsServer2D.BODY_PARAM_MASSLESS, value)
-
-
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	pass # Replace with function body.
