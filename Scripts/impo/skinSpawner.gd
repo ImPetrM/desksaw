@@ -53,11 +53,8 @@ func spawnExpie():
 	instance.global_position.x = GlobalVariable.screenWidth / 2
 	instance.global_position.y = - GlobalVariable.screenHeight * 2
 	wrapper.set_meta("entity", false)
-	
-	#if gbData.settings.expiePersistence:
-		#pass
 
-func reloadDisplayExpie():
+func reloadDisplayExpie(): # Display expie DOES NOT SCALE WITH CONSOLE. needs to be fixed but i dont rlly know how
 	get_parent().get_node("SkinSpawner").get_children()
 	for child in get_parent().get_node("SkinSpawner").get_children():
 		if child.has_meta("display"):
@@ -104,12 +101,12 @@ func _on_refresh_pressed():
 
 func _on_previous_pressed():
 	skinIndx -= 1
-	if skinIndx == -1: skinIndx = len(SkinFolders)-1
+	if skinIndx == -1: skinIndx = len(SkinFolders)-1 # if we go under min index, loop to max
 	refreshDisplayExpie()
 
 func _on_next_pressed():
 	skinIndx += 1
-	if skinIndx == len(SkinFolders): skinIndx = 0
+	if skinIndx == len(SkinFolders): skinIndx = 0 # if we go over max index, loop to 0
 	refreshDisplayExpie()
 
 func _on_select_pressed():
