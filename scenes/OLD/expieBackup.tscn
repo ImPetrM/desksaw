@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bhc642h64r7ev" path="res://Scripts/impo/moodSys.gd" id="3_7g1h7"]
 [ext_resource type="Script" uid="uid://bywm70l38861" path="res://Scripts/impo/otherManager.gd" id="4_gm2h5"]
 [ext_resource type="Script" uid="uid://qkv62uqdall2" path="res://Scripts/nimpo/consoleinstancer.gd" id="5_qqbqy"]
-[ext_resource type="Script" uid="uid://copxchuwf8rlq" path="res://Scripts/impo/dragEXj.gd" id="6_doglj"]
+[ext_resource type="Script" uid="uid://copxchuwf8rlq" path="res://Scripts/impo/dragEXj_OLD.gd" id="6_doglj"]
 [ext_resource type="Script" uid="uid://bv2bc4lt5v7hu" path="res://addons/godot-rapier2d/custom_nodes/rapier_pin_joint_2d.gd" id="7_h7wlt"]
 [ext_resource type="Script" uid="uid://unwhnooi7g2c" path="res://addons/godot-rapier2d/custom_nodes/rapier_rigid_body_2d.gd" id="8_dvt6l"]
 [ext_resource type="Texture2D" uid="uid://npkviyjb3h34" path="res://scenes/OLD/Limblets/shin.png" id="9_jbbqf"]

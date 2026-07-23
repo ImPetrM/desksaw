@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://clgwtw4irp0fp" path="res://addons/soupik/modifications/soup_modification.gd" id="14_4p4nk"]
 [ext_resource type="Script" uid="uid://bnso0mph1tb11" path="res://addons/soupik/modifications/soup_two_bone_ik.gd" id="15_6ydbj"]
 [ext_resource type="Script" uid="uid://b4u1tvhlw4d2g" path="res://addons/soupik/modifications/soup_look_at.gd" id="16_r1kx6"]
-[ext_resource type="Script" uid="uid://c7ow8pxs33wgv" path="res://scenes/detection.gd" id="17_6mwry"]
+[ext_resource type="Script" uid="uid://c7ow8pxs33wgv" path="res://Scripts/impo/dragExp.gd" id="17_6mwry"]
 [ext_resource type="Script" uid="uid://cu82jmt2fea41" path="res://Scripts/nimpo/skinmapper.gd" id="17_67p0r"]
 [ext_resource type="Script" uid="uid://bwycbhxscshio" path="res://Scripts/impo/behavior.gd" id="18_8de8m"]
 [ext_resource type="Script" uid="uid://7c5ffi5w6il5" path="res://Scripts/impo/movement_handler.gd" id="18_ry0af"]
@@ -2540,7 +2540,7 @@ fasdfasdfasddfas = NodePath("../movementHandler")
 [node name="dialogueTimer" type="Timer" parent="behavior/dialogue" unique_id=1048411103]
 one_shot = true
 
-[node name="petTimer" type="Timer" parent="behavior" unique_id=1538254726]
+[node name="petTimer" type="Timer" parent="behavior" unique_id=1934989107]
 one_shot = true
 
 [connection signal="input_event" from="RigidBodies" to="RigidBodies" method="_on_input_event"]
