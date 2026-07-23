@@ -9,7 +9,7 @@
 		"nickname": "",
 		"firstime": 0,
 		"interactions": false,
-		"expies": []
+		"expies": {}
 	},
 	"everPresentAcrossSaves": {
 		"PetsKilled": 0.0

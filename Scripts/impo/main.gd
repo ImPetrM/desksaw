@@ -17,15 +17,15 @@ func _ready():
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
 
 
-	if gbData.settings["messageEnabled"] == true:
+	if gbData.settings["messageEnabled"]:
 		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
-		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
+ This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
 
-		 Build 2! this fixes a few bugs that were reported in build 1!
+ Build 2! this fixes a few bugs that were reported in build 1!
 
-		 PS: Control + Click on the expie to reopen the menu
-		Run openSkinFolder in the command section to start with skin stuff!
-		 IM AWARE THAT THIS SHOULD NOT BE 200 MEGABYTES!!!!! ITS A GODOT THING IM WORKING ON FIXING!
+ PS: Control + Click on the expie to reopen the menu
+ Run openSkinFolder in the command section to start with skin stuff!
+ IM AWARE THAT THIS SHOULD NOT BE 200 MEGABYTES!!!!! ITS A GODOT THING IM WORKING ON FIXING!
 ")
 	
 	GlobalVariable.console.connect(yeah)

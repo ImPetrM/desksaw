@@ -623,6 +623,7 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="pressed" from="Handle" to="." method="_drag"]
 [connection signal="pressed" from="Handle/Close" to="." method="_hide" binds= [true]]
 [connection signal="item_selected" from="Handle/TabSwitch" to="." method="_on_tab_switch_item_selected"]
+[connection signal="pressed" from="Main/Settings/ScrollContainer/ItemList/expiePersistence" to="Main/Settings" method="_on_expie_persistence_pressed"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/expieFontSize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]

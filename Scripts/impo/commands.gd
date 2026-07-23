@@ -85,6 +85,9 @@ func clearObj(category: String = "object"):
 				await get_tree().create_timer(.05).timeout
 				child.queue_free()
 
+	if category == "entity":
+		gbData.data["save"]["expie"] = {} # clear all expie persistence if entities are cleared
+
 
 func nukesettings():
 	#command that fixes the "terror" bug

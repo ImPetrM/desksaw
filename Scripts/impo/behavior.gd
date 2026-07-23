@@ -22,6 +22,9 @@ func _ready() -> void:
 	var skinName = userSkinPath.substr(userSkinPath.rfind("/")+1) # remove first half of path, getting just name
 	if !gbData.temp["expies"].has(skinName): gbData.temp["expies"][skinName] = 0 # check if skin has been spawned yet
 	gbData.temp["expies"][skinName] += 1 # update number of skins
+	
+	if gbData.settings.expiePersistence: # check if persistence is enabled
+		gbData.data["save"]["expies"] = gbData.temp.expies # copy temp expie data to save
 	# ---
 	
 	faceSys.setEmotion("default")

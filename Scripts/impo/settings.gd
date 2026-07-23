@@ -76,5 +76,8 @@ func _saveSettings() -> void:
 		print("Settings saved")
 
 
-func _on_refresh_pressed() -> void:
-	pass # Replace with function body.
+func _on_expie_persistence_pressed():
+	if gbData.settings.expiePersistence:
+		gbData.data["save"]["expies"] = gbData.temp.expies
+	else:
+		gbData.data["save"]["expies"] = {}
