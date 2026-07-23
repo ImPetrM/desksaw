@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://di62pelsumou7" path="res://Scripts/nimpo/windowHandler.gd" id="1_635sk"]
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://assets/themes/MinimalUI.tres" id="1_gicfb"]
 [ext_resource type="Script" uid="uid://d0cvk81o5qbon" path="res://Scripts/impo/commands.gd" id="1_spxfo"]
-[ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="2_635sk"]
+[ext_resource type="Script" uid="uid://b5587kn054bod" path="res://addons/godot-console/scripts/console_container.gd" id="2_635sk"]
 [ext_resource type="Script" uid="uid://buv1161su40c1" path="res://Scripts/impo/settings.gd" id="5_uf3cf"]
 [ext_resource type="Texture2D" uid="uid://yuq6rb2r6wpm" path="res://assets/svg/x-symbol.svg" id="6_7udsa"]
 [ext_resource type="Script" uid="uid://blg811jk2cjt4" path="res://Scripts/nimpo/clickArea.gd" id="7_7udsa"]
+[ext_resource type="Script" uid="uid://ckp8r8xr5vm48" path="res://Scripts/nimpo/soundVolumeSlider.gd" id="7_emer2"]
 
 [node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN")]
 layout_mode = 3
@@ -107,7 +108,6 @@ size_flags_horizontal = 4
 theme = ExtResource("1_gicfb")
 alignment = 1
 script = ExtResource("2_635sk")
-metadata/_custom_type_script = "uid://p4inwor7gtoo"
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Main/ConsoleContainer" unique_id=2085935150]
@@ -349,6 +349,34 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "The highest the expies mood can go ( same thing)"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="soundVolume" type="HSlider" parent="Main/Settings/ScrollContainer/ItemList" unique_id=569359640]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 3
+ticks_on_borders = true
+ticks_position = 3
+script = ExtResource("7_emer2")
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/soundVolume" unique_id=1729090434]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = 0.5
+anchor_right = 10.28
+anchor_bottom = 0.5
+offset_left = 526.1
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sound volume"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

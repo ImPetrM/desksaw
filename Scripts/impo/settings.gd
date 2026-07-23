@@ -19,6 +19,7 @@ var sMAP = {
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},
+	"soundVolume": {"key": "soundVolume", "type": "slider"},
 }
 
 

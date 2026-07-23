@@ -10,7 +10,7 @@ extends Node
 ## List of cooldown groups.
 var _cooldowns: Dictionary = {}
 ## Global sound volume multiplier.
-var _soundMult := 1.0
+var soundMult := 1.0
 
 # AUDIO LIBRARY
 #----------------
@@ -95,7 +95,7 @@ func play_single_sfx(stream: AudioStream,
 
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
-	player.volume_db = volume_db * _soundMult
+	player.volume_db = volume_db + linear_to_db(soundMult)
 	player.pitch_scale = pitch_scale
 
 	player.finished.connect(player.queue_free)
