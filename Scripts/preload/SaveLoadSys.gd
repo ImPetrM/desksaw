@@ -31,6 +31,8 @@ this shit sound like ai wrote it im sorry it sounds like that
 looking back now that im publicizing this this probably isnt even right anymore
 """
 
+var temp = {"expies": {}} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
+
 var data = {}
 var text = {}
 var settings = {}

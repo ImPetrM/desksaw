@@ -17,6 +17,13 @@ var wander = true
 var shocked = false
 
 func _ready() -> void:
+	# Persistence logging:
+	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath)-1) # remove "/" at end
+	var skinName = userSkinPath.substr(userSkinPath.rfind("/")+1) # remove first half of path, getting just name
+	if !gbData.temp["expies"].has(skinName): gbData.temp["expies"][skinName] = 0 # check if skin has been spawned yet
+	gbData.temp["expies"][skinName] += 1 # update number of skins
+	# ---
+	
 	faceSys.setEmotion("default")
 	
 	moveSys.sigragdoll.connect(shock)

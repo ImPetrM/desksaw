@@ -8,7 +8,8 @@
 		"tired": 0.0,
 		"nickname": "",
 		"firstime": 0,
-		"interactions": false
+		"interactions": false,
+		"expies": []
 	},
 	"everPresentAcrossSaves": {
 		"PetsKilled": 0.0
