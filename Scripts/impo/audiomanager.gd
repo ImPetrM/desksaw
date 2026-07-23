@@ -56,29 +56,8 @@ func _load_sounds(path: String) -> Array[AudioStream]:
 
 	return streams
 
-
-## Plays a random sound from an array with a configurable chance (0.0 to 1.0)
-func play_sfx(sound_list: Array[AudioStream], 
-	chance: float = 1.0, 
-	volume_db: float = 0.0, 
-	pitch_scale: float = 1.0,
-	cooldown_check: bool = false, 
-	cooldown_sec: float = 0.5, 
-	cooldown_group: String = ""
-) -> AudioStreamPlayer:
-
-	if sound_list.is_empty() or randf() > chance:
-		return null
-		
-	if cooldown_check and not check_cooldown(sound_list, cooldown_sec, cooldown_group):
-		return null
-
-	var stream: AudioStream = sound_list.pick_random()
-	return play_single_sfx(stream, 1.0, volume_db, pitch_scale)
-
-
-## Plays a single audiostream file directly.
-func play_single_sfx(stream: AudioStream, 
+## Core function for playing sounds.
+func play_sfx(stream: AudioStream, 
 	chance: float = 1.0, 
 	volume_db: float = 0.0, 
 	pitch_scale: float = 1.0,
@@ -90,29 +69,40 @@ func play_single_sfx(stream: AudioStream,
 	if not stream or randf() > chance:
 		return null
 		
-	if cooldown_check and not check_cooldown([stream] as Array[AudioStream], cooldown_sec, cooldown_group):
+	if cooldown_check and not check_cooldown(stream, cooldown_sec, cooldown_group):
 		return null
 
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
 	player.volume_db = volume_db + linear_to_db(soundMult)
 	player.pitch_scale = pitch_scale
-
 	player.finished.connect(player.queue_free)
 
 	add_child(player)
 	player.play()
 	return player
 
+## Picks a random sound from an array and plays it.
+func play_random(sound_list: Array[AudioStream], chance: float = 1.0, volume_db: float = 0.0, pitch_scale: float = 1.0, cooldown_check: bool = false, cooldown_sec: float = 0.5, cooldown_group: String = "") -> AudioStreamPlayer:
+	if sound_list.is_empty(): 
+		return null
+	return play_sfx(sound_list.pick_random(), chance, volume_db, pitch_scale, cooldown_check, cooldown_sec, cooldown_group)
 
-## Check if the given audioStream array is currently on a cooldown.
-func check_cooldown(sound_list: Array[AudioStream], cooldown_sec: float, cooldown_group: String) -> bool:
+## Plays a specific sound from an array by file name.
+func play_by_name(sound_list: Array[AudioStream], file_name: String, chance: float = 1.0, volume_db: float = 0.0, pitch_scale: float = 1.0, cooldown_check: bool = false, cooldown_sec: float = 0.5, cooldown_group: String = "") -> AudioStreamPlayer:
+	for stream in sound_list:
+		if stream and stream.resource_path.get_file() == file_name:
+			return play_sfx(stream, chance, volume_db, pitch_scale, cooldown_check, cooldown_sec, cooldown_group)
+	return null
+
+## Check if the given audioStream is currently on a cooldown.
+func check_cooldown(sound: Variant, cooldown_sec: float, cooldown_group: String) -> bool:
 	var key: Variant
 	
 	if not cooldown_group.is_empty():
 		key = cooldown_group
 	else:
-		key = sound_list
+		key = sound
 
 	var current_time := Time.get_ticks_msec()
 	var cooldown_ms := int(cooldown_sec * 1000.0)

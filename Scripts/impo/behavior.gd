@@ -66,7 +66,7 @@ func shock():
 	dialogueSys.pool = data.screamBIG
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
-	AudioManager.play_sfx(AudioManager.expie_whine)
+	AudioManager.play_random(AudioManager.expie_whine)
 	await get_tree().create_timer(2).timeout
 	faceSys.setEmotion("scared")
 	await get_tree().create_timer(5).timeout
@@ -83,7 +83,7 @@ func tempRagdoll() -> void:
 	while true:
 		await get_tree().create_timer(getUpTimer + randf_range(0, 5)).timeout
 		if beingDragged:
-			AudioManager.play_sfx(AudioManager.expie_whine)
+			AudioManager.play_random(AudioManager.expie_whine)
 			dialogueSys.pool = data.beingDragged
 			dialogueSys.send(10, false)
 			continue
@@ -107,7 +107,7 @@ func tempRagdoll() -> void:
 		dialogueSys.pool = data.start
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
-	AudioManager.play_sfx(AudioManager.expie_whine)
+	AudioManager.play_random(AudioManager.expie_whine)
 	launchflag = true
 	pet_count = 0
 	pet_timer.stop()
@@ -166,11 +166,11 @@ func wandering():
 		moveSys.dir = 0
 
 func petLimb(limb: RigidBody2D):
-	AudioManager.play_single_sfx(AudioManager.thudwoosh)
+	AudioManager.play_sfx(AudioManager.thudwoosh)
 	if randf() < 0.5:
-		AudioManager.play_sfx(AudioManager.expie_bark, 0.25, 0, 1, true, 0.5, 'exp_pet')
+		AudioManager.play_random(AudioManager.expie_bark, 0.25, 0, 1, true, 0.5, 'exp_pet')
 	else:
-		AudioManager.play_sfx(AudioManager.expie_whine, 0.25, 0, 1, true, 1, 'exp_pet')
+		AudioManager.play_random(AudioManager.expie_whine, 0.25, 0, 1, true, 1, 'exp_pet')
 		
 	print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
