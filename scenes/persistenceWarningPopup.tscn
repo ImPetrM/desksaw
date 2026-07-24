@@ -49,8 +49,7 @@ anchor_bottom = 0.7
 grow_horizontal = 2
 text = "WARNING!
 You have more than 20 expies in you saved persistence data!
-Are you sure what your doing is worth it?
-(it might lag A LOT)"
+Are you sure what your doing is worth it?"
 fit_content = true
 
 [node name="YES" type="Button" parent="Main" unique_id=1326940879]
