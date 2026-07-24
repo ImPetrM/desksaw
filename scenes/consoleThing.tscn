@@ -300,7 +300,7 @@ text = "make them not talk
 scroll_active = false
 vertical_alignment = 1
 
-[node name="soundBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=670932247]
+[node name="dialogueSoundBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=670932247]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -311,7 +311,7 @@ icon_alignment = 1
 expand_icon = true
 metadata/type = "bool"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/soundBool" unique_id=1882356057]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/dialogueSoundBool" unique_id=1882356057]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382

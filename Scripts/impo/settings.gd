@@ -17,7 +17,7 @@ var sMAP = {
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
 	"mute": {"key": "mute", "type": "toggle"},
-	"soundBool": {"key": "soundEnabled", "type": "toggle"},
+	"dialogueSoundBool": {"key": "dialogueSoundEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},

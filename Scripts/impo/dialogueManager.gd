@@ -43,7 +43,7 @@ func typeOut(string: String, speed_multiplier: float = 1.0):
 
 	starttalking.emit()
 
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Text"), not gbData.settings.soundEnabled) # Update bus if sound is muted or not
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Text"), not gbData.settings.dialogueSoundEnabled) # Update bus if sound is muted or not
 
 	var i = 0
 	while i < string.length():

@@ -12,7 +12,7 @@
 	"lobotomize": true,
 	"expiePersistence": false,
 	"mute": false,
-	"soundEnabled": true,
+	"dialogueSoundEnabled": true,
 	"messageEnabled": true,
 	"normalize": 1.0,
 	"outdated": false,
