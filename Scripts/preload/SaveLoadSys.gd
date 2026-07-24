@@ -31,6 +31,8 @@ this shit sound like ai wrote it im sorry it sounds like that
 looking back now that im publicizing this this probably isnt even right anymore
 """
 
+var temp = {"expies": {}} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
+
 var data = {}
 var text = {}
 var settings = {}
@@ -55,6 +57,7 @@ func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
 		data = loadjson(savePath)
+		if data["save"]["expies"] == {}: data["save"]["expies"] = {"Default": 1} # force a default expie to spawn if no expie data on load. avoids crash
 
 	else:
 		newsave()
@@ -135,6 +138,7 @@ In theory, everything on https://skin.cat-bot.de/ should be compatible with this
 
 If you want multiple skins, just rename your 'Body' folder to whatever you want to call it, then use the skin spawner.
 (however you have to keep a 'Body' folder with any skin in it for it to work!)
+If you have both a 'Body' and 'Head' folder, combine the files inside them into a new folder and drag them in here.
 
 If your skin is only on the head, try restarting the app. That usually fixes it.""")
 				txt.close()
@@ -195,6 +199,9 @@ func InitAutosave():
 		await get_tree().create_timer(3.0).timeout
 		if gbData.devMode:
 			print("saved")
+		if gbData.settings.expiePersistence: # check if persistence is enabled
+			gbData.data["save"]["expies"] = gbData.temp.expies # copy temp expie data to save
+		
 		savetodisk(savePath, data)
 		savetodisk(conPath, settings)
 

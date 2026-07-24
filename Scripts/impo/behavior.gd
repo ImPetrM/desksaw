@@ -17,6 +17,13 @@ var wander = true
 var shocked = false
 
 func _ready() -> void:
+	# Persistence logging:
+	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath)-1) # remove "/" at end
+	var skinName = userSkinPath.substr(userSkinPath.rfind("/")+1) # remove first half of path, getting just name
+	if !gbData.temp["expies"].has(skinName): gbData.temp["expies"][skinName] = 0 # check if skin has been spawned yet
+	gbData.temp["expies"][skinName] += 1 # update number of skins
+	# ---
+	
 	faceSys.setEmotion("default")
 	
 	moveSys.sigragdoll.connect(shock)
@@ -103,12 +110,12 @@ func panicAttack():
 func passivetalk():
 	while true:
 		if !gbData.settings["mute"]:
-			await get_tree().create_timer(randf_range(24.5, 55.5)).timeout
+			await get_tree().create_timer(randf_range(24.5, 100.5)).timeout
 			dialogueSys.pool = data.passive
 			dialogueSys.speedMod = 1.3
 			dialogueSys.send()
+			print("expie spoke passive dialogue")
 		await get_tree().create_timer(.1).timeout
-		print("no")
 
 func wandering():
 	while wander:

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5w1ad1cltbtw" path="res://scenes/consoleThing.tscn" id="2_wpfx3"]
 [ext_resource type="Script" uid="uid://dv3fk2oja8ogf" path="res://Scripts/nimpo/pixeltoggle.gd" id="3_wpfx3"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
-[ext_resource type="PackedScene" uid="uid://bbgdbg120vky0" path="res://scenes/sawianBase.tscn" id="6_skb85"]
+[ext_resource type="PackedScene" uid="uid://bn4qfaris1qqr" path="res://scenes/persistenceWarningPopup.tscn" id="5_8gj0p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -81,6 +81,4 @@ offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Node2D" parent="." unique_id=2077787481 instance=ExtResource("6_skb85")]
-position = Vector2(877, 464)
-scale = Vector2(4, 4)
+[node name="PersistenceWarningPopup" parent="CanvasLayer2" unique_id=1575931891 instance=ExtResource("5_8gj0p")]
