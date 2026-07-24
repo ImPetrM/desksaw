@@ -9,6 +9,7 @@ var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
 var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
 var clickZoneSum: int = 0
+signal persistenceWarning() # used to warn user if they have more than 20 expies stored in persistence save
 signal raga()
 signal skinswap()
 signal resize()

@@ -75,7 +75,19 @@ func updateBorders():
 
 func loadExpiePersistence():
 	print("loading expies...")
-	print(gbData.data["save"]["expies"])
+	print("Expie persistence data: " + str(gbData.data["save"]["expies"]))
+	
+	# find number of expies persistence wants to load:
+	var x: int = 0
+	for names in gbData.data["save"]["expies"].keys():
+		x += gbData.data["save"]["expies"][names]
+	if x > 20:
+		GlobalVariable.persistenceWarning.emit()
+		print("Awaiting response from warning popup...")
+		await GlobalVariable.persistenceWarning
+		print("Response detected. Continuing...")
+	
+	
 	for name in gbData.data["save"]["expies"]: # expie names
 		print("loading '", name, "' skin expies...")
 		for i in range(gbData.data["save"]["expies"][name]): # number of expies to spawn for name
