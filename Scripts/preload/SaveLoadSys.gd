@@ -31,7 +31,7 @@ this shit sound like ai wrote it im sorry it sounds like that
 looking back now that im publicizing this this probably isnt even right anymore
 """
 
-var temp = {"expies": {}, "firstSpawn": true} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
+var temp = {"expies": {}} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
 
 var data = {}
 var text = {}
@@ -57,6 +57,7 @@ func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
 		data = loadjson(savePath)
+		if data["save"]["expies"] == {}: data["save"]["expies"] = {"Default": 1} # force a default expie to spawn if no expie data on load. avoids crash
 
 	else:
 		newsave()

@@ -78,6 +78,7 @@ func _saveSettings() -> void:
 
 func _on_expie_persistence_pressed():
 	if gbData.settings.expiePersistence:
-		gbData.data["save"]["expies"] = gbData.temp.expies
+		gbData.data["save"]["expies"] = gbData.temp["expies"]
 	else:
+		gbData.temp["expies"] = {}
 		gbData.data["save"]["expies"] = {}

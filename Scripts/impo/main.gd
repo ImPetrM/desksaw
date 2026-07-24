@@ -38,6 +38,8 @@ func _ready():
 	if gbData.settings["expiePersistence"]:
 		gbData.temp.expies = gbData.data["save"]["expies"]
 		loadExpiePersistence()
+	else:
+		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie() # call spawn function from commands
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -77,7 +79,6 @@ func loadExpiePersistence():
 	for name in gbData.data["save"]["expies"]: # expie names
 		print("loading '", name, "' skin expies...")
 		for i in range(gbData.data["save"]["expies"][name]): # number of expies to spawn for name
-			if gbData.temp["firstSpawn"]: gbData.temp["firstSpawn"] = false; print("skipped first expie."); continue # check if first expie, as to not duplicate one already spawned
 			await get_tree().create_timer(0.25).timeout
 			GlobalVariable.userSkinPath = "user://skin/" + name + "/"
 			$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie() # call spawn function from commands

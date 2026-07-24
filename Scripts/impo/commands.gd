@@ -86,7 +86,7 @@ func clearObj(category: String = "object"):
 				child.queue_free()
 
 	if category == "entity":
-		gbData.temp["expies"] = {"Body": 1} # clear temp data
+		gbData.temp["expies"] = {} # clear temp data
 		gbData.data["save"]["expies"] = {} # clear all expie persistence if entities are cleared
 		print("cleared expie persistence data")
 

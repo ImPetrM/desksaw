@@ -24,8 +24,6 @@ func _ready() -> void:
 	gbData.temp["expies"][skinName] += 1 # update number of skins
 	# ---
 	
-	if gbData.temp["firstSpawn"]: print("FIRST SPAWN")
-	
 	faceSys.setEmotion("default")
 	
 	moveSys.sigragdoll.connect(shock)
@@ -116,8 +114,8 @@ func passivetalk():
 			dialogueSys.pool = data.passive
 			dialogueSys.speedMod = 1.3
 			dialogueSys.send()
+			print("expie spoke passive dialogue")
 		await get_tree().create_timer(.1).timeout
-		print("expie didn't speak")
 
 func wandering():
 	while wander:
