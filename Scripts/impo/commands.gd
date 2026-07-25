@@ -85,6 +85,11 @@ func clearObj(category: String = "object"):
 				await get_tree().create_timer(.05).timeout
 				child.queue_free()
 
+	if category == "entity":
+		gbData.temp["expies"] = {} # clear temp data
+		gbData.data["save"]["expies"] = {} # clear all expie persistence if entities are cleared
+		print("cleared expie persistence data")
+
 
 func nukesettings():
 	#command that fixes the "terror" bug
@@ -135,6 +140,7 @@ func _ready():
 	Console.create_command("nukeSettings", nukesettings, "run if your expie is in a constant state of terror (resets EVERYTHING)")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
+	Console.print("You can reopen this console any time by Ctrl+Clicking on any Desksawian")
 	Console.execute("setMonitor 0")
 	#setting stuff that would probably have a better solution to it
 

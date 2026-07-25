@@ -1,28 +1,30 @@
-extends Node
+extends Node2D
 
-@export
-var bodyRoot: NodePath
+# Display expie is used for displaying what skin you are about to spawn
+
+func _ready():
+	mapSkin()
+	loadAllTextures()
+
+# skin loading system from skinmapper.gd:
+
 @export
 var currtextures: Array = []
 @export
 var alltextures: Array = []
 #paths
 var resPath = "res://assets/Body/"
-var userSkinPath = GlobalVariable.userSkinPath
-#furry girlfirend 
+var userSkinPath = "user://skin/Body/"
+#furry boyfirend
 signal mappe(currtextures: Dictionary)
-func _ready() -> void:
-	if userSkinPath == "user://skin/Default/": userSkinPath = resPath
-	print("Using '", userSkinPath, "' for new expie's skin")
-	mapSkin()
-	loadAllTextures()
 
 func mapSkin():
+	userSkinPath = GlobalVariable.userSkinPath
+	print("Using '", userSkinPath, "' for display expie instance.")
 	var skinList = gbData.skinData
 
 	currtextures.clear()
-	var root = get_node(bodyRoot)
-	var sprites = getspr(root)
+	var sprites = getspr($DisplayExpie)
 
 	var skinFileNames = {}
 	if skinList.size() == 0:

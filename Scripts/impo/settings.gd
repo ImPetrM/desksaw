@@ -11,11 +11,13 @@ var settings = gbData.settings
 var sMAP = {
 	"deathBool": {"key": "deathEnabled", "type": "toggle"},
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
+	"expiePersistence": {"key": "expiePersistence", "type": "toggle"},
 	"pixel": {"key": "pixel", "type": "toggle"},
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
 	"mute": {"key": "mute", "type": "toggle"},
+	"dialogueSoundBool": {"key": "dialogueSoundEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},
@@ -72,3 +74,11 @@ func _saveSettings() -> void:
 	gbData.savetodisk(gbData.conPath, gbData.settings)
 	if gbData.devMode:
 		print("Settings saved")
+
+
+func _on_expie_persistence_pressed():
+	if gbData.settings.expiePersistence:
+		gbData.data["save"]["expies"] = gbData.temp["expies"]
+	else:
+		gbData.temp["expies"] = {}
+		gbData.data["save"]["expies"] = {}
