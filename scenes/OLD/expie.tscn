@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://r38d8wb5mgc5" path="res://scenes/OLD/Limblets/thighUPD.png" id="4_nio1u"]
 [ext_resource type="Script" uid="uid://qkv62uqdall2" path="res://Scripts/nimpo/consoleinstancer.gd" id="5_2fa61"]
 [ext_resource type="Texture2D" uid="uid://kuqu4noi17mv" path="res://scenes/OLD/Limblets/Calf.png" id="5_xtemb"]
-[ext_resource type="Script" uid="uid://copxchuwf8rlq" path="res://Scripts/impo/dragEXj.gd" id="6_es5rn"]
+[ext_resource type="Script" uid="uid://copxchuwf8rlq" path="res://Scripts/impo/dragEXj_OLD.gd" id="6_es5rn"]
 [ext_resource type="Texture2D" uid="uid://cy1vmp7357aj7" path="res://scenes/OLD/Limblets/UpperArm.png" id="7_pkcyl"]
 [ext_resource type="Texture2D" uid="uid://p3fsantvkni6" path="res://scenes/OLD/Limblets/ForeArm.png" id="8_e2n8k"]
 [ext_resource type="Texture2D" uid="uid://ctiq335o2t31p" path="res://scenes/OLD/Limblets/tail.png" id="9_d2ypc"]

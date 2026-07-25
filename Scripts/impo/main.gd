@@ -26,9 +26,10 @@ func _ready():
 
  Build 2! this fixes a few bugs that were reported in build 1!
 
- PS: Control + Click on the expie to reopen the menu
- Run openSkinFolder in the command section to start with skin stuff!
- IM AWARE THAT THIS SHOULD NOT BE 200 MEGABYTES!!!!! ITS A GODOT THING IM WORKING ON FIXING!
+	PS: Control + Right Click on the expie to reopen the menu
+	Right click to drag, left click to pet!
+	Run openSkinFolder in the command section to start with skin stuff!
+	IM AWARE THAT THIS SHOULD NOT BE 200 MEGABYTES!!!!! ITS A GODOT THING IM WORKING ON FIXING!
 ")
 	
 	GlobalVariable.console.connect(yeah)
@@ -80,7 +81,6 @@ func loadExpiePersistence():
 	print("loading expies...")
 	print("Expie persistence data: " + str(gbData.data["save"]["expies"]))
 	
-	# find number of expies persistence wants to load:
 	var x: int = 0
 	for names in gbData.data["save"]["expies"].keys():
 		x += gbData.data["save"]["expies"][names]
@@ -91,11 +91,11 @@ func loadExpiePersistence():
 		print("Response detected. Continuing...")
 	
 	
-	for name in gbData.data["save"]["expies"]: # expie names
+	for name in gbData.data["save"]["expies"]:
 		print("loading '", name, "' skin expies...")
-		for i in range(gbData.data["save"]["expies"][name]): # number of expies to spawn for name
+		for i in range(gbData.data["save"]["expies"][name]):
 			await get_tree().create_timer(0.25).timeout
 			GlobalVariable.userSkinPath = "user://skin/" + name + "/"
-			$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie() # call spawn function from commands
+			$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
 			print("loaded ", name, " - ", i)
-			gbData.data["save"]["expies"][name] -= 1 # decreases number to be spawned, so no duplication
+			gbData.data["save"]["expies"][name] -= 1

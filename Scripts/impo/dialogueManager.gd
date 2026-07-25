@@ -3,6 +3,7 @@ class_name Dialogue
 
 @onready var mood = gbData.data.save.mood
 @onready var data = gbData.text.diaGlobal
+@onready var dialogueTimer = $dialogueTimer
 @export var richtextlabel: RichTextLabel
 @export var textspeed: float = 0.04
 var pause: Array = [",", ".", "!"]
@@ -28,6 +29,7 @@ var soundfiles = preload("res://assets/sounds/speech.ogg") # Preload speech soun
 
 func _ready() -> void:
 	richtextlabel.add_theme_font_size_override("normal_font_size", gbData.settings.expieDialogueSize)
+	print("LOADED DIALOGUE KEYS: ", data.keys())
 
 	
 func typeOut(string: String, speed_multiplier: float = 1.0):
@@ -127,7 +129,11 @@ func stupify(str: String) -> String:
 
 	return result
 
-func send():
+func send(cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
+	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
+		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
+		return
+
 	if pool.size() > 0:
 		var text: String = pool.pick_random()
 
@@ -137,6 +143,17 @@ func send():
 			speedMod -= .3
 
 		typeOut(text, speedMod)
+		
+		await stoptalking
+
+		if cooldown > 0.0:
+			dialogueTimer.start(cooldown)
+
+
+func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
+	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
+		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
+		return
 
 func play_sound(file, variance_db := 3.0):
 	var db = base_db + randf_range(-variance_db, variance_db)
@@ -144,7 +161,12 @@ func play_sound(file, variance_db := 3.0):
 	AudioPlayer.pitch_scale = 1 + randf_range(-.2, .2)
 	AudioPlayer.stream = file
 	AudioPlayer.play()
-
-func setDia(stra, speed: float):
 	typeOut(stra, speed)
-	pass
+	await stoptalking
+
+	if cooldown > 0.0:
+		dialogueTimer.start(cooldown)
+
+##Getter proc.
+func is_dialogue_playing() -> bool:
+	return isTyping
