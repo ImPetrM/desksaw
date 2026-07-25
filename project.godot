@@ -28,7 +28,7 @@ buses/default_bus_layout="uid://q8b4l6lsyv7h"
 [autoload]
 
 VersionNotifier="*uid://8j1mcy0bpx3v"
-Console="*uid://bi3v181ohiyu4"
+Console="*uid://dc5wc5117h2vk"
 gbData="*uid://cxvm0bn8psfuw"
 GlobalVariable="*uid://mxghgdpm2n4c"
 TransparentWindow="*uid://cckj4pyg78xfg"

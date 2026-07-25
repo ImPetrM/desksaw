@@ -35,7 +35,8 @@ func _sync_mood() -> void:
 func moodLoop() -> void:
 	while true:
 		await get_tree().create_timer(10).timeout
-
+		if gbData.settings.get("invincible", false):
+			continue
 
 		mood += calcmood(1.0)
 		#showly neutralize in lerp but im going to be honesst they basically do nothing

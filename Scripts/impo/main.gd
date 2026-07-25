@@ -20,17 +20,6 @@ func _ready():
 
 	if OS.get_name() == "Linux" and OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland":
 		OS.alert("This message is popping up because you are using wayland. \n \n Most if not all features will not work due to wayland's security measures. \n\n You will have to have another x11 app running to interact with them (ex: Steam) or switch to x11\n\n Sorry! I dont know any workarounds")
-	if gbData.settings["messageEnabled"]:
-		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
- This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
-
- Build 2! this fixes a few bugs that were reported in build 1!
-
-	PS: Control + Right Click on the expie to reopen the menu
-	Right click to drag, left click to pet!
-	Run openSkinFolder in the command section to start with skin stuff!
-	IM AWARE THAT THIS SHOULD NOT BE 200 MEGABYTES!!!!! ITS A GODOT THING IM WORKING ON FIXING!
-")
 	
 	GlobalVariable.console.connect(yeah)
 	#fix()

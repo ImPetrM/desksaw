@@ -149,17 +149,18 @@ func send(cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
 			dialogueTimer.start(cooldown)
 
 
-func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
-	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
-		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
-		return
-
 func play_sound(file, variance_db := 3.0):
 	var db = base_db + randf_range(-variance_db, variance_db)
 	AudioPlayer.volume_db = db
 	AudioPlayer.pitch_scale = 1 + randf_range(-.2, .2)
 	AudioPlayer.stream = file
 	AudioPlayer.play()
+
+func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
+	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
+		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
+		return
+
 	typeOut(stra, speed)
 	await stoptalking
 

@@ -7,3 +7,6 @@ nuget.config
 
 # Godot editor crash recovery files
 *.tmp
+
+# Build output
+Release/

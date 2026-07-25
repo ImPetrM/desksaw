@@ -12,6 +12,7 @@ extends Node
 var _hovered_bodies: Array[RigidBody2D] = []
 
 var _dragging := false
+var _is_contributing := false
 var _dragged_body: RigidBody2D
 var _dragger: StaticBody2D
 var _joint: RapierPinJoint2D
@@ -134,10 +135,15 @@ func _on_body_part_input(_viewport: Node, event: InputEvent, _shape_idx: int, bo
 func _updateHoverState() -> void:
 	var is_hovering := not _hovered_bodies.is_empty()
 	
-	if is_hovering or _dragging:
-		GlobalVariable.clickZoneSum = 1
+	var should_contribute := is_hovering or _dragging
+	if should_contribute == _is_contributing:
+		return
+	_is_contributing = should_contribute
+
+	if should_contribute:
+		GlobalVariable.clickZoneSum += 1
 	else:
-		GlobalVariable.clickZoneSum = 0
+		GlobalVariable.clickZoneSum -= 1
 
 	#change cursor icon
 	#due to GODOT forcefully changing cursor icons when you stop hovering

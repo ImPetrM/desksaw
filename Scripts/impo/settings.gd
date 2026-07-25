@@ -9,7 +9,7 @@ var settings = gbData.settings
 
 @export var partent: Control
 var sMAP = {
-	"deathBool": {"key": "deathEnabled", "type": "toggle"},
+	"deathBool": {"key": "invincible", "type": "toggle"},
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
 	"expiePersistence": {"key": "expiePersistence", "type": "toggle"},
 	"pixel": {"key": "pixel", "type": "toggle"},

@@ -154,11 +154,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="deathBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1748848974]
-visible = false
+visible = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
-disabled = true
+disabled = false
 toggle_mode = true
 icon = ExtResource("6_7udsa")
 alignment = 2
@@ -179,7 +179,7 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "Enable death (unavailable)"
+text = "Invincible (prevents death, mood loss, hunger, trust loss)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

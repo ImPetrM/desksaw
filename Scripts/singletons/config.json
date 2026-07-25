@@ -7,6 +7,7 @@
 	"minMood": -100.0,
 	"maxMood": 100.0,
 	"hungerDecayRate": 0.1,
+	"invincible": false,
 	"deathEnabled": false,
 	"pixel": false,
 	"lobotomize": true,
