@@ -1,7 +1,7 @@
 extends RapierRigidBody2D
 @export
 var skeletonRef: Skeleton2D
-var t = false
+var rtLocked = false
 
 func _ready() -> void:
 	var stack := skeletonRef.get_modification_stack()
@@ -15,8 +15,8 @@ func _process(delta: float) -> void:
 		rtEnable(false)
 
 func rtEnable(val: bool):
-	if t == true: return
-	t = true
+	if rtLocked: return
+	rtLocked = true
 
 	var descendants = skeletonRef.find_children("*", "", true, false)
 	var moredesc = self.find_children("*", "", true, false)

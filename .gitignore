@@ -4,3 +4,6 @@
 .nuget/packages
 nuget.config
 /android/
+
+# Godot editor crash recovery files
+*.tmp

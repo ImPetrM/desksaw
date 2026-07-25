@@ -51,9 +51,9 @@ func _process(delta: float) -> void:
 
 
 func yeah(t: bool):
-	console.visible = true
-	console.showw()
-	print("yeah")
+	console.visible = t
+	if t:
+		console.showw()
 
 
 func createBorders():

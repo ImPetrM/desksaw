@@ -154,16 +154,8 @@ literally useless function that i added because i saw that older games source co
 they had it way harder than i did and i want to larp
 """
 func checkpositive(num):
-	if num is int:
-		if num >= 0:
-			return true
-		else:
-			return false
-			
-	if num is float:
-		if num >= 0:
-			return true
-		else:
-			return false
+	if num is int or num is float:
+		return num >= 0
+	return false
 
 

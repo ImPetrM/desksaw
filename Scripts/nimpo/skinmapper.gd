@@ -113,7 +113,7 @@ func loadAllTextures():
 
 		if entry.ends_with(".import"):
 			file = entry.get_basename()
-		elif entry.get_extension() in ["png", "jpg"]: # fir debugging
+		elif entry.get_extension() in ["png", "jpg"]: # for debugging
 			file = entry
 		else:
 			continue

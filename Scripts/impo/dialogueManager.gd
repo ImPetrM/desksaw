@@ -1,7 +1,6 @@
 extends Node
 class_name Dialogue
 
-@onready var mood = gbData.data.save.mood
 @onready var data = gbData.text.diaGlobal
 @onready var dialogueTimer = $dialogueTimer
 @export var richtextlabel: RichTextLabel
@@ -77,12 +76,11 @@ func typeOut(string: String, speed_multiplier: float = 1.0):
 	if tre == h:
 		richtextlabel.visible_characters = 0
 
-func stupify(str: String) -> String:
-	randomize()
+func stupify(input: String) -> String:
 	var chance = .2
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var text = str
+	var text = input
 
 
 	var result = ""
@@ -136,14 +134,15 @@ func send(cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
 
 	if pool.size() > 0:
 		var text: String = pool.pick_random()
+		var effectiveSpeed = speedMod
 
 		if text.find("[stupid]") != -1:
 			text = text.replace("[stupid]", "")
 			text = stupify(text)
-			speedMod -= .3
+			effectiveSpeed -= .3
 
-		typeOut(text, speedMod)
-		
+		typeOut(text, effectiveSpeed)
+
 		await stoptalking
 
 		if cooldown > 0.0:
@@ -167,6 +166,5 @@ func play_sound(file, variance_db := 3.0):
 	if cooldown > 0.0:
 		dialogueTimer.start(cooldown)
 
-##Getter proc.
 func is_dialogue_playing() -> bool:
 	return isTyping

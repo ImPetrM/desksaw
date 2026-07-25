@@ -94,7 +94,7 @@ func tempRagdoll() -> void:
 			dialogueSys.pool = data.beingDragged
 			dialogueSys.send(10, false)
 			continue
-		if abs(moveSys.rigidtorso.linear_velocity.x + moveSys.rigidtorso.linear_velocity.y) > 10.0:
+		if moveSys.rigidtorso.linear_velocity.length() > 10.0:
 			continue
 		break
 
@@ -126,7 +126,7 @@ func panicAttack():
 	faceSys.setEmotion("sad")
 	moveSys.dir = 1 if moveSys.rigid.global_position.x < float(GlobalVariable.screenWidth / 2) else -1
 
-	dialogueSys.pool = data.VeryLowPassive
+	dialogueSys.pool = data.get("VeryLowPassive", [])
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
 	
@@ -134,7 +134,7 @@ func panicAttack():
 	await get_tree().create_timer(3).timeout
 
 	moveSys.dir = 0
-	dialogueSys.pool = data.panic
+	dialogueSys.pool = data.get("panic", [])
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
 	await get_tree().create_timer(1).timeout
@@ -150,7 +150,8 @@ func passivetalk():
 				dialogueSys.pool = data.passive
 				dialogueSys.speedMod = 1.3
 				dialogueSys.send()
-		await get_tree().create_timer(.1).timeout
+		else:
+			await get_tree().create_timer(5.0).timeout
 
 func wandering():
 	while wander:

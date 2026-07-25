@@ -78,10 +78,6 @@ func _ready():
 
 	if DirAccess.dir_exists_absolute(skinfilepath):
 		skinData = loadSkin()
-		#print(skinData)
-		#load file
-		pass
-		#settings = loadjson(conPath)
 	else:
 		newSkinFile()
 
@@ -91,8 +87,8 @@ func _ready():
 
 func newsave():
 	# Read the save template
-	if template == null:
-		print("template not found")
+	if not ResourceLoader.exists(template):
+		print("template not found at: ", template)
 		return
 	
 	#set data json to template
@@ -164,7 +160,7 @@ func loadSkin():
 			for file in files:
 				if file.get_extension().to_lower() == "png":
 					_ifliterallyanythingisthere = true
-					added.append(skinfilepath.path_join(file))
+					added.append(pt.path_join(file))
 			
 		return added
 
@@ -211,17 +207,15 @@ func killEverything():
 	newTrans()
 	newSkinFile()
 	newConfig()
-	pass
 
 func outdated():
 	if settings.outdated:
-		print("what")
+		print("already outdated")
 		return
 	settings.outdated = true
 	killEverything()
 
 func checkupdated():
 	if !settings.outdated: return
-	print("what")
+	print("version is current")
 	settings.outdated = false
-	killEverything()

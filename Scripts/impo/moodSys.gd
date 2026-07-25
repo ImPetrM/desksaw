@@ -47,7 +47,7 @@ func moodLoop() -> void:
 		if gbData.devMode:
 			print(str("mood: ", mood))
 			print(str("tick: ", calcmood(1.0)))
-		if !gbData.settings["lobotomize"]:
+		if gbData.settings["lobotomize"]:
 			mood = 0.0
 		_sync_mood()
 			

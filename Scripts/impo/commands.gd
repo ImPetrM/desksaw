@@ -27,7 +27,6 @@ func _cust(cmd: String):
 
 func openskinfold():
 	OS.shell_open(ProjectSettings.globalize_path("user://skin"))
-	pass
 func _setmood(val: float):
 	gbData.data.save.mood = val
 	gbData.savetodisk("user://SAVE.json", gbData.data)
@@ -99,7 +98,7 @@ func setmonitor(monitorIndex: int = 1):
 	DisplayServer.window_set_current_screen(monitorIndex)
 	GlobalVariable.Fresize()
 
-func resize(nx, ny):
+func resize(nx, ny) -> String:
 	var ex = str(nx).to_float()
 	var ey = str(ny).to_float()
 	root.size.x = ex
@@ -122,9 +121,9 @@ func resize(nx, ny):
 	return "resized"
 
 func deathLoop():
-	Console.execute("log I_HATE_YOU")
-	await get_tree().create_timer(.1).timeout
-	deathLoop()
+	while true:
+		Console.execute("log I_HATE_YOU")
+		await get_tree().create_timer(.1).timeout
 
 func _ready():
 	Console.create_command("log", _log, "Log a string to the console.")

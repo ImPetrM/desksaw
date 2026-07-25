@@ -43,10 +43,11 @@ func lowerhunger():
 			print("starved")
 
 		if hungry:
-			gbData.data.save["health"] -= .05
+			gbData.data.save["health"] = max(gbData.data.save["health"] - .05, 0.0)
 		if starved:
-			gbData.data.save["health"] -= .1
+			gbData.data.save["health"] = max(gbData.data.save["health"] - .1, 0.0)
 
+		gbData.data.save["hunger"] = max(gbData.data.save["hunger"], 0.0)
 		print(h)
 
 
