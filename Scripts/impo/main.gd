@@ -28,11 +28,14 @@ func _ready():
 	GlobalVariable.resize.connect(updateBorders)
 	pass
 	
+	var def = gbData.settings.get("defaultSkin", "Body")
+	GlobalVariable.userSkinPath = "user://skin/" + def + "/"
+
 	if gbData.settings["expiePersistence"]:
 		gbData.temp.expies = gbData.data["save"]["expies"]
 		loadExpiePersistence()
 	else:
-		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie() # call spawn function from commands
+		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

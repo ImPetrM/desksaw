@@ -18,5 +18,9 @@
 	"normalize": 1.0,
 	"outdated": false,
 	"placeHodler": true,
-	"soundVolume": 1.0
+	"soundVolume": 1.0,
+	"ollamaEnabled": false,
+	"ollamaModel": "llama3.2:latest",
+	"ollamaUrl": "http://127.0.0.1:11434",
+	"defaultSkin": "Body"
 }

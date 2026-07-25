@@ -21,18 +21,23 @@ signal mappe(currtextures: Dictionary)
 func mapSkin():
 	userSkinPath = GlobalVariable.userSkinPath
 	print("Using '", userSkinPath, "' for display expie instance.")
-	var skinList = gbData.skinData
 
 	currtextures.clear()
 	var sprites = getspr($DisplayExpie)
 
 	var skinFileNames = {}
-	if skinList.size() == 0:
-		print("no skin stuff deteckted")
-	else:
-		for skinPath in skinList:
-			var fileName = skinPath.get_file()
-			skinFileNames[fileName] = true
+	var dir = DirAccess.open(userSkinPath)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir() and file_name.get_extension().to_lower() == "png":
+				skinFileNames[file_name] = true
+			file_name = dir.get_next()
+		dir.list_dir_end()
+
+	if skinFileNames.size() == 0:
+		print("no skin files found in ", userSkinPath)
 
 	for sprite in sprites:
 		sprite.flip_v = false

@@ -22,6 +22,9 @@ var sMAP = {
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},
 	"soundVolume": {"key": "soundVolume", "type": "slider"},
+	"ollamaEnabled": {"key": "ollamaEnabled", "type": "toggle"},
+	"ollamaModel": {"key": "ollamaModel", "type": "string"},
+	"defaultSkin": {"key": "defaultSkin", "type": "string"},
 }
 
 
@@ -51,6 +54,10 @@ func _initset() -> void:
 			"text":
 				node.text = str(settings.get(key, ""))
 				node.text_submitted.connect(func(val): sett(key, float(val)))
+
+			"string":
+				node.text = str(settings.get(key, ""))
+				node.text_submitted.connect(func(val): sett(key, val))
 
 			"slider":
 				node.value = settings.get(key, node.min_value)
