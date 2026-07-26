@@ -56,6 +56,7 @@ func createBorders():
 
 
 func updateBorders():
+	print("resizing")
 	var oldheight = screenHeight
 	screenWidth = DisplayServer.screen_get_usable_rect().size.x
 	screenHeight = DisplayServer.screen_get_usable_rect().size.y

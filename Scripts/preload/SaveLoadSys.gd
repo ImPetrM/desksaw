@@ -4,31 +4,14 @@ class_name SaveLoadSys
 
 
 """
-###
-
-This is the thing that handles saving and loading. 
-
-Heres the steps that it does through:
-
-    Loading:
-        1: Check if there is a save file. If there is, load it into data
-        2: Check for a translation file in deedee/expet/lang. If there is, load it into the translation system.
-        3: If there isnt. load yapENG into text.
-        
-    Saving:
-        1: Check if there is a save file. If there isnt, make one.
-        2: Save data inside the data variable to the save file.
-
-    Creating a new file:
-        1: Read SaveTemplate.json.
-        2: Apply save template to data. 
-        3: Randomize some variables 
-        4: Create a new JSON file based on whats in data
+the text wall that was here was literally never correct in the first place. 
+idk what i was on when i wrote it
 
 
-this shit sound like ai wrote it im sorry it sounds like that 
+heres the saving stuffs.,
 
-looking back now that im publicizing this this probably isnt even right anymore
+
+
 """
 
 var temp = {"expies": {}} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
@@ -45,7 +28,7 @@ var template = "res://Scripts/singletons/SaveTemplate.json"
 # DO NOT FORGET TO DISABLE THIS WHENBUILDING 
 var devMode = false
 
-const currver = "v0.0.2"
+const currver = "v0.0.4"
 
 const savePath = "user://SAVE.json"
 const transPath = "user://TRANSLATION.json"

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://di62pelsumou7" path="res://Scripts/nimpo/windowHandler.gd" id="1_635sk"]
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://assets/themes/MinimalUI.tres" id="1_gicfb"]
 [ext_resource type="Script" uid="uid://d0cvk81o5qbon" path="res://Scripts/impo/commands.gd" id="1_spxfo"]
-[ext_resource type="Script" uid="uid://b5587kn054bod" path="res://addons/godot-console/scripts/console_container.gd" id="2_635sk"]
+[ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="2_635sk"]
 [ext_resource type="Script" uid="uid://buv1161su40c1" path="res://Scripts/impo/settings.gd" id="5_uf3cf"]
 [ext_resource type="Texture2D" uid="uid://yuq6rb2r6wpm" path="res://assets/svg/x-symbol.svg" id="6_7udsa"]
 [ext_resource type="Script" uid="uid://blg811jk2cjt4" path="res://Scripts/nimpo/clickArea.gd" id="7_7udsa"]
@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://bjta7yk5pd8fh" path="res://assets/Body/experimentHeadBack.png" id="17_6r3u3"]
 [ext_resource type="Texture2D" uid="uid://b0630p6hqbjso" path="res://assets/Body/experimentEyeOpen.png" id="18_tlmsx"]
 [ext_resource type="Script" uid="uid://ckp8r8xr5vm48" path="res://Scripts/nimpo/soundVolumeSlider.gd" id="19_emer2"]
-[ext_resource type="Script" path="res://Scripts/impo/ollama_chat.gd" id="20_chat"]
 
 [node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN", "SkinsN", "ChatN")]
 layout_mode = 3
@@ -36,7 +35,7 @@ Exit = NodePath("Handle/Close")
 ConsoleN = NodePath("Main/ConsoleContainer")
 SettingsN = NodePath("Main/Settings")
 SkinsN = NodePath("Main/SkinSpawner")
-ChatN = NodePath("Main/ChatN")
+ChatN = NodePath("")
 metadata/_edit_use_anchors_ = true
 
 [node name="Handle" type="Button" parent="." unique_id=473127369]
@@ -91,7 +90,7 @@ anchor_bottom = 0.9032258
 theme = ExtResource("1_gicfb")
 alignment = 1
 selected = 0
-item_count = 5
+item_count = 4
 popup/item_0/text = "Statistics"
 popup/item_0/id = 0
 popup/item_1/text = "Console"
@@ -100,8 +99,6 @@ popup/item_2/text = "Settings"
 popup/item_2/id = 2
 popup/item_3/text = "Skins"
 popup/item_3/id = 3
-popup/item_4/text = "Chat"
-popup/item_4/id = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="Main" type="ColorRect" parent="." unique_id=1524626669]
@@ -158,11 +155,9 @@ layout_mode = 2
 alignment = 1
 
 [node name="deathBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1748848974]
-visible = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
-disabled = false
 toggle_mode = true
 icon = ExtResource("6_7udsa")
 alignment = 2
@@ -383,11 +378,17 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="minMood" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=569389834]
+[node name="soundVolume" type="HSlider" parent="Main/Settings/ScrollContainer/ItemList" unique_id=569359640]
 layout_mode = 2
-placeholder_text = "10"
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 3
+ticks_on_borders = true
+ticks_position = 3
+script = ExtResource("19_emer2")
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/minMood" unique_id=501940725]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/soundVolume" unique_id=1729090434]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -400,17 +401,16 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "The lowest the expies mood can go (does nothing as mood stuff
-is unavailable at the moment)"
+text = "Sound volume"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="maxMood" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=374514981]
+[node name="defaultSkin" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1765001001]
 layout_mode = 2
-placeholder_text = "10"
+placeholder_text = "Body"
 
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/maxMood" unique_id=1644388755]
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/defaultSkin" unique_id=1156571291]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -9.382
@@ -423,12 +423,13 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "The highest the expies mood can go ( same thing)"
+text = "Default Skin Folder Name"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="SkinSpawner" type="Container" parent="Main" unique_id=2070923109]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -468,11 +469,9 @@ text = ">"
 layout_mode = 2
 text = "Body:"
 
-
-
 [node name="DisplayExpie" type="Node2D" parent="Main/SkinSpawner" unique_id=1206904640]
 visible = false
-position = Vector2(100, 250)
+position = Vector2(379, 191)
 scale = Vector2(4, 4)
 
 [node name="TailSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=192578252]
@@ -604,42 +603,6 @@ visible = false
 layout_mode = 2
 alignment = 2
 
-[node name="ChatN" type="VBoxContainer" parent="Main"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("20_chat")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Main/ChatN"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ChatLog" type="RichTextLabel" parent="Main/ChatN/ScrollContainer"]
-layout_mode = 2
-mouse_filter = 2
-bbcode_enabled = true
-fit_content = true
-scroll_active = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Main/ChatN"]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="LineEdit" type="LineEdit" parent="Main/ChatN/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Type a message..."
-
-[node name="SendButton" type="Button" parent="Main/ChatN/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "Send"
-
 [node name="HSplitContainer" type="HSplitContainer" parent="Main/SkinSpawner" unique_id=1627132420]
 layout_mode = 2
 
@@ -647,107 +610,6 @@ layout_mode = 2
 clip_contents = false
 layout_mode = 2
 text = "this is a long string of text to test this thing"
-
-[node name="soundVolume" type="HSlider" parent="Main/Settings/ScrollContainer/ItemList" unique_id=569359640]
-layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 3
-ticks_on_borders = true
-ticks_position = 3
-script = ExtResource("19_emer2")
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/soundVolume" unique_id=1729090434]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = 0.5
-anchor_right = 10.28
-anchor_bottom = 0.5
-offset_left = 526.1
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Sound volume"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="ollamaEnabled" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1763001001]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme = ExtResource("1_gicfb")
-toggle_mode = true
-icon = ExtResource("6_7udsa")
-alignment = 2
-icon_alignment = 1
-expand_icon = true
-metadata/type = "bool"
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/ollamaEnabled"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = 0.5
-anchor_right = 10.28
-anchor_bottom = 0.5
-offset_left = 526.1
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Enable Ollama AI chat (requires Ollama running)"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="ollamaModel" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1763001002]
-layout_mode = 2
-placeholder_text = "llama3.2:latest"
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/ollamaModel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = 0.5
-anchor_right = 10.28
-anchor_bottom = 0.5
-offset_left = 526.1
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Ollama Model Name"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="defaultSkin" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1765001001]
-layout_mode = 2
-placeholder_text = "Body"
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/defaultSkin"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = 0.5
-anchor_right = 10.28
-anchor_bottom = 0.5
-offset_left = 526.1
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Default Skin Folder Name"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="ClickArea" type="Control" parent="." unique_id=1277571415]
 layout_mode = 1
@@ -768,14 +630,8 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="item_selected" from="Handle/TabSwitch" to="." method="_on_tab_switch_item_selected"]
 [connection signal="pressed" from="Main/Settings/ScrollContainer/ItemList/expiePersistence" to="Main/Settings" method="_on_expie_persistence_pressed"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/expieFontSize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
-[connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/FolderAccess" to="Main/SkinSpawner" method="_on_folder_access_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Refresh" to="Main/SkinSpawner" method="_on_refresh_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Previous" to="Main/SkinSpawner" method="_on_previous_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Select" to="Main/SkinSpawner" method="_on_select_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Next" to="Main/SkinSpawner" method="_on_next_pressed"]
-[connection signal="pressed" from="Main/ChatN/HBoxContainer/SendButton" to="Main/ChatN" method="_on_send"]
-[connection signal="text_submitted" from="Main/ChatN/HBoxContainer/LineEdit" to="Main/ChatN" method="_on_send"]

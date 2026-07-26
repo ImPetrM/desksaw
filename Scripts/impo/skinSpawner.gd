@@ -62,8 +62,7 @@ func reloadDisplayExpie():
 	var scene = load("res://scenes/displayExpie.tscn")
 	var instance = scene.instantiate()
 	var disp = instance.get_node_or_null("DisplayExpie")
-	if disp:
-		disp.position = Vector2(90, 60)
+
 	var wrapper = Node2D.new()
 	wrapper.set_meta("display", false)
 	wrapper.add_child(instance)

@@ -64,7 +64,7 @@ func _on_tab_switch_item_selected(index: int) -> void:
 	ConsoleN.visible = false
 	SettingsN.visible = false
 	SkinsN.visible = false
-	ChatN.visible = false
+
 	match index:
 		0:
 			StatN.visible = true
@@ -82,7 +82,3 @@ func _on_tab_switch_item_selected(index: int) -> void:
 			SkinsN.visible = true
 			if gbData.devMode:
 				print("Skin Change")
-		4:
-			ChatN.visible = true
-			if gbData.devMode:
-				print("Chat")

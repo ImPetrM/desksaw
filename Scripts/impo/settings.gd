@@ -22,8 +22,6 @@ var sMAP = {
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},
 	"soundVolume": {"key": "soundVolume", "type": "slider"},
-	"ollamaEnabled": {"key": "ollamaEnabled", "type": "toggle"},
-	"ollamaModel": {"key": "ollamaModel", "type": "string"},
 	"defaultSkin": {"key": "defaultSkin", "type": "string"},
 }
 
