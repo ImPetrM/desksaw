@@ -24,6 +24,8 @@ var starved = false
 func lowerhunger():
 	while true:
 		await get_tree().create_timer(3.0).timeout
+		if settings.get("invincible", false):
+			continue
 		gbData.data.save["hunger"] -= settings["hungerDecayRate"]
 		
 		var h = gbData.data.save["hunger"]
@@ -43,16 +45,19 @@ func lowerhunger():
 			print("starved")
 
 		if hungry:
-			gbData.data.save["health"] -= .05
+			gbData.data.save["health"] = max(gbData.data.save["health"] - .05, 0.0)
 		if starved:
-			gbData.data.save["health"] -= .1
+			gbData.data.save["health"] = max(gbData.data.save["health"] - .1, 0.0)
 
+		gbData.data.save["hunger"] = max(gbData.data.save["hunger"], 0.0)
 		print(h)
 
 
 func trustcalc():
 		while true:
 			await get_tree().create_timer(3).timeout
+			if settings.get("invincible", false):
+				continue
 			
 
 			var moodfactor = data.save.mood / 100.0

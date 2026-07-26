@@ -15,11 +15,7 @@ func _process(delta: float) -> void:
 
 
 func _on_menu_pressed() -> void:
-	#get root main scene
-	#fine child named ConsoleContainer
-	#make it visible
 	GlobalVariable.consoleF(true)
-	pass # Replace with function body.
 
 
 func _on_pet_pressed() -> void:
@@ -28,20 +24,17 @@ func _on_pet_pressed() -> void:
 		GlobalVariable.raisemoodF(2.5)
 	else:
 		GlobalVariable.petf(false)
-	pass # Replace with function body.
 
 
 func _on_temp_feed_pressed() -> void:
 	if gbData.data.save["hunger"] < 90:
-		gbData.data.save["hunger"] += 10
-		gbData.data.save["trust"] += 5
+		gbData.data.save["hunger"] = min(gbData.data.save["hunger"] + 10, 100.0)
+		gbData.data.save["trust"] = min(gbData.data.save["trust"] + 5, 100.0)
 		GlobalVariable.feedf(1)
 		GlobalVariable.raisemoodF(1)
-	pass # Replace with function body.
 
 
 func _on_button_pressed() -> void:
 	if clickthrough:
 		clickthrough.change(false)
 	self.queue_free()
-	pass # Replace with function body.

@@ -15,26 +15,11 @@ var console: Node
 func _ready():
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
-	#i snooped around on a linux vm that uses wayland until the issue went away
-	#forced it to run x11  and then changed the window setting when it runs linux
-	#it works on my end. theres like 2 bajillion different versions of linux i know oneof them is bound to break
-	#go bandage on amputated limb fix!
 	if OS.get_name() == "Linux":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
-	if OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland":
-		OS.alert("This message is popping up because you are using wayland. \n \n Most if not all features will not work due to wayland's security measures. \n\n You will have to have another x11 app running to interact with them (ex: Steam) or switch to x11\n\n Sorry! I dont know any workarounds );
-")
-	if gbData.settings["messageEnabled"] == true:
-		OS.alert("DD14 here \n \n This build is for testing and has mood stuff disabled as they are a WIP. \n\n 
-		 This is an open source project and I encourage you check out the development at https://github.com/dee-dee-catorce. \n\n
-
-		 Build 2! this fixes a few bugs that were reported in build 1!
-
-		 PS: Control + Click on the expie to reopen the menu
-		Run openSkinFolder in the command section to start with skin stuff!
-		 IM AWARE THAT THIS SHOULD NOT BE 200 MEGABYTES!!!!! ITS A GODOT THING IM WORKING ON FIXING!
-")
+	if OS.get_name() == "Linux" and OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland":
+		OS.alert("This message is popping up because you are using wayland. \n \n Most if not all features will not work due to wayland's security measures. \n\n You will have to have another x11 app running to interact with them (ex: Steam) or switch to x11\n\n Sorry! I dont know any workarounds")
 	
 	GlobalVariable.console.connect(yeah)
 	#fix()
@@ -42,6 +27,15 @@ func _ready():
 
 	GlobalVariable.resize.connect(updateBorders)
 	pass
+	
+	var def = gbData.settings.get("defaultSkin", "Body")
+	GlobalVariable.userSkinPath = "user://skin/" + def + "/"
+
+	if gbData.settings["expiePersistence"]:
+		gbData.temp.expies = gbData.data["save"]["expies"]
+		loadExpiePersistence()
+	else:
+		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,9 +43,9 @@ func _process(delta: float) -> void:
 
 
 func yeah(t: bool):
-	console.visible = true
-	console.showw()
-	print("yeah")
+	console.visible = t
+	if t:
+		console.showw()
 
 
 func createBorders():
@@ -73,3 +67,27 @@ func updateBorders():
 			if child.has_meta("entity") or child.has_meta("object"):
 				child.position.y -= screenHeight - oldheight
 	createBorders()
+
+
+func loadExpiePersistence():
+	print("loading expies...")
+	print("Expie persistence data: " + str(gbData.data["save"]["expies"]))
+	
+	var x: int = 0
+	for names in gbData.data["save"]["expies"].keys():
+		x += gbData.data["save"]["expies"][names]
+	if x > 20:
+		GlobalVariable.persistenceWarning.emit()
+		print("Awaiting response from warning popup...")
+		await GlobalVariable.persistenceWarning
+		print("Response detected. Continuing...")
+	
+	
+	for name in gbData.data["save"]["expies"]:
+		print("loading '", name, "' skin expies...")
+		for i in range(gbData.data["save"]["expies"][name]):
+			await get_tree().create_timer(0.25).timeout
+			GlobalVariable.userSkinPath = "user://skin/" + name + "/"
+			$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
+			print("loaded ", name, " - ", i)
+			gbData.data["save"]["expies"][name] -= 1

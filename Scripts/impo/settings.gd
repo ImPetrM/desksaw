@@ -9,16 +9,22 @@ var settings = gbData.settings
 
 @export var partent: Control
 var sMAP = {
-	"deathBool": {"key": "deathEnabled", "type": "toggle"},
+	"deathBool": {"key": "invincible", "type": "toggle"},
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
+	"expiePersistence": {"key": "expiePersistence", "type": "toggle"},
 	"pixel": {"key": "pixel", "type": "toggle"},
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
 	"mute": {"key": "mute", "type": "toggle"},
+	"dialogueSoundBool": {"key": "dialogueSoundEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},
+	"soundVolume": {"key": "soundVolume", "type": "slider"},
+	"ollamaEnabled": {"key": "ollamaEnabled", "type": "toggle"},
+	"ollamaModel": {"key": "ollamaModel", "type": "string"},
+	"defaultSkin": {"key": "defaultSkin", "type": "string"},
 }
 
 
@@ -49,6 +55,10 @@ func _initset() -> void:
 				node.text = str(settings.get(key, ""))
 				node.text_submitted.connect(func(val): sett(key, float(val)))
 
+			"string":
+				node.text = str(settings.get(key, ""))
+				node.text_submitted.connect(func(val): sett(key, val))
+
 			"slider":
 				node.value = settings.get(key, node.min_value)
 				node.value_changed.connect(func(val): sett(key, val))
@@ -72,3 +82,11 @@ func _saveSettings() -> void:
 	gbData.savetodisk(gbData.conPath, gbData.settings)
 	if gbData.devMode:
 		print("Settings saved")
+
+
+func _on_expie_persistence_pressed():
+	if gbData.settings.expiePersistence:
+		gbData.data["save"]["expies"] = gbData.temp["expies"]
+	else:
+		gbData.temp["expies"] = {}
+		gbData.data["save"]["expies"] = {}

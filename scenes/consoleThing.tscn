@@ -3,12 +3,26 @@
 [ext_resource type="Script" uid="uid://di62pelsumou7" path="res://Scripts/nimpo/windowHandler.gd" id="1_635sk"]
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://assets/themes/MinimalUI.tres" id="1_gicfb"]
 [ext_resource type="Script" uid="uid://d0cvk81o5qbon" path="res://Scripts/impo/commands.gd" id="1_spxfo"]
-[ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="2_635sk"]
+[ext_resource type="Script" uid="uid://b5587kn054bod" path="res://addons/godot-console/scripts/console_container.gd" id="2_635sk"]
 [ext_resource type="Script" uid="uid://buv1161su40c1" path="res://Scripts/impo/settings.gd" id="5_uf3cf"]
 [ext_resource type="Texture2D" uid="uid://yuq6rb2r6wpm" path="res://assets/svg/x-symbol.svg" id="6_7udsa"]
 [ext_resource type="Script" uid="uid://blg811jk2cjt4" path="res://Scripts/nimpo/clickArea.gd" id="7_7udsa"]
+[ext_resource type="Script" uid="uid://c54ytulfgcsuk" path="res://Scripts/impo/skinSpawner.gd" id="7_emer2"]
+[ext_resource type="Texture2D" uid="uid://bf2iadk2axgb" path="res://assets/Body/experimentTail.png" id="8_f3d3k"]
+[ext_resource type="Texture2D" uid="uid://dhkms6gypjiue" path="res://assets/Body/experimentThigh.png" id="9_bfu6t"]
+[ext_resource type="Texture2D" uid="uid://c557lrjd8td3v" path="res://assets/Body/experimentCrus.png" id="10_yhmw4"]
+[ext_resource type="Texture2D" uid="uid://b6o3pul4wqtq8" path="res://assets/Body/experimentFoot.png" id="11_pnuak"]
+[ext_resource type="Texture2D" uid="uid://dv1nydk5gghtv" path="res://assets/Body/experimentUpArm.png" id="12_byr6e"]
+[ext_resource type="Texture2D" uid="uid://uxi4iwfwumtx" path="res://assets/Body/experimentDownArm.png" id="13_inack"]
+[ext_resource type="Texture2D" uid="uid://b3v011olhkgp8" path="res://assets/Body/experimentHandF.png" id="14_cld0n"]
+[ext_resource type="Texture2D" uid="uid://beqtgy3lxleol" path="res://assets/Body/experimentDownTorso.png" id="15_b8vt1"]
+[ext_resource type="Texture2D" uid="uid://enceuim30717" path="res://assets/Body/experimentUpTorso.png" id="16_alie6"]
+[ext_resource type="Texture2D" uid="uid://bjta7yk5pd8fh" path="res://assets/Body/experimentHeadBack.png" id="17_6r3u3"]
+[ext_resource type="Texture2D" uid="uid://b0630p6hqbjso" path="res://assets/Body/experimentEyeOpen.png" id="18_tlmsx"]
+[ext_resource type="Script" uid="uid://ckp8r8xr5vm48" path="res://Scripts/nimpo/soundVolumeSlider.gd" id="19_emer2"]
+[ext_resource type="Script" path="res://Scripts/impo/ollama_chat.gd" id="20_chat"]
 
-[node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN")]
+[node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN", "SkinsN", "ChatN")]
 layout_mode = 3
 anchor_top = 0.0015432099
 anchor_right = 0.4861111
@@ -21,6 +35,8 @@ Minimize = NodePath("Handle/Minimize")
 Exit = NodePath("Handle/Close")
 ConsoleN = NodePath("Main/ConsoleContainer")
 SettingsN = NodePath("Main/Settings")
+SkinsN = NodePath("Main/SkinSpawner")
+ChatN = NodePath("Main/ChatN")
 metadata/_edit_use_anchors_ = true
 
 [node name="Handle" type="Button" parent="." unique_id=473127369]
@@ -75,13 +91,17 @@ anchor_bottom = 0.9032258
 theme = ExtResource("1_gicfb")
 alignment = 1
 selected = 0
-item_count = 3
+item_count = 5
 popup/item_0/text = "Statistics"
 popup/item_0/id = 0
 popup/item_1/text = "Console"
 popup/item_1/id = 1
 popup/item_2/text = "Settings"
 popup/item_2/id = 2
+popup/item_3/text = "Skins"
+popup/item_3/id = 3
+popup/item_4/text = "Chat"
+popup/item_4/id = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="Main" type="ColorRect" parent="." unique_id=1524626669]
@@ -107,7 +127,6 @@ size_flags_horizontal = 4
 theme = ExtResource("1_gicfb")
 alignment = 1
 script = ExtResource("2_635sk")
-metadata/_custom_type_script = "uid://p4inwor7gtoo"
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Main/ConsoleContainer" unique_id=2085935150]
@@ -139,10 +158,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="deathBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1748848974]
+visible = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
-disabled = true
+disabled = false
 toggle_mode = true
 icon = ExtResource("6_7udsa")
 alignment = 2
@@ -163,12 +183,13 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "Enable death (unavailable)"
+text = "Invincible (prevents death, mood loss, hunger, trust loss)"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="lobotomize" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=677617191]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -196,7 +217,34 @@ grow_vertical = 2
 text = "Mood stuff (unavailable at the moment)"
 scroll_active = false
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="expiePersistence" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1586298901]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/expiePersistence" unique_id=1938860050]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Keep spawned expies across loads"
+scroll_active = false
+vertical_alignment = 1
 
 [node name="openAlert" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=180859308]
 custom_minimum_size = Vector2(50, 50)
@@ -255,7 +303,34 @@ text = "make them not talk
 "
 scroll_active = false
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="dialogueSoundBool" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=670932247]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/dialogueSoundBool" unique_id=1882356057]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toggle expie sounds"
+scroll_active = false
+vertical_alignment = 1
 
 [node name="pixel" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=808715694]
 custom_minimum_size = Vector2(50, 50)
@@ -353,6 +428,327 @@ scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="SkinSpawner" type="Container" parent="Main" unique_id=2070923109]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_emer2")
+
+[node name="GridContainer" type="GridContainer" parent="Main/SkinSpawner" unique_id=1101962334]
+layout_mode = 2
+columns = 6
+
+[node name="FolderAccess" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=762259672]
+layout_mode = 2
+text = "Open Folder"
+
+[node name="Refresh" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=1526966236]
+layout_mode = 2
+text = "↻"
+
+[node name="VSeparator" type="VSeparator" parent="Main/SkinSpawner/GridContainer" unique_id=549618703]
+layout_mode = 2
+
+[node name="Previous" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=1071876907]
+layout_mode = 2
+text = "<"
+
+[node name="Select" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=652479195]
+layout_mode = 2
+text = "Spawn"
+
+[node name="Next" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=401092076]
+layout_mode = 2
+text = ">"
+
+[node name="SkinName" type="Label" parent="Main/SkinSpawner/GridContainer" unique_id=341281014]
+layout_mode = 2
+text = "Body:"
+
+
+
+[node name="DisplayExpie" type="Node2D" parent="Main/SkinSpawner" unique_id=1206904640]
+visible = false
+position = Vector2(100, 250)
+scale = Vector2(4, 4)
+
+[node name="TailSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=192578252]
+texture_filter = 1
+position = Vector2(1.0000117, -19.000023)
+rotation = -1.1779506e-05
+texture = ExtResource("8_f3d3k")
+
+[node name="FThighSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=820715088]
+modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
+texture_filter = 1
+position = Vector2(-0.31615987, -15.589465)
+rotation = 0.118444145
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("9_bfu6t")
+
+[node name="FCrusSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=331944237]
+modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
+texture_filter = 1
+position = Vector2(-4.7576375, -10.232728)
+rotation = 1.0985774
+scale = Vector2(0.9999999, 0.9999999)
+texture = ExtResource("10_yhmw4")
+
+[node name="FFootSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=797938730]
+modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
+texture_filter = 1
+position = Vector2(-5.9730844, -4.3105097)
+rotation = -0.29234982
+scale = Vector2(0.9999998, 0.9999998)
+texture = ExtResource("11_pnuak")
+
+[node name="FUpArmSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=994934379]
+modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
+texture_filter = 1
+position = Vector2(-0.7423042, -29.258408)
+rotation = -0.064477436
+texture = ExtResource("12_byr6e")
+
+[node name="FDownArmSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1253712238]
+modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
+texture_filter = 1
+position = Vector2(-0.29135707, -22.272947)
+rotation = -0.06447744
+texture = ExtResource("13_inack")
+
+[node name="FHandSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=547783419]
+modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
+texture_filter = 1
+position = Vector2(0.1598269, -15.283648)
+rotation = -0.06447744
+texture = ExtResource("14_cld0n")
+
+[node name="LowTorsoSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1179452895]
+texture_filter = 1
+position = Vector2(-7.1525574e-07, -22)
+rotation = -1.1779506e-05
+texture = ExtResource("15_b8vt1")
+
+[node name="UpTorsoSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=737907358]
+texture_filter = 1
+position = Vector2(3.7550926e-06, -30.000078)
+rotation = -1.1779506e-05
+texture = ExtResource("16_alie6")
+
+[node name="HeadSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=286449928]
+texture_filter = 1
+position = Vector2(-0.22659074, -40.95526)
+rotation = 0.029473484
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("17_6r3u3")
+
+[node name="EyeSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1167815617]
+texture_filter = 1
+position = Vector2(-0.16188101, -40.91855)
+rotation = 0.029473484
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("18_tlmsx")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Main/SkinSpawner/DisplayExpie/EyeSprite" unique_id=586466533]
+remote_path = NodePath("../../../../textParent")
+update_rotation = false
+update_scale = false
+
+[node name="FThighSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1676811448]
+texture_filter = 1
+position = Vector2(0.19511043, -15.699749)
+rotation = 0.0011907377
+scale = Vector2(0.9999997, 0.9999997)
+texture = ExtResource("9_bfu6t")
+
+[node name="FCrusSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1546715995]
+texture_filter = 1
+position = Vector2(-3.9673474, -10.956769)
+rotation = 1.2214578
+scale = Vector2(0.9999995, 0.9999995)
+texture = ExtResource("10_yhmw4")
+
+[node name="FFootSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=112313781]
+texture_filter = 1
+position = Vector2(-5.4318314, -4.5846257)
+rotation = -0.16946939
+scale = Vector2(0.9999994, 0.9999994)
+texture = ExtResource("11_pnuak")
+
+[node name="FUpArmSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=969268325]
+texture_filter = 1
+position = Vector2(-0.3469977, -29.303764)
+rotation = -0.1639935
+scale = Vector2(0.9999992, 0.9999992)
+texture = ExtResource("12_byr6e")
+
+[node name="FDownArmSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1046681664]
+texture_filter = 1
+position = Vector2(0.795737, -22.397675)
+rotation = -0.16399373
+scale = Vector2(0.9999992, 0.9999992)
+texture = ExtResource("13_inack")
+
+[node name="FHandSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=995539209]
+texture_filter = 1
+position = Vector2(1.9390908, -15.487778)
+rotation = -0.16399373
+scale = Vector2(0.9999992, 0.9999992)
+texture = ExtResource("14_cld0n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/SkinSpawner" unique_id=1065473906]
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="ChatN" type="VBoxContainer" parent="Main"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_chat")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/ChatN"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChatLog" type="RichTextLabel" parent="Main/ChatN/ScrollContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/ChatN"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="LineEdit" type="LineEdit" parent="Main/ChatN/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Type a message..."
+
+[node name="SendButton" type="Button" parent="Main/ChatN/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Send"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Main/SkinSpawner" unique_id=1627132420]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/SkinSpawner/HSplitContainer" unique_id=588263579]
+clip_contents = false
+layout_mode = 2
+text = "this is a long string of text to test this thing"
+
+[node name="soundVolume" type="HSlider" parent="Main/Settings/ScrollContainer/ItemList" unique_id=569359640]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 3
+ticks_on_borders = true
+ticks_position = 3
+script = ExtResource("19_emer2")
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/soundVolume" unique_id=1729090434]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = 0.5
+anchor_right = 10.28
+anchor_bottom = 0.5
+offset_left = 526.1
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sound volume"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ollamaEnabled" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1763001001]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/ollamaEnabled"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = 0.5
+anchor_right = 10.28
+anchor_bottom = 0.5
+offset_left = 526.1
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enable Ollama AI chat (requires Ollama running)"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ollamaModel" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1763001002]
+layout_mode = 2
+placeholder_text = "llama3.2:latest"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/ollamaModel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = 0.5
+anchor_right = 10.28
+anchor_bottom = 0.5
+offset_left = 526.1
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ollama Model Name"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="defaultSkin" type="LineEdit" parent="Main/Settings/ScrollContainer/ItemList" unique_id=1765001001]
+layout_mode = 2
+placeholder_text = "Body"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/ScrollContainer/ItemList/defaultSkin"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = 0.5
+anchor_right = 10.28
+anchor_bottom = 0.5
+offset_left = 526.1
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Default Skin Folder Name"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="ClickArea" type="Control" parent="." unique_id=1277571415]
 layout_mode = 1
 anchors_preset = 15
@@ -370,8 +766,16 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="pressed" from="Handle" to="." method="_drag"]
 [connection signal="pressed" from="Handle/Close" to="." method="_hide" binds= [true]]
 [connection signal="item_selected" from="Handle/TabSwitch" to="." method="_on_tab_switch_item_selected"]
+[connection signal="pressed" from="Main/Settings/ScrollContainer/ItemList/expiePersistence" to="Main/Settings" method="_on_expie_persistence_pressed"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/expieFontSize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/minMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_hunger_rate_text_submitted"]
 [connection signal="text_submitted" from="Main/Settings/ScrollContainer/ItemList/maxMood" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/FolderAccess" to="Main/SkinSpawner" method="_on_folder_access_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Refresh" to="Main/SkinSpawner" method="_on_refresh_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Previous" to="Main/SkinSpawner" method="_on_previous_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Select" to="Main/SkinSpawner" method="_on_select_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/Next" to="Main/SkinSpawner" method="_on_next_pressed"]
+[connection signal="pressed" from="Main/ChatN/HBoxContainer/SendButton" to="Main/ChatN" method="_on_send"]
+[connection signal="text_submitted" from="Main/ChatN/HBoxContainer/LineEdit" to="Main/ChatN" method="_on_send"]

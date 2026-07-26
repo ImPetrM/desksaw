@@ -9,6 +9,7 @@ var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
 var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
 var clickZoneSum: int = 0
+signal persistenceWarning() # used to warn user if they have more than 20 expies stored in persistence save
 signal raga()
 signal skinswap()
 signal resize()
@@ -34,3 +35,11 @@ func raisemoodF(t: int):
 
 func feedf(t: int):
 	feed.emit(t)
+
+
+var userSkinPath = "user://skin/Body/"
+
+func _ready():
+	#await get_tree().create_timer(3).timeout
+	#print(gbData.data["save"]["expies"])
+	var userSkinPath = "user://skin/" + gbData.data["save"]["expies"].keys()[0] + "/"

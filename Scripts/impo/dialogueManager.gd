@@ -1,8 +1,8 @@
 extends Node
 class_name Dialogue
 
-@onready var mood = gbData.data.save.mood
 @onready var data = gbData.text.diaGlobal
+@onready var dialogueTimer = $dialogueTimer
 @export var richtextlabel: RichTextLabel
 @export var textspeed: float = 0.04
 var pause: Array = [",", ".", "!"]
@@ -20,11 +20,20 @@ var tre: int = 0
 @export var fasdfasdfasddfas: Node
 var passive_timer: SceneTreeTimer = null
 
+## Text Sound Variables:
+@onready var AudioPlayer = $"../../AudioStreamPlayer"
+var base_db: float = -10 # Set base audio level of text
+#var base_db = gbData.settings.expieDialogueDb # Would be assigned to value in settings, but I cant figure out how to get it to work
+var soundfiles = preload("res://assets/sounds/speech.ogg") # Preload speech sound files, can have multiple but I dont see a need rn
+
 func _ready() -> void:
 	richtextlabel.add_theme_font_size_override("normal_font_size", gbData.settings.expieDialogueSize)
+	print("LOADED DIALOGUE KEYS: ", data.keys())
 
 	
 func typeOut(string: String, speed_multiplier: float = 1.0):
+	if gbData.settings.mute: return
+
 	tre += 1
 	var h = tre
 
@@ -34,6 +43,8 @@ func typeOut(string: String, speed_multiplier: float = 1.0):
 	richtextlabel.visible_characters = 0
 
 	starttalking.emit()
+
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Text"), not gbData.settings.dialogueSoundEnabled) # Update bus if sound is muted or not
 
 	var i = 0
 	while i < string.length():
@@ -52,6 +63,7 @@ func typeOut(string: String, speed_multiplier: float = 1.0):
 		if current_char in pause:
 			wait *= 8
 
+		play_sound(soundfiles)
 		await get_tree().create_timer(wait).timeout
 		i += 1
 
@@ -64,12 +76,11 @@ func typeOut(string: String, speed_multiplier: float = 1.0):
 	if tre == h:
 		richtextlabel.visible_characters = 0
 
-func stupify(str: String) -> String:
-	randomize()
+func stupify(input: String) -> String:
 	var chance = .2
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var text = str
+	var text = input
 
 
 	var result = ""
@@ -116,17 +127,45 @@ func stupify(str: String) -> String:
 
 	return result
 
-func send():
+func send(cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
+	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
+		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
+		return
+
 	if pool.size() > 0:
 		var text: String = pool.pick_random()
+		var effectiveSpeed = speedMod
 
 		if text.find("[stupid]") != -1:
 			text = text.replace("[stupid]", "")
 			text = stupify(text)
-			speedMod -= .3
+			effectiveSpeed -= .3
 
-		typeOut(text, speedMod)
+		typeOut(text, effectiveSpeed)
 
-func setDia(stra, speed: float):
+		await stoptalking
+
+		if cooldown > 0.0:
+			dialogueTimer.start(cooldown)
+
+
+func play_sound(file, variance_db := 3.0):
+	var db = base_db + randf_range(-variance_db, variance_db)
+	AudioPlayer.volume_db = db
+	AudioPlayer.pitch_scale = 1 + randf_range(-.2, .2)
+	AudioPlayer.stream = file
+	AudioPlayer.play()
+
+func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
+	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
+		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
+		return
+
 	typeOut(stra, speed)
-	pass
+	await stoptalking
+
+	if cooldown > 0.0:
+		dialogueTimer.start(cooldown)
+
+func is_dialogue_playing() -> bool:
+	return isTyping

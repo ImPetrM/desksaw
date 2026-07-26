@@ -10,13 +10,42 @@ extends Node
 
 @onready var settings = gbData.settings
 
-var beingDragged = false
-var ragdolled = false
-var launchflag = false
-var wander = true
-var shocked = false
+##Timer used for keeping time since the last recent pet.
+@onready var pet_timer: Timer = $petTimer
+##How much does the pet timer last. Keep it higher getUpTimer so the wrong dialogue
+##doesn't get sent.
+var pet_timer_inc := 10.0
+##How many times has the node been pet recently.
+var pet_count := 0
+
+##Is the node being currently dragged.
+var beingDragged := false
+##Is the node currently in ragdoll mode.
+var ragdolled := false
+##Did the node get launched by the player.
+var launchflag := false
+##Is the node currently in wandering mode.
+var wander: = true
+##Is the node currently in shocked mode.
+var shocked := false
+
+#might be worth it change most of the timers in this script with variables
+#so we can avoid magic numbers
+##How long does it take the node to get up after being ragdolled.
+var getUpTimer := 5.0
+##How long does it take for the node to send dialogue after getting up.
+var getUpTimerMsg := 3.0
+
+
 
 func _ready() -> void:
+	# Persistence logging:
+	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath)-1) # remove "/" at end
+	var skinName = userSkinPath.substr(userSkinPath.rfind("/")+1) # remove first half of path, getting just name
+	if !gbData.temp["expies"].has(skinName): gbData.temp["expies"][skinName] = 0 # check if skin has been spawned yet
+	gbData.temp["expies"][skinName] += 1 # update number of skins
+	# ---
+	
 	faceSys.setEmotion("default")
 	
 	moveSys.sigragdoll.connect(shock)
@@ -44,6 +73,7 @@ func shock():
 	dialogueSys.pool = data.screamBIG
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
+	AudioManager.play_random(AudioManager.expie_whine)
 	await get_tree().create_timer(2).timeout
 	faceSys.setEmotion("scared")
 	await get_tree().create_timer(5).timeout
@@ -58,8 +88,13 @@ func tempRagdoll() -> void:
 	ragdolled = true
 
 	while true:
-		await get_tree().create_timer(5.0).timeout
-		if beingDragged or abs(moveSys.rigidtorso.linear_velocity.x + moveSys.rigidtorso.linear_velocity.y) > 10.0:
+		await get_tree().create_timer(getUpTimer + randf_range(0, 5)).timeout
+		if beingDragged:
+			AudioManager.play_random(AudioManager.expie_whine)
+			dialogueSys.pool = data.beingDragged
+			dialogueSys.send(10, false)
+			continue
+		if moveSys.rigidtorso.linear_velocity.length() > 10.0:
 			continue
 		break
 
@@ -67,16 +102,22 @@ func tempRagdoll() -> void:
 	moveSys.ragdoll(true)
 
 	ragdolled = false
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(getUpTimerMsg).timeout
 
 	if launchflag:
-		dialogueSys.pool = data.getUp
+		if not pet_timer.is_stopped() and pet_count >= 5:
+			dialogueSys.pool = data.getUpPet
+		else:
+			dialogueSys.pool = data.getUp
 
 	else:
 		dialogueSys.pool = data.start
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
+	AudioManager.play_random(AudioManager.expie_whine)
 	launchflag = true
+	pet_count = 0
+	pet_timer.stop()
 
 func panicAttack():
 	if moodSys.tick > -4.5 or moodSys.mood >= 20.0 or settings.lobotomize:
@@ -85,14 +126,15 @@ func panicAttack():
 	faceSys.setEmotion("sad")
 	moveSys.dir = 1 if moveSys.rigid.global_position.x < float(GlobalVariable.screenWidth / 2) else -1
 
-	dialogueSys.pool = data.VeryLowPassive
+	dialogueSys.pool = data.get("VeryLowPassive", [])
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
+	
 
 	await get_tree().create_timer(3).timeout
 
 	moveSys.dir = 0
-	dialogueSys.pool = data.panic
+	dialogueSys.pool = data.get("panic", [])
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
 	await get_tree().create_timer(1).timeout
@@ -103,12 +145,13 @@ func panicAttack():
 func passivetalk():
 	while true:
 		if !gbData.settings["mute"]:
-			await get_tree().create_timer(randf_range(24.5, 55.5)).timeout
-			dialogueSys.pool = data.passive
-			dialogueSys.speedMod = 1.3
-			dialogueSys.send()
-		await get_tree().create_timer(.1).timeout
-		print("no")
+			await get_tree().create_timer(randf_range(24.5, 100.5)).timeout
+			if not beingDragged:
+				dialogueSys.pool = data.passive
+				dialogueSys.speedMod = 1.3
+				dialogueSys.send()
+		else:
+			await get_tree().create_timer(5.0).timeout
 
 func wandering():
 	while wander:
@@ -128,3 +171,38 @@ func wandering():
 
 		await get_tree().create_timer(randf_range(.5, 2.0)).timeout
 		moveSys.dir = 0
+
+func petLimb(limb: RigidBody2D):
+	AudioManager.play_sfx(AudioManager.thudwoosh)
+	if randf() < 0.5:
+		AudioManager.play_random(AudioManager.expie_bark, 0.25, 0, 1, true, 0.5, 'exp_pet')
+	else:
+		AudioManager.play_random(AudioManager.expie_whine, 0.25, 0, 1, true, 1, 'exp_pet')
+		
+	print("I JUST PET THE EXPIE ON HIS ", limb.name)
+	faceSys.setEmotion("happy")
+	pet_timer.start(pet_timer_inc)
+	pet_count += 1
+	
+	#we can't tween the actual rigid body, its position doesn't update while tweening
+	var sprite := limb.get_node_or_null("Sprite2D") as CanvasItem
+	if not sprite:
+		# if we fuck up, grab the first child node that isn't a CollisionShape2D
+		for child in limb.get_children():
+			if child is CanvasItem and not child is CollisionShape2D:
+				sprite = child
+				break
+
+	if sprite:
+		var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+
+		tween.tween_property(sprite, "scale", Vector2(1.15, 0.85), 0.08)
+		tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.25)
+	
+	if not dialogueSys.is_dialogue_playing():
+		dialogueSys.pool = data.pet
+		dialogueSys.speedMod = 0.7
+		dialogueSys.send(2, false)
+		
+	await get_tree().create_timer(5).timeout
+	faceSys.setEmotion("normal")

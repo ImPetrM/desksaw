@@ -31,6 +31,8 @@ this shit sound like ai wrote it im sorry it sounds like that
 looking back now that im publicizing this this probably isnt even right anymore
 """
 
+var temp = {"expies": {}} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
+
 var data = {}
 var text = {}
 var settings = {}
@@ -55,6 +57,7 @@ func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
 		data = loadjson(savePath)
+		if data["save"]["expies"] == {}: data["save"]["expies"] = {"Default": 1} # force a default expie to spawn if no expie data on load. avoids crash
 
 	else:
 		newsave()
@@ -75,10 +78,6 @@ func _ready():
 
 	if DirAccess.dir_exists_absolute(skinfilepath):
 		skinData = loadSkin()
-		#print(skinData)
-		#load file
-		pass
-		#settings = loadjson(conPath)
 	else:
 		newSkinFile()
 
@@ -88,8 +87,8 @@ func _ready():
 
 func newsave():
 	# Read the save template
-	if template == null:
-		print("template not found")
+	if not ResourceLoader.exists(template):
+		print("template not found at: ", template)
 		return
 	
 	#set data json to template
@@ -128,10 +127,28 @@ func newSkinFile():
 			
 
 			if txt:
-				txt.store_line("Drop the Body folder of your skin into this folder! \n \n
-				In theory, everything on https://skin.cat-bot.de/ should be compatible with this!
-				")
+				txt.store_line("""Drop the Body folder of your skin into this folder!
+
+
+In theory, everything on https://skin.cat-bot.de/ should be compatible with this!
+
+If you want multiple skins, just rename your 'Body' folder to whatever you want to call it, then use the skin spawner.
+(however you have to keep a 'Body' folder with any skin in it for it to work!)
+If you have both a 'Body' and 'Head' folder, combine the files inside them into a new folder and drag them in here.
+
+If your skin is only on the head, try restarting the app. That usually fixes it.""")
 				txt.close()
+	
+	var folder_to_copy = "res://assets/Body"
+	
+	var new_dir_path : String = "user://skin/Body"
+	DirAccess.make_dir_absolute(new_dir_path)
+	
+	#Copy each file and folder into the new folder
+	var old_files : PackedStringArray = DirAccess.get_files_at(folder_to_copy)
+	for f : String in old_files:
+		DirAccess.copy_absolute(folder_to_copy + "/" + f, new_dir_path + "/" + f)
+	var old_directories : PackedStringArray = DirAccess.get_directories_at(folder_to_copy)
 
 
 func loadSkin():
@@ -143,7 +160,7 @@ func loadSkin():
 			for file in files:
 				if file.get_extension().to_lower() == "png":
 					_ifliterallyanythingisthere = true
-					added.append(skinfilepath.path_join(file))
+					added.append(pt.path_join(file))
 			
 		return added
 
@@ -178,6 +195,9 @@ func InitAutosave():
 		await get_tree().create_timer(3.0).timeout
 		if gbData.devMode:
 			print("saved")
+		if gbData.settings.expiePersistence: # check if persistence is enabled
+			gbData.data["save"]["expies"] = gbData.temp.expies # copy temp expie data to save
+		
 		savetodisk(savePath, data)
 		savetodisk(conPath, settings)
 
@@ -187,17 +207,15 @@ func killEverything():
 	newTrans()
 	newSkinFile()
 	newConfig()
-	pass
 
 func outdated():
 	if settings.outdated:
-		print("what")
+		print("already outdated")
 		return
 	settings.outdated = true
 	killEverything()
 
 func checkupdated():
 	if !settings.outdated: return
-	print("what")
+	print("version is current")
 	settings.outdated = false
-	killEverything()

@@ -35,7 +35,8 @@ func _sync_mood() -> void:
 func moodLoop() -> void:
 	while true:
 		await get_tree().create_timer(10).timeout
-
+		if gbData.settings.get("invincible", false):
+			continue
 
 		mood += calcmood(1.0)
 		#showly neutralize in lerp but im going to be honesst they basically do nothing
@@ -47,7 +48,7 @@ func moodLoop() -> void:
 		if gbData.devMode:
 			print(str("mood: ", mood))
 			print(str("tick: ", calcmood(1.0)))
-		if !gbData.settings["lobotomize"]:
+		if gbData.settings["lobotomize"]:
 			mood = 0.0
 		_sync_mood()
 			
