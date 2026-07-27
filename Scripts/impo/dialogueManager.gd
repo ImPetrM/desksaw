@@ -21,10 +21,11 @@ var tre: int = 0
 var passive_timer: SceneTreeTimer = null
 
 ## Text Sound Variables:
-@onready var AudioPlayer = $"../../AudioStreamPlayer"
+#@onready var AudioPlayer = $"../../AudioStreamPlayer"
 var base_db: float = -10 # Set base audio level of text
+var variance_db: float = 3.0
 #var base_db = gbData.settings.expieDialogueDb # Would be assigned to value in settings, but I cant figure out how to get it to work
-var soundfiles = preload("res://assets/sounds/speech.ogg") # Preload speech sound files, can have multiple but I dont see a need rn
+#var soundfiles = preload("res://assets/sounds/expie/speech.ogg") # Preload speech sound files, can have multiple but I dont see a need rn
 
 func _ready() -> void:
 	richtextlabel.add_theme_font_size_override("normal_font_size", gbData.settings.expieDialogueSize)
@@ -63,7 +64,7 @@ func typeOut(string: String, speed_multiplier: float = 1.0):
 		if current_char in pause:
 			wait *= 8
 
-		play_sound(soundfiles)
+		AudioManager.play_sfx(AudioManager.speech, 1, base_db + randf_range(-variance_db, variance_db), 1, false, 0.5, "", "Text")
 		await get_tree().create_timer(wait).timeout
 		i += 1
 
@@ -149,12 +150,12 @@ func send(cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
 			dialogueTimer.start(cooldown)
 
 
-func play_sound(file, variance_db := 3.0):
-	var db = base_db + randf_range(-variance_db, variance_db)
-	AudioPlayer.volume_db = db
-	AudioPlayer.pitch_scale = 1 + randf_range(-.2, .2)
-	AudioPlayer.stream = file
-	AudioPlayer.play()
+#func play_sound(file, variance_db := 3.0):
+	#var db = base_db + randf_range(-variance_db, variance_db)
+	#AudioPlayer.volume_db = db
+	#AudioPlayer.pitch_scale = 1 + randf_range(-.2, .2)
+	#AudioPlayer.stream = file
+	#AudioPlayer.play()
 
 func setDia(stra: String, speed: float, cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
 	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
