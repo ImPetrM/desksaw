@@ -79,7 +79,6 @@ func play_sfx(stream: AudioStream,
 	player.volume_db = volume_db + linear_to_db(soundMult)
 	player.pitch_scale = pitch_scale
 	player.bus = audio_bus
-	#player.bus = "Text"
 	player.finished.connect(player.queue_free)
 
 	add_child(player)
