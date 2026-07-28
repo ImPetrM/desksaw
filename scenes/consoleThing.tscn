@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b0630p6hqbjso" path="res://assets/Body/experimentEyeOpen.png" id="18_tlmsx"]
 [ext_resource type="Script" uid="uid://ckp8r8xr5vm48" path="res://Scripts/nimpo/soundVolumeSlider.gd" id="19_emer2"]
 
-[node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN", "SkinsN", "ChatN")]
+[node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN", "SkinsN")]
 layout_mode = 3
 anchor_top = 0.0015432099
 anchor_right = 0.4861111
@@ -35,7 +35,6 @@ Exit = NodePath("Handle/Close")
 ConsoleN = NodePath("Main/ConsoleContainer")
 SettingsN = NodePath("Main/Settings")
 SkinsN = NodePath("Main/SkinSpawner")
-ChatN = NodePath("")
 metadata/_edit_use_anchors_ = true
 
 [node name="Handle" type="Button" parent="." unique_id=473127369]
