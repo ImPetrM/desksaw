@@ -17,6 +17,7 @@ var soundMult := 1.0
 #expie sfx
 @export var expie_whine: Array[AudioStream] = []
 @export var expie_bark: Array[AudioStream] = []
+@export var speech: AudioStream = load("res://assets/sounds/expie/speech.ogg")
 
 #random sfx
 @export var thudwoosh: AudioStream = load("res://assets/sounds/effects/thudswoosh.ogg")
@@ -63,7 +64,8 @@ func play_sfx(stream: AudioStream,
 	pitch_scale: float = 1.0,
 	cooldown_check: bool = false, 
 	cooldown_sec: float = 0.5, 
-	cooldown_group: String = ""
+	cooldown_group: String = "",
+	audio_bus = "Main"
 ) -> AudioStreamPlayer:
 
 	if not stream or randf() > chance:
@@ -76,6 +78,7 @@ func play_sfx(stream: AudioStream,
 	player.stream = stream
 	player.volume_db = volume_db + linear_to_db(soundMult)
 	player.pitch_scale = pitch_scale
+	player.bus = audio_bus
 	player.finished.connect(player.queue_free)
 
 	add_child(player)

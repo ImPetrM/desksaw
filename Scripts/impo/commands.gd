@@ -139,15 +139,13 @@ func _ready():
 	Console.create_command("nukeSettings", nukesettings, "run if your expie is in a constant state of terror (resets EVERYTHING)")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
-	Console.print("You can reopen this console any time by Ctrl+Clicking on any Desksawian")
+	Console.print("You can reopen this console any time by Ctrl + Right Clicking on any Desksawian")
 	Console.execute("setMonitor 0")
 	#setting stuff that would probably have a better solution to it
 
 
-	for i in 10:
-		await get_tree().create_timer(.1).timeout
-		Console.print("EXPIE OR ANY CHARACTERS THAT MAY BE PRESENT HERE ARE NOT MINE. THIS IS A FAN PROJECT")
-		Console.print("IF YOU PAID FOR THIS OR GOT IT FROM SOMEWHERE NOT ON GITHUB, YOU DID IT WRONG!")
+	Console.print("EXPIE OR ANY CHARACTERS THAT MAY BE PRESENT HERE ARE NOT MINE. THIS IS A FAN PROJECT")
+	Console.print("IF YOU PAID FOR THIS OR GOT IT FROM SOMEWHERE NOT ON GITHUB, YOU DID IT WRONG!")
 
 	applySettings()
 

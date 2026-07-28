@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bn4qfaris1qqr"]
 
-[ext_resource type="Script" uid="uid://cwx8tm7xk2yyg" path="res://warningWindowHandler.gd" id="1_b6fkn"]
+[ext_resource type="Script" uid="uid://cwx8tm7xk2yyg" path="res://Scripts/nimpo/warningWindowHandler.gd" id="1_b6fkn"]
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://assets/themes/MinimalUI.tres" id="2_r6os0"]
 [ext_resource type="Script" uid="uid://blg811jk2cjt4" path="res://Scripts/nimpo/clickArea.gd" id="3_c7vgj"]
 
