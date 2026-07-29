@@ -116,7 +116,7 @@ func _on_body_part_exited(body: RigidBody2D) -> void:
 
 ##Func for handling clicking on rigidbodies.
 func _on_body_part_input(_viewport: Node, event: InputEvent, _shape_idx: int, body: RigidBody2D) -> void:
-	if event is not InputEventMouseButton: 
+	if event is not InputEventMouseButton:
 		return
 		
 	if event.pressed and not _hovered_bodies.is_empty() and _hovered_bodies.back() == body and not _dragging:
@@ -181,7 +181,7 @@ func _startDrag(body: RigidBody2D, mouse_pos: Vector2) -> void:
 	_dragger.global_position = mouse_pos
 	_joint.node_a = _joint.get_path_to(_dragger)
 	_joint.node_b = _joint.get_path_to(_dragged_body)
-	_joint.softness = 9.0
+	_joint.softness = 7.0
 
 	_updateHoverState()
 	print("we dragging: ", body.name)

@@ -9,8 +9,11 @@ extends Node
 @export var headIk: Node2D
 @export var headIkControl: SoupLookAt
 
+@export var defheadnose: Node2D
 
 @export var ragdollspeed: float = 700.0
+
+#@export var pinNode: Node2D
 
 signal sigragdoll()
 var lookback = false
@@ -21,10 +24,12 @@ var wander = true
 var friction: float = 30.0
 var speedacc: float = 20.0
 var maxspeed: float = 280.0 # you will understand what the one is for later
+
+#pin joint storers
+var valAngularPinUp
+var valAngularPinDown
 #i literally forgot what the one was for
 var notragdolled = true
-
-@export var defheadnose: Node2D
 
 enum states {
 	moving, idle, ragdoll
@@ -32,7 +37,8 @@ enum states {
 var currstate = states.idle
 func _ready() -> void:
 	animplay.play("idleagain")
-	#randomdir()
+
+	#invertPoints(false, true)
 	pass
 func _physics_process(delta: float) -> void:
 	if dir != 0.0:
@@ -110,7 +116,7 @@ func phystate(delta: float):
 
 func detFlip():
 	var dirx: float = sign(rigid.get_global_mouse_position().x - rigid.global_position.x)
-	var facing: float = -1.0 if flip else 1.0
+	var _facing: float = -1.0 if flip else 1.0
 
 		
 	if dirx == dir:
@@ -121,7 +127,7 @@ func detFlip():
 		else:
 			flip = true
 
-
+		#invertPoints(flip)
 		pass
 	#determine when you gotta FLIPPPP
 	pass
@@ -129,7 +135,33 @@ func detFlip():
 #test function 
 #invert pinjoin angular limits
 
+"""
+func invertPoints(val: bool, setup: bool = false):
+	print(pinNode)
+	var descendants = pinNode.find_children("*", "", true, false)
 
+	for child in descendants:
+		if child is PinJoint2D or child is RapierPinJoint2D:
+			
+			var fuckyou: RapierPinJoint2D
+			fuckyou.angular_limit_lower
+			fuckyou.angular_limit_upper
+			
+
+			if setup:
+				#reset default limits i do not recommend calling this more than one time
+				valAngularPinDown = child.angular_limit_lower
+				valAngularPinUp = child.angular_limit_upper
+				return
+
+			
+			if val:
+				child.angular_limit_lower = valAngularPinUp
+				child.angular_limit_upper = valAngularPinDown
+			else:
+				child.angular_limit_lower = valAngularPinDown
+				child.angular_limit_upper = valAngularPinUp
+"""
 
 func ragdoll(val: bool):
 	if val == notragdolled: return
@@ -137,7 +169,7 @@ func ragdoll(val: bool):
 	
 	var descendants = skeleton.find_children("*", "", true, false)
 	var moredesc = rigid.find_children("*", "", true, false)
-
+	#flip = false
 	for child in descendants:
 		if child is RemoteTransform2D:
 			var rtt: RemoteTransform2D = child
@@ -162,5 +194,3 @@ func checkpositive(num):
 	if num is int or num is float:
 		return num >= 0
 	return false
-
-
