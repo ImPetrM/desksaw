@@ -134,7 +134,7 @@ func _ready():
 	Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
 	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")
 	Console.create_command("clearItems", clearObj, "clears either 'entity' or 'object'")
-	Console.create_command("spawnExpie", spawnExpie, "spawns another one of them. they cant interact yet.")
+	Console.create_command("spawnExpie", spawnExpie, "please refer to the spawn menu rather than this command. Will be removed later")
 	Console.create_command("openSkinFolder", openskinfold, "opens the skin folder")
 	Console.create_command("nukeSettings", nukesettings, "run if your expie is in a constant state of terror (resets EVERYTHING)")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")

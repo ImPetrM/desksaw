@@ -1,8 +1,8 @@
 	datamined casunk to dig for anything that has to do with happiness
-    
+	
 
 	body script
-    public float totalHappiness
+	public float totalHappiness
 	{
 		get
 		{

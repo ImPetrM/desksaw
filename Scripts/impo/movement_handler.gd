@@ -126,6 +126,11 @@ func detFlip():
 	#determine when you gotta FLIPPPP
 	pass
 
+#test function 
+#invert pinjoin angular limits
+
+
+
 func ragdoll(val: bool):
 	if val == notragdolled: return
 	notragdolled = val

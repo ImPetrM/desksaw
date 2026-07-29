@@ -1123,14 +1123,9 @@ _data = {
 &"yawn": SubResource("Animation_ujaji")
 }
 
-[node name="Char" type="Node2D" unique_id=1929009500 node_paths=PackedStringArray("skeletonRef", "animPlayer", "headIK")]
+[node name="Char" type="Node2D" unique_id=1929009500]
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_d5jjj")
-skeletonRef = NodePath("Ragdoll/GBHB/Bones/Skeleton2D")
-animPlayer = NodePath("AnimationPlayer")
-headIK = NodePath("Ragdoll/GBHB/Bones/Skeleton2D/IK/Head Target")
-idleWaitTime = 10.0
-randomWalkRange = 400.0
 
 [node name="dialogue" type="Node" parent="." unique_id=677116416 node_paths=PackedStringArray("richtextlabel")]
 script = ExtResource("15_1v1w3")
@@ -1149,11 +1144,8 @@ script = ExtResource("5_2fa61")
 
 [node name="drag" type="Node" parent="." unique_id=724781265]
 
-[node name="drag2" type="Node" parent="." unique_id=2028909445 node_paths=PackedStringArray("_dect", "mainrigid", "root")]
+[node name="drag2" type="Node" parent="." unique_id=2028909445]
 script = ExtResource("6_es5rn")
-_dect = NodePath("../Ragdoll/GBHB/RapierArea2D2")
-mainrigid = NodePath("../Ragdoll/GBHB/LowerTorso")
-root = NodePath("..")
 
 [node name="textParent" type="Node2D" parent="." unique_id=1769725592]
 position = Vector2(7.2050295, -15.994739)
@@ -1453,9 +1445,9 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_8xarg")
 
 [node name="BForeArm" type="RigidBody2D" parent="Ragdoll/GBHB" unique_id=1094801779]
-position = Vector2(-2.7986434, 6.1213627)
-rotation = 0.48600468
-scale = Vector2(0.9999774, 0.9999774)
+position = Vector2(-2.7986412, 6.12136)
+rotation = 0.4860047
+scale = Vector2(0.99997747, 0.99997747)
 collision_layer = 8
 mass = 0.001
 angular_damp = 32.544
@@ -1474,9 +1466,9 @@ position = Vector2(-0.14026499, 7.3280773)
 shape = SubResource("RectangleShape2D_7i5i7")
 
 [node name="BHand" type="RigidBody2D" parent="Ragdoll/GBHB" unique_id=2023872310]
-position = Vector2(-12.657444, 26.924728)
-rotation = 0.48600468
-scale = Vector2(0.9999774, 0.9999774)
+position = Vector2(-12.657443, 26.924728)
+rotation = 0.4860047
+scale = Vector2(0.99997747, 0.99997747)
 collision_layer = 8
 mass = 0.001
 angular_damp = 32.544
@@ -1841,7 +1833,7 @@ remote_path = NodePath("../../../../../UpperTorso")
 
 [node name="Head" type="Bone2D" parent="Ragdoll/GBHB/Bones/Skeleton2D/Hip/Back" unique_id=1606197458]
 position = Vector2(0, -28)
-rotation = -0.023851203
+rotation = -0.023851201
 scale = Vector2(0.9998952, 0.9998952)
 rest = Transform2D(0.99978465, 0.015911827, -0.015911827, 0.99978465, 0, -28)
 auto_calculate_length_and_angle = false
@@ -1900,7 +1892,7 @@ remote_path = NodePath("../../../../../../BUpperArm")
 
 [node name="BFore" type="Bone2D" parent="Ragdoll/GBHB/Bones/Skeleton2D/Hip/Back/BUarm" unique_id=2080187590]
 position = Vector2(1.3589859e-05, 23.000805)
-rotation = 0.04344983
+rotation = 0.043449827
 scale = Vector2(0.9999989, 0.9999989)
 rest = Transform2D(1.0000001, 0, 0, 1.0000001, 3.5762787e-07, 23.00082)
 editor_settings/show_bone_gizmo = false
@@ -1976,14 +1968,8 @@ libraries/ = SubResource("AnimationLibrary_hd0lk")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1193937023]
 
-[connection signal="fistint" from="." to="dialogue" method="_on_char_fistint"]
-[connection signal="interest" from="." to="." method="_on_interest"]
-[connection signal="interest" from="." to="dialogue" method="_on_char_interest"]
-[connection signal="ragdoll" from="." to="dialogue" method="_on_char_ragdoll"]
-[connection signal="ragdoll" from="." to="mood" method="_on_char_ragdoll"]
 [connection signal="starttalking" from="dialogue" to="mood" method="_on_dialogue_starttalking"]
 [connection signal="stoptalking" from="dialogue" to="mood" method="_on_dialogue_stoptalking"]
-[connection signal="test" from="mood" to="dialogue" method="_on_mood_test"]
 [connection signal="hunger" from="other" to="dialogue" method="_on_other_hunger"]
 [connection signal="hunger" from="other" to="mood" method="_on_other_hunger"]
 [connection signal="body_entered" from="Ragdoll/GBHB/RapierArea2D" to="." method="_on_rapier_area_2d_body_entered"]
