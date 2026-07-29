@@ -241,6 +241,7 @@ scroll_active = false
 vertical_alignment = 1
 
 [node name="openAlert" type="Button" parent="Main/Settings/ScrollContainer/ItemList" unique_id=180859308]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -264,7 +265,8 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "Toggles disclaimer at the start"
+text = "Toggles disclaimer at the start
+# this was no longer used, as the code was erased"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

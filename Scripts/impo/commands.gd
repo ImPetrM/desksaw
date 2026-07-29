@@ -98,9 +98,12 @@ func setmonitor(monitorIndex: int = 1):
 	DisplayServer.window_set_current_screen(monitorIndex)
 	GlobalVariable.Fresize()
 
-func resize(nx, ny) -> String:
+func resize(nx, ny, isForce = "no") -> String:
 	var ex = str(nx).to_float()
 	var ey = str(ny).to_float()
+	if (ex < 200 or ey < 100) and isForce == "no":
+		Console.warning("Resizing the console this small is not reccomended!")
+		return "Type 'resizeConsole <x> <y> force' if you are sure"
 	root.size.x = ex
 	root.size.y = ey
 
