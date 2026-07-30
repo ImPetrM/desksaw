@@ -2542,8 +2542,4 @@ one_shot = true
 [node name="petTimer" type="Timer" parent="behavior" unique_id=1934989107]
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=809829603]
-max_polyphony = 10
-bus = &"Text"
-
 [connection signal="input_event" from="RigidBodies" to="RigidBodies" method="_on_input_event"]

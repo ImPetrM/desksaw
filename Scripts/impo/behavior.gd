@@ -144,7 +144,7 @@ func panicAttack():
 
 func passivetalk():
 	while true:
-		if !gbData.settings["mute"]:
+		if !gbData.settings["mutePassive"]:
 			await get_tree().create_timer(randf_range(24.5, 100.5)).timeout
 			if not beingDragged:
 				dialogueSys.pool = data.passive

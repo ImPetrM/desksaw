@@ -23,6 +23,9 @@ var soundMult := 1.0
 @export var thudwoosh: AudioStream = load("res://assets/sounds/effects/thudswoosh.ogg")
 #----------------
 
+# NOTE: all individual sound toggles are handled in this script, but they are assigned in settings. not auto-made.
+
+
 func _ready() -> void:
 	expie_whine = _load_sounds("res://assets/sounds/expie/whine/")
 	expie_bark = _load_sounds("res://assets/sounds/expie/bark/")
@@ -67,6 +70,17 @@ func play_sfx(stream: AudioStream,
 	cooldown_group: String = "",
 	audio_bus = "Main"
 ) -> AudioStreamPlayer:
+
+	# Im so, so sorry for this abomination of if statements...
+	# check if this sound is enabled:
+	for sound in expie_bark:
+		if stream == sound and !gbData.settings.barkSoundEnabled:
+			return null
+	for sound in expie_whine:
+		if stream == sound and !gbData.settings.whiningSoundEnabled:
+			return null
+	if stream == thudwoosh and !gbData.settings.pettingSoundEnabled:
+		return null
 
 	if not stream or randf() > chance:
 		return null

@@ -67,7 +67,7 @@ func _on_tab_switch_item_selected(index: int) -> void:
 
 	match index:
 		0:
-			StatN.visible = true
+			#StatN.visible = true # currently not a node, uncomment when stats become a thing
 			if gbData.devMode:
 				print("Statistics")
 		1:
