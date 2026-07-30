@@ -31,10 +31,12 @@ func _ready() -> void:
 		#print("Settings ", settings)
 		pass
 	_initset()
+	
+	_on_general_tab_pressed() # pretend that general was just pressed
 
 
 func _initset() -> void:
-	$ScrollContainer.custom_minimum_size = partent.size
+	$VSplitContainer/ScrollContainer.custom_minimum_size = partent.size
 	for node_name in sMAP:
 		var node = findSettingN(node_name)
 		if node == null:
@@ -88,3 +90,38 @@ func _on_expie_persistence_pressed():
 	else:
 		gbData.temp["expies"] = {}
 		gbData.data["save"]["expies"] = {}
+
+
+### Tab handling:
+## This is VERY hard-coded, so adding a new tab is a bit of a process. sry abt that. Hopefully I re-write at some point :P
+
+@export var GeneralTabN: Button
+@export var AudioTabN: Button
+
+func get_tab_nodes(TabName):
+	var results: Array[Node] = []
+	var children: Array[Node] = $VSplitContainer/ScrollContainer/ItemList.get_children()
+
+	for child in children:
+		if child.has_meta("Tab"):
+			if child.get_meta("Tab") == TabName:
+				results.append(child)
+	return results
+
+func hide_all_settings():
+	for child in $VSplitContainer/ScrollContainer/ItemList.get_children():
+		child.visible = false
+
+func _on_general_tab_pressed():
+	$VSplitContainer/TabsScrollContainer/HBoxContainer/AudioTab.button_pressed = false
+	hide_all_settings()
+	var GeneralSettings = get_tab_nodes("General")
+	for node in GeneralSettings:
+		node.visible = true
+
+func _on_audio_tab_pressed():
+	$VSplitContainer/TabsScrollContainer/HBoxContainer/GeneralTab.button_pressed = false
+	hide_all_settings()
+	var AudioSettings = get_tab_nodes("Audio")
+	for node in AudioSettings:
+		node.visible = true
