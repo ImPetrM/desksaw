@@ -257,7 +257,6 @@ alignment = 2
 icon_alignment = 1
 expand_icon = true
 metadata/type = "bool"
-metadata/Tab = "General"
 
 [node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/expiePersistence" unique_id=1938860050]
 layout_mode = 1
@@ -331,10 +330,66 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "make them not talk
-"
+text = "disable all speech"
 scroll_active = false
 vertical_alignment = 1
+
+[node name="mutePassive" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=1757905059]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/mutePassive" unique_id=1859074492]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "disable passive speech"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="soundVolume" type="HSlider" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=569359640]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 3
+ticks_on_borders = true
+ticks_position = 3
+script = ExtResource("19_emer2")
+metadata/Tab = "Audio"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/soundVolume" unique_id=1729090434]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = 0.5
+anchor_right = 10.28
+anchor_bottom = 0.5
+offset_left = 526.1
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Master sound volume"
+scroll_active = false
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="dialogueSoundBool" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=670932247]
 custom_minimum_size = Vector2(50, 50)
@@ -361,7 +416,94 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "Toggle expie sounds"
+text = "Toggle expie speech sounds"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="whiningSoundBool" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=665966097]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+metadata/Tab = "Audio"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/whiningSoundBool" unique_id=1540660626]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toggle expie whining sounds"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="barkSoundBool" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=1481630840]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+metadata/Tab = "Audio"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/barkSoundBool" unique_id=903923717]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toggle expie barking sounds"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="pettingSoundBool" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=919336714]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+metadata/Tab = "Audio"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/pettingSoundBool" unique_id=640438610]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toggle expie petting sounds"
 scroll_active = false
 vertical_alignment = 1
 
@@ -412,34 +554,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Dialogue Font Size"
-scroll_active = false
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="soundVolume" type="HSlider" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=569359640]
-layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 3
-ticks_on_borders = true
-ticks_position = 3
-script = ExtResource("19_emer2")
-
-[node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/soundVolume" unique_id=1729090434]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -9.382
-anchor_top = 0.5
-anchor_right = 10.28
-anchor_bottom = 0.5
-offset_left = 526.1
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Sound volume"
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

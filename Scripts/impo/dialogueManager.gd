@@ -30,7 +30,7 @@ func _ready() -> void:
 
 	
 func typeOut(string: String, speed_multiplier: float = 1.0):
-	if gbData.settings.mute: return
+	if gbData.settings["mute"]: return
 
 	tre += 1
 	var h = tre

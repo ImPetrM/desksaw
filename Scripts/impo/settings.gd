@@ -17,7 +17,11 @@ var sMAP = {
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
 	"mute": {"key": "mute", "type": "toggle"},
+	"mutePassive": {"key": "mutePassive", "type": "toggle"},
 	"dialogueSoundBool": {"key": "dialogueSoundEnabled", "type": "toggle"},
+	"whiningSoundBool": {"key": "whiningSoundEnabled", "type": "toggle"},
+	"barkSoundBool": {"key": "barkSoundEnabled", "type": "toggle"},
+	"pettingSoundBool": {"key": "pettingSoundEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
 	"maxMood": {"key": "maxMood", "type": "text"},
 	"normalize": {"key": "normalize", "type": "text"},
@@ -32,6 +36,10 @@ func _ready() -> void:
 		pass
 	_initset()
 	
+	assign_tab_meta_to_leftovers() # does what it says, so if a setting doesnt have 'Tab' meta, its created and "General" is assgined
+	for child in $VSplitContainer/ScrollContainer/ItemList.get_children(): # apply meta tag to say that a setting is not visible by default. e.i. disabled settings
+		if !child.visible:
+			child.set_meta("DefaultVisibility", true)
 	_on_general_tab_pressed() # pretend that general was just pressed
 
 
@@ -78,13 +86,13 @@ func sett(key: String, value) -> void:
 
 
 func _saveSettings() -> void:
-	$ScrollContainer.custom_minimum_size = partent.size
+	$VSplitContainer/ScrollContainer.custom_minimum_size = partent.size
 	gbData.savetodisk(gbData.conPath, gbData.settings)
 	if gbData.devMode:
 		print("Settings saved")
 
 
-func _on_expie_persistence_pressed():
+func _on_expie_persistence_pressed(): # special case, as if disabled we want to wipe everything
 	if gbData.settings.expiePersistence:
 		gbData.data["save"]["expies"] = gbData.temp["expies"]
 	else:
@@ -95,8 +103,12 @@ func _on_expie_persistence_pressed():
 ### Tab handling:
 ## This is VERY hard-coded, so adding a new tab is a bit of a process. sry abt that. Hopefully I re-write at some point :P
 
-@export var GeneralTabN: Button
-@export var AudioTabN: Button
+func assign_tab_meta_to_leftovers():
+	var children: Array[Node] = $VSplitContainer/ScrollContainer/ItemList.get_children()
+	
+	for child in children:
+		if !child.has_meta("Tab"):
+			child.set_meta("Tab", "General")
 
 func get_tab_nodes(TabName):
 	var results: Array[Node] = []
@@ -112,16 +124,21 @@ func hide_all_settings():
 	for child in $VSplitContainer/ScrollContainer/ItemList.get_children():
 		child.visible = false
 
+func show_all_tab_type(type):
+	var nodes = get_tab_nodes(type)
+	for node in nodes:
+		if node.get_meta("DefaultVisibility"):
+			pass
+		else:
+			node.visible = true
+
 func _on_general_tab_pressed():
 	$VSplitContainer/TabsScrollContainer/HBoxContainer/AudioTab.button_pressed = false
 	hide_all_settings()
-	var GeneralSettings = get_tab_nodes("General")
-	for node in GeneralSettings:
-		node.visible = true
+	show_all_tab_type("General")
+
 
 func _on_audio_tab_pressed():
 	$VSplitContainer/TabsScrollContainer/HBoxContainer/GeneralTab.button_pressed = false
 	hide_all_settings()
-	var AudioSettings = get_tab_nodes("Audio")
-	for node in AudioSettings:
-		node.visible = true
+	show_all_tab_type("Audio")
