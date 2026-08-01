@@ -60,6 +60,5 @@ metadata/object = false
 node_a = NodePath("..")
 node_b = NodePath("../..")
 motor_enabled = true
-motor_target_velocity = 34.906586
 script = ExtResource("5_hwpld")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"

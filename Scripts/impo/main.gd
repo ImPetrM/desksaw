@@ -37,9 +37,6 @@ func _ready():
 	else:
 		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func yeah(t: bool):

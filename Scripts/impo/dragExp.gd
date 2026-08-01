@@ -177,7 +177,7 @@ func _startDrag(body: RigidBody2D, mouse_pos: Vector2) -> void:
 
 	if not _dragging or not is_instance_valid(_dragger) or not is_instance_valid(_dragged_body):
 		return
-
+	
 	_dragger.global_position = mouse_pos
 	_joint.node_a = _joint.get_path_to(_dragger)
 	_joint.node_b = _joint.get_path_to(_dragged_body)

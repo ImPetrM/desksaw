@@ -11,7 +11,6 @@ idk what i was on when i wrote it
 heres the saving stuffs.,
 
 
-
 """
 
 var temp = {"expies": {}} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
@@ -40,6 +39,8 @@ func _ready():
 	# Load save file
 	if FileAccess.file_exists(savePath):
 		data = loadjson(savePath)
+		var templateData = loadjson(template)
+		fixMissing(data, templateData)
 		if data["save"]["expies"] == {}: data["save"]["expies"] = {"Default": 1} # force a default expie to spawn if no expie data on load. avoids crash
 
 	else:
@@ -48,14 +49,14 @@ func _ready():
 	# Load translation file
 	if FileAccess.file_exists(transPath):
 		text = loadjson(transPath)
-
+		fixMissing(text, loadjson("res://Scripts/singletons/TEMPDialogue.json"))
 	else:
 		newTrans()
 
 	# Load settings/config file
 	if FileAccess.file_exists(conPath):
 		settings = loadjson(conPath)
-
+		fixMissing(settings, loadjson("res://Scripts/singletons/config.json"))
 	else:
 		newConfig()
 
@@ -67,6 +68,15 @@ func _ready():
 
 	InitAutosave()
 
+#this bug fuxking sucks so im removing it once and for all
+#automatically detect if the user is missing a setting or something related to that
+#should fix the shocked face bug PERMANANTLY
+func fixMissing(base: Dictionary, default: Dictionary):
+	for key in default.keys():
+		if not base.has(key):
+			base[key] = default[key]
+		elif typeof(base[key]) == TYPE_DICTIONARY and typeof(default[key]) == TYPE_DICTIONARY:
+			fixMissing(base[key], default[key])
 
 func newsave():
 	# Read the save template
@@ -124,14 +134,14 @@ If your skin is only on the head, try restarting the app. That usually fixes it.
 	
 	var folder_to_copy = "res://assets/Body"
 	
-	var new_dir_path : String = "user://skin/Body"
+	var new_dir_path: String = "user://skin/Body"
 	DirAccess.make_dir_absolute(new_dir_path)
 	
 	#Copy each file and folder into the new folder
-	var old_files : PackedStringArray = DirAccess.get_files_at(folder_to_copy)
-	for f : String in old_files:
+	var old_files: PackedStringArray = DirAccess.get_files_at(folder_to_copy)
+	for f: String in old_files:
 		DirAccess.copy_absolute(folder_to_copy + "/" + f, new_dir_path + "/" + f)
-	var old_directories : PackedStringArray = DirAccess.get_directories_at(folder_to_copy)
+	var old_directories: PackedStringArray = DirAccess.get_directories_at(folder_to_copy)
 
 
 func loadSkin():
