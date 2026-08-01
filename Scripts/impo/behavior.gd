@@ -81,7 +81,6 @@ func shock():
 	faceSys.setEmotion("normal")
 
 	shocked = false
-
 func tempRagdoll() -> void:
 	moveSys.ragdoll(false)
 	ragdolled = true
@@ -102,6 +101,8 @@ func tempRagdoll() -> void:
 	moveSys.rigid.collision_layer = 2
 	moveSys.rigid.collision_mask = 1
 	moveSys.rigid.freeze = false
+	moveSys.rigid.linear_velocity.x = 0.0
+	moveSys.rigid.linear_velocity.y = 0.0
 	moveSys.rigid.global_position.x = moveSys.rigidtorso.global_position.x
 	moveSys.rigid.global_position.y = moveSys.rigidtorso.global_position.y
 	moveSys.ragdoll(true)
