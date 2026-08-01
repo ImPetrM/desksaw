@@ -9,6 +9,11 @@ extends Node
 @export var headIk: Node2D
 @export var headIkControl: SoupLookAt
 
+#raycasts
+@export var floorRay: RayCast2D
+@export var wallDetect: RayCast2D
+@export var heightDetect: RayCast2D
+
 @export var defheadnose: Node2D
 
 @export var ragdollspeed: float = 700.0
@@ -16,6 +21,7 @@ extends Node
 #@export var pinNode: Node2D
 
 signal sigragdoll()
+
 var lookback = false
 var flip = false
 var backwards = false
@@ -24,17 +30,25 @@ var wander = true
 var friction: float = 30.0
 var speedacc: float = 20.0
 var maxspeed: float = 280.0 # you will understand what the one is for later
+#i literally forgot what the one was for
+var jumpPowCap: float = -600.0
+var jumpPower: float = -600.0
+#timers
+
+@export var jumpCoolDown: float = 4.0
+var jumpTimer: float = 0.0
 
 #pin joint storers
 var valAngularPinUp
 var valAngularPinDown
-#i literally forgot what the one was for
 var notragdolled = true
 
 enum states {
 	moving, idle, ragdoll
 }
 var currstate = states.idle
+
+
 func _ready() -> void:
 	animplay.play("idleagain")
 
@@ -51,7 +65,8 @@ func _physics_process(delta: float) -> void:
 
 	detFlip()
 	headIKf()
-	
+	jumpTimer -= delta
+	checkJump()
 	pass
 
 func headIKf():
@@ -162,6 +177,19 @@ func invertPoints(val: bool, setup: bool = false):
 				child.angular_limit_lower = valAngularPinDown
 				child.angular_limit_upper = valAngularPinUp
 """
+
+func checkJump():
+	if wallDetect.is_colliding() and !heightDetect.is_colliding() and dir != 0.0 and !backwards:
+		jump()
+	pass
+
+func jump():
+	if floorRay.is_colliding() and jumpTimer <= 0.0:
+		var vel = rigid.linear_velocity
+		vel.y = jumpPower
+		rigid.linear_velocity = vel
+		jumpTimer = jumpCoolDown
+
 
 func ragdoll(val: bool):
 	if val == notragdolled: return

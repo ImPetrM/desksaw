@@ -37,7 +37,7 @@ func reload():
 
 
 func spawnExpie():
-	var path = "res://scenes/sawianBaseTest.tscn"
+	var path = "res://scenes/sawianBase.tscn"
 	var scene = load(path)
 	var instance = scene.instantiate()
 
