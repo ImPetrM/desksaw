@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://g6u2oy10y4g4"]
 
-[ext_resource type="Script" uid="uid://xackby3m6jh5" path="res://scripts/impo/display_expie.gd" id="1_amts4"]
+[ext_resource type="Script" uid="uid://xackby3m6jh5" path="res://Scripts/impo/display_expie.gd" id="1_amts4"]
 [ext_resource type="Texture2D" uid="uid://bf2iadk2axgb" path="res://assets/Body/experimentTail.png" id="2_slvs8"]
 [ext_resource type="Texture2D" uid="uid://dhkms6gypjiue" path="res://assets/Body/experimentThigh.png" id="3_tndfj"]
 [ext_resource type="Texture2D" uid="uid://c557lrjd8td3v" path="res://assets/Body/experimentCrus.png" id="4_lmu88"]
@@ -96,11 +96,6 @@ position = Vector2(-0.16188101, -40.91855)
 rotation = 0.029473484
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("12_dtodt")
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="DisplayExpie/EyeSprite" unique_id=745896200]
-remote_path = NodePath("../../../../textParent")
-update_rotation = false
-update_scale = false
 
 [node name="FThighSprite2" type="Sprite2D" parent="DisplayExpie" unique_id=1158303066]
 texture_filter = 1

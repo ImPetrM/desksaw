@@ -25,7 +25,7 @@ var ragdolled := false
 ##Did the node get launched by the player.
 var launchflag := false
 ##Is the node currently in wandering mode.
-var wander: = true
+var wander := true
 ##Is the node currently in shocked mode.
 var shocked := false
 
@@ -37,11 +37,10 @@ var getUpTimer := 5.0
 var getUpTimerMsg := 3.0
 
 
-
 func _ready() -> void:
 	# Persistence logging:
-	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath)-1) # remove "/" at end
-	var skinName = userSkinPath.substr(userSkinPath.rfind("/")+1) # remove first half of path, getting just name
+	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1) # remove "/" at end
+	var skinName = userSkinPath.substr(userSkinPath.rfind("/") + 1) # remove first half of path, getting just name
 	if !gbData.temp["expies"].has(skinName): gbData.temp["expies"][skinName] = 0 # check if skin has been spawned yet
 	gbData.temp["expies"][skinName] += 1 # update number of skins
 	# ---
@@ -86,19 +85,25 @@ func shock():
 func tempRagdoll() -> void:
 	moveSys.ragdoll(false)
 	ragdolled = true
-
+	moveSys.rigid.collision_layer = 0
+	moveSys.rigid.collision_mask = 0
+	moveSys.rigid.freeze = true
 	while true:
 		await get_tree().create_timer(getUpTimer + randf_range(0, 5)).timeout
 		if beingDragged:
 			AudioManager.play_random(AudioManager.expie_whine)
 			dialogueSys.pool = data.beingDragged
 			dialogueSys.send(10, false)
+			#fix the weird ghost collision during ragdoll
 			continue
 		if moveSys.rigidtorso.linear_velocity.length() > 10.0:
 			continue
 		break
-
+	moveSys.rigid.collision_layer = 2
+	moveSys.rigid.collision_mask = 1
+	moveSys.rigid.freeze = false
 	moveSys.rigid.global_position.x = moveSys.rigidtorso.global_position.x
+	moveSys.rigid.global_position.y = moveSys.rigidtorso.global_position.y
 	moveSys.ragdoll(true)
 
 	ragdolled = false
@@ -179,7 +184,7 @@ func petLimb(limb: RigidBody2D):
 	else:
 		AudioManager.play_random(AudioManager.expie_whine, 0.25, 0, 1, true, 1, 'exp_pet')
 		
-	print("I JUST PET THE EXPIE ON HIS ", limb.name)
+	#print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
 	pet_timer.start(pet_timer_inc)
 	pet_count += 1

@@ -15,7 +15,7 @@ var _dragging := false
 var _is_contributing := false
 var _dragged_body: RigidBody2D
 var _dragger: StaticBody2D
-var _joint: RapierPinJoint2D
+var _joint: PinJoint2D
 
 func _ready() -> void:
 	if not rigid_bodies_container:
@@ -165,7 +165,7 @@ func _startDrag(body: RigidBody2D, mouse_pos: Vector2) -> void:
 	_dragger = StaticBody2D.new()
 	_dragger.global_position = mouse_pos
 
-	_joint = RapierPinJoint2D.new()
+	_joint = PinJoint2D.new()
 	_dragger.add_child(_joint)
 
 	get_tree().current_scene.add_child(_dragger)
