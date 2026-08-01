@@ -15,6 +15,7 @@ var console: Node
 func _ready():
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
+	
 	if OS.get_name() == "Linux":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
@@ -36,7 +37,6 @@ func _ready():
 		loadExpiePersistence()
 	else:
 		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
-
 
 
 func yeah(t: bool):

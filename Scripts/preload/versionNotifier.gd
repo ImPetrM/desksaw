@@ -1,6 +1,6 @@
 extends Node
 @onready
-var VERSION = "0.1.0"
+var VERSION = "0.1.1"
 const RELEASES = "https://api.github.com/repos/dee-dee-catorce/deskpublic/releases"
 
 var http: HTTPRequest
@@ -41,7 +41,8 @@ func _request_done(result, code, headers, body):
 		OS.alert(
 			"You're using an outdated version of DeskSaw.\n\n" +
 			"Latest: " + latest + "\n" +
-			"Current: " + VERSION
+			"Current: " + VERSION + "\n
+			https://github.com/dee-dee-catorce/desksaw"
 		)
 		gbData.outdated()
 	else:

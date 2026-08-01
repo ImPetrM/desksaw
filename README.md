@@ -1,3 +1,5 @@
+THIS IS THE SOURCE CODE. NOT THE ACTUAL BUILD. GO TO RELEASES. YOU ARE ON THE WRONG PAGE UNLESS YOU WANT THE SOURCE CODE
+
 hey this literally isnt done
 
 im making this public  with the intent on having other people help me with it
