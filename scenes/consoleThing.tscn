@@ -8,17 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://yuq6rb2r6wpm" path="res://assets/svg/x-symbol.svg" id="6_7udsa"]
 [ext_resource type="Script" uid="uid://blg811jk2cjt4" path="res://Scripts/nimpo/clickArea.gd" id="7_7udsa"]
 [ext_resource type="Script" uid="uid://c54ytulfgcsuk" path="res://Scripts/impo/skinSpawner.gd" id="7_emer2"]
-[ext_resource type="Texture2D" uid="uid://bf2iadk2axgb" path="res://assets/Body/experimentTail.png" id="8_f3d3k"]
-[ext_resource type="Texture2D" uid="uid://dhkms6gypjiue" path="res://assets/Body/experimentThigh.png" id="9_bfu6t"]
-[ext_resource type="Texture2D" uid="uid://c557lrjd8td3v" path="res://assets/Body/experimentCrus.png" id="10_yhmw4"]
-[ext_resource type="Texture2D" uid="uid://b6o3pul4wqtq8" path="res://assets/Body/experimentFoot.png" id="11_pnuak"]
-[ext_resource type="Texture2D" uid="uid://dv1nydk5gghtv" path="res://assets/Body/experimentUpArm.png" id="12_byr6e"]
-[ext_resource type="Texture2D" uid="uid://uxi4iwfwumtx" path="res://assets/Body/experimentDownArm.png" id="13_inack"]
-[ext_resource type="Texture2D" uid="uid://b3v011olhkgp8" path="res://assets/Body/experimentHandF.png" id="14_cld0n"]
-[ext_resource type="Texture2D" uid="uid://beqtgy3lxleol" path="res://assets/Body/experimentDownTorso.png" id="15_b8vt1"]
-[ext_resource type="Texture2D" uid="uid://enceuim30717" path="res://assets/Body/experimentUpTorso.png" id="16_alie6"]
-[ext_resource type="Texture2D" uid="uid://bjta7yk5pd8fh" path="res://assets/Body/experimentHeadBack.png" id="17_6r3u3"]
-[ext_resource type="Texture2D" uid="uid://b0630p6hqbjso" path="res://assets/Body/experimentEyeOpen.png" id="18_tlmsx"]
 [ext_resource type="Script" uid="uid://ckp8r8xr5vm48" path="res://Scripts/nimpo/soundVolumeSlider.gd" id="19_emer2"]
 
 [node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN", "SkinsN")]
@@ -151,7 +140,6 @@ dragging_enabled = false
 
 [node name="TabsScrollContainer" type="ScrollContainer" parent="Main/Settings/VSplitContainer" unique_id=207996322]
 layout_mode = 2
-offset_transform_enabled = true
 vertical_scroll_mode = 0
 scroll_horizontal_by_default = true
 
@@ -581,7 +569,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="SkinSpawner" type="Container" parent="Main" unique_id=2070923109]
-visible = false
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -620,135 +608,6 @@ text = ">"
 [node name="SkinName" type="Label" parent="Main/SkinSpawner/GridContainer" unique_id=341281014]
 layout_mode = 2
 text = "Body:"
-
-[node name="DisplayExpie" type="Node2D" parent="Main/SkinSpawner" unique_id=1206904640]
-visible = false
-position = Vector2(379, 191)
-scale = Vector2(4, 4)
-
-[node name="TailSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=192578252]
-texture_filter = 1
-position = Vector2(1.0000117, -19.000023)
-rotation = -1.1779506e-05
-texture = ExtResource("8_f3d3k")
-
-[node name="FThighSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=820715088]
-modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
-texture_filter = 1
-position = Vector2(-0.31615987, -15.589465)
-rotation = 0.118444145
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("9_bfu6t")
-
-[node name="FCrusSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=331944237]
-modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
-texture_filter = 1
-position = Vector2(-4.7576375, -10.232728)
-rotation = 1.0985774
-scale = Vector2(0.9999999, 0.9999999)
-texture = ExtResource("10_yhmw4")
-
-[node name="FFootSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=797938730]
-modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
-texture_filter = 1
-position = Vector2(-5.9730844, -4.3105097)
-rotation = -0.29234982
-scale = Vector2(0.9999998, 0.9999998)
-texture = ExtResource("11_pnuak")
-
-[node name="FUpArmSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=994934379]
-modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
-texture_filter = 1
-position = Vector2(-0.7423042, -29.258408)
-rotation = -0.064477436
-texture = ExtResource("12_byr6e")
-
-[node name="FDownArmSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1253712238]
-modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
-texture_filter = 1
-position = Vector2(-0.29135707, -22.272947)
-rotation = -0.06447744
-texture = ExtResource("13_inack")
-
-[node name="FHandSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=547783419]
-modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
-texture_filter = 1
-position = Vector2(0.1598269, -15.283648)
-rotation = -0.06447744
-texture = ExtResource("14_cld0n")
-
-[node name="LowTorsoSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1179452895]
-texture_filter = 1
-position = Vector2(-7.1525574e-07, -22)
-rotation = -1.1779506e-05
-texture = ExtResource("15_b8vt1")
-
-[node name="UpTorsoSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=737907358]
-texture_filter = 1
-position = Vector2(3.7550926e-06, -30.000078)
-rotation = -1.1779506e-05
-texture = ExtResource("16_alie6")
-
-[node name="HeadSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=286449928]
-texture_filter = 1
-position = Vector2(-0.22659074, -40.95526)
-rotation = 0.029473484
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("17_6r3u3")
-
-[node name="EyeSprite" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1167815617]
-texture_filter = 1
-position = Vector2(-0.16188101, -40.91855)
-rotation = 0.029473484
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("18_tlmsx")
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Main/SkinSpawner/DisplayExpie/EyeSprite" unique_id=586466533]
-remote_path = NodePath("../../../../textParent")
-update_rotation = false
-update_scale = false
-
-[node name="FThighSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1676811448]
-texture_filter = 1
-position = Vector2(0.19511043, -15.699749)
-rotation = 0.0011907377
-scale = Vector2(0.9999997, 0.9999997)
-texture = ExtResource("9_bfu6t")
-
-[node name="FCrusSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1546715995]
-texture_filter = 1
-position = Vector2(-3.9673474, -10.956769)
-rotation = 1.2214578
-scale = Vector2(0.9999995, 0.9999995)
-texture = ExtResource("10_yhmw4")
-
-[node name="FFootSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=112313781]
-texture_filter = 1
-position = Vector2(-5.4318314, -4.5846257)
-rotation = -0.16946939
-scale = Vector2(0.9999994, 0.9999994)
-texture = ExtResource("11_pnuak")
-
-[node name="FUpArmSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=969268325]
-texture_filter = 1
-position = Vector2(-0.3469977, -29.303764)
-rotation = -0.1639935
-scale = Vector2(0.9999992, 0.9999992)
-texture = ExtResource("12_byr6e")
-
-[node name="FDownArmSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=1046681664]
-texture_filter = 1
-position = Vector2(0.795737, -22.397675)
-rotation = -0.16399373
-scale = Vector2(0.9999992, 0.9999992)
-texture = ExtResource("13_inack")
-
-[node name="FHandSprite2" type="Sprite2D" parent="Main/SkinSpawner/DisplayExpie" unique_id=995539209]
-texture_filter = 1
-position = Vector2(1.9390908, -15.487778)
-rotation = -0.16399373
-scale = Vector2(0.9999992, 0.9999992)
-texture = ExtResource("14_cld0n")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Main/SkinSpawner" unique_id=1065473906]
 visible = false
