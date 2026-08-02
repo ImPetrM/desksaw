@@ -605,8 +605,10 @@ text = "Spawn"
 layout_mode = 2
 text = ">"
 
-[node name="SkinName" type="Label" parent="Main/SkinSpawner/GridContainer" unique_id=341281014]
+[node name="SkinName" type="Label" parent="Main/SkinSpawner" unique_id=341281014]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 27)
 text = "Body:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Main/SkinSpawner" unique_id=1065473906]

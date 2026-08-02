@@ -1,7 +1,7 @@
 extends Container
 
 @export var test: Control
-@onready var SkinNameN = $GridContainer/SkinName
+@onready var SkinNameN = $SkinName
 var SkinFolders = []
 var skinIndx = 0
 
@@ -102,5 +102,3 @@ func _on_next_pressed():
 func _on_select_pressed():
 	GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
 	spawnExpie()
-
-
