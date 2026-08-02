@@ -2094,6 +2094,7 @@ shape = SubResource("CapsuleShape2D_1mc2w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies" unique_id=1971455457]
 position = Vector2(-0.5, -23.75)
+rotation = -0.0006966683
 shape = SubResource("CapsuleShape2D_hln7x")
 
 [node name="skeleton" type="Node2D" parent="RigidBodies" unique_id=875824417]

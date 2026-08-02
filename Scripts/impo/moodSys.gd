@@ -38,7 +38,7 @@ func moodLoop() -> void:
 		if gbData.settings.get("invincible", false):
 			continue
 
-		mood += calcmood(1.0)
+		mood += tempCalc()
 		#showly neutralize in lerp but im going to be honesst they basically do nothing
 
 		mood = snappedf(mood, 0.01)
@@ -51,7 +51,11 @@ func moodLoop() -> void:
 		if gbData.settings["lobotomize"]:
 			mood = 0.0
 		_sync_mood()
-			
+
+func tempCalc(total: float = 0.0):
+	total = clamp(total, minmood, maxmood)
+	return total
+
 func calcmood(total: float):
 	#health
 	total -= clamp(((1.0 - (gbData.data.save["health"] * 0.01)) * 3), 0.0, 3)

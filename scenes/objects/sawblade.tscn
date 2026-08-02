@@ -26,6 +26,7 @@ radius = 130.06152
 
 [node name="Body" type="RigidBody2D" unique_id=371602465]
 mass = 0.01
+metadata/Object = false
 
 [node name="Detector" type="Area2D" parent="." unique_id=1866926148]
 scale = Vector2(0.5, 0.5)
@@ -60,5 +61,6 @@ metadata/object = false
 node_a = NodePath("..")
 node_b = NodePath("../..")
 motor_enabled = true
+motor_target_velocity = 52.35988
 script = ExtResource("5_hwpld")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"

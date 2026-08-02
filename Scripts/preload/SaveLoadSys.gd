@@ -25,9 +25,8 @@ var template = "res://Scripts/singletons/SaveTemplate.json"
 
 
 # DO NOT FORGET TO DISABLE THIS WHENBUILDING 
-var devMode = false
+var devMode = true
 
-const currver = "v0.0.4"
 
 const savePath = "user://SAVE.json"
 const transPath = "user://TRANSLATION.json"
