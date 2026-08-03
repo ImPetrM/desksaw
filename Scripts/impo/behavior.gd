@@ -4,7 +4,8 @@ extends Node
 @onready var faceSys = $faceHandler
 @onready var moodSys = $moodHandler
 @onready var moveSys = $movementHandler
-@onready var sleepHandler = $movementHandler
+@onready var sleepHandler = $sleepManager
+@onready var hungerHandler = $hungerHandler
 @onready var dialogueSys = $dialogue
 @onready var hunger = $dialogue
 
@@ -63,10 +64,15 @@ func _ready() -> void:
 	tempRagdoll()
 	wandering()
 	passivetalk()
+	checker()
 
 func checker():
-	await get_tree().create_timer(tick).timeout
-	pass
+	while get_tree():
+		await get_tree().create_timer(tick).timeout
+		hungerHandler.hungercheck()
+		sleepHandler.sleepCheck()
+		moodSys.moodCheck()
+		pass
 
 
 func _physics_process(delta: float) -> void:

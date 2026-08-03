@@ -10,8 +10,8 @@ var likelihood:=0
 func sleepCheck():
 		if gbData.settings["sleepEnabled"]:
 			#await get_tree().create_timer(5).timeout
-			tiredness += 0.2
-			print(tiredness)
+			tiredness += 0.1
+			print(str(tiredness) + "tiredness")
 			tiredness = clamp(tiredness, mintired, maxtired)
 			pass
 			return tiredness
