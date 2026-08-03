@@ -1,4 +1,6 @@
 # Godot 4+ specific ignores
+.gitignore
+.editorconfig
 .godot/
 .nuget/
 .nuget/packages
