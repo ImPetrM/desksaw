@@ -3,7 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://wd2ugonwgfvx" path="res://assets/sounds/test.mp3" id="1_14oqp"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="2_gpamc"]
 [ext_resource type="Texture2D" uid="uid://ckeps0v7cqbor" path="res://assets/objectSpr/pls update.png" id="3_14oqp"]
-[ext_resource type="Script" uid="uid://bdi8ksg4yjqju" path="res://Scripts/nimpo/shitpost.gd" id="3_gpamc"]
+[ext_resource type="Script" path="res://Scripts/nimpo/shitpost.gd" id="3_gpamc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mfhw6"]
 shader = ExtResource("2_gpamc")

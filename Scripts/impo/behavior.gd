@@ -32,6 +32,8 @@ var wander := true
 ##Is the node currently in shocked mode.
 var shocked := false
 
+var isTired := false
+
 var isSleeping := false
 ##Is the node currently in hunryg mode.
 var isHungry := false
@@ -45,8 +47,14 @@ var getUpTimer := 5.0
 ##How long does it take for the node to send dialogue after getting up.
 var getUpTimerMsg := 3.0
 
-var tick: float = 5.0
+var tick: float = 2.5
 
+
+enum emotionz {
+	normal, sad, sleep, tired, scared, panic, happy
+}
+
+var currentEmotion = emotionz.normal
 func _ready() -> void:
 	# Persistence logging:
 	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1) # remove "/" at end
@@ -71,8 +79,29 @@ func checker():
 		await get_tree().create_timer(tick).timeout
 		hungerHandler.hungercheck()
 		sleepHandler.sleepCheck()
-		moodSys.moodCheck()
-		pass
+		if not shocked:
+			#sleep stuff
+			currentEmotion = emotionz.normal
+			if sleepHandler.sleepCheck() > 60.0:
+				if !isTired:
+					dialogueSys.pool = data.sleepy
+					dialogueSys.send()
+				isTired = true
+				currentEmotion = emotionz.tired
+			else:
+				isTired = false
+
+			#isSad s	
+			if moodSys.moodCheck() < -20.0:
+				isSad = true
+				currentEmotion = emotionz.sad
+			else:
+				isSad = false
+
+			if moodSys.moodCheck() > 50.0:
+				currentEmotion = emotionz.happy
+
+			faceSys.setEmotion(emotionz.keys()[currentEmotion])
 
 
 func _physics_process(delta: float) -> void:
@@ -150,10 +179,17 @@ func tempRagdoll() -> void:
 func passivetalk():
 	while true:
 		if !gbData.settings["mutePassive"]:
-			await get_tree().create_timer(randf_range(1.5, 20.5)).timeout
+			await get_tree().create_timer(randf_range(44.5, 66.5)).timeout
 			if not beingDragged:
-				dialogueSys.pool = data.lastmoments
-				dialogueSys.speedMod = 1.3
+				dialogueSys.pool = data.Passive
+				match currentEmotion:
+					emotionz.normal:
+						dialogueSys.pool = data.Passive
+					emotionz.happy:
+						dialogueSys.pool = data.HappyPassive
+					emotionz.sad:
+						dialogueSys.pool = data.VeryLowPassive
+				dialogueSys.speedMod = 1.0
 				dialogueSys.send()
 		else:
 			await get_tree().create_timer(5.0).timeout
