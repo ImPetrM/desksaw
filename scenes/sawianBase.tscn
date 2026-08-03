@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://pg0ohwt8ba8h" path="res://Scripts/impo/faceSys.gd" id="20_l2ler"]
 [ext_resource type="Theme" uid="uid://byc077a5abgew" path="res://assets/themes/dialogue.tres" id="21_57y4j"]
 [ext_resource type="Script" uid="uid://bhc642h64r7ev" path="res://Scripts/impo/moodSys.gd" id="22_un334"]
+[ext_resource type="Script" uid="uid://cmppv0optma7o" path="res://Scripts/impo/damageHandler.gd" id="25_3pkli"]
 
 [sub_resource type="Animation" id="Animation_d7061"]
 length = 0.001
@@ -1659,6 +1660,7 @@ height = 47.5
 metadata/_edit_vertical_guides_ = [-248.0]
 metadata/_edit_horizontal_guides_ = [-89.0]
 metadata/entity = false
+metadata/Category = "entity"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=250617225]
 libraries/ = SubResource("AnimationLibrary_rri6f")
@@ -1676,8 +1678,8 @@ script = ExtResource("1_6y4sq")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="Tail" type="RigidBody2D" parent="RigidBodies" unique_id=643523233]
-position = Vector2(-1.0528073, -19.045887)
-rotation = -0.53563935
+position = Vector2(-1, -20)
+rotation = -1.1779506e-05
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1695,8 +1697,9 @@ position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_bitre")
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(1.7263565, -15.542139)
-rotation = -0.20694348
+position = Vector2(-0.33961034, -15.576893)
+rotation = 0.3154262
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1718,8 +1721,8 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-0.29023957, -8.7119255)
-rotation = -0.3634045
+position = Vector2(-5.2266626, -9.810149)
+rotation = -0.0073828497
 scale = Vector2(0.9999997, 0.9999997)
 collision_layer = 8
 mass = 0.001
@@ -1741,9 +1744,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(1.8362529, -4.0237765)
-rotation = 0.07744221
-scale = Vector2(0.99999976, 0.99999976)
+position = Vector2(-4.867567, -4.6748047)
+rotation = 0.43346387
+scale = Vector2(0.9999997, 0.9999997)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1764,8 +1767,8 @@ rotation = -0.42937642
 shape = SubResource("CapsuleShape2D_5ljcd")
 
 [node name="BUpArmSprite" type="RigidBody2D" parent="RigidBodies" unique_id=1757802917]
-position = Vector2(-1.0779303, -29.296091)
-rotation = 0.00836265
+position = Vector2(-0.806737, -30.25633)
+rotation = -0.06447743
 scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.001
@@ -1784,8 +1787,8 @@ visible = false
 shape = SubResource("CapsuleShape2D_y6net")
 
 [node name="BDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=1599016473]
-position = Vector2(-1.1365507, -22.296337)
-rotation = 0.008362651
+position = Vector2(-0.3557899, -23.270872)
+rotation = -0.064477436
 scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.001
@@ -1804,8 +1807,8 @@ visible = false
 shape = SubResource("CapsuleShape2D_gnewh")
 
 [node name="BHand" type="RigidBody2D" parent="RigidBodies" unique_id=1774083656]
-position = Vector2(-1.2035769, -14.292769)
-rotation = 0.008362651
+position = Vector2(0.15982679, -15.283649)
+rotation = -0.064477436
 scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.001
@@ -1824,7 +1827,7 @@ position = Vector2(3.2424927e-05, -2.750062)
 shape = SubResource("CapsuleShape2D_1mc2w")
 
 [node name="LowTorso" type="RigidBody2D" parent="RigidBodies" unique_id=1867504842]
-position = Vector2(-0.052808046, -21.045887)
+position = Vector2(-7.1525574e-07, -22)
 rotation = -1.1779506e-05
 collision_layer = 8
 mass = 0.001
@@ -1842,7 +1845,7 @@ position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_k8iha")
 
 [node name="UpTorso" type="RigidBody2D" parent="RigidBodies" unique_id=455497122]
-position = Vector2(-0.5528036, -29.04596)
+position = Vector2(-0.49999624, -30.000072)
 rotation = -1.1779506e-05
 collision_layer = 8
 mass = 0.001
@@ -1860,7 +1863,7 @@ visible = false
 shape = SubResource("CapsuleShape2D_7p3rp")
 
 [node name="Head" type="RigidBody2D" parent="RigidBodies" unique_id=1596314125]
-position = Vector2(-0.24992907, -41.500755)
+position = Vector2(-0.19712174, -42.454872)
 rotation = 0.029473484
 collision_layer = 8
 mass = 0.001
@@ -1889,8 +1892,8 @@ position = Vector2(0.058938626, 1.9993173)
 shape = SubResource("CircleShape2D_73j8h")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=69657827]
-position = Vector2(0.57655597, -14.881134)
-rotation = 0.09071532
+position = Vector2(0.1732924, -15.684519)
+rotation = 0.19817272
 scale = Vector2(0.9999998, 0.9999998)
 collision_layer = 8
 mass = 0.001
@@ -1912,9 +1915,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
-position = Vector2(-3.8062918, -10.405938)
-rotation = 0.21728586
-scale = Vector2(0.9999996, 0.9999996)
+position = Vector2(-4.484632, -10.594864)
+rotation = 0.11549736
+scale = Vector2(0.99999964, 0.99999964)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1934,9 +1937,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=2058845088]
-position = Vector2(-4.59995, -5.332722)
-rotation = 0.6581326
-scale = Vector2(0.99999964, 0.99999964)
+position = Vector2(-4.7586775, -5.4672613)
+rotation = 0.5563441
+scale = Vector2(0.9999997, 0.9999997)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1956,9 +1959,9 @@ rotation = -0.42937642
 shape = SubResource("CapsuleShape2D_5ljcd")
 
 [node name="FUpArmSprite" type="RigidBody2D" parent="RigidBodies" unique_id=552296471]
-position = Vector2(-0.94888574, -29.297785)
-rotation = -0.034659266
-scale = Vector2(0.99999934, 0.99999934)
+position = Vector2(-0.510257, -30.290346)
+rotation = -0.1639935
+scale = Vector2(0.9999993, 0.9999993)
 collision_layer = 8
 mass = 0.001
 gravity_scale = 0.8
@@ -1975,8 +1978,8 @@ visible = false
 shape = SubResource("CapsuleShape2D_y6net")
 
 [node name="FDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=757190963]
-position = Vector2(-0.70640165, -22.30199)
-rotation = -0.03465939
+position = Vector2(0.63247716, -23.384256)
+rotation = -0.1639936
 scale = Vector2(0.99999934, 0.99999934)
 collision_layer = 8
 mass = 0.001
@@ -1995,8 +1998,8 @@ position = Vector2(-2.3559012e-05, 2)
 shape = SubResource("CapsuleShape2D_gnewh")
 
 [node name="FFHand" type="RigidBody2D" parent="RigidBodies" unique_id=712634110]
-position = Vector2(-0.42914218, -14.302944)
-rotation = -0.03465939
+position = Vector2(1.9390894, -15.487778)
+rotation = -0.1639936
 scale = Vector2(0.99999934, 0.99999934)
 collision_layer = 8
 mass = 0.001
@@ -2508,7 +2511,7 @@ script = ExtResource("17_6mwry")
 behaviornode = NodePath("../../behavior")
 
 [node name="textParent" type="Node2D" parent="." unique_id=797776170]
-position = Vector2(-0.21468835, -39.96443)
+position = Vector2(-0.16188101, -40.91855)
 rotation = -1.1779506e-05
 scale = Vector2(0.999981, 0.99997854)
 
@@ -2525,6 +2528,15 @@ bbcode_enabled = true
 text = " "
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
+
+[node name="DebugText" type="Label" parent="textParent" unique_id=739158021]
+visible = false
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 36.0
+offset_bottom = -17.0
+text = "[expie ID]"
 horizontal_alignment = 1
 
 [node name="behavior" type="Node" parent="." unique_id=114253932]
@@ -2571,3 +2583,6 @@ one_shot = true
 
 [node name="petTimer" type="Timer" parent="behavior" unique_id=1934989107]
 one_shot = true
+
+[node name="damageHandler" type="Node" parent="behavior" unique_id=1482950262]
+script = ExtResource("25_3pkli")

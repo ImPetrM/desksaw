@@ -30,7 +30,7 @@ func skinFolderScan():
 
 func refreshDisplayExpie():
 	if skinIndx == 0:
-		GlobalVariable.userSkinPath = "res://skin/Body/"
+		GlobalVariable.userSkinPath = "res://assets/Body/"
 	else:
 		GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
 	reloadDisplayExpie()
