@@ -42,4 +42,4 @@ var userSkinPath = "user://skin/Body/"
 func _ready():
 	#await get_tree().create_timer(3).timeout
 	#print(gbData.data["save"]["expies"])
-	var userSkinPath = "user://skin/" + gbData.data["save"]["expies"].keys()[0] + "/"
+	var userSkinPath = "user://skin/"

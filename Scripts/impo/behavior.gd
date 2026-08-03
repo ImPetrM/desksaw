@@ -1,4 +1,6 @@
 extends Node
+# behavior.gd
+@export var petId: String = ""
 @export var sleepParticle: CPUParticles2D
 
 @onready var faceSys = $faceHandler
