@@ -61,7 +61,7 @@ func calcmood(total: float):
 	if mas.ragdolled:
 		if gbData.devMode:
 			print("dragged so substract")
-		total -= 1
+		total += 1.5
 	total -= clamp(((1.0 - (gbData.data.save["hunger"] * 0.01)) * 1), 0.0, 1)
 	#trust
 	total -= clamp(((1.0 - (gbData.data.save["tired"] * 0.01)) * 1), 0.0, 1)

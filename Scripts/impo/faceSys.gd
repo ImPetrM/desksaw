@@ -25,7 +25,8 @@ var eyes = {
 var heads = {
 	"default": "experimentHeadBack.png",
 	"open": "experimentHeadBackMouth.png",
-	"opensmall": "experimentHeadBackMouthMini.png"
+	"opensmall": "experimentHeadBackMouthMini.png",
+	"disfigured": "experimentHeadDisfigured1.png",
 }
 
 func _ready() -> void:

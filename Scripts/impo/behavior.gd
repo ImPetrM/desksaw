@@ -1,5 +1,5 @@
 extends Node
-
+@export var sleepParticle: CPUParticles2D
 
 @onready var faceSys = $faceHandler
 @onready var moodSys = $moodHandler
@@ -40,6 +40,8 @@ var isHungry := false
 
 ##Is the node currently in shocked mode.
 var isSad := false
+
+var isDead := false
 #might be worth it change most of the timers in this script with variables
 #so we can avoid magic numbers
 ##How long does it take the node to get up after being ragdolled.
@@ -74,20 +76,46 @@ func _ready() -> void:
 	passivetalk()
 	checker()
 
+func sleep():
+	while get_tree():
+			print("2")
+			if sleepHandler.sleepCheck() < 10.0:
+				sleepParticle.emitting = false
+				isSleeping = false
+				moveSys.ragdoll(true)
+				ragdolled = false
+				break
+			sleepParticle.emitting = true
+			faceSys.setEmotion("sleep")
+			moveSys.ragdoll(false)
+			ragdolled = true
+			sleepHandler.tiredness -= .1
+			moodSys.mood += 0.025
+
+
+			await get_tree().create_timer(tick / 5).timeout
+	pass
+
 func checker():
 	while get_tree():
 		await get_tree().create_timer(tick).timeout
 		hungerHandler.hungercheck()
 		sleepHandler.sleepCheck()
-		if not shocked:
+		moodSys.moodCheck()
+		if not shocked and not isSleeping:
 			#sleep stuff
 			currentEmotion = emotionz.normal
-			if sleepHandler.sleepCheck() > 60.0:
+			if sleepHandler.sleepCheck() > 80.0:
 				if !isTired:
 					dialogueSys.pool = data.sleepy
 					dialogueSys.send()
 				isTired = true
 				currentEmotion = emotionz.tired
+				print("tired")
+				if sleepHandler.sleepCheck() > 95.0:
+					isSleeping = true
+					print("sleeping")
+					sleep()
 			else:
 				isTired = false
 
@@ -112,8 +140,6 @@ func _physics_process(delta: float) -> void:
 		moveSys.dir = 0
 
 func shock():
-	if shocked:
-		return
 	shocked = true
 
 	faceSys.setEmotion("panic")
@@ -127,7 +153,7 @@ func shock():
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("sad")
 	await get_tree().create_timer(13).timeout
-	faceSys.setEmotion("normal")
+
 
 	shocked = false
 
@@ -180,7 +206,7 @@ func passivetalk():
 	while true:
 		if !gbData.settings["mutePassive"]:
 			await get_tree().create_timer(randf_range(44.5, 66.5)).timeout
-			if not beingDragged:
+			if not beingDragged and not isSleeping and not shocked:
 				dialogueSys.pool = data.Passive
 				match currentEmotion:
 					emotionz.normal:
@@ -222,9 +248,11 @@ func petLimb(limb: RigidBody2D):
 		AudioManager.play_random(AudioManager.expie_bark, 0.25, 0, 1, true, 0.5, 'exp_pet')
 	else:
 		AudioManager.play_random(AudioManager.expie_whine, 0.25, 0, 1, true, 1, 'exp_pet')
-		
+	if isSleeping:
+		return
 	#print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
+	moodSys.mood += 1.5
 	pet_timer.start(pet_timer_inc)
 	pet_count += 1
 	

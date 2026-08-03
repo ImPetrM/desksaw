@@ -129,7 +129,9 @@ func send(cooldown: float = 0.0, ignoreCooldown: bool = true) -> void:
 	if (not dialogueTimer.is_stopped() or isTyping) and not ignoreCooldown:
 		print("THE EXPIE IS OVERSTIMULATED HE WON'T TALK")
 		return
-
+	if self.get_parent().isSleeping:
+		print("sleeping")
+		return
 	if pool.size() > 0:
 		var text: String = pool.pick_random()
 		var effectiveSpeed = speedMod

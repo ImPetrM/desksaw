@@ -1779,8 +1779,8 @@ position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_bitre")
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.33961427, -15.576893)
-rotation = 0.31542706
+position = Vector2(-0.3396144, -15.576893)
+rotation = 0.3154271
 scale = Vector2(0.99999976, 0.99999976)
 collision_layer = 8
 mass = 0.5
@@ -1802,7 +1802,7 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.2266655, -9.810148)
+position = Vector2(-5.226666, -9.810148)
 rotation = -0.007383569
 scale = Vector2(0.9999991, 0.9999991)
 collision_layer = 8
@@ -1824,7 +1824,7 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-4.867566, -4.6748066)
+position = Vector2(-4.8675666, -4.6748066)
 rotation = 0.43346316
 scale = Vector2(0.9999991, 0.9999991)
 collision_layer = 8
@@ -1963,9 +1963,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
-position = Vector2(-4.484634, -10.594863)
-rotation = 0.11549688
-scale = Vector2(0.9999991, 0.9999991)
+position = Vector2(-4.4846344, -10.594864)
+rotation = 0.11549711
+scale = Vector2(0.99999917, 0.99999917)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1985,9 +1985,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=2058845088]
-position = Vector2(-4.7586765, -5.467263)
-rotation = 0.55634356
-scale = Vector2(0.9999991, 0.9999991)
+position = Vector2(-4.7586784, -5.467263)
+rotation = 0.55634385
+scale = Vector2(0.99999917, 0.99999917)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2652,8 +2652,9 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="behavior" type="Node" parent="." unique_id=114253932]
+[node name="behavior" type="Node" parent="." unique_id=114253932 node_paths=PackedStringArray("sleepParticle")]
 script = ExtResource("18_8de8m")
+sleepParticle = NodePath("../RigidBodies/Head/Sleep")
 
 [node name="skinmapper" type="Node" parent="behavior" unique_id=1582520777]
 script = ExtResource("17_67p0r")
