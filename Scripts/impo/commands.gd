@@ -82,7 +82,6 @@ func clearObj(category: String = "object"):
 
 	for child in get_tree().current_scene.get_children():
 		if not exclude.has(child.name):
-			#print(child.name)
 			if category == child.get_meta("Category") or category == child.get_meta("itemName"):
 				await get_tree().create_timer(.05).timeout
 				child.queue_free()
