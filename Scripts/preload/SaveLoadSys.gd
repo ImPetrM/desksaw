@@ -40,9 +40,7 @@ func _ready():
 		data = loadjson(savePath)
 		var templateData = loadjson(template)
 		fixMissing(data, templateData)
-		fixPets()
-		if data["saw"] == {}:
-			createPet()
+		if data["save"]["expies"] == {}: data["save"]["expies"] = {"Default": 1} # force a default expie to spawn if no expie data on load. avoids crash
 
 	else:
 		newsave()
@@ -79,9 +77,6 @@ func fixMissing(base: Dictionary, default: Dictionary):
 		elif typeof(base[key]) == TYPE_DICTIONARY and typeof(default[key]) == TYPE_DICTIONARY:
 			fixMissing(base[key], default[key])
 
-func fixPets():
-	for id in data["saw"].keys():
-		fixMissing(data["saw"][id], data["sawTemplate"])
 func newsave():
 	# Read the save template
 	if not ResourceLoader.exists(template):
@@ -91,25 +86,14 @@ func newsave():
 	#set data json to template
 	data = loadjson(template).duplicate(true)
 
+	randomize()
+
+	data.save["mood"] += randi_range(-5, 5)
+	data.save["hunger"] -= randi_range(1, 5)
+	data.save["trust"] += randi_range(-10, 0)
 
 	savetodisk(savePath, data)
 
-
-func newPetId():
-	var id = "pet_" + str(data["nextPetId"])
-	data["nextPetId"] += 1
-	return id
-
-func createPet(skin: String = "Default"):
-		var id = newPetId()
-		data["saw"][id] = data["sawTemplate"].duplicate(true)
-		data["saw"][id]["skin"] = skin
-		randomize()
-		data["saw"][id]["mood"] += randi_range(-5, 5)
-		data["saw"][id]["hunger"] -= randi_range(1, 5)
-		data["saw"][id]["trust"] += randi_range(-10, 0)
-		savetodisk(savePath, data)
-		return id
 func newTrans():
 	#fix this later make it bassdfjogsdjfoigjsdfgjosdifgjiosdfjg nvm its good as it
 	var defaultTrans = "res://Scripts/singletons/TEMPDialogue.json"

@@ -1,6 +1,4 @@
 extends Node
-# behavior.gd
-@export var petId: String = ""
 @export var sleepParticle: CPUParticles2D
 
 @onready var faceSys = $faceHandler
@@ -77,6 +75,7 @@ func _ready() -> void:
 	wandering()
 	passivetalk()
 	checker()
+
 
 func sleep():
 	while get_tree():
@@ -270,7 +269,7 @@ func petLimb(limb: RigidBody2D):
 	if sprite:
 		var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
-		tween.tween_property(sprite, "scale", Vector2(1.15, 0.85), 0.08)
+		tween.tween_property(sprite, "scale", Vector2(1.07, 0.93), 0.08)
 		tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.25)
 	
 	if not dialogueSys.is_dialogue_playing():

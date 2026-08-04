@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="desktop expie"
+config/name="deskSaw"
 config/version="0.0.2"
 run/main_scene="uid://cqg8h324jtya"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="deedee14/desksawPRE-RELEASE"
-config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/show_image=false

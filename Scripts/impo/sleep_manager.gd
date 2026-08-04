@@ -1,7 +1,6 @@
 extends Node
 
-var petId: String
-var tiredness: float
+@onready var tiredness: float = gbData.data.save.tired
 
 var maxtired := 100.0
 var mintired := 0.0
@@ -11,12 +10,10 @@ var likelihood := 0
 func sleepCheck():
 		if gbData.settings["sleepEnabled"]:
 			#await get_tree().create_timer(5).timeout
-			petId = get_parent().petId
-			tiredness = gbData.data.saw[petId].tired
 			print(str(tiredness) + " tiredness")
 			tiredness = snappedf(tiredness, 0.01)
 			tiredness = clamp(tiredness, mintired, maxtired)
-			gbData.data.saw[petId].tired = tiredness
+			gbData.data.save.tired = tiredness
 
 			if !self.get_parent().isSleeping:
 				tiredness += 0.15

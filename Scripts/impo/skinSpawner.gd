@@ -36,7 +36,7 @@ func refreshDisplayExpie():
 	reloadDisplayExpie()
 	SkinNameN.text = SkinFolders[skinIndx] + ":"
 
-func spawnExpie(id: String = ""):
+func spawnExpie():
 	var path = "res://scenes/sawianBase.tscn"
 	var scene = load(path)
 	var instance = scene.instantiate()
@@ -53,8 +53,6 @@ func spawnExpie(id: String = ""):
 	instance.global_position.x = GlobalVariable.screenWidth / 2
 	instance.global_position.y = - GlobalVariable.screenHeight * 2
 	wrapper.set_meta("entity", false)
-	var sawID = id if id != "" else gbData.createPet(SkinNameN.text)
-	instance.get_node("behavior").petId = sawID
 
 func reloadDisplayExpie():
 	for child in get_children():
@@ -93,7 +91,7 @@ func _on_refresh_pressed():
 
 func _on_previous_pressed():
 	skinIndx -= 1
-	if skinIndx == -1: skinIndx = len(SkinFolders) - 1 # if we go under min index, loop to max
+	if skinIndx == -1: skinIndx = len(SkinFolders)-1 # if we go under min index, loop to max
 	refreshDisplayExpie()
 
 func _on_next_pressed():
@@ -104,3 +102,5 @@ func _on_next_pressed():
 func _on_select_pressed():
 	GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
 	spawnExpie()
+
+
