@@ -53,7 +53,7 @@ func spawnExpie():
 
 	instance.global_position.x = GlobalVariable.screenWidth / 2
 	instance.global_position.y = - GlobalVariable.screenHeight * 2
-	wrapper.set_meta("entity", false)
+	wrapper.set_meta("Category", "entity")
 
 
 func _additem(item: String = "crate"):
@@ -83,6 +83,9 @@ func clearObj(category: String = "object"):
 	for child in get_tree().current_scene.get_children():
 		if not exclude.has(child.name):
 			if category == child.get_meta("Category") or category == child.get_meta("itemName"):
+				if gbData.data["save"]["expies"].has(child.get_meta("itemName")): # check if deleting an expie
+					gbData.temp["expies"].erase(category)
+					gbData.data["save"]["expies"].erase(category) # remove from persistence data if there
 				await get_tree().create_timer(.05).timeout
 				child.queue_free()
 
@@ -141,7 +144,7 @@ func _ready():
 	##Console.create_command("killExpie", killExpie, "Yeha")
 	Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
 	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")
-	Console.create_command("clearItems", clearObj, "clears by 'entity', 'object' or specific item name.")
+	Console.create_command("clearItems", clearObj, "clears by 'entity', 'object' or specific item name/ expie skin name.")
 	Console.create_command("spawnExpie", spawnExpie, "please refer to the spawn menu rather than this command. Will be removed later")
 	Console.create_command("openSkinFolder", openskinfold, "opens the skin folder")
 	Console.create_command("nukeSettings", nukesettings, "run if your expie is in a constant state of terror (resets EVERYTHING)")

@@ -1742,7 +1742,6 @@ height = 47.5
 [node name="Node2D" type="Node2D" unique_id=2077787481]
 metadata/_edit_vertical_guides_ = [-248.0]
 metadata/_edit_horizontal_guides_ = [-89.0]
-metadata/entity = false
 metadata/Category = "entity"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=250617225]

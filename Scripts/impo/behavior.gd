@@ -65,6 +65,8 @@ func _ready() -> void:
 	gbData.temp["expies"][skinName] += 1 # update number of skins
 	# ---
 	
+	get_parent().get_parent().set_meta("itemName", skinName)
+	
 	# Set debug text to Node's ID:
 	#$"../textParent/DebugText".text = "Test"
 	#print(get_parent().get_parent().get_children().find(self))

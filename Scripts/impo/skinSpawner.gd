@@ -52,7 +52,7 @@ func spawnExpie():
 
 	instance.global_position.x = GlobalVariable.screenWidth / 2
 	instance.global_position.y = - GlobalVariable.screenHeight * 2
-	wrapper.set_meta("entity", false)
+	wrapper.set_meta("Category", "entity")
 
 func reloadDisplayExpie():
 	for child in get_children():
