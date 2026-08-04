@@ -49,7 +49,7 @@ var getUpTimer := 5.0
 ##How long does it take for the node to send dialogue after getting up.
 var getUpTimerMsg := 3.0
 
-var tick: float = 2.5
+var tick: float = 1
 
 
 enum emotionz {
@@ -142,7 +142,7 @@ func _physics_process(delta: float) -> void:
 
 func shock():
 	shocked = true
-
+	moodSys._tempVal(-5.0, 5)
 	faceSys.setEmotion("panic")
 
 	dialogueSys.pool = data.screamBIG
@@ -253,7 +253,7 @@ func petLimb(limb: RigidBody2D):
 		return
 	#print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
-	moodSys.mood += 1.5
+	moodSys._tempVal(5.0, 13)
 	pet_timer.start(pet_timer_inc)
 	pet_count += 1
 	

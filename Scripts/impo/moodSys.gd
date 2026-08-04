@@ -41,10 +41,12 @@ func moodCheck():
 		mood += calcmood(1)
 		#showly neutralize in lerp but im going to be honesst they basically do nothing
 
-		mood = snappedf(mood + tempOffset, 0.01)
+		mood = snappedf(mood, 0.01)
 
 
 		mood = clamp(mood, minmood, maxmood)
+
+		mood = lerp(mood + tempOffset, 0.0, 0.01)
 		if gbData.devMode:
 			print(str("mood: ", mood))
 			print(str("tick: ", calcmood(1.0)))
@@ -68,7 +70,7 @@ func calcmood(total: float):
 		if gbData.devMode:
 			print("dragged so substract")
 		total += 1.5
-	#total -= clamp(((1.0 - (gbData.data.save["hunger"] * 0.01)) * 1), 0.0, 1)
+	total -= clamp(((1.0 - (gbData.data.save["hunger"] * 0.01)) * 1), 0.0, 1)
 	#trust
 	total -= clamp(((1.0 - (gbData.data.save["tired"] * 0.01)) * 1), 0.0, 1)
 	print(str(clamp(((1.0 - (gbData.data.save["tired"] * 0.01)) * 1), 0.0, 1)) + " 123123")
