@@ -103,6 +103,9 @@ func _on_expie_persistence_pressed(): # special case, as if disabled we want to 
 ### Tab handling:
 ## This is VERY hard-coded, so adding a new tab is a bit of a process. sry abt that. Hopefully I re-write at some point :P
 
+@onready var GeneralTabN = $VSplitContainer/TabsScrollContainer/HBoxContainer/GeneralTab
+@onready var AudioTabN = $VSplitContainer/TabsScrollContainer/HBoxContainer/AudioTab
+
 func assign_tab_meta_to_leftovers():
 	var children: Array[Node] = $VSplitContainer/ScrollContainer/ItemList.get_children()
 	
@@ -120,6 +123,7 @@ func get_tab_nodes(TabName):
 				results.append(child)
 	return results
 
+
 func hide_all_settings():
 	for child in $VSplitContainer/ScrollContainer/ItemList.get_children():
 		child.visible = false
@@ -132,13 +136,18 @@ func show_all_tab_type(type):
 		else:
 			node.visible = true
 
+
 func _on_general_tab_pressed():
-	$VSplitContainer/TabsScrollContainer/HBoxContainer/AudioTab.button_pressed = false
+	AudioTabN.button_pressed = false
+	GeneralTabN.button_mask = 0 # disable mouse clicks, so user cannot disable the button
+	AudioTabN.button_mask = 1 # enable mouse click for other tab
 	hide_all_settings()
 	show_all_tab_type("General")
 
 
 func _on_audio_tab_pressed():
-	$VSplitContainer/TabsScrollContainer/HBoxContainer/GeneralTab.button_pressed = false
+	GeneralTabN.button_pressed = false
+	GeneralTabN.button_mask = 1 # enable mouse click for other tab
+	AudioTabN.button_mask = 0 # disable mouse clicks, so user cannot disable the button
 	hide_all_settings()
 	show_all_tab_type("Audio")

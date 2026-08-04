@@ -1,6 +1,7 @@
 extends Node
 
 @export var root: Control
+signal toggleDebugText
 
 """
     ###
@@ -66,6 +67,7 @@ func _additem(item: String = "crate"):
 	get_tree().current_scene.add_child(instance)
 	instance.position = get_viewport().get_mouse_position()
 	instance.owner = get_tree().current_scene
+	instance.set_meta("itemName", item)
 
 
 func clearObj(category: String = "object"):
@@ -80,7 +82,7 @@ func clearObj(category: String = "object"):
 
 	for child in get_tree().current_scene.get_children():
 		if not exclude.has(child.name):
-			if child.has_meta(category):
+			if category == child.get_meta("Category") or category == child.get_meta("itemName"):
 				await get_tree().create_timer(.05).timeout
 				child.queue_free()
 
@@ -103,7 +105,7 @@ func resize(nx, ny, isForce = "no") -> String:
 	var ey = str(ny).to_float()
 	if (ex < 200 or ey < 100) and isForce == "no":
 		Console.warning("Resizing the console this small is not reccomended!")
-		return "Type 'resizeConsole <x> <y> force' if you are sure"
+		return "Type '[url=resizeConsole {0} {1} force]resizeConsole {0} {1} force[/url]' if you are sure".format([nx, ny])
 	root.size.x = ex
 	root.size.y = ey
 
@@ -123,6 +125,9 @@ func resize(nx, ny, isForce = "no") -> String:
 	gbData.savetodisk("user://CONFIG.json", gbData.settings)
 	return "resized"
 
+func toggleExpieDebugIDs():
+	toggleDebugText.emit()
+
 func deathLoop():
 	while true:
 		Console.execute("log I_HATE_YOU")
@@ -136,13 +141,14 @@ func _ready():
 	##Console.create_command("killExpie", killExpie, "Yeha")
 	Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
 	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")
-	Console.create_command("clearItems", clearObj, "clears either 'entity' or 'object'")
+	Console.create_command("clearItems", clearObj, "clears by 'entity', 'object' or specific item name.")
 	Console.create_command("spawnExpie", spawnExpie, "please refer to the spawn menu rather than this command. Will be removed later")
 	Console.create_command("openSkinFolder", openskinfold, "opens the skin folder")
 	Console.create_command("nukeSettings", nukesettings, "run if your expie is in a constant state of terror (resets EVERYTHING)")
+	Console.create_command("expieID", toggleExpieDebugIDs, "toggles debug IDs for expies")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
-	Console.print("You can reopen this console any time by Ctrl + Right Clicking on any Desksawian")
+	Console.print("[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]")
 	Console.execute("setMonitor 0")
 	#setting stuff that would probably have a better solution to it
 

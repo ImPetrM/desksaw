@@ -65,6 +65,11 @@ func _ready() -> void:
 	gbData.temp["expies"][skinName] += 1 # update number of skins
 	# ---
 	
+	# Set debug text to Node's ID:
+	#$"../textParent/DebugText".text = "Test"
+	#print(get_parent().get_parent().get_children().find(self))
+	connect("toggleDebugText", _on_debugToggle_signal)
+	
 	faceSys.setEmotion("default")
 	
 	moveSys.sigragdoll.connect(shock)
@@ -282,6 +287,13 @@ func petLimb(limb: RigidBody2D):
 		
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("normal")
+
+
+func _on_debugToggle_signal():
+	if $"../textParent/DebugText".text == "":
+		$"../textParent/DebugText".text = "Test"
+	else:
+		$"../textParent/DebugText".text = ""
 
 func struggle():
 	while get_tree():

@@ -1,7 +1,7 @@
 extends Container
 
 @export var test: Control
-@onready var SkinNameN = $GridContainer/SkinName
+@onready var SkinNameN = $SkinName
 var SkinFolders = []
 var skinIndx = 0
 
@@ -30,7 +30,7 @@ func skinFolderScan():
 
 func refreshDisplayExpie():
 	if skinIndx == 0:
-		GlobalVariable.userSkinPath = "res://skin/Body/"
+		GlobalVariable.userSkinPath = "res://assets/Body/"
 	else:
 		GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
 	reloadDisplayExpie()
@@ -102,5 +102,3 @@ func _on_next_pressed():
 func _on_select_pressed():
 	GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
 	spawnExpie()
-
-

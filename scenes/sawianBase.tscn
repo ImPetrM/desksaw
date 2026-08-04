@@ -26,6 +26,7 @@
 [ext_resource type="Theme" uid="uid://byc077a5abgew" path="res://assets/themes/dialogue.tres" id="21_57y4j"]
 [ext_resource type="Script" uid="uid://jnsq0pscs6et" path="res://Scripts/impo/sleep_manager.gd" id="22_dvaus"]
 [ext_resource type="Script" uid="uid://bhc642h64r7ev" path="res://Scripts/impo/moodSys.gd" id="22_un334"]
+[ext_resource type="Script" uid="uid://cmppv0optma7o" path="res://Scripts/impo/damageHandler.gd" id="25_3pkli"]
 [ext_resource type="Script" uid="uid://bvssnx7cofbpp" path="res://Scripts/impo/hunger_handler.gd" id="26_84wtd"]
 
 [sub_resource type="Animation" id="Animation_d7061"]
@@ -1742,6 +1743,7 @@ height = 47.5
 metadata/_edit_vertical_guides_ = [-248.0]
 metadata/_edit_horizontal_guides_ = [-89.0]
 metadata/entity = false
+metadata/Category = "entity"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=250617225]
 libraries/ = SubResource("AnimationLibrary_rri6f")
@@ -1802,9 +1804,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.226666, -9.810148)
-rotation = -0.007383569
-scale = Vector2(0.9999991, 0.9999991)
+position = Vector2(-5.2266626, -9.810149)
+rotation = -0.0073828497
+scale = Vector2(0.9999997, 0.9999997)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1824,9 +1826,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-4.8675666, -4.6748066)
-rotation = 0.43346316
-scale = Vector2(0.9999991, 0.9999991)
+position = Vector2(-4.867567, -4.6748047)
+rotation = 0.43346387
+scale = Vector2(0.9999997, 0.9999997)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1848,7 +1850,7 @@ shape = SubResource("CapsuleShape2D_5ljcd")
 [node name="BUpArmSprite" type="RigidBody2D" parent="RigidBodies" unique_id=1757802917]
 position = Vector2(-0.806737, -30.25633)
 rotation = -0.06447743
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1867,8 +1869,8 @@ shape = SubResource("CapsuleShape2D_y6net")
 
 [node name="BDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=1599016473]
 position = Vector2(-0.3557899, -23.270872)
-rotation = -0.06447744
-scale = Vector2(0.9999998, 0.9999998)
+rotation = -0.064477436
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1885,9 +1887,9 @@ visible = false
 shape = SubResource("CapsuleShape2D_gnewh")
 
 [node name="BHand" type="RigidBody2D" parent="RigidBodies" unique_id=1774083656]
-position = Vector2(0.15982679, -15.283652)
-rotation = -0.06447744
-scale = Vector2(0.9999998, 0.9999998)
+position = Vector2(0.15982679, -15.283649)
+rotation = -0.064477436
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2652,6 +2654,15 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
+[node name="DebugText" type="Label" parent="textParent" unique_id=739158021]
+visible = false
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 36.0
+offset_bottom = -17.0
+text = "[expie ID]"
+horizontal_alignment = 1
+
 [node name="behavior" type="Node" parent="." unique_id=114253932 node_paths=PackedStringArray("sleepParticle")]
 script = ExtResource("18_8de8m")
 sleepParticle = NodePath("../RigidBodies/Head/Sleep")
@@ -2703,3 +2714,6 @@ script = ExtResource("26_84wtd")
 
 [node name="petTimer" type="Timer" parent="behavior" unique_id=1934989107]
 one_shot = true
+
+[node name="damageHandler" type="Node" parent="behavior" unique_id=1482950262]
+script = ExtResource("25_3pkli")
