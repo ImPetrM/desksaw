@@ -99,6 +99,8 @@ func sleep():
 
 func checker():
 	while get_tree():
+		#this was calling each function like 90 times per check which is why everyting was very extreme!
+		#DONT DO THAT MISTAKE AGAIN!
 		await get_tree().create_timer(tick).timeout
 		hungerHandler.hungercheck()
 		var sleepN = sleepHandler.sleepCheck()
