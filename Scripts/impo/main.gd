@@ -27,7 +27,8 @@ func _ready():
 	createBorders()
 
 	GlobalVariable.resize.connect(updateBorders)
-	pass
+	
+	update_obj_metas()
 	
 	var def = gbData.settings.get("defaultSkin", "Body")
 	GlobalVariable.userSkinPath = "user://skin/" + def + "/"
@@ -65,6 +66,23 @@ func updateBorders():
 			if child.has_meta("entity") or child.has_meta("object"):
 				child.position.y -= screenHeight - oldheight
 	createBorders()
+
+func update_obj_metas():
+	"""Assign 'catagory' meta with 'object' to all scenes in the object path."""
+	
+	var dir = DirAccess.open("res://scenes/objects")
+	dir.list_dir_begin()
+	var fileName = dir.get_next()
+	
+	while fileName != "":
+		if fileName.ends_with(".tscn"):
+			var path = "res://scenes/object".path_join(fileName)
+			var object = load(path)
+			if object is PackedScene:
+				var instance = object.instantiate()
+				add_child(instance)
+		fileName = dir.get_next()
+	dir.list_dir_end()
 
 
 func loadExpiePersistence():
