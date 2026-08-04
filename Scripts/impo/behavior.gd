@@ -47,9 +47,9 @@ var isDead := false
 ##How long does it take the node to get up after being ragdolled.
 var getUpTimer := 5.0
 ##How long does it take for the node to send dialogue after getting up.
-var getUpTimerMsg := 3.0
+var getUpTimerMsg := 1.4
 
-var tick: float = 1
+var tick: float = 4
 
 
 enum emotionz {
@@ -101,12 +101,12 @@ func checker():
 	while get_tree():
 		await get_tree().create_timer(tick).timeout
 		hungerHandler.hungercheck()
-		sleepHandler.sleepCheck()
-		moodSys.moodCheck()
+		var sleepN = sleepHandler.sleepCheck()
+		var moodN = moodSys.moodCheck()
 		if not shocked and not isSleeping:
 			#sleep stuff
 			currentEmotion = emotionz.normal
-			if sleepHandler.sleepCheck() > 80.0:
+			if sleepN > 80.0:
 				if !isTired:
 					dialogueSys.pool = data.sleepy
 					dialogueSys.send()
@@ -121,13 +121,13 @@ func checker():
 				isTired = false
 
 			#isSad s	
-			if moodSys.moodCheck() < -20.0:
+			if moodN < -20.0:
 				isSad = true
 				currentEmotion = emotionz.sad
 			else:
 				isSad = false
 
-			if moodSys.moodCheck() > 50.0:
+			if moodN > 50.0:
 				currentEmotion = emotionz.happy
 
 			faceSys.setEmotion(emotionz.keys()[currentEmotion])
@@ -253,6 +253,7 @@ func petLimb(limb: RigidBody2D):
 		return
 	#print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
+	moodSys.mood += 0.5
 	moodSys._tempVal(5.0, 13)
 	pet_timer.start(pet_timer_inc)
 	pet_count += 1

@@ -7,6 +7,7 @@ extends Node
 @export var eyeNode: Sprite2D
 @export var mouthNode: Sprite2D
 
+@export var normalRate: float = 0.005
 
 @onready var mood: float = gbData.data.save.mood
 @onready var trust: float = gbData.data.save.trust
@@ -32,31 +33,32 @@ func _tempVal(offset: float = 0.0, decayLength: float = 0.0):
 	var tween := create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "tempOffset", 0.0, decayLength)
 	pass
-#main mood loop
-func moodCheck():
-		#await get_tree().create_timer(10).timeout
-		if gbData.settings.get("invincible", false):
-			return
-
-		mood += calcmood(1)
-		#showly neutralize in lerp but im going to be honesst they basically do nothing
-
-		mood = snappedf(mood, 0.01)
 
 
-		mood = clamp(mood, minmood, maxmood)
-
-		mood = lerp(mood + tempOffset, 0.0, 0.01)
-		if gbData.devMode:
-			print(str("mood: ", mood))
-			print(str("tick: ", calcmood(1.0)))
-		if gbData.settings["lobotomize"]:
-			mood = 0.0
-
-		_sync_mood()
-		
+func moodCheck(delta: float = 1.0) -> float:
+	if gbData.settings.get("invincible", false):
 		return mood
 
+	mood += calcmood(1) * delta / 1.5
+	mood = clamp(mood, minmood, maxmood)
+
+
+	var pull: float = 1.0 - pow(1.0 - normalRate, delta)
+	mood = lerp(mood, 0.0, pull)
+
+	mood = clamp(mood, minmood, maxmood)
+	mood = snappedf(mood, 0.05)
+	if gbData.devMode:
+		print(str("mood: ", clamp(mood + tempOffset, minmood, maxmood)))
+		print(str("tick: ", calcmood(1.0)))
+	if gbData.settings["lobotomize"]:
+		mood = 0.0
+
+	_sync_mood()
+
+	# folded into the saved baseline, so its own tween is the only
+	# thing controlling its decay
+	return clamp(mood + tempOffset, minmood, maxmood)
 func tempCalc(total: float = 0.0):
 	total -= clamp(((1.0 - (gbData.data.save["health"] * 0.01)) * 3), 0.0, 3)
 	total = clamp(total, minmood, maxmood)
@@ -69,7 +71,9 @@ func calcmood(total: float):
 	if mas.ragdolled and not mas.isSleeping:
 		if gbData.devMode:
 			print("dragged so substract")
-		total += 1.5
+		total -= 2.25
+	if mas.isSleeping:
+		total += 1.75
 	total -= clamp(((1.0 - (gbData.data.save["hunger"] * 0.01)) * 1), 0.0, 1)
 	#trust
 	total -= clamp(((1.0 - (gbData.data.save["tired"] * 0.01)) * 1), 0.0, 1)
