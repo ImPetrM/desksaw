@@ -105,7 +105,7 @@ func resize(nx, ny, isForce = "no") -> String:
 	var ey = str(ny).to_float()
 	if (ex < 200 or ey < 100) and isForce == "no":
 		Console.warning("Resizing the console this small is not reccomended!")
-		return "Type 'resizeConsole <x> <y> force' if you are sure"
+		return "Type '[url=resizeConsole {0} {1} force]resizeConsole {0} {1} force[/url]' if you are sure".format([nx, ny])
 	root.size.x = ex
 	root.size.y = ey
 
@@ -148,7 +148,7 @@ func _ready():
 	Console.create_command("expieID", toggleExpieDebugIDs, "toggles debug IDs for expies")
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
-	Console.print("You can reopen this console any time by Ctrl + Right Clicking on any Desksawian!")
+	Console.print("[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]")
 	Console.execute("setMonitor 0")
 	#setting stuff that would probably have a better solution to it
 
