@@ -49,7 +49,7 @@ var getUpTimer := 5.0
 ##How long does it take for the node to send dialogue after getting up.
 var getUpTimerMsg := 1.4
 
-var tick: float = 4
+var tick: float = 5
 
 
 enum emotionz {
@@ -79,7 +79,7 @@ func _ready() -> void:
 
 func sleep():
 	while get_tree():
-			print("2")
+			#print("2")
 			if sleepHandler.sleepCheck() < 10.0:
 				sleepParticle.emitting = false
 				isSleeping = false
@@ -90,11 +90,11 @@ func sleep():
 			faceSys.setEmotion("sleep")
 			moveSys.ragdoll(false)
 			ragdolled = true
-			sleepHandler.tiredness -= .1
+			sleepHandler.tiredness -= 0.125
 			moodSys.mood += 0.025
 
 
-			await get_tree().create_timer(tick / 5).timeout
+			await get_tree().create_timer(tick / 7).timeout
 	pass
 
 func checker():
@@ -104,7 +104,7 @@ func checker():
 		await get_tree().create_timer(tick).timeout
 		hungerHandler.hungercheck()
 		var sleepN = sleepHandler.sleepCheck()
-		var moodN = moodSys.moodCheck()
+		var moodN = moodSys.moodCheck(.5)
 		if not shocked and not isSleeping:
 			#sleep stuff
 			currentEmotion = emotionz.normal
@@ -144,7 +144,7 @@ func _physics_process(delta: float) -> void:
 
 func shock():
 	shocked = true
-	moodSys._tempVal(-5.0, 5)
+	moodSys._tempVal(-5.0, 15)
 	faceSys.setEmotion("panic")
 
 	dialogueSys.pool = data.screamBIG

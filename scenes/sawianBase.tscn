@@ -1692,6 +1692,7 @@ _data = {
 }
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kv3oh"]
+friction = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bitre"]
 size = Vector2(13, 4)
