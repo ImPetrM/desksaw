@@ -16,7 +16,7 @@ extends Node
 
 @export var defheadnose: Node2D
 
-@export var ragdollspeed: float = 700.0
+@export var ragdollspeed: float = 575.0
 
 #@export var pinNode: Node2D
 
@@ -27,9 +27,9 @@ var flip = false
 var backwards = false
 var dir: float = 0.0
 var wander = true
-var friction: float = 30.0
+var friction: float = 1.0
 var speedacc: float = 20.0
-var maxspeed: float = 280.0 # you will understand what the one is for later
+var maxspeed: float = 240.0 # you will understand what the one is for later
 #i literally forgot what the one was for
 var jumpPowCap: float = -600.0
 var jumpPower: float = -600.0
@@ -44,7 +44,7 @@ var valAngularPinDown
 var notragdolled = true
 
 enum states {
-	moving, idle, ragdoll
+	moving, idle, ragdoll, jumping, falling
 }
 var currstate = states.idle
 
@@ -55,32 +55,37 @@ func _ready() -> void:
 	#invertPoints(false, true)
 	pass
 func _physics_process(delta: float) -> void:
-	if dir != 0.0:
-		initswithc(states.moving)
-	else:
-		initswithc(states.idle)
-	
-	phystate(delta)
-
-
-	detFlip()
-	headIKf()
 	jumpTimer -= delta
+
+	
+	if !floorRay.is_colliding() and abs(rigid.linear_velocity.y) > 2:
+		if rigid.linear_velocity.y > 0:
+			initswithc(states.falling)
+		else:
+			initswithc(states.jumping)
+	else:
+		if dir != 0.0:
+			initswithc(states.moving)
+		else:
+			initswithc(states.idle)
+	headIKf()
 	checkJump()
+	detFlip()
+	phystate(delta)
 	pass
 
 func headIKf():
-	var dirx: float = sign(rigid.get_global_mouse_position().x - rigid.global_position.x)
+	var dirx: float = sign(rigidtorso.get_global_mouse_position().x - rigidtorso.global_position.x)
 	var facing: float = -1.0 if flip else 1.0
 
 	var mouse_pos: Vector2 = headIk.get_global_mouse_position()
-	var dist: float = rigid.global_position.distance_to(headIk.get_global_mouse_position())
+	var dist: float = rigidtorso.global_position.distance_to(headIk.get_global_mouse_position())
 
 	if dist <= 300.0:
 		lookback = dirx != facing
 		if dirx != facing:
-			mouse_pos.x = rigid.global_position.x - (mouse_pos.x - rigid.global_position.x)
-			mouse_pos.y = (rigid.global_position.y - 300) - (mouse_pos.y - rigid.global_position.y)
+			mouse_pos.x = rigidtorso.global_position.x - (mouse_pos.x - rigidtorso.global_position.x)
+			mouse_pos.y = (rigidtorso.global_position.y - 300) - (mouse_pos.y - rigidtorso.global_position.y)
 
 		headIk.global_position = headIk.global_position.lerp(mouse_pos, .05)
 	else:
@@ -94,7 +99,18 @@ func initswithc(state: states):
 		states.idle:
 			animplay.speed_scale = 1
 			animplay.play("idleagain")
+			print("idle")
 			pass
+		states.jumping:
+			animplay.speed_scale = 1
+			animplay.play("jump")
+			print("jump")
+		states.falling:
+			print("Falling")
+			animplay.speed_scale = 1
+			animplay.play("fall")
+		states.moving:
+			print("moving")
 
 	pass
 

@@ -206,11 +206,9 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="lobotomize" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=677617191]
-visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
-disabled = true
 toggle_mode = true
 icon = ExtResource("6_7udsa")
 alignment = 2
@@ -231,7 +229,8 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
-text = "Mood stuff (unavailable at the moment)"
+text = "Disable Mood
+"
 scroll_active = false
 vertical_alignment = 1
 
@@ -404,6 +403,7 @@ offset_right = 20.0
 offset_bottom = 227.975
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.0018087183
 text = "Toggle expie speech sounds"
 scroll_active = false
 vertical_alignment = 1

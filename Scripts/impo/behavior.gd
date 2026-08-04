@@ -1,10 +1,13 @@
 extends Node
-
+@export var sleepParticle: CPUParticles2D
 
 @onready var faceSys = $faceHandler
 @onready var moodSys = $moodHandler
 @onready var moveSys = $movementHandler
+@onready var sleepHandler = $sleepManager
+@onready var hungerHandler = $hungerHandler
 @onready var dialogueSys = $dialogue
+@onready var hunger = $dialogue
 
 @onready var data = gbData.text.diaGlobal
 
@@ -29,14 +32,31 @@ var wander := true
 ##Is the node currently in shocked mode.
 var shocked := false
 
+var isTired := false
+
+var isSleeping := false
+##Is the node currently in hunryg mode.
+var isHungry := false
+
+##Is the node currently in shocked mode.
+var isSad := false
+
+var isDead := false
 #might be worth it change most of the timers in this script with variables
 #so we can avoid magic numbers
 ##How long does it take the node to get up after being ragdolled.
 var getUpTimer := 5.0
 ##How long does it take for the node to send dialogue after getting up.
-var getUpTimerMsg := 3.0
+var getUpTimerMsg := 1.4
+
+var tick: float = 4
 
 
+enum emotionz {
+	normal, sad, sleep, tired, scared, panic, happy
+}
+
+var currentEmotion = emotionz.normal
 func _ready() -> void:
 	# Persistence logging:
 	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1) # remove "/" at end
@@ -59,6 +79,66 @@ func _ready() -> void:
 	tempRagdoll()
 	wandering()
 	passivetalk()
+	checker()
+
+
+func sleep():
+	while get_tree():
+			print("2")
+			if sleepHandler.sleepCheck() < 10.0:
+				sleepParticle.emitting = false
+				isSleeping = false
+				moveSys.ragdoll(true)
+				ragdolled = false
+				break
+			sleepParticle.emitting = true
+			faceSys.setEmotion("sleep")
+			moveSys.ragdoll(false)
+			ragdolled = true
+			sleepHandler.tiredness -= .1
+			moodSys.mood += 0.025
+
+
+			await get_tree().create_timer(tick / 5).timeout
+	pass
+
+func checker():
+	while get_tree():
+		#this was calling each function like 90 times per check which is why everyting was very extreme!
+		#DONT DO THAT MISTAKE AGAIN!
+		await get_tree().create_timer(tick).timeout
+		hungerHandler.hungercheck()
+		var sleepN = sleepHandler.sleepCheck()
+		var moodN = moodSys.moodCheck()
+		if not shocked and not isSleeping:
+			#sleep stuff
+			currentEmotion = emotionz.normal
+			if sleepN > 80.0:
+				if !isTired:
+					dialogueSys.pool = data.sleepy
+					dialogueSys.send()
+				isTired = true
+				currentEmotion = emotionz.tired
+				print("tired")
+				if sleepHandler.sleepCheck() > 95.0:
+					isSleeping = true
+					print("sleeping")
+					sleep()
+			else:
+				isTired = false
+
+			#isSad s	
+			if moodN < -20.0:
+				isSad = true
+				currentEmotion = emotionz.sad
+			else:
+				isSad = false
+
+			if moodN > 50.0:
+				currentEmotion = emotionz.happy
+
+			faceSys.setEmotion(emotionz.keys()[currentEmotion])
+
 
 func _physics_process(delta: float) -> void:
 	if not ragdolled and (abs(moveSys.rigid.linear_velocity.x) > moveSys.ragdollspeed or beingDragged):
@@ -68,10 +148,8 @@ func _physics_process(delta: float) -> void:
 		moveSys.dir = 0
 
 func shock():
-	if shocked:
-		return
 	shocked = true
-
+	moodSys._tempVal(-5.0, 5)
 	faceSys.setEmotion("panic")
 
 	dialogueSys.pool = data.screamBIG
@@ -83,7 +161,7 @@ func shock():
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("sad")
 	await get_tree().create_timer(13).timeout
-	faceSys.setEmotion("normal")
+
 
 	shocked = false
 
@@ -107,6 +185,8 @@ func tempRagdoll() -> void:
 	moveSys.rigid.collision_layer = 2
 	moveSys.rigid.collision_mask = 1
 	moveSys.rigid.freeze = false
+	moveSys.rigid.linear_velocity.x = 0.0
+	moveSys.rigid.linear_velocity.y = 0.0
 	moveSys.rigid.global_position.x = moveSys.rigidtorso.global_position.x
 	moveSys.rigid.global_position.y = moveSys.rigidtorso.global_position.y
 	moveSys.ragdoll(true)
@@ -129,58 +209,46 @@ func tempRagdoll() -> void:
 	pet_count = 0
 	pet_timer.stop()
 
-func panicAttack():
-	if moodSys.tick > -4.5 or moodSys.mood >= 20.0 or settings.lobotomize:
-		return
-
-	faceSys.setEmotion("sad")
-	moveSys.dir = 1 if moveSys.rigid.global_position.x < float(GlobalVariable.screenWidth / 2) else -1
-
-	dialogueSys.pool = data.get("VeryLowPassive", [])
-	dialogueSys.speedMod = 1.3
-	dialogueSys.send()
-	
-
-	await get_tree().create_timer(3).timeout
-
-	moveSys.dir = 0
-	dialogueSys.pool = data.get("panic", [])
-	dialogueSys.speedMod = 1.3
-	dialogueSys.send()
-	await get_tree().create_timer(1).timeout
-	moveSys.animplay.play("dance")
-
-	await get_tree().create_timer(2).timeout
 
 func passivetalk():
 	while true:
 		if !gbData.settings["mutePassive"]:
-			await get_tree().create_timer(randf_range(24.5, 100.5)).timeout
-			if not beingDragged:
-				dialogueSys.pool = data.passive
-				dialogueSys.speedMod = 1.3
+			await get_tree().create_timer(randf_range(44.5, 66.5)).timeout
+			if not beingDragged and not isSleeping and not shocked:
+				dialogueSys.pool = data.Passive
+				match currentEmotion:
+					emotionz.normal:
+						dialogueSys.pool = data.Passive
+					emotionz.happy:
+						dialogueSys.pool = data.HappyPassive
+					emotionz.sad:
+						dialogueSys.pool = data.VeryLowPassive
+				dialogueSys.speedMod = 1.0
 				dialogueSys.send()
 		else:
 			await get_tree().create_timer(5.0).timeout
 
 func wandering():
-	while wander:
-		await get_tree().create_timer(randi_range(4, 8)).timeout
+	while get_tree():
+		if wander:
+			await get_tree().create_timer(randi_range(4, 8)).timeout
 
-		var center = GlobalVariable.screenWidth / 2.0
-		var ex = moveSys.rigid.global_position.x
-		var offset = ex - center
-		var th = GlobalVariable.screenWidth * 0.25
+			var center = GlobalVariable.screenWidth / 2.0
+			var ex = moveSys.rigid.global_position.x
+			var offset = ex - center
+			var th = GlobalVariable.screenWidth * 0.25
 
-		if offset > th:
-			moveSys.dir = -1
-		elif offset < -th:
-			moveSys.dir = 1
+			if offset > th:
+				moveSys.dir = -1
+			elif offset < -th:
+				moveSys.dir = 1
+			else:
+				moveSys.dir = randi_range(-1, 1)
+
+			await get_tree().create_timer(randf_range(.5, 2.0)).timeout
+			moveSys.dir = 0
 		else:
-			moveSys.dir = randi_range(-1, 1)
-
-		await get_tree().create_timer(randf_range(.5, 2.0)).timeout
-		moveSys.dir = 0
+			await get_tree().create_timer(randi_range(4, 8)).timeout
 
 func petLimb(limb: RigidBody2D):
 	AudioManager.play_sfx(AudioManager.thudwoosh)
@@ -188,9 +256,12 @@ func petLimb(limb: RigidBody2D):
 		AudioManager.play_random(AudioManager.expie_bark, 0.25, 0, 1, true, 0.5, 'exp_pet')
 	else:
 		AudioManager.play_random(AudioManager.expie_whine, 0.25, 0, 1, true, 1, 'exp_pet')
-		
+	if isSleeping:
+		return
 	#print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
+	moodSys.mood += 0.5
+	moodSys._tempVal(5.0, 13)
 	pet_timer.start(pet_timer_inc)
 	pet_count += 1
 	
@@ -206,7 +277,7 @@ func petLimb(limb: RigidBody2D):
 	if sprite:
 		var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
-		tween.tween_property(sprite, "scale", Vector2(1.15, 0.85), 0.08)
+		tween.tween_property(sprite, "scale", Vector2(1.07, 0.93), 0.08)
 		tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.25)
 	
 	if not dialogueSys.is_dialogue_playing():
@@ -223,3 +294,16 @@ func _on_debugToggle_signal():
 		$"../textParent/DebugText".text = "Test"
 	else:
 		$"../textParent/DebugText".text = ""
+
+func struggle():
+	while get_tree():
+		randomize()
+		await get_tree().create_timer(.1).timeout
+		if ragdolled:
+			var random_torque = randf_range(-1500.0, 1500.0)
+			moveSys.rigidtorso.apply_torque(random_torque)
+
+			var random_force = Vector2(randf_range(-1, 1), randf_range(-1, -2.0))
+			moveSys.rigidtorso.apply_central_impulse(random_force * .3)
+
+			await get_tree().create_timer(randf_range(.5, 1.2), false).timeout

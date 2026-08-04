@@ -1,15 +1,31 @@
 {
 	"diaGlobal": {
 		"THIS IS ALL PLACEHOLDERS!!! FINAL ONE WONT BE THIS BORING! IN THE MEAN TIME HAVE FUN MESSING AROUND WITH THIS": [],
-		"passive": [
-			"This test is kinda boring....",
-			"What exactly are we testing this time?..",
-			"What kind of test is this?...",
-			"This is really weird....",
-			"Im very bored",
-			"When can I go back?...",
-			"This test kinda sucks....",
-			"waow"
+		"HappyPassive": [
+			"[wave]:3",
+			"[wave]I like this!",
+			"[wave]I'm enjoying myself...",
+			"[wave]I enjoy your company.",
+			"[wave]Hello!",
+			"[wave]yay!",
+			"[wave]I feel great!",
+			"[wave]Waow!"
+		],
+		"Passive": [
+			"I feel alright...",
+			"This test is weird...",
+			"... Nothing",
+			"Uhhh......",
+			"When will this test end?...",
+			"This test kinda sucks.",
+			"Hello?"
+		],
+		"VeryLowPassive": [
+			"[shake]I want to go back!",
+			"[shake]I- I hate this!...",
+			"[shake]Please!",
+			"[shake]I want to leave!",
+			"[shake]I- I don't want to be here!"
 		],
 		"screamBIG": [
 			"[shake]WAHHHAHHHHHHHHHHHHHHH!!!!!!",
@@ -20,7 +36,6 @@
 		"beingDragged": [
 			"[shake]Put me down! Please...",
 			"I don't like this...",
-			"[wave]Awawawawa...",
 			"Can you put me down? Please?!"
 		],
 		"getUp": [
@@ -45,6 +60,17 @@
 		"start": [
 			"... Hello?",
 			"Uhhhhh....."
+		],
+		"lastmoments": [
+			"[stupid][shake]Ghh... ugh...",
+			"[stupid][shake]HHHHHhp... AAAAAcca...",
+			"[stupid][shake]K-kff... hh..",
+			"[stupid][shake]M... n-nh..."
+		],
+		"sleepy": [
+			"[wave]Nap time....",
+			"[wave]Im sleepy...",
+			"[wave]*yawn*"
 		]
 	}
 }

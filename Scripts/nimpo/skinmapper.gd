@@ -7,10 +7,10 @@ var currtextures: Array = []
 @export
 var alltextures: Array = []
 #paths
+signal mappe(currtextures: Dictionary)
 var resPath = "res://assets/Body/"
 var userSkinPath = GlobalVariable.userSkinPath
 #furry girlfirend 
-signal mappe(currtextures: Dictionary)
 func _ready() -> void:
 	if userSkinPath == "user://skin/Default/": userSkinPath = resPath
 	print("Using '", userSkinPath, "' for new expie's skin")

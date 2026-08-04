@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="desktop expie"
+config/name="deskSaw"
 config/version="0.0.2"
 run/main_scene="uid://cqg8h324jtya"
 config/use_custom_user_dir=true
@@ -95,3 +95,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
