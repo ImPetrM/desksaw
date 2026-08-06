@@ -85,9 +85,11 @@ func newsave():
 	#set data json to template
 	data = loadjson(template).duplicate(true)
 
+	#apparentally that function does nothing and hasnt done anything for a while??? or people are just lysing to me.
+	#randomize()
 
-	randomize()
-
+#	what does ts even do
+	#pingpong()
 	var firstPetId = addPet("Default")
 	data["saw"][firstPetId]["mood"] += randi_range(-5, 5)
 	data["saw"][firstPetId]["hunger"] -= randi_range(1, 5)
@@ -96,9 +98,6 @@ func newsave():
 	savetodisk(savePath, data)
 
 
-## Creates a brand-new persisted pet from sawTemplate, assigns it the next free
-## id, and returns that id (e.g. "id7") so the caller can hand it to the
-## spawned instance's behavior.gd. Handles allocating/advancing nextPetId itself.
 func addPet(skin: String = "Default") -> String:
 	var newId = "id" + str(int(data.get("nextPetId", 1)))
 	data["nextPetId"] = int(data.get("nextPetId", 1)) + 1
@@ -107,11 +106,16 @@ func addPet(skin: String = "Default") -> String:
 	data["saw"][newId]["skin"] = skin
 
 
+	#
+	data["saw"][newId]["mood"] += randi_range(-5, 5)
+	data["saw"][newId]["hunger"] -= randi_range(1, 5)
+	data["saw"][newId]["trust"] += randi_range(-10, 3)
+
 	savetodisk(savePath, data)
 	return newId
 
 
-## a full reset.
+#delete
 func removePet(id: String) -> void:
 	if not data.get("saw", {}).has(id):
 		return
@@ -165,7 +169,7 @@ If your skin is only on the head, try restarting the app. That usually fixes it.
 	var old_files: PackedStringArray = DirAccess.get_files_at(folder_to_copy)
 	for f: String in old_files:
 		DirAccess.copy_absolute(folder_to_copy + "/" + f, new_dir_path + "/" + f)
-	var old_directories: PackedStringArray = DirAccess.get_directories_at(folder_to_copy)
+	var _old_directories: PackedStringArray = DirAccess.get_directories_at(folder_to_copy)
 
 
 func loadSkin():

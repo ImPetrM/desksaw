@@ -55,9 +55,17 @@ func spawnExpie():
 	instance.global_position.y = - GlobalVariable.screenHeight * 2
 	wrapper.set_meta("Category", "entity")
 	var sawId = instance.get_node_or_null("behavior")
+
 	if sawId:
 		print(sawId.petId)
-		gbData.data["loaded"] = sawId.petId
+		
+		
+		if not gbData.data.has("loaded"):
+			gbData.data["loaded"] = []
+			
+		
+		gbData.data["loaded"].append(sawId.petId)
+
 
 
 func _additem(item: String = "crate"):

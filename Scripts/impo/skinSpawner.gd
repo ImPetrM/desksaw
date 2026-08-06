@@ -53,6 +53,26 @@ func spawnExpie():
 	instance.global_position.x = GlobalVariable.screenWidth / 2
 	instance.global_position.y = - GlobalVariable.screenHeight * 2
 	wrapper.set_meta("Category", "entity")
+	"""
+	# im totally not upset that it took me 20 minutes to fuigye0=fuwerauoasdfg to figure out that this was running seperately
+	from the spawn command.
+	which is why the ids werent being added to the dictionary
+ 	im totally not.
+
+	maybe i should go over prs for an extra hour or two next time
+
+	
+	"""
+	var sawId = instance.get_node_or_null("behavior")
+	if sawId:
+		print(sawId.petId)
+		
+		
+		if not gbData.data.has("loaded"):
+			gbData.data["loaded"] = []
+			
+		
+		gbData.data["loaded"].append(sawId.petId)
 
 func reloadDisplayExpie():
 	for child in get_children():
@@ -91,7 +111,7 @@ func _on_refresh_pressed():
 
 func _on_previous_pressed():
 	skinIndx -= 1
-	if skinIndx == -1: skinIndx = len(SkinFolders)-1 # if we go under min index, loop to max
+	if skinIndx == -1: skinIndx = len(SkinFolders) - 1 # if we go under min index, loop to max
 	refreshDisplayExpie()
 
 func _on_next_pressed():
