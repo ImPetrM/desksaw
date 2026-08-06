@@ -1,11 +1,18 @@
 extends Node
 
-@onready var tiredness: float = gbData.data.save.tired
+@onready var tiredness: float = 40
 
 var maxtired := 100.0
 var mintired := 0.0
 #@onready var trust: float = gbData.data.save.trust
 var likelihood := 0
+var petId: String = ""
+var pet
+
+func loadFromSave(id: String) -> void:
+	petId = id
+	pet = gbData.data["saw"][petId]
+	tiredness = pet.get("tired", tiredness)
 
 func sleepCheck():
 		if gbData.settings["sleepEnabled"]:
@@ -13,7 +20,7 @@ func sleepCheck():
 			print(str(tiredness) + " tiredness")
 			tiredness = snappedf(tiredness, 0.01)
 			tiredness = clamp(tiredness, mintired, maxtired)
-			gbData.data.save.tired = tiredness
+			pet.tired = tiredness
 
 			if !self.get_parent().isSleeping:
 				tiredness += 0.15

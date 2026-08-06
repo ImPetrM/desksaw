@@ -7,34 +7,46 @@ extends Node
 @export var eyeNode: Sprite2D
 @export var mouthNode: Sprite2D
 
-@export var normalRate: float = 0.005
+@export var normalRate: float = 0.009
+#dont mind the numbers here theyre just placeholders until it gets loaded
+var mood: float = 20.0
+var trust: float = 10.0
 
-@onready var mood: float = gbData.data.save.mood
-@onready var trust: float = gbData.data.save.trust
 
+var petId: String = ""
 
 @onready
 var minmood = gbData.settings["minMood"]
 @onready
 var maxmood = gbData.settings["maxMood"]
-
+var pet
 #for temporary events
 var tempOffset: float = 0.0
 #make sure things are updated
 
+
+func loadFromSave(id: String) -> void:
+	petId = id
+	pet = gbData.data["saw"][petId]
+	mood = pet.get("mood", mood)
+	trust = pet.get("trust", trust)
+
 func _sync_mood() -> void:
-	#gbData.data.save.mood = mood
 	minmood = gbData.settings["minMood"]
 	maxmood = gbData.settings["maxMood"]
-	gbData.savetodisk("user://SAVE.json", gbData.data)
 
+	pet["mood"] = mood
+	gbData.data["saw"][petId]["mood"] = mood
+
+	gbData.savetodisk("user://SAVE.json", gbData.data)
+#for temporary offsets
 func _tempVal(offset: float = 0.0, decayLength: float = 0.0):
 	tempOffset = offset
 	var tween := create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "tempOffset", 0.0, decayLength)
 	pass
 
-
+# called every tick byu behavoapf[jas[ghnasdfo[gubsdo[ub ]]]]
 func moodCheck(delta: float = 1.0) -> float:
 	if gbData.settings.get("invincible", false):
 		return mood
@@ -56,11 +68,10 @@ func moodCheck(delta: float = 1.0) -> float:
 
 	_sync_mood()
 
-	# folded into the saved baseline, so its own tween is the only
-	# thing controlling its decay
+
 	return clamp(mood + tempOffset, minmood, maxmood)
 func tempCalc(total: float = 0.0):
-	total -= clamp(((1.0 - (gbData.data.save["health"] * 0.01)) * 3), 0.0, 3)
+	total -= clamp(((1.0 - (gbData.data["saw"][petId]["health"] * 0.01)) * 3), 0.0, 3)
 	total = clamp(total, minmood, maxmood)
 	return total
 
@@ -74,15 +85,15 @@ func calcmood(total: float):
 		total -= 2.25
 	if mas.isSleeping:
 		total += 1.75
-	total -= clamp(((1.0 - (gbData.data.save["hunger"] * 0.01)) * 1), 0.0, 1)
+	total -= clamp(((1.0 - (pet["hunger"] * 0.01)) * 1), 0.0, 1)
 	#trust
-	total -= clamp(((1.0 - (gbData.data.save["tired"] * 0.01)) * 1), 0.0, 1)
-	print(str(clamp(((1.0 - (gbData.data.save["tired"] * 0.01)) * 1), 0.0, 1)) + " 123123")
-	if gbData.data.save["hunger"] >= 85.0:
+	total -= clamp(((1.0 - (pet["tired"] * 0.01)) * 1), 0.0, 1)
+	print(str(clamp(((1.0 - (pet["tired"] * 0.01)) * 1), 0.0, 1)) + " 123123")
+	if pet["hunger"] >= 85.0:
 		total += 0.25
 	#clamp to user settings
 	total = clamp(total, minmood, maxmood)
-	#undo all of it
+
 
 	#print(total)
 	return total

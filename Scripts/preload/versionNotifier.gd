@@ -44,9 +44,8 @@ func _request_done(result, code, headers, body):
 			"Current: " + VERSION + "\n
 			https://github.com/dee-dee-catorce/desksaw"
 		)
-		gbData.outdated()
-	else:
-		gbData.checkupdated()
+		#gbData.outdated()
+
 
 func version_is_newer(latest: String, current: String) -> bool:
 	var a = latest.trim_prefix("v").split(".")

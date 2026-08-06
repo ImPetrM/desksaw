@@ -34,7 +34,7 @@ func _ready():
 	GlobalVariable.userSkinPath = "user://skin/" + def + "/"
 
 	if gbData.settings["expiePersistence"]:
-		gbData.temp.expies = gbData.data["save"]["expies"]
+		gbData.temp.expies = gbData.data["loaded"]
 		loadExpiePersistence()
 	else:
 		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
@@ -84,8 +84,38 @@ func update_obj_metas():
 		fileName = dir.get_next()
 	dir.list_dir_end()
 
-
+#rudimentary repairs i hope this holds up lmao
 func loadExpiePersistence():
+	print("loading expies...")
+	#print("Expie persistence data: " + str(gbData.data["save"]["expies"]))
+
+	var pets: Dictionary = gbData.data["saw"]
+
+	if pets.size() > 20:
+		GlobalVariable.persistenceWarning.emit()
+
+		await GlobalVariable.persistenceWarning
+
+
+	for pet_id in pets:
+		var pet: Dictionary = pets[pet_id]
+
+
+		if pet["dead"]:
+			continue
+
+		var skin_name: String = pet["skin"]
+
+		#print("loading '", pet_id, "' with skin '", skin_name, "'...")
+
+		#await get_tree().create_timer(0.25).timeout
+
+		GlobalVariable.userSkinPath = "user://skin/%s/" % skin_name
+		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
+
+		print("loaded ", pet_id)
+
+func OLDloadExpiePersistence():
 	print("loading expies...")
 	print("Expie persistence data: " + str(gbData.data["save"]["expies"]))
 	

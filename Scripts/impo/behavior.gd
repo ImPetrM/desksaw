@@ -32,6 +32,9 @@ var wander := true
 ##Is the node currently in shocked mode.
 var shocked := false
 
+#oh ok
+var petId := ""
+
 var isTired := false
 
 var isSleeping := false
@@ -58,18 +61,16 @@ enum emotionz {
 
 var currentEmotion = emotionz.normal
 func _ready() -> void:
-	# Persistence logging:
-	var userSkinPath = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1) # remove "/" at end
-	var skinName = userSkinPath.substr(userSkinPath.rfind("/") + 1) # remove first half of path, getting just name
-	if !gbData.temp["expies"].has(skinName): gbData.temp["expies"][skinName] = 0 # check if skin has been spawned yet
-	gbData.temp["expies"][skinName] += 1 # update number of skins
-	# ---
+
+	if petId == "":
+		var skinName = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1) 
+		skinName = skinName.substr(skinName.rfind("/") + 1) #
+		petId = gbData.addPet(skinName)
+
+	get_parent().get_parent().set_meta("itemName", petId)
 	
-	get_parent().get_parent().set_meta("itemName", skinName)
-	
-	# Set debug text to Node's ID:
-	#$"../textParent/DebugText".text = "Test"
-	#print(get_parent().get_parent().get_children().find(self))
+
+
 	connect("toggleDebugText", _on_debugToggle_signal)
 	
 	faceSys.setEmotion("default")
@@ -78,6 +79,12 @@ func _ready() -> void:
 
 	moveSys.rigid.global_position.x = GlobalVariable.screenWidth / 2
 	moveSys.rigid.global_position.y = - GlobalVariable.screenHeight * 2
+
+
+	moodSys.loadFromSave(petId)
+	hungerHandler.loadFromSave(petId)
+	sleepHandler.loadFromSave(petId)
+
 	tempRagdoll()
 	wandering()
 	passivetalk()
@@ -290,7 +297,7 @@ func petLimb(limb: RigidBody2D):
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("normal")
 
-
+#what does this even do tho
 func _on_debugToggle_signal():
 	if $"../textParent/DebugText".text == "":
 		$"../textParent/DebugText".text = "Test"

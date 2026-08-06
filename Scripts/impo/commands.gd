@@ -54,6 +54,10 @@ func spawnExpie():
 	instance.global_position.x = GlobalVariable.screenWidth / 2
 	instance.global_position.y = - GlobalVariable.screenHeight * 2
 	wrapper.set_meta("Category", "entity")
+	var sawId = instance.get_node_or_null("behavior")
+	if sawId:
+		print(sawId.petId)
+		gbData.data["loaded"] = sawId.petId
 
 
 func _additem(item: String = "crate"):
@@ -81,17 +85,18 @@ func clearObj(category: String = "object"):
 	
 
 	for child in get_tree().current_scene.get_children():
+		var pet = gbData.data["saw"]
 		if not exclude.has(child.name):
 			if category == child.get_meta("Category") or category == child.get_meta("itemName"):
-				if gbData.data["save"]["expies"].has(child.get_meta("itemName")): # check if deleting an expie
-					gbData.temp["expies"].erase(category)
-					gbData.data["save"]["expies"].erase(category) # remove from persistence data if there
+#temporarily make it like this i swear ill make it fixed later
+			#	if gbData.data["save"]["expies"].has(child.get_meta("itemName")): # check if deleting an expie
+					#gbData.temp["expies"].erase(category)
+				#	gbData.data["save"]["expies"].erase(category) # remove from persistence data if there
+				pet = {}
 				await get_tree().create_timer(.05).timeout
 				child.queue_free()
 
 	if category == "entity":
-		gbData.temp["expies"] = {} # clear temp data
-		gbData.data["save"]["expies"] = {} # clear all expie persistence if entities are cleared
 		print("cleared expie persistence data")
 
 

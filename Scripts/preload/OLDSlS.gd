@@ -1,13 +1,19 @@
 extends Node
 
+class_name SaveLoadSys
+
 
 """
-i had to redo this because the hive mind bug was really weird
+the text wall that was here was literally never correct in the first place. 
+idk what i was on when i wrote it
+
+
 heres the saving stuffs.,
 
-s[dfuiogh iopsdfg uioesfigsdhuiopashdfyg ioasfg oaisud f 9ASDYFH ASYUISDUIOFGSH G SDVPASPUHV ZSDG OASG PASRV ASG ASDFGSD GSDFXGB SDFGH SDF ASFZGASDFG SDFGG SDFG  3QTFGWE9RUGH9-SERG H3QER GUOH]
 
 """
+
+var temp = {"expies": {}} # temp dictionary, not to be saved but used instead used to store things like expies currently spawned (to add to save if setting is enabled mid-play)
 
 var data = {}
 var text = {}
@@ -26,7 +32,7 @@ const savePath = "user://SAVE.json"
 const transPath = "user://TRANSLATION.json"
 const conPath = "user://CONFIG.json"
 const skinfilepath = "user://skin"
-var temp = {"expies": {}}
+
 
 func _ready():
 	# Load save file
@@ -34,11 +40,7 @@ func _ready():
 		data = loadjson(savePath)
 		var templateData = loadjson(template)
 		fixMissing(data, templateData)
-
-		for petId in data.get("saw", {}).keys():
-			fixMissing(data["saw"][petId], templateData["sawTemplate"])
-		if data.get("saw", {}).is_empty():
-			addPet("Default")
+		if data["save"]["expies"] == {}: data["save"]["expies"] = {"Default": 1} # force a default expie to spawn if no expie data on load. avoids crash
 
 	else:
 		newsave()
@@ -80,43 +82,16 @@ func newsave():
 	if not ResourceLoader.exists(template):
 		print("template not found at: ", template)
 		return
-
-
+	
 	#set data json to template
 	data = loadjson(template).duplicate(true)
 
-
 	randomize()
 
-	var firstPetId = addPet("Default")
-	data["saw"][firstPetId]["mood"] += randi_range(-5, 5)
-	data["saw"][firstPetId]["hunger"] -= randi_range(1, 5)
-	data["saw"][firstPetId]["trust"] += randi_range(-10, 0)
+	data.save["mood"] += randi_range(-5, 5)
+	data.save["hunger"] -= randi_range(1, 5)
+	data.save["trust"] += randi_range(-10, 0)
 
-	savetodisk(savePath, data)
-
-
-## Creates a brand-new persisted pet from sawTemplate, assigns it the next free
-## id, and returns that id (e.g. "id7") so the caller can hand it to the
-## spawned instance's behavior.gd. Handles allocating/advancing nextPetId itself.
-func addPet(skin: String = "Default") -> String:
-	var newId = "id" + str(int(data.get("nextPetId", 1)))
-	data["nextPetId"] = int(data.get("nextPetId", 1)) + 1
-
-	data["saw"][newId] = data["sawTemplate"].duplicate(true)
-	data["saw"][newId]["skin"] = skin
-
-
-	savetodisk(savePath, data)
-	return newId
-
-
-## a full reset.
-func removePet(id: String) -> void:
-	if not data.get("saw", {}).has(id):
-		return
-	data["saw"].erase(id)
-	data["everPresentAcrossSaves"]["PetsKilled"] += 1
 	savetodisk(savePath, data)
 
 func newTrans():
@@ -212,7 +187,9 @@ func InitAutosave():
 		await get_tree().create_timer(3.0).timeout
 		if gbData.devMode:
 			print("saved")
-
+		if gbData.settings.expiePersistence: # check if persistence is enabled
+			gbData.data["save"]["expies"] = gbData.temp.expies # copy temp expie data to save
+		
 		savetodisk(savePath, data)
 		savetodisk(conPath, settings)
 
