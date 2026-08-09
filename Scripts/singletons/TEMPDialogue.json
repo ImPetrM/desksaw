@@ -70,7 +70,34 @@
 		"sleepy": [
 			"[wave]Nap time....",
 			"[wave]Im sleepy...",
-			"[wave]*yawn*"
+			"[wave]*yawn*",
+			"[wave]Im getting sleepy...",
+			"[wave]Getting a little drowsy...",
+			"[wave]Im getting sleepy..."
+		],
+
+		"reallySleepy": [
+			"I have to... lie down...",
+			"My eyes are so heavy...",
+			"I can't... see straight...",
+			"Just some sleep...",
+			"I'm so... worn out...",
+			"Can't keep my eyes open...",
+			"When can I lay down...",
+			"I'm about to fall asleep...",
+			"...",
+			"So tired...",
+			"I'm so sleepy...",
+			"Really tired..."
+		],
+		"hungry": [
+			"Could do with a bite to eat.",
+			"I'm hungry.",
+			"I feel hungry.",
+			"I want to eat!",
+			"I feel peckish.",
+			"Stomach's buggin' me.",
+			"My tummy's all rumbly."
 		]
 	}
 }

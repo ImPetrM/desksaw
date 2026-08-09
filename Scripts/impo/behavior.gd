@@ -1,101 +1,146 @@
 extends Node
-@export var sleepParticle: CPUParticles2D
 
+
+"""
+hey this is like 2 days before 0.2 releases
+
+most of this script is 2014 toby fox level bullshit
+
+and i need to recode it asap
+
+
+im putting this here as a reminder
+
+"""
+
+
+#referebces for systems to be used by this script
 @onready var faceSys = $faceHandler
 @onready var moodSys = $moodHandler
 @onready var moveSys = $movementHandler
 @onready var sleepHandler = $sleepManager
 @onready var hungerHandler = $hungerHandler
 @onready var dialogueSys = $dialogue
-@onready var hunger = $dialogue
+@onready var detectRange = $detRadius
+
 
 @onready var data = gbData.text.diaGlobal
-
 @onready var settings = gbData.settings
-
 ##Timer used for keeping time since the last recent pet.
 @onready var pet_timer: Timer = $petTimer
+
+@export var sleepParticle: CPUParticles2D
 ##How much does the pet timer last. Keep it higher getUpTimer so the wrong dialogue
 ##doesn't get sent.
 var pet_timer_inc := 10.0
 ##How many times has the node been pet recently.
 var pet_count := 0
 
-##Is the node being currently dragged.
-var beingDragged := false
-##Is the node currently in ragdoll mode.
-var ragdolled := false
-##Did the node get launched by the player.
-var launchflag := false
-##Is the node currently in wandering mode.
-var wander := true
-##Is the node currently in shocked mode.
-var shocked := false
 
-## fguiosdfgiojsdgfo[jdfgio[jsdfgfjsdfgjbncvmbcvncv]]
+var beingDragged := false
+
+var ragdolled := false
+
+var launchflag := false
+
+
+var wander := true
+
+
+# every spawned sawian will be assigned an id regardless of if they exist for like a few seconds or days on end.
+# this is how they are stored in SAVE.json
 var petId := ""
 
+
+#status, stuff
+# used for emotions and others related
 var isTired := false
-
 var isSleeping := false
-##Is the node currently in hunryg mode.
 var isHungry := false
-
-##Is the node currently in shocked mode.
 var isSad := false
+var shocked := false
 
+
+#unused atm
 var isDead := false
+
+
 #might be worth it change most of the timers in this script with variables
 #so we can avoid magic numbers
-##How long does it take the node to get up after being ragdolled.
+##How long does it take the sawian to get up after being ragdolled.
 var getUpTimer := 5.0
-##How long does it take for the node to send dialogue after getting up.
-var getUpTimerMsg := 1.4
+##How long does it take for the sawian to send dialogue after getting up.
+var getUpTimerMsg := 1.5
 
+#you get the idea
+var hungryRemind := 90.0
+
+
+
+
+#ricktate in seconds for updating status
 var tick: float = 5
 
-
+# table for every emotion avaibalekl to them
 enum emotionz {
 	normal, sad, sleep, tired, scared, panic, happy
 }
-
 var currentEmotion = emotionz.normal
-func _ready() -> void:
 
+func _ready() -> void:
 	if petId == "":
-		var skinName = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1) 
-		skinName = skinName.substr(skinName.rfind("/") + 1) 
+		var skinName = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1)
+		skinName = skinName.substr(skinName.rfind("/") + 1)
 		petId = gbData.addPet(skinName)
 
 	get_parent().get_parent().set_meta("itemName", petId)
 	
+
+	#im very sorry that i had to comment this out i have no idea what its supposed to do and it was throwing an error
+	"""
 	# Set debug text to Node's ID:
-	#$"../textParent/DebugText".text = "Test"
-	#print(get_parent().get_parent().get_children().find(self))
+	$"../textParent/DebugText".text = "Test"
+	print(get_parent().get_parent().get_children().find(self))
 	connect("toggleDebugText", _on_debugToggle_signal)
+	"""
+
+	#setup For spawn
+	_initalSpawn()
 	
+
+func _initalSpawn() -> void:
+	#teag you can like guess what this does
 	faceSys.setEmotion("default")
-	
+	#this specific line  is the reason why there was a bug in v0.1 and below where the face was permanantly in a shocked state
+	#not the entire reason but its why it was locked into this emotion
 	moveSys.sigragdoll.connect(shock)
 
+
+	#this dont even work properly it always puts it somewhere else.
 	moveSys.rigid.global_position.x = GlobalVariable.screenWidth / 2
-	moveSys.rigid.global_position.y = - GlobalVariable.screenHeight * 2
+	moveSys.rigid.global_position.y = GlobalVariable.screenHeight * 2
 
-
+	#load the stats from the id (for presistance)
 	moodSys.loadFromSave(petId)
 	hungerHandler.loadFromSave(petId)
 	sleepHandler.loadFromSave(petId)
 
+
 	tempRagdoll()
+	
+	#initialized stuff
+
 	wandering()
 	passivetalk()
 	checker()
-
+	pass
 
 func sleep():
+	#handle sleeep loop this is probably one of the worst ways i couldve handled this ill fix it later
 	while get_tree():
 			#print("2")
-			if sleepHandler.sleepCheck() < 10.0:
+			if sleepHandler.sleepCheck() < 5.0:
+				#break if its below 10 (aka good enough to get up)
 				sleepParticle.emitting = false
 				isSleeping = false
 				moveSys.ragdoll(true)
@@ -124,13 +169,26 @@ func checker():
 			#sleep stuff
 			currentEmotion = emotionz.normal
 			if sleepN > 80.0:
+				var sleepflag1 = false
+
 				if !isTired:
+					sleepflag1 = false
 					dialogueSys.pool = data.sleepy
 					dialogueSys.send()
 				isTired = true
 				currentEmotion = emotionz.tired
 				print("tired")
-				if sleepHandler.sleepCheck() > 95.0:
+				
+
+				if sleepN > 92.5:
+					if !sleepflag1:
+						sleepflag1 = true
+						dialogueSys.pool = data.sleepy
+						dialogueSys.send()
+
+
+
+				if sleepN > 95.0:
 					isSleeping = true
 					print("sleeping")
 					sleep()
@@ -147,17 +205,34 @@ func checker():
 			if moodN > 50.0:
 				currentEmotion = emotionz.happy
 
+				#ungry
+			if hungerHandler.hungry < 30.0:
+				if !isHungry:
+					dialogueSys.pool = data.hungry
+					dialogueSys.send()
+
+				
+
 			faceSys.setEmotion(emotionz.keys()[currentEmotion])
 
 
 func _physics_process(delta: float) -> void:
+	#detect speed and aiosdhfopjkasfguopjasfgsdfhcvio[]
+	#and ragdoll based on taht
 	if not ragdolled and (abs(moveSys.rigid.linear_velocity.x) > moveSys.ragdollspeed or beingDragged):
 		tempRagdoll()
 
 	if ragdolled:
 		moveSys.dir = 0
 
-func shock():
+
+"""
+
+green because it needs to catch my attention 
+PLEASE FUCKING RECODE BOTH OF THESE
+
+"""
+func shock() -> void:
 	shocked = true
 	moodSys._tempVal(-5.0, 15)
 	faceSys.setEmotion("panic")
@@ -220,10 +295,15 @@ func tempRagdoll() -> void:
 	pet_timer.stop()
 
 
-func passivetalk():
+
+
+# periodically send a message based on mood
+func passivetalk() -> void:
 	while true:
 		if !gbData.settings["mutePassive"]:
-			await get_tree().create_timer(randf_range(44.5, 66.5)).timeout
+
+			# get rid of magic numbers later pls       \/    \/
+			await get_tree().create_timer(randf_range(33.5, 100.5)).timeout
 			if not beingDragged and not isSleeping and not shocked:
 				dialogueSys.pool = data.Passive
 				match currentEmotion:
@@ -233,12 +313,14 @@ func passivetalk():
 						dialogueSys.pool = data.HappyPassive
 					emotionz.sad:
 						dialogueSys.pool = data.VeryLowPassive
+
+
 				dialogueSys.speedMod = 1.0
 				dialogueSys.send()
 		else:
 			await get_tree().create_timer(5.0).timeout
 
-func wandering():
+func wandering() -> void:
 	while get_tree():
 		if wander:
 			await get_tree().create_timer(randi_range(4, 8)).timeout
@@ -260,6 +342,10 @@ func wandering():
 		else:
 			await get_tree().create_timer(randi_range(4, 8)).timeout
 
+
+"""
+green because i need a reminder to implement different reactions based on mood
+"""
 func petLimb(limb: RigidBody2D):
 	AudioManager.play_sfx(AudioManager.thudwoosh)
 	if randf() < 0.5:
@@ -298,18 +384,22 @@ func petLimb(limb: RigidBody2D):
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("normal")
 
-#ok this didnt really do anything before so im gonna edit it
+
+#i genuinely dont know what this does
 func _on_debugToggle_signal():
 	if $"../textParent/DebugText".text == "":
 		$"../textParent/DebugText".text = "Test"
 	else:
 		$"../textParent/DebugText".text = ""
 
+
+# unused and also this is recycled from my game "Fishy" go play it! It's really good!
+# its not and i barely placed top 500 in gmtk with it
 func struggle():
 	while get_tree():
 		randomize()
 		await get_tree().create_timer(.1).timeout
-		if ragdolled:
+		if ragdolled or beingDragged:
 			var random_torque = randf_range(-1500.0, 1500.0)
 			moveSys.rigidtorso.apply_torque(random_torque)
 
