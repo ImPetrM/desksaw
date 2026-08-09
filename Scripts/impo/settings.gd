@@ -6,11 +6,12 @@ extends Node
 var settings = gbData.settings
 @export var list: Control
 
-var saw
+
 @export var partent: Control
 var sMAP = {
 	"deathBool": {"key": "invincible", "type": "toggle"},
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
+	"useVulkan": {"key": "useVulkan", "type": "toggle"},
 	"expiePersistence": {"key": "expiePersistence", "type": "toggle"},
 	"pixel": {"key": "pixel", "type": "toggle"},
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
@@ -35,7 +36,7 @@ func _ready() -> void:
 		#print("Settings ", settings)
 		pass
 	_initset()
-	saw = gbData.data["saw"]
+	
 	assign_tab_meta_to_leftovers() # does what it says, so if a setting doesnt have 'Tab' meta, its created and "General" is assgined
 	for child in $VSplitContainer/ScrollContainer/ItemList.get_children(): # apply meta tag to say that a setting is not visible by default. e.i. disabled settings
 		if !child.visible:
@@ -93,11 +94,8 @@ func _saveSettings() -> void:
 
 
 func _on_expie_persistence_pressed(): # special case, as if disabled we want to wipe everything
-	if gbData.settings.expiePersistence:
-		gbData.data["save"]["loaded"] = gbData.temp["expies"]
-	else:
-		gbData.temp["expies"] = {}
-		saw = {}
+	if not gbData.settings.expiePersistence:
+		gbData.data["saw"] = {}
 
 
 ### Tab handling:
@@ -151,3 +149,11 @@ func _on_audio_tab_pressed():
 	AudioTabN.button_mask = 0 # disable mouse clicks, so user cannot disable the button
 	hide_all_settings()
 	show_all_tab_type("Audio")
+
+
+
+
+func _on_use_vulkan_toggled(toggled_on: bool) -> void:
+	if toggled_on == gbData.settings.useVulkan: return
+	GlobalVariable._apply_renderer_and_restart(toggled_on)
+	pass # Replace with function body.

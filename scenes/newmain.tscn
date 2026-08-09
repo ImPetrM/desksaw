@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dv3fk2oja8ogf" path="res://Scripts/nimpo/pixeltoggle.gd" id="3_wpfx3"]
 [ext_resource type="Shader" uid="uid://de2e1cyd8inbm" path="res://assets/shaders/pixelp.gdshader" id="4_6uavn"]
 [ext_resource type="PackedScene" uid="uid://bn4qfaris1qqr" path="res://scenes/persistenceWarningPopup.tscn" id="5_8gj0p"]
+[ext_resource type="Texture2D" uid="uid://nqsq8yjmnbnu" path="res://assets/objectSpr/THEFOLLOWER.png" id="6_rpihv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fn1ne"]
 
@@ -68,6 +69,18 @@ mouse_filter = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1718764187]
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2" unique_id=2141056672]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -472.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.6955884, 1.690104)
+texture = ExtResource("6_rpihv")
+
 [node name="ConsoleContainer" parent="CanvasLayer2" unique_id=2061047100 instance=ExtResource("2_wpfx3")]
 anchors_preset = 8
 anchor_left = 0.5
@@ -81,4 +94,4 @@ offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PersistenceWarningPopup" parent="CanvasLayer2" unique_id=1575931891 instance=ExtResource("5_8gj0p")]
+[node name="PersistenceWarningPopup" parent="CanvasLayer2" unique_id=178805227 instance=ExtResource("5_8gj0p")]

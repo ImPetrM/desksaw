@@ -1,40 +1,37 @@
 extends Control
 
+var offset = Vector2.ZERO
+var dragging = false
+var first = true
+signal choice_made(result: bool)
+func _ready():
+	self.visible = true
+	$ClickArea.enabled = self.visible
+	
+	position = Vector2i(GlobalVariable.screenWidth / 4, GlobalVariable.screenHeight / 4)
 
-@export
-var clickthrough: Control
+func _process(_delta: float):
+	if dragging:
+		global_position = get_global_mouse_position() - offset
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _downDrag():
+	if gbData.devMode:
+		print("dragging")
+	offset = get_global_mouse_position() - global_position
+	dragging = true
+	move_to_front()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_menu_pressed() -> void:
-	GlobalVariable.consoleF(true)
-
-
-func _on_pet_pressed() -> void:
-	if gbData.data.save["mood"] >= -50 and gbData.data.save["trust"] >= 30:
-		GlobalVariable.petf(true)
-		GlobalVariable.raisemoodF(2.5)
-	else:
-		GlobalVariable.petf(false)
-
-
-func _on_temp_feed_pressed() -> void:
-	if gbData.data.save["hunger"] < 90:
-		gbData.data.save["hunger"] = min(gbData.data.save["hunger"] + 10, 100.0)
-		gbData.data.save["trust"] = min(gbData.data.save["trust"] + 5, 100.0)
-		GlobalVariable.feedf(1)
-		GlobalVariable.raisemoodF(1)
+func _upDrag():
+	dragging = false
 
 
-func _on_button_pressed() -> void:
-	if clickthrough:
-		clickthrough.change(false)
-	self.queue_free()
+func setup(text: String = "text") -> bool:
+	var yes: Button = $Main/YES
+	var no: Button = $Main/NO
+	$Main/RichTextLabel.text = text
+
+	yes.pressed.connect(func(): choice_made.emit(true))
+	no.pressed.connect(func(): choice_made.emit(false))
+
+	var result: bool = await choice_made
+	return result

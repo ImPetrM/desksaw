@@ -15,29 +15,41 @@ var console: Node
 func _ready():
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
-	
 	if OS.get_name() == "Linux":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
-	if OS.get_name() == "Linux" and OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland":
-		OS.alert("This message is popping up because you are using wayland. \n \n Most if not all features will not work due to wayland's security measures. \n\n You will have to have another x11 app running to interact with them (ex: Steam) or switch to x11\n\n Sorry! I dont know any workarounds")
-	
+	if OS.get_name() == "Linux" and OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland" and not TransparentWindow.UsesInputRegions():
+		OS.alert("DeskSaw could not enable its XWayland input-region workaround. Click-through interaction may not work correctly. Make sure DeskSaw is running through X11/XWayland with the XShape extension available, or use an X11 session.")
+
 	GlobalVariable.console.connect(yeah)
 	#fix()
 	createBorders()
 
 	GlobalVariable.resize.connect(updateBorders)
-	
+
 	update_obj_metas()
-	
+
 	var def = gbData.settings.get("defaultSkin", "Body")
 	GlobalVariable.userSkinPath = "user://skin/" + def + "/"
 
 	if gbData.settings["expiePersistence"]:
-		gbData.temp.expies = gbData.data["loaded"]
 		loadExpiePersistence()
 	else:
 		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
+
+	#lol()
+	"""
+
+	this doesnt even fucking work outside of the editor i hate my life
+	if gbData.data["firstLaunch"]:
+		gbData.data["firstLaunch"] = false
+		var use_vulkan: bool = await GlobalVariable.makePopUp(
+			"Do you currently see a black screen behind the application? \n\n Clicking yes will switch the rendering to [wave]Vulkan[/wave] \n This can be changed later in settings.",
+			$CanvasLayer2,
+			Vector2(screenWidth / 2, screenHeight / 2)
+		)
+		GlobalVariable._apply_renderer_and_restart(use_vulkan)
+	"""
 
 
 func yeah(t: bool):
@@ -84,56 +96,32 @@ func update_obj_metas():
 		fileName = dir.get_next()
 	dir.list_dir_end()
 
-#rudimentary repairs i hope this holds up lmao
+
 func loadExpiePersistence():
 	print("loading expies...")
-	#print("Expie persistence data: " + str(gbData.data["save"]["expies"]))
-
-	var pets: Dictionary = gbData.data["saw"]
-
-	if pets.size() > 20:
-		GlobalVariable.persistenceWarning.emit()
-
-		await GlobalVariable.persistenceWarning
-
-
-	for pet_id in pets:
-		var pet: Dictionary = pets[pet_id]
-
-
-		if pet["dead"]:
-			continue
-
-		var skin_name: String = pet["skin"]
-
-		#print("loading '", pet_id, "' with skin '", skin_name, "'...")
-
-		#await get_tree().create_timer(0.25).timeout
-
-		GlobalVariable.userSkinPath = "user://skin/%s/" % skin_name
-		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
-
-		print("loaded ", pet_id)
-
-func OLDloadExpiePersistence():
-	print("loading expies...")
-	print("Expie persistence data: " + str(gbData.data["save"]["expies"]))
 	
-	var x: int = 0
-	for names in gbData.data["save"]["expies"].keys():
-		x += gbData.data["save"]["expies"][names]
-	if x > 20:
+
+	if gbData.data["saw"].size() > 20:
 		GlobalVariable.persistenceWarning.emit()
 		print("Awaiting response from warning popup...")
 		await GlobalVariable.persistenceWarning
 		print("Response detected. Continuing...")
-	
-	
-	for name in gbData.data["save"]["expies"]:
-		print("loading '", name, "' skin expies...")
-		for i in range(gbData.data["save"]["expies"][name]):
-			await get_tree().create_timer(0.25).timeout
-			GlobalVariable.userSkinPath = "user://skin/" + name + "/"
-			$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
-			print("loaded ", name, " - ", i)
-			gbData.data["save"]["expies"][name] -= 1
+
+	for petId in gbData.data["saw"].keys():
+		var petData = gbData.data["saw"][petId]
+		print("loading '", petId, "' (skin: ", petData.get("skin", "Default"), ")...")
+		await get_tree().create_timer(0.25).timeout
+		GlobalVariable.userSkinPath = "user://skin/" + petData.get("skin", "Default") + "/"
+		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie(petId)
+		print("loaded ", petId)
+
+func lol():
+	while get_tree():
+		await get_tree().create_timer(1).timeout
+		var r = randi_range(1, 200)
+		$CanvasLayer2/TextureRect.visible = (r == 1)
+		if (r == 1):
+			AudioManager.play_sfx(preload("res://assets/sounds/effects/stalkerscream.wav"))
+		await get_tree().create_timer(.2).timeout
+		
+		$CanvasLayer2/TextureRect.visible = false

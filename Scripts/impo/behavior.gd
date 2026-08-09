@@ -32,7 +32,7 @@ var wander := true
 ##Is the node currently in shocked mode.
 var shocked := false
 
-#oh ok
+## fguiosdfgiojsdgfo[jdfgio[jsdfgfjsdfgjbncvmbcvncv]]
 var petId := ""
 
 var isTired := false
@@ -64,13 +64,14 @@ func _ready() -> void:
 
 	if petId == "":
 		var skinName = GlobalVariable.userSkinPath.substr(0, len(GlobalVariable.userSkinPath) - 1) 
-		skinName = skinName.substr(skinName.rfind("/") + 1) #
+		skinName = skinName.substr(skinName.rfind("/") + 1) 
 		petId = gbData.addPet(skinName)
 
 	get_parent().get_parent().set_meta("itemName", petId)
 	
-
-
+	# Set debug text to Node's ID:
+	#$"../textParent/DebugText".text = "Test"
+	#print(get_parent().get_parent().get_children().find(self))
 	connect("toggleDebugText", _on_debugToggle_signal)
 	
 	faceSys.setEmotion("default")
@@ -297,7 +298,7 @@ func petLimb(limb: RigidBody2D):
 	await get_tree().create_timer(5).timeout
 	faceSys.setEmotion("normal")
 
-#what does this even do tho
+#ok this didnt really do anything before so im gonna edit it
 func _on_debugToggle_signal():
 	if $"../textParent/DebugText".text == "":
 		$"../textParent/DebugText".text = "Test"
