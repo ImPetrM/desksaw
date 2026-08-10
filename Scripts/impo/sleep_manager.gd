@@ -28,4 +28,4 @@ func sleepCheck():
 			pass
 			return tiredness
 		else:
-			return maxtired
+			return mintired

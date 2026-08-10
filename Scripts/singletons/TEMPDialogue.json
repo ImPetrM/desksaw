@@ -5,20 +5,26 @@
 			"[wave]:3",
 			"[wave]I like this!",
 			"[wave]I'm enjoying myself...",
-			"[wave]I enjoy your company.",
+			"[wave]I like this test!",
 			"[wave]Hello!",
-			"[wave]yay!",
+			"[wave]Yay!",
 			"[wave]I feel great!",
 			"[wave]Waow!"
 		],
 		"Passive": [
 			"I feel alright...",
-			"This test is weird...",
 			"... Nothing",
 			"Uhhh......",
+			"This test is weird...",
+			"Hello?"
+		],
+		"LowPassive": [
 			"When will this test end?...",
 			"This test kinda sucks.",
-			"Hello?"
+			"I'm feeling down...",
+			"It could be better...",
+			"I don't feel too happy right now...",
+			"3:"
 		],
 		"VeryLowPassive": [
 			"[shake]I want to go back!",
@@ -97,6 +103,11 @@
 			"I feel peckish.",
 			"Stomach's buggin' me.",
 			"My tummy's all rumbly."
+		],
+		"petReject": [
+			"[shake]NO!",
+			"[shake]Don't touch me!",
+			"[shake]Get away!"
 		]
 	}
 }

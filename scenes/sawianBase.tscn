@@ -30,6 +30,8 @@
 [ext_resource type="Script" uid="uid://cmppv0optma7o" path="res://Scripts/impo/damageHandler.gd" id="25_3pkli"]
 [ext_resource type="Script" uid="uid://bvssnx7cofbpp" path="res://Scripts/impo/hunger_handler.gd" id="26_84wtd"]
 [ext_resource type="Script" uid="uid://dnk6vcggbqmhu" path="res://Scripts/impo/det_radius.gd" id="30_873iu"]
+[ext_resource type="Script" uid="uid://bmc5ssn6i83yj" path="res://Scripts/impo/stat_watcher.gd" id="31_873iu"]
+[ext_resource type="PackedScene" uid="uid://c5tuv3hsjyl02" path="res://scenes/statPopup.tscn" id="32_oiscl"]
 
 [sub_resource type="Animation" id="Animation_d7061"]
 length = 0.001
@@ -1943,9 +1945,9 @@ script = ExtResource("1_6y4sq")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.33961844, -15.576897)
-rotation = 0.31542784
-scale = Vector2(0.9999986, 0.9999986)
+position = Vector2(-0.3396181, -15.576897)
+rotation = 0.31542775
+scale = Vector2(0.99999857, 0.99999857)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1966,9 +1968,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.2266626, -9.810154)
-rotation = -0.0073847724
-scale = Vector2(0.99999756, 0.99999756)
+position = Vector2(-5.226662, -9.810155)
+rotation = -0.0073845345
+scale = Vector2(0.9999975, 0.9999975)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1988,9 +1990,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-4.8675575, -4.6748204)
-rotation = 0.43346196
-scale = Vector2(0.9999976, 0.9999976)
+position = Vector2(-4.8675585, -4.6748223)
+rotation = 0.43346217
+scale = Vector2(0.99999756, 0.99999756)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2126,8 +2128,8 @@ visible = false
 shape = SubResource("CapsuleShape2D_7p3rp")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=69657827]
-position = Vector2(0.17328215, -15.684526)
-rotation = 0.19817454
+position = Vector2(0.1732831, -15.684526)
+rotation = 0.19817431
 scale = Vector2(0.9999977, 0.9999977)
 collision_layer = 8
 mass = 0.5
@@ -2149,8 +2151,8 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
-position = Vector2(-4.484634, -10.5948715)
-rotation = 0.11549546
+position = Vector2(-4.484632, -10.5948715)
+rotation = 0.11549545
 scale = Vector2(0.999997, 0.999997)
 collision_layer = 8
 mass = 0.5
@@ -2171,7 +2173,7 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=2058845088]
-position = Vector2(-4.758669, -5.4672804)
+position = Vector2(-4.758667, -5.4672804)
 rotation = 0.5563422
 scale = Vector2(0.9999971, 0.9999971)
 collision_layer = 8
@@ -2708,7 +2710,7 @@ remote_path = NodePath("../../../../../FThigh")
 
 [node name="LegB" type="Bone2D" parent="RigidBodies/skeleton/Skeleton2D/hip" unique_id=1000897416]
 position = Vector2(0.00023555769, -1.1441317e-05)
-scale = Vector2(0.9999994, 0.9999994)
+scale = Vector2(0.99999934, 0.99999934)
 rest = Transform2D(0.99989086, 0, 0, 0.99989086, 1.0002543, -1.0000066)
 editor_settings/show_bone_gizmo = false
 
@@ -2850,6 +2852,12 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
+[node name="Control" parent="textParent" unique_id=101072280 instance=ExtResource("32_oiscl")]
+offset_left = -15.837868
+offset_top = -47.08268
+offset_right = 16.162132
+offset_bottom = -7.0826797
+
 [node name="DebugText" type="Label" parent="textParent" unique_id=739158021]
 visible = false
 offset_left = -40.0
@@ -2916,6 +2924,10 @@ script = ExtResource("25_3pkli")
 
 [node name="detRadius" type="Node" parent="behavior" unique_id=1888312385]
 script = ExtResource("30_873iu")
+
+[node name="statWatcher" type="Node" parent="behavior" unique_id=464220213 node_paths=PackedStringArray("window")]
+script = ExtResource("31_873iu")
+window = NodePath("../../textParent/Control")
 
 [connection signal="body_entered" from="RigidBodies/Head/Dect" to="behavior/detRadius" method="_on_dect_body_entered"]
 [connection signal="body_exited" from="RigidBodies/Head/Dect" to="behavior/detRadius" method="_on_dect_body_exited"]

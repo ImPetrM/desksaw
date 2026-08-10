@@ -145,7 +145,7 @@ func _ready():
 	#dont use this it breaks alot of shit Console.create_command("reload", reload, "reload everything")
 	Console.create_command("setMonitor", setmonitor, "temporary command")
 	##Console.create_command("killExpie", killExpie, "Yeha")
-	Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
+	#Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
 	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")
 	Console.create_command("clearItems", clearObj, "clears by 'entity', 'object' or specific item name/ expie skin name.")
 	Console.create_command("spawnExpie", spawnExpie, "please refer to the spawn menu rather than this command. Will be removed later")

@@ -22,7 +22,7 @@ im putting this here as a reminder
 @onready var hungerHandler = $hungerHandler
 @onready var dialogueSys = $dialogue
 @onready var detectRange = $detRadius
-
+@onready var statUpd = $statWatcher
 
 @onready var data = gbData.text.diaGlobal
 @onready var settings = gbData.settings
@@ -124,6 +124,7 @@ func _initalSpawn() -> void:
 	sleepHandler.loadFromSave(petId)
 
 
+
 	tempRagdoll()
 	
 	#initialized stuff
@@ -159,7 +160,6 @@ func checker():
 	while get_tree():
 		#this was calling each function like 90 times per check which is why everyting was very extreme!
 		#DONT DO THAT MISTAKE AGAIN!
-		await get_tree().create_timer(tick).timeout
 		hungerHandler.hungercheck()
 		var sleepN = sleepHandler.sleepCheck()
 		var moodN = moodSys.moodCheck(.5)
@@ -194,9 +194,10 @@ func checker():
 				isTired = false
 
 			#isSad s	
-			if moodN < -20.0:
+			if moodN < -10.0:
 				isSad = true
-				currentEmotion = emotionz.sad
+				if moodN < -30.0:
+					currentEmotion = emotionz.sad
 			else:
 				isSad = false
 
@@ -210,14 +211,20 @@ func checker():
 					dialogueSys.send()
 					isHungry = true
 				var r = randf_range(30.0 - hungerHandler.hungry, 40.0)
-				print("hunger notif chance ", r)
-				if r > 30.0:
+				#print("hunger notif chance ", r)
+				if r > 38.0:
 						dialogueSys.pool = data.hungry
 						dialogueSys.send()
 
-
+			#update
 			faceSys.setEmotion(emotionz.keys()[currentEmotion])
+		statUpd.stat.id = petId
+		statUpd.stat.mood = moodN
+		statUpd.stat.hunger = hungerHandler.hungry
+		statUpd.stat.sleep = sleepN
+		statUpd.upd(statUpd.stat)
 
+		await get_tree().create_timer(tick).timeout
 
 func _physics_process(delta: float) -> void:
 	#detect speed and aiosdhfopjkasfguopjasfgsdfhcvio[]
@@ -303,7 +310,7 @@ func passivetalk() -> void:
 	while true:
 		if !gbData.settings["mutePassive"]:
 			# get rid of magic numbers later pls       \/    \/
-			await get_tree().create_timer(randf_range(33.5, 100.5)).timeout
+			await get_tree().create_timer(randf_range(33.5, 67.5)).timeout
 			if not beingDragged and not isSleeping and not shocked:
 				dialogueSys.pool = data.Passive
 				match currentEmotion:
@@ -313,6 +320,8 @@ func passivetalk() -> void:
 						dialogueSys.pool = data.HappyPassive
 					emotionz.sad:
 						dialogueSys.pool = data.VeryLowPassive
+						if moodSys.mood < -30.0:
+							dialogueSys.pool = data.VeryLowPassive
 
 
 				dialogueSys.speedMod = 1.0
@@ -345,6 +354,12 @@ func wandering() -> void:
 		else:
 			await get_tree().create_timer(randi_range(4, 8)).timeout
 
+func petReject() -> void:
+	dialogueSys.pool = data.petReject
+	dialogueSys.speedMod = 1.2
+	dialogueSys.send(2, false)
+	AudioManager.play_random(AudioManager.expie_bark, 0.25, 0, 1, true, 0.5, 'exp_pet')
+	pass
 
 """
 green because i need a reminder to implement different reactions based on mood
@@ -357,6 +372,11 @@ func petLimb(limb: RigidBody2D):
 		AudioManager.play_random(AudioManager.expie_whine, 0.25, 0, 1, true, 1, 'exp_pet')
 	if isSleeping:
 		return
+
+	if moodSys.mood < -40.0:
+		petReject()
+		return
+
 	#print("I JUST PET THE EXPIE ON HIS ", limb.name)
 	faceSys.setEmotion("happy")
 	moodSys.mood += 0.5

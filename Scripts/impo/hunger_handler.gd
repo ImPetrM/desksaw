@@ -16,8 +16,8 @@ func loadFromSave(id: String) -> void:
 func hungercheck():
 		if gbData.settings["hungerEnabled"]:
 			#await get_tree().create_timer(5).timeout
-			hungry -= 0.1
-			print(str(hungry) + " hunger")
+			hungry -= 0.05
+			#print(str(hungry) + " hunger")
 			hungry = snappedf(hungry, 0.01)
 			hungry = clamp(hungry, minhunger, maxhunger)
 			pet.hunger = hungry
