@@ -30,6 +30,7 @@ var wander = true
 var friction: float = 1.0
 var speedacc: float = 20.0
 var maxspeed: float = 240.0 # you will understand what the one is for later
+var maxspeedMult: float = 10.0
 #i literally forgot what the one was for
 var jumpPowCap: float = -600.0
 var jumpPower: float = -600.0
@@ -44,7 +45,7 @@ var valAngularPinDown
 var notragdolled = true
 
 enum states {
-	moving, idle, ragdoll, jumping, falling
+	moving, idle, ragdoll, jumping, falling, resting
 }
 var currstate = states.idle
 
@@ -57,21 +58,27 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	jumpTimer -= delta
 
-	
-	if !floorRay.is_colliding() and abs(rigid.linear_velocity.y) > 2:
-		if rigid.linear_velocity.y > 0:
-			initswithc(states.falling)
+	if currstate != states.resting:
+		if !floorRay.is_colliding() and abs(rigid.linear_velocity.y) > 2:
+			if rigid.linear_velocity.y > 0:
+				initswithc(states.falling)
+			else:
+				initswithc(states.jumping)
 		else:
-			initswithc(states.jumping)
+			if dir != 0.0:
+				initswithc(states.moving)
+			else:
+				initswithc(states.idle)
 	else:
-		if dir != 0.0:
-			initswithc(states.moving)
-		else:
-			initswithc(states.idle)
+		dir = 0.0
 	headIKf()
 	checkJump()
 	detFlip()
 	phystate(delta)
+	rigidtorso.linear_velocity = rigidtorso.linear_velocity.clamp(Vector2(
+		- maxspeed * maxspeedMult, -maxspeed * maxspeedMult), Vector2(maxspeed * maxspeedMult, maxspeed * maxspeedMult)
+		)
+
 	pass
 
 func headIKf():
@@ -97,20 +104,35 @@ func initswithc(state: states):
 	currstate = state
 	match state:
 		states.idle:
+			self.get_parent().wander = true
 			animplay.speed_scale = 1
 			animplay.play("idleagain")
 			print("idle")
 			pass
 		states.jumping:
+			self.get_parent().wander = true
 			animplay.speed_scale = 1
 			animplay.play("jump")
 			print("jump")
 		states.falling:
+			self.get_parent().wander = true
 			print("Falling")
 			animplay.speed_scale = 1
 			animplay.play("fall")
 		states.moving:
+			self.get_parent().wander = true
 			print("moving")
+
+		states.resting:
+			print("resting")
+			self.get_parent().wander = false
+			var r = randi_range(1, 2)
+			var resttime = randi_range(60, 200)
+			animplay.play("sit" if r == 1 else "laydown")
+			await get_tree().create_timer(resttime).timeout
+			initswithc(states.idle)
+			self.get_parent().wander = true
+
 
 	pass
 
@@ -141,7 +163,7 @@ func phystate(delta: float):
 
 			animplay.speed_scale = (normlized / 2) + .1
 			
-			#print(clamp(rigid.linear_velocity.x, -maxspeed, maxspeed))
+			
 			pass
 
 

@@ -76,8 +76,6 @@ var getUpTimerMsg := 1.5
 var hungryRemind := 90.0
 
 
-
-
 #ricktate in seconds for updating status
 var tick: float = 5
 
@@ -180,12 +178,12 @@ func checker():
 				print("tired")
 				
 
-				if sleepN > 92.5:
+				if sleepN > 94.5:
 					if !sleepflag1:
 						sleepflag1 = true
-						dialogueSys.pool = data.sleepy
+						moveSys.initswithc(moveSys.states.resting)
+						dialogueSys.pool = data.reallySleepy
 						dialogueSys.send()
-
 
 
 				if sleepN > 95.0:
@@ -210,8 +208,13 @@ func checker():
 				if !isHungry:
 					dialogueSys.pool = data.hungry
 					dialogueSys.send()
+					isHungry = true
+				var r = randf_range(30.0 - hungerHandler.hungry, 40.0)
+				print("hunger notif chance ", r)
+				if r > 30.0:
+						dialogueSys.pool = data.hungry
+						dialogueSys.send()
 
-				
 
 			faceSys.setEmotion(emotionz.keys()[currentEmotion])
 
@@ -278,7 +281,7 @@ func tempRagdoll() -> void:
 
 	ragdolled = false
 	await get_tree().create_timer(getUpTimerMsg).timeout
-
+	moveSys.initswithc(moveSys.states.idle)
 	if launchflag:
 		if not pet_timer.is_stopped() and pet_count >= 5:
 			dialogueSys.pool = data.getUpPet
@@ -295,13 +298,10 @@ func tempRagdoll() -> void:
 	pet_timer.stop()
 
 
-
-
 # periodically send a message based on mood
 func passivetalk() -> void:
 	while true:
 		if !gbData.settings["mutePassive"]:
-
 			# get rid of magic numbers later pls       \/    \/
 			await get_tree().create_timer(randf_range(33.5, 100.5)).timeout
 			if not beingDragged and not isSleeping and not shocked:
@@ -323,6 +323,8 @@ func passivetalk() -> void:
 func wandering() -> void:
 	while get_tree():
 		if wander:
+			var restChance = randi_range(1, 22)
+			if restChance == 1: moveSys.initswithc(moveSys.states.resting)
 			await get_tree().create_timer(randi_range(4, 8)).timeout
 
 			var center = GlobalVariable.screenWidth / 2.0
@@ -338,6 +340,7 @@ func wandering() -> void:
 				moveSys.dir = randi_range(-1, 1)
 
 			await get_tree().create_timer(randf_range(.5, 2.0)).timeout
+			
 			moveSys.dir = 0
 		else:
 			await get_tree().create_timer(randi_range(4, 8)).timeout

@@ -600,6 +600,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="SkinSpawner" type="Container" parent="Main" unique_id=2070923109]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
