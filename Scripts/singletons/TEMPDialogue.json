@@ -26,6 +26,36 @@
 			"I don't feel too happy right now...",
 			"3:"
 		],
+		"EatReject": [
+			"Not in a million years.",
+			"I would never! NO!",
+			"No! That's disgusting!",
+			"This is disgusting! No!"
+		],
+		"EatBad": [
+			"[shake]Why am I eating this!?",
+			"[shake]Is this some sort of punishment...?",
+			"[shake]Ack! It tastes so bad!",
+			"[shake]Ew ew ew! Uugh!"
+		],
+		"EatOk": [
+			"Ehh...",
+			"I've eaten better...",
+			"...",
+			"What is this?",
+			"Mhh...",
+			"Gh..",
+			"...?"
+		],
+		"EatGood": [
+			"[wave]More of this...",
+			"[wave]Good food...",
+			"[wave]Love this taste...",
+			"[wave]Delicious...",
+			"[wave]Mmm, nice...",
+			"[wave]Just what I needed...",
+			"[wave]Mmmmm..."
+		],
 		"VeryLowPassive": [
 			"[shake]I want to go back!",
 			"[shake]I- I hate this!...",

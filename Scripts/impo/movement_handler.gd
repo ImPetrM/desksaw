@@ -81,12 +81,28 @@ func _physics_process(delta: float) -> void:
 
 	pass
 
+#make them look at any object with a priority over 4
+
 func headIKf():
-	var dirx: float = sign(rigidtorso.get_global_mouse_position().x - rigidtorso.global_position.x)
+	var dectNode = get_parent().detectRange
+	var inRadius = dectNode.inRadius
+	var mousePriority = dectNode.mousePriority
 	var facing: float = -1.0 if flip else 1.0
 
-	var mouse_pos: Vector2 = headIk.get_global_mouse_position()
-	var dist: float = rigidtorso.global_position.distance_to(headIk.get_global_mouse_position())
+	
+	var targetPos: Vector2 = headIk.get_global_mouse_position()
+	
+	var bestInterest: float = mousePriority
+
+	for obj in inRadius.keys():
+		var data = inRadius[obj]
+		if data.has("interest") and data["interest"] > bestInterest:
+			bestInterest = data["interest"]
+			targetPos = obj.global_position
+
+	var dirx: float = sign(targetPos.x - rigidtorso.global_position.x)
+	var mouse_pos: Vector2 = targetPos
+	var dist: float = rigidtorso.global_position.distance_to(targetPos)
 
 	if dist <= 300.0:
 		lookback = dirx != facing

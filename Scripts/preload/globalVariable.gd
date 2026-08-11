@@ -47,7 +47,7 @@ func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
 	var result: bool = await instance.setup(text)
 	return result
 
-
+#just ignore this. pretend like i didnt waste time adding this and it just doesnt work
 func _apply_renderer_and_restart(use_vulkan: bool) -> void:
 	var method := "forward_plus" if use_vulkan else "gl_compatibility"
 	ProjectSettings.set_setting("rendering/renderer/rendering_method", method)
@@ -62,3 +62,14 @@ func _apply_renderer_and_restart(use_vulkan: bool) -> void:
 	get_tree().quit()
 #????????????????
 var userSkinPath = "user://skin/Body/"
+
+
+func getNumFromString(inputString: String):
+	var number_string = ""
+    
+	for i in range(inputString.length()):
+		var character = inputString[i]
+		if character.is_valid_int():
+			number_string += character
+            
+	return number_string

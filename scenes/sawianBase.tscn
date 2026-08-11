@@ -1919,6 +1919,9 @@ radius = 5.0990195
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vd41"]
 radius = 76.23648
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vd41"]
+size = Vector2(13.876048, 11.99481)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hln7x"]
 radius = 7.5
 height = 47.5
@@ -2270,6 +2273,15 @@ metadata/_custom_type_script = "uid://cburu6b4ckehs"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/Head/Dect" unique_id=933917443]
 shape = SubResource("CircleShape2D_0vd41")
+
+[node name="Mouth" type="Area2D" parent="RigidBodies/Head" unique_id=1908292286]
+position = Vector2(6.237309, 1.2715976)
+script = ExtResource("14_s86i6")
+metadata/_custom_type_script = "uid://cburu6b4ckehs"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/Head/Mouth" unique_id=85355450]
+position = Vector2(7.2958174, 2.2711563)
+shape = SubResource("RectangleShape2D_0vd41")
 
 [node name="FUpArmSprite" type="RigidBody2D" parent="RigidBodies" unique_id=552296471]
 position = Vector2(-0.49660504, -30.292633)
@@ -2853,8 +2865,9 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="Control" parent="textParent" unique_id=101072280 instance=ExtResource("32_oiscl")]
+visible = false
 offset_left = -15.837868
-offset_top = -47.08268
+offset_top = -57.137337
 offset_right = 16.162132
 offset_bottom = -7.0826797
 
@@ -2913,8 +2926,10 @@ fasdfasdfasddfas = NodePath("../movementHandler")
 [node name="dialogueTimer" type="Timer" parent="behavior/dialogue" unique_id=1048411103]
 one_shot = true
 
-[node name="hungerHandler" type="Node" parent="behavior" unique_id=2070105680]
+[node name="hungerHandler" type="Node" parent="behavior" unique_id=2070105680 node_paths=PackedStringArray("mouth", "dialogue")]
 script = ExtResource("26_84wtd")
+mouth = NodePath("../../RigidBodies/Head/Mouth")
+dialogue = NodePath("../dialogue")
 
 [node name="petTimer" type="Timer" parent="behavior" unique_id=1934989107]
 one_shot = true
@@ -2931,3 +2946,4 @@ window = NodePath("../../textParent/Control")
 
 [connection signal="body_entered" from="RigidBodies/Head/Dect" to="behavior/detRadius" method="_on_dect_body_entered"]
 [connection signal="body_exited" from="RigidBodies/Head/Dect" to="behavior/detRadius" method="_on_dect_body_exited"]
+[connection signal="body_entered" from="RigidBodies/Head/Mouth" to="behavior/hungerHandler" method="_onItemEnter"]

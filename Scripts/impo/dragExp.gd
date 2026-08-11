@@ -47,6 +47,8 @@ func _ready() -> void:
 			child.input_event.connect(_on_body_part_input.bind(child))
 
 func _process(_delta: float) -> void:
+		## ++ adding this to make it to where wrjbgpijkdfgjndfnj the little stat window show
+	owner.get_node("textParent/Control").visible = not _hovered_bodies.is_empty() and Input.is_action_pressed("ctrl")
 	if _use_x11_input_regions:
 		_update_x11_input_regions()
 
@@ -261,6 +263,7 @@ func _updateHoverState() -> void:
 	else:
 		GlobalVariable.clickZoneSum -= 1
 
+
 	#change cursor icon
 	#due to GODOT forcefully changing cursor icons when you stop hovering
 	#over rigidbodies, the cursor will flicker if you drag and have your
@@ -300,7 +303,7 @@ func _startDrag(body: RigidBody2D, mouse_pos: Vector2) -> void:
 	_joint.softness = 7.0
 
 	_updateHoverState()
-	print("we dragging: ", body.name)
+	#print("we dragging: ", body.name)
 
 
 func _stopDrag() -> void:

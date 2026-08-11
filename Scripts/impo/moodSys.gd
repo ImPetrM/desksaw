@@ -69,7 +69,7 @@ func moodCheck(delta: float = 1.0) -> float:
 	_sync_mood()
 
 
-	return clamp(mood + tempOffset, minmood, maxmood)
+	return snappedf(clamp(mood + tempOffset, minmood, maxmood), 0.05)
 func tempCalc(total: float = 0.0):
 	total -= clamp(((1.0 - (gbData.data["saw"][petId]["health"] * 0.01)) * 3), 0.0, 3)
 	total = clamp(total, minmood, maxmood)

@@ -27,8 +27,6 @@ radius = 130.06152
 [node name="Body" type="RigidBody2D" unique_id=371602465]
 mass = 0.01
 metadata/Category = "object"
-metadata/Priority = 3
-metadata/Danger = 4
 
 [node name="Detector" type="Area2D" parent="." unique_id=1866926148]
 scale = Vector2(0.5, 0.5)
@@ -54,6 +52,14 @@ metadata/_custom_type_script = "uid://cbm2skouhq87k"
 
 [node name="properties" type="Node" parent="." unique_id=399788717]
 script = ExtResource("4_jxtdb")
+propertyTable = {
+"consumable": false,
+"danger": 5,
+"interest": 7,
+"object": true,
+"replenishIfConsumable": 0.0,
+"tasteIfConsumable": 0
+}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=777426560]
 scale = Vector2(0.5, 0.5)

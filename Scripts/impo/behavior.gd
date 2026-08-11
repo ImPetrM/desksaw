@@ -124,7 +124,6 @@ func _initalSpawn() -> void:
 	sleepHandler.loadFromSave(petId)
 
 
-
 	tempRagdoll()
 	
 	#initialized stuff
@@ -218,7 +217,7 @@ func checker():
 
 			#update
 			faceSys.setEmotion(emotionz.keys()[currentEmotion])
-		statUpd.stat.id = petId
+		statUpd.stat.id = ("#" + GlobalVariable.getNumFromString(petId))
 		statUpd.stat.mood = moodN
 		statUpd.stat.hunger = hungerHandler.hungry
 		statUpd.stat.sleep = sleepN
@@ -245,6 +244,7 @@ PLEASE FUCKING RECODE BOTH OF THESE
 func shock() -> void:
 	shocked = true
 	moodSys._tempVal(-5.0, 15)
+	moodSys.mood -= 2.5
 	faceSys.setEmotion("panic")
 
 	dialogueSys.pool = data.screamBIG

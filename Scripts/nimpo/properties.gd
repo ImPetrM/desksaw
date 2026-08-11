@@ -1,13 +1,15 @@
 extends Node
-
-
-@export
-var interest = 2
-@export
-var carryable = false
+class_name properties
+#turned this into a table cus i was manually exporting every variable
 
 @export
-var consumable = false
-@export
-var hungerReplenish = 0
-#var weight = self.get_parent().mass * 50
+var propertyTable = {
+    "object": true, # this should probably remain stored as a meta
+    "interest": 1,
+    "danger": 0, # not used for anything yet
+
+    "consumable": false,
+    "replenishIfConsumable": 0.0,
+    "moodBoostIfConsumable": 0.0,
+    "tasteIfConsumable": 0 # out of 10,
+}
