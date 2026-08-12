@@ -18,7 +18,7 @@ var soundMult := 1.0
 @export var expie_whine: Array[AudioStream] = []
 @export var expie_bark: Array[AudioStream] = []
 @export var speech: AudioStream = load("res://assets/sounds/expie/speech.ogg")
-@export var thudwoosh: AudioStream = load("res://assets/sounds/expie/speech.ogg")
+@export var thudwoosh: AudioStream = load("res://assets/sounds/effects/thudswoosh.ogg")
 #random sfx
 @export var eat: AudioStream = load("res://assets/sounds/effects/eatCasSFX.wav")
 #----------------

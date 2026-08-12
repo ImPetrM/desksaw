@@ -70,7 +70,7 @@ func _additem(item: String = "crate"):
 	var scene = load(path)
 	var instance = scene.instantiate()
 	get_tree().current_scene.add_child(instance)
-	instance.position = get_viewport().get_mouse_position()
+	instance.global_position = instance.get_global_mouse_position()
 	instance.owner = get_tree().current_scene
 	instance.set_meta("itemName", item)
 
@@ -88,10 +88,12 @@ func clearObj(category: String = "object"):
 	for child in get_tree().current_scene.get_children():
 		if not exclude.has(child.name):
 			if category == child.get_meta("Category") or category == child.get_meta("itemName"):
+				print(child)
 				if gbData.data["saw"].has(child.get_meta("itemName")): # check if deleting a pet
 					gbData.removePet(child.get_meta("itemName"))
-				await get_tree().create_timer(.05).timeout
+				await get_tree().create_timer(.005).timeout
 				child.queue_free()
+
 
 	if category == "entity":
 		gbData.data["saw"] = {}
@@ -146,7 +148,8 @@ func _ready():
 	Console.create_command("setMonitor", setmonitor, "temporary command")
 	##Console.create_command("killExpie", killExpie, "Yeha")
 	#Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
-	Console.create_command("spawn", _additem, "items: crate, sawblade that doesnt do anything. yeah thats all. sorry")
+	Console.create_command("spawn", _additem, "")
+	
 	Console.create_command("clearItems", clearObj, "clears by 'entity', 'object' or specific item name/ expie skin name.")
 	Console.create_command("spawnExpie", spawnExpie, "please refer to the spawn menu rather than this command. Will be removed later")
 	Console.create_command("openSkinFolder", openskinfold, "opens the skin folder")

@@ -11,6 +11,7 @@ extends Control
 @export var SettingsN: Control
 @export var StatN: Control
 @export var SkinsN: Control
+@export var ItemsN: Control
 @export var ChatN: Control
 var offset = Vector2.ZERO
 var dragging = false
@@ -64,22 +65,23 @@ func _on_tab_switch_item_selected(index: int) -> void:
 	ConsoleN.visible = false
 	SettingsN.visible = false
 	SkinsN.visible = false
+	ItemsN.visible = false
 
+	print(index)
 	match index:
 		0:
-			#StatN.visible = true # currently not a node, uncomment when stats become a thing
-			if gbData.devMode:
-				print("Statistics")
-		1:
 			ConsoleN.visible = true
 			if gbData.devMode:
 				print("Console")
-		2:
+		1:
 			SettingsN.visible = true
 			if gbData.devMode:
 				print("Settings")
-		3:
+		2:
 			SkinsN.visible = true
 			if gbData.devMode:
 				print("Skin Change")
-
+		3:
+			ItemsN.visible = true
+			if gbData.devMode:
+				print("Item Change")
