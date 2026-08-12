@@ -119,3 +119,8 @@ func _on_next_pressed():
 func _on_select_pressed():
 	GlobalVariable.userSkinPath = "user://skin/" + SkinFolders[skinIndx] + "/"
 	spawnExpie()
+
+
+func _on_skin_db_pressed() -> void:
+	OS.shell_open("https://skin.cat-bot.de/")
+	pass # Replace with function body.

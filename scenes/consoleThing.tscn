@@ -656,7 +656,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="SkinSpawner" type="Container" parent="Main" unique_id=2070923109]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -668,11 +667,16 @@ script = ExtResource("7_emer2")
 
 [node name="GridContainer" type="GridContainer" parent="Main/SkinSpawner" unique_id=1101962334]
 layout_mode = 2
-columns = 6
+columns = 7
 
 [node name="FolderAccess" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=762259672]
 layout_mode = 2
 text = "Open Folder"
+
+[node name="SkinDB" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=1024239275]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.6156863, 1, 1)
+text = "Skin Database"
 
 [node name="Refresh" type="Button" parent="Main/SkinSpawner/GridContainer" unique_id=1526966236]
 layout_mode = 2
@@ -738,6 +742,7 @@ metadata/_custom_type_script = "uid://blg811jk2cjt4"
 [connection signal="toggled" from="Main/Settings/VSplitContainer/ScrollContainer/ItemList/useVulkan" to="Main/Settings" method="_on_use_vulkan_toggled"]
 [connection signal="text_submitted" from="Main/Settings/VSplitContainer/ScrollContainer/ItemList/expieFontSize" to="Main/Settings" method="_on_expie_font_size_text_submitted"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/FolderAccess" to="Main/SkinSpawner" method="_on_folder_access_pressed"]
+[connection signal="pressed" from="Main/SkinSpawner/GridContainer/SkinDB" to="Main/SkinSpawner" method="_on_skin_db_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Refresh" to="Main/SkinSpawner" method="_on_refresh_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Previous" to="Main/SkinSpawner" method="_on_previous_pressed"]
 [connection signal="pressed" from="Main/SkinSpawner/GridContainer/Select" to="Main/SkinSpawner" method="_on_select_pressed"]

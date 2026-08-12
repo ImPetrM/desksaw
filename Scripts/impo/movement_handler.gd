@@ -9,6 +9,11 @@ extends Node
 @export var headIk: Node2D
 @export var headIkControl: SoupLookAt
 
+
+#collisions via stat
+@export var normal: CollisionShape2D
+@export var sitting: CollisionShape2D
+@export var layingdown: CollisionShape2D
 #raycasts
 @export var floorRay: RayCast2D
 @export var wallDetect: RayCast2D
@@ -91,7 +96,7 @@ func headIKf():
 
 	
 	var targetPos: Vector2 = headIk.get_global_mouse_position()
-	
+
 	var bestInterest: float = mousePriority
 
 	for obj in inRadius.keys():
@@ -120,22 +125,26 @@ func initswithc(state: states):
 	currstate = state
 	match state:
 		states.idle:
+			switch_hitbox(1)
 			self.get_parent().wander = true
 			animplay.speed_scale = 1
 			animplay.play("idleagain")
 			print("idle")
 			pass
 		states.jumping:
+			switch_hitbox(1)
 			self.get_parent().wander = true
 			animplay.speed_scale = 1
 			animplay.play("jump")
 			print("jump")
 		states.falling:
+			switch_hitbox(1)
 			self.get_parent().wander = true
 			print("Falling")
 			animplay.speed_scale = 1
 			animplay.play("fall")
 		states.moving:
+			switch_hitbox(1)
 			self.get_parent().wander = true
 			print("moving")
 
@@ -143,14 +152,23 @@ func initswithc(state: states):
 			print("resting")
 			self.get_parent().wander = false
 			var r = randi_range(1, 2)
-			var resttime = randi_range(60, 200)
+			var resttime = randi_range(120, 200)
 			animplay.play("sit" if r == 1 else "laydown")
+
+			switch_hitbox(2 if r == 1 else 3)
 			await get_tree().create_timer(resttime).timeout
 			initswithc(states.idle)
 			self.get_parent().wander = true
 
 
 	pass
+
+
+func switch_hitbox(state: int):
+	normal.disabled = (state != 1)
+	sitting.disabled = (state != 2)
+	layingdown.disabled = (state != 3)
+
 
 func phystate(delta: float):
 	match currstate:

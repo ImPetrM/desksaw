@@ -40,11 +40,15 @@ func _onItemEnter(body: Node2D) -> void:
 	if not props.consumable:
 		return
 
+	if hungry >= 98.0:
+		dialogue.pool = gbData.text.diaGlobal.Full
+		dialogue.send()
+		return
 	if props.tasteIfConsumable == 0:
 		dialogue.pool = gbData.text.diaGlobal.EatReject
 		dialogue.send()
 		return
-
+	AudioManager.play_sfx(AudioManager.eat)
 	hungry += props.replenishIfConsumable
 	self.get_parent().moodSys.mood += props.moodBoostIfConsumable
 	dialogue.pool = _getTasteDialogue(props.tasteIfConsumable)

@@ -26,6 +26,15 @@
 			"I don't feel too happy right now...",
 			"3:"
 		],
+		"Full": [
+			"That's enough.",
+			"Any more and I'll be sick.",
+			"I'm full.",
+			"I don't want to eat more.",
+			"My belly's full.",
+			"My stomach's full.",
+			"I can't eat another bite..."
+		],
 		"EatReject": [
 			"Not in a million years.",
 			"I would never! NO!",

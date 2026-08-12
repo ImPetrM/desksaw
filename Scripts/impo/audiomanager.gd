@@ -18,9 +18,9 @@ var soundMult := 1.0
 @export var expie_whine: Array[AudioStream] = []
 @export var expie_bark: Array[AudioStream] = []
 @export var speech: AudioStream = load("res://assets/sounds/expie/speech.ogg")
-
+@export var thudwoosh: AudioStream = load("res://assets/sounds/expie/speech.ogg")
 #random sfx
-@export var thudwoosh: AudioStream = load("res://assets/sounds/effects/thudswoosh.ogg")
+@export var eat: AudioStream = load("res://assets/sounds/effects/eatCasSFX.wav")
 #----------------
 
 # NOTE: all individual sound toggles are handled in this script, but they are assigned in settings. not auto-made.
@@ -61,16 +61,15 @@ func _load_sounds(path: String) -> Array[AudioStream]:
 	return streams
 
 ## Core function for playing sounds.
-func play_sfx(stream: AudioStream, 
-	chance: float = 1.0, 
-	volume_db: float = 0.0, 
+func play_sfx(stream: AudioStream,
+	chance: float = 1.0,
+	volume_db: float = 0.0,
 	pitch_scale: float = 1.0,
-	cooldown_check: bool = false, 
-	cooldown_sec: float = 0.5, 
+	cooldown_check: bool = false,
+	cooldown_sec: float = 0.5,
 	cooldown_group: String = "",
 	audio_bus = "Main"
 ) -> AudioStreamPlayer:
-
 	# Im so, so sorry for this abomination of if statements...
 	# check if this sound is enabled:
 	for sound in expie_bark:
@@ -101,7 +100,7 @@ func play_sfx(stream: AudioStream,
 
 ## Picks a random sound from an array and plays it.
 func play_random(sound_list: Array[AudioStream], chance: float = 1.0, volume_db: float = 0.0, pitch_scale: float = 1.0, cooldown_check: bool = false, cooldown_sec: float = 0.5, cooldown_group: String = "") -> AudioStreamPlayer:
-	if sound_list.is_empty(): 
+	if sound_list.is_empty():
 		return null
 	return play_sfx(sound_list.pick_random(), chance, volume_db, pitch_scale, cooldown_check, cooldown_sec, cooldown_group)
 
