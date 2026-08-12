@@ -97,12 +97,12 @@ func headIKf():
 	
 	var targetPos: Vector2 = headIk.get_global_mouse_position()
 
-	var bestInterest: float = mousePriority
+	var mostInterest: float = mousePriority
 
 	for obj in inRadius.keys():
 		var data = inRadius[obj]
-		if data.has("interest") and data["interest"] > bestInterest:
-			bestInterest = data["interest"]
+		if data.has("interest") and data["interest"] > mostInterest:
+			mostInterest = data["interest"]
 			targetPos = obj.global_position
 
 	var dirx: float = sign(targetPos.x - rigidtorso.global_position.x)
@@ -120,6 +120,8 @@ func headIKf():
 		lookback = false
 		headIk.global_position = headIk.global_position.lerp(defheadnose.global_position, .05)
 
+
+#initial switch state 
 func initswithc(state: states):
 	if currstate == state: return
 	currstate = state
@@ -202,6 +204,9 @@ func phystate(delta: float):
 
 
 func detFlip():
+	if currstate == states.ragdoll:
+		return
+
 	var dirx: float = sign(rigid.get_global_mouse_position().x - rigid.global_position.x)
 	var _facing: float = -1.0 if flip else 1.0
 
@@ -264,12 +269,17 @@ func jump():
 
 
 func ragdoll(val: bool):
-	if val == notragdolled: return
+	if val == notragdolled:
+		return
+
 	notragdolled = val
-	
+
+	if !val:
+		skelparent.scale.x = 1.0
+
 	var descendants = skeleton.find_children("*", "", true, false)
 	var moredesc = rigid.find_children("*", "", true, false)
-	#flip = false
+
 	for child in descendants:
 		if child is RemoteTransform2D:
 			var rtt: RemoteTransform2D = child
@@ -280,9 +290,11 @@ func ragdoll(val: bool):
 	for child in moredesc:
 		if child is RigidBody2D:
 			child.freeze = val
-			if val == false:
+
+			if !val:
 				child.linear_velocity = rigid.linear_velocity
 				child.angular_velocity = rigid.angular_velocity
+
 	if !val:
 		sigragdoll.emit()
 

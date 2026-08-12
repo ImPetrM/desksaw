@@ -2139,9 +2139,9 @@ visible = false
 shape = SubResource("CapsuleShape2D_7p3rp")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=69657827]
-position = Vector2(0.17328095, -15.684526)
-rotation = 0.19817472
-scale = Vector2(0.99999744, 0.99999744)
+position = Vector2(0.17328, -15.684527)
+rotation = 0.19817491
+scale = Vector2(0.99999726, 0.99999726)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2162,9 +2162,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
-position = Vector2(-4.484635, -10.594876)
-rotation = 0.11549593
-scale = Vector2(0.99999666, 0.99999666)
+position = Vector2(-4.484636, -10.594876)
+rotation = 0.115495935
+scale = Vector2(0.99999654, 0.99999654)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2184,9 +2184,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=2058845088]
-position = Vector2(-4.7586718, -5.4672875)
-rotation = 0.5563426
-scale = Vector2(0.9999967, 0.9999967)
+position = Vector2(-4.7586727, -5.467289)
+rotation = 0.55634266
+scale = Vector2(0.9999966, 0.9999966)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2707,7 +2707,7 @@ remote_path = NodePath("../../../../../../BUpArmSprite")
 
 [node name="LegF" type="Bone2D" parent="RigidBodies/skeleton/Skeleton2D/hip" unique_id=1334219369]
 position = Vector2(0.00023555769, -1.1441317e-05)
-scale = Vector2(0.9999986, 0.9999986)
+scale = Vector2(0.9999985, 0.9999985)
 rest = Transform2D(0.9998675, 0, 0, 0.9998675, 1.0002544, -1.0000067)
 editor_settings/show_bone_gizmo = false
 
