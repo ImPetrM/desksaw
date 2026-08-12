@@ -114,7 +114,7 @@ func loadExpiePersistence():
 		GlobalVariable.userSkinPath = "user://skin/" + petData.get("skin", "Default") + "/"
 		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie(petId)
 		print("loaded ", petId)
-
+"""
 func lol():
 	while get_tree():
 		await get_tree().create_timer(1).timeout
@@ -125,3 +125,4 @@ func lol():
 		await get_tree().create_timer(.2).timeout
 		
 		$CanvasLayer2/TextureRect.visible = false
+"""
