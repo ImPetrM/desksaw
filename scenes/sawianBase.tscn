@@ -1956,8 +1956,8 @@ script = ExtResource("1_6y4sq")
 metadata/_custom_type_script = "uid://unwhnooi7g2c"
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.339625, -15.5769005)
-rotation = 0.31542918
+position = Vector2(-0.33962476, -15.5769005)
+rotation = 0.31542912
 scale = Vector2(0.99999774, 0.99999774)
 collision_layer = 8
 mass = 0.5
@@ -1978,9 +1978,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.226669, -9.810162)
+position = Vector2(-5.226668, -9.810162)
 rotation = -0.007384989
-scale = Vector2(0.99999654, 0.99999654)
+scale = Vector2(0.9999965, 0.9999965)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -1999,9 +1999,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-4.8675632, -4.6748333)
-rotation = 0.43346173
-scale = Vector2(0.99999654, 0.99999654)
+position = Vector2(-4.867563, -4.6748333)
+rotation = 0.43346176
+scale = Vector2(0.9999965, 0.9999965)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8

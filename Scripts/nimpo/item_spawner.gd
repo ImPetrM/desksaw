@@ -7,12 +7,10 @@ extends Container
 
 
 #since godot wants to bitch about exporting this item list will remain until it does
-#this exact bug messed up my first game jam submission but basically it doesnt like when you reference res files in the exported build and then it just
+#this exact bug messed up my first game jam submission but basically it doesnt like when you use diraccess in the exported build and then it just
 #treats them as if they dont exist
 
 
-#unfortunately due to this, objects have to be referenced MANUALLY. defeating the whole purpose of this script
-#why ME
 @export var itemScenes: Array[PackedScene] = [
 	preload("res://scenes/objects/crate.tscn"),
 	preload("res://scenes/objects/geofruit.tscn"),
@@ -35,40 +33,7 @@ func _ready() -> void:
 	itemTemplate.visible = false
 	scanItems()
 
-# redo the previous functions (commented out below). kinda copied what i did for the aforementioned game that got fucked by godot not liking this kind of exporting
-func scanItems():
-	#items.clear()
-	for scene in itemScenes:
-		if scene == null:
-			continue
-		var itemName = scene.resource_path.get_file().get_basename()
-		var image = getSceneTexture(scene)
-		makeButtons(itemName, image, scene)
 
-func getSceneTexture(scene: PackedScene):
-	#look inside the scene for a Sprite2D node thats a direct parent of the root
-	#copy the texture and store it in 
-	var instance = scene.instantiate()
-	var image: Texture = null
-	for i in instance.get_children():
-		if i is Sprite2D:
-			image = i.texture
-			break
-	instance.queue_free()
-	return image
-#actually make the button
-func makeButtons(itemName: String, texture: Texture, scene: PackedScene) -> void:
-	var newbutton = itemTemplate.duplicate()
-	newbutton.visible = true
-	list.add_child(newbutton)
-	newbutton.get_node("name").text = itemName
-	newbutton.get_node("TextureRect").texture = texture
-
-	#connect to the add command
-	newbutton.pressed.connect(_additem.bind(scene, itemName))
-	
-#temporarily commenting all of this out until godot finds a fix
-"""
 
 
 #get items inside it
@@ -121,9 +86,7 @@ func makeButtons(itemName: String, texture: Texture) -> void:
 	newbutton.get_node("TextureRect").texture = texture
 	#connect to the add command
 	newbutton.pressed.connect(_additem.bind(itemName))
-"""
 
-#literally just the one from commands.gd word for wrd
 
 func _additem(item: String = "crate"):
 	var path = "res://scenes/objects/" + item + ".tscn"
