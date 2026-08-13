@@ -8,6 +8,4 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func _process(delta: float) -> void:
-	if visible != settings.pixel:
-		visible = settings.pixel
+#disabled temporarily

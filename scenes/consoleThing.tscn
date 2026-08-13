@@ -558,6 +558,7 @@ scroll_active = false
 vertical_alignment = 1
 
 [node name="pixel" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=808715694]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")

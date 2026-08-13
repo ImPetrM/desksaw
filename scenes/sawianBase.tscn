@@ -1916,11 +1916,11 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vd41"]
 radius = 76.23648
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_73j8h"]
-radius = 5.0990195
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vd41"]
 size = Vector2(17.992195, 22.019926)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73j8h"]
+radius = 5.0990195
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hln7x"]
 radius = 4.4994764
@@ -1973,7 +1973,6 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("3_un334")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/BThigh" unique_id=1069267234]
-visible = false
 position = Vector2(0.018392324, -0.019231796)
 rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
@@ -1995,7 +1994,6 @@ rotation = 1.1059602
 texture = ExtResource("4_3jhho")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/BCrus" unique_id=1383573481]
-visible = false
 position = Vector2(0.47213268, -0.41910648)
 rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
@@ -2017,7 +2015,6 @@ rotation = -0.7258136
 texture = ExtResource("5_gcun1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BFoot" unique_id=666641612]
-visible = false
 position = Vector2(-0.85026693, -0.20506096)
 rotation = -0.42937642
 shape = SubResource("CapsuleShape2D_5ljcd")
@@ -2038,7 +2035,6 @@ position = Vector2(2, 1)
 texture = ExtResource("2_8de8m")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/Tail" unique_id=540383227]
-visible = false
 position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_bitre")
 
@@ -2059,7 +2055,6 @@ position = Vector2(0, 1)
 texture = ExtResource("6_gq855")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BUpArmSprite" unique_id=560700254]
-visible = false
 shape = SubResource("CapsuleShape2D_y6net")
 
 [node name="BDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=1599016473]
@@ -2078,7 +2073,6 @@ position = Vector2(0, 1)
 texture = ExtResource("7_2dgiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BDownArm" unique_id=1163460623]
-visible = false
 shape = SubResource("CapsuleShape2D_gnewh")
 
 [node name="BHand" type="RigidBody2D" parent="RigidBodies" unique_id=1774083656]
@@ -2096,7 +2090,6 @@ texture_filter = 1
 texture = ExtResource("8_garej")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/BHand" unique_id=2044733744]
-visible = false
 position = Vector2(3.2424927e-05, -2.750062)
 shape = SubResource("CapsuleShape2D_1mc2w")
 
@@ -2115,7 +2108,6 @@ texture_filter = 1
 texture = ExtResource("9_rm4cm")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/LowTorso" unique_id=1271222220]
-visible = false
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_k8iha")
 
@@ -2135,7 +2127,6 @@ position = Vector2(0.5, 0)
 texture = ExtResource("10_7eycm")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/UpTorso" unique_id=218860512]
-visible = false
 shape = SubResource("CapsuleShape2D_7p3rp")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=69657827]
@@ -2156,7 +2147,6 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("3_un334")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/FThigh" unique_id=318377303]
-visible = false
 position = Vector2(0.018392324, -0.019231796)
 rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
@@ -2178,7 +2168,6 @@ rotation = 1.1059602
 texture = ExtResource("4_3jhho")
 
 [node name="collision" type="CollisionShape2D" parent="RigidBodies/FCrus" unique_id=1917023790]
-visible = false
 position = Vector2(0.47213268, -0.41910648)
 rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
@@ -2200,7 +2189,6 @@ rotation = -0.7258136
 texture = ExtResource("5_gcun1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FFoot" unique_id=465480471]
-visible = false
 position = Vector2(-0.10552764, 0.10501099)
 rotation = -0.42937642
 shape = SubResource("CapsuleShape2D_5ljcd")
@@ -2277,11 +2265,8 @@ metadata/_custom_type_script = "uid://cburu6b4ckehs"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/Head/Dect" unique_id=933917443]
 shape = SubResource("CircleShape2D_0vd41")
 
-[node name="collision" type="CollisionShape2D" parent="RigidBodies/Head" unique_id=756185136]
-position = Vector2(0.058938626, 1.9993173)
-shape = SubResource("CircleShape2D_73j8h")
-
 [node name="Mouth" type="Area2D" parent="RigidBodies/Head" unique_id=1908292286]
+visible = false
 position = Vector2(6.237309, 1.2715976)
 script = ExtResource("14_s86i6")
 metadata/_custom_type_script = "uid://cburu6b4ckehs"
@@ -2289,6 +2274,10 @@ metadata/_custom_type_script = "uid://cburu6b4ckehs"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/Head/Mouth" unique_id=85355450]
 position = Vector2(-0.9406276, 2.0728073)
 shape = SubResource("RectangleShape2D_0vd41")
+
+[node name="collision" type="CollisionShape2D" parent="RigidBodies/Head" unique_id=756185136]
+position = Vector2(0.058936596, 1.9993172)
+shape = SubResource("CircleShape2D_73j8h")
 
 [node name="FUpArmSprite" type="RigidBody2D" parent="RigidBodies" unique_id=552296471]
 position = Vector2(-0.49660528, -30.292627)
@@ -2306,7 +2295,6 @@ position = Vector2(0, 1)
 texture = ExtResource("6_gq855")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FUpArmSprite" unique_id=1635921733]
-visible = false
 shape = SubResource("CapsuleShape2D_y6net")
 
 [node name="FDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=757190963]
@@ -2325,7 +2313,6 @@ position = Vector2(0, 1)
 texture = ExtResource("7_2dgiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FDownArm" unique_id=1485844152]
-visible = false
 position = Vector2(-2.3559012e-05, 2)
 shape = SubResource("CapsuleShape2D_gnewh")
 
@@ -2344,7 +2331,6 @@ texture_filter = 1
 texture = ExtResource("8_garej")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/FFHand" unique_id=119226536]
-visible = false
 position = Vector2(3.2424927e-05, -2.7500534)
 shape = SubResource("CapsuleShape2D_1mc2w")
 
