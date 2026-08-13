@@ -35,7 +35,7 @@ func _ready():
 	if gbData.settings["expiePersistence"]:
 		loadExpiePersistence()
 	else:
-		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
+		CommandsGlobal.spawnExpie()
 
 	#lol()
 	"""
@@ -112,7 +112,7 @@ func loadExpiePersistence():
 		print("loading '", petId, "' (skin: ", petData.get("skin", "Default"), ")...")
 		await get_tree().create_timer(0.25).timeout
 		GlobalVariable.userSkinPath = "user://skin/" + petData.get("skin", "Default") + "/"
-		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie(petId)
+		CommandsGlobal.spawnExpie(petId)
 		print("loaded ", petId)
 """
 func lol():
