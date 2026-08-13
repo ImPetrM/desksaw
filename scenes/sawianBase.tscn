@@ -1913,11 +1913,11 @@ height = 10.0
 [sub_resource type="Gradient" id="Gradient_6mwry"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_73j8h"]
-radius = 5.0990195
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vd41"]
 radius = 76.23648
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73j8h"]
+radius = 5.0990195
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vd41"]
 size = Vector2(17.992195, 22.019926)
@@ -2268,18 +2268,18 @@ color = Color(0, 0, 0, 0.7058824)
 color_ramp = SubResource("Gradient_6mwry")
 anim_offset_max = 0.2042
 
-[node name="collision" type="CollisionShape2D" parent="RigidBodies/Head" unique_id=756185136]
-position = Vector2(0.058938626, 1.9993173)
-shape = SubResource("CircleShape2D_73j8h")
-
 [node name="Dect" type="Area2D" parent="RigidBodies/Head" unique_id=1190346300]
 visible = false
-position = Vector2(-0.7301864, 2.477466)
+position = Vector2(-0.73018646, 2.4774628)
 script = ExtResource("14_s86i6")
 metadata/_custom_type_script = "uid://cburu6b4ckehs"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodies/Head/Dect" unique_id=933917443]
 shape = SubResource("CircleShape2D_0vd41")
+
+[node name="collision" type="CollisionShape2D" parent="RigidBodies/Head" unique_id=756185136]
+position = Vector2(0.058938626, 1.9993173)
+shape = SubResource("CircleShape2D_73j8h")
 
 [node name="Mouth" type="Area2D" parent="RigidBodies/Head" unique_id=1908292286]
 position = Vector2(6.237309, 1.2715976)

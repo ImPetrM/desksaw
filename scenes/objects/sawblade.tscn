@@ -25,7 +25,7 @@ shader_parameter/max_or_add = false
 radius = 130.06152
 
 [node name="Body" type="RigidBody2D" unique_id=371602465]
-mass = 0.01
+mass = 2.0
 metadata/Category = "object"
 
 [node name="Detector" type="Area2D" parent="." unique_id=1866926148]
