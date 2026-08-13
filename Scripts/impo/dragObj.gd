@@ -215,9 +215,9 @@ func _startDrag(mousePos: Vector2) -> void:
 	_dragger.global_position = mousePos
 	_joint.node_a = _dragger.get_path()
 	_joint.node_b = get_parent().get_path()
-	_joint.stiffness = 3000
-	_joint.damping = 105
-	_joint.length = 0
+	_joint.stiffness = 1000
+	_joint.damping = 50
+	_joint.length = -10
 
 	if gbData.devMode:
 		print("drag started")

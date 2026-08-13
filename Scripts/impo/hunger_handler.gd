@@ -9,6 +9,11 @@ var minhunger := 0.0
 #@onready var trust: float = gbData.data.save.trust
 var petId: String = ""
 var pet
+
+
+#adding this because if they were hungry enough theyd just become a food black hole
+var cd: float = 3.0
+var foodDb = false
 @export var dialogue: Node
 func loadFromSave(id: String) -> void:
 	petId = id
@@ -32,6 +37,8 @@ func hungercheck():
 
 
 func _onItemEnter(body: Node2D) -> void:
+	if foodDb == true:
+		return
 	if not body.has_node("properties"):
 		return
 
@@ -39,14 +46,17 @@ func _onItemEnter(body: Node2D) -> void:
 
 	if not props.consumable:
 		return
+	foodDb = true
 
 	if hungry >= 98.0:
 		dialogue.pool = gbData.text.diaGlobal.Full
 		dialogue.send()
+		awaitDB()
 		return
 	if props.tasteIfConsumable == 0:
 		dialogue.pool = gbData.text.diaGlobal.EatReject
 		dialogue.send()
+		awaitDB()
 		return
 	AudioManager.play_sfx(AudioManager.eat)
 	hungry += props.replenishIfConsumable
@@ -55,8 +65,13 @@ func _onItemEnter(body: Node2D) -> void:
 	dialogue.send()
 
 	body.queue_free()
+	awaitDB()
 
 
+func awaitDB() -> void:
+	await get_tree().create_timer(cd).timeout
+	foodDb = false
+	pass
 func _getTasteDialogue(taste: int) -> Array:
 	if taste <= 3:
 		return gbData.text.diaGlobal.EatBad
@@ -68,4 +83,5 @@ func _getTasteDialogue(taste: int) -> Array:
 """
 					dialogueSys.pool = data.sleepy
 					dialogueSys.send()
+					ao[sdkfopasdifpas pfasip[df pasdf p[asdp[asjdfjsdpfjasoi dfjiopasdfjiopasdfjiopasfjipasdjf[ipasjfipj]]]]]
 					"""

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cydyko0hjl4jh"]
 
 [ext_resource type="Script" uid="uid://cbm2skouhq87k" path="res://Scripts/impo/dragObj.gd" id="1_ls5c6"]
-[ext_resource type="Texture2D" uid="uid://cyn2ngm4f6gr0" path="res://assets/objectSpr/ph_Crate.png" id="1_yourn"]
+[ext_resource type="Texture2D" uid="uid://do82nfotvub4p" path="res://assets/objectSpr/Medcrate.png" id="2_m8sg4"]
 [ext_resource type="Shader" uid="uid://b1x03c3wn85hg" path="res://assets/shaders/outline.gdshader" id="2_xu5n6"]
 [ext_resource type="Script" uid="uid://byi06muelj7dr" path="res://Scripts/nimpo/properties.gd" id="4_m8sg4"]
 
@@ -32,8 +32,8 @@ shape = SubResource("RectangleShape2D_yourn")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=673930975]
 material = SubResource("ShaderMaterial_xu5n6")
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_yourn")
+scale = Vector2(4, 4)
+texture = ExtResource("2_m8sg4")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=123731701]
 visible = false
