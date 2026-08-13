@@ -11,15 +11,6 @@ extends Container
 #treats them as if they dont exist
 
 
-@export var itemScenes: Array[PackedScene] = [
-	preload("res://scenes/objects/crate.tscn"),
-	preload("res://scenes/objects/geofruit.tscn"),
-	preload("res://scenes/objects/pizzaslice.tscn"),
-	preload("res://scenes/objects/sawblade.tscn"),
-	
-]
-
-
 var itemsPath = "res://scenes/objects/"
 
 @onready
@@ -30,10 +21,9 @@ var list = $ScrollContainer/iList
 
 func _ready() -> void:
 	$ScrollContainer.custom_minimum_size = get_parent().size
-	itemTemplate.visible = false
+	#itemTemplate.visible = false
+	itemTemplate.pressed.connect(openWiki.bind())
 	scanItems()
-
-
 
 
 #get items inside it
@@ -87,8 +77,10 @@ func makeButtons(itemName: String, texture: Texture) -> void:
 	#connect to the add command
 	newbutton.pressed.connect(_additem.bind(itemName))
 
-
-func _additem(item: String = "crate"):
+func openWiki():
+	OS.shell_open("https://casualtiesunknown.miraheze.org/wiki/")
+func _additem(item: String = "containercrate"):
+	$ScrollContainer.custom_minimum_size = get_parent().size
 	var path = "res://scenes/objects/" + item + ".tscn"
 	if !ResourceLoader.exists(path):
 		Console.error("No such object '" + item + "'")

@@ -61,7 +61,7 @@ func spawnExpie(petId: String = ""):
 	wrapper.set_meta("Category", "entity")
 
 
-func _additem(item: String = "crate"):
+func _additem(item: String = "containercrate"):
 # add crate only for now
 	var path = "res://scenes/objects/" + item + ".tscn"
 	if !ResourceLoader.exists(path):

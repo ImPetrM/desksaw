@@ -75,6 +75,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				initswithc(states.idle)
 	else:
+		if !floorRay.is_colliding():
+			initswithc(states.falling)
 		dir = 0.0
 	headIKf()
 	checkJump()
