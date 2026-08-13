@@ -2356,7 +2356,6 @@ disabled = true
 rotation = -1.1779506e-05
 
 [node name="PinJoints" type="Node2D" parent="RigidBodies/skeleton/Skeleton2D" unique_id=1224169096]
-visible = false
 rotation = 1.1779506e-05
 
 [node name="Back" type="PinJoint2D" parent="RigidBodies/skeleton/Skeleton2D/PinJoints" unique_id=1049038305]
@@ -2394,7 +2393,7 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="RigidBodies/skeleton/Skeleton2D/PinJoints/Back/FArm/LFArm" unique_id=932216739]
-position = Vector2(0.039981008, 8.380537)
+position = Vector2(0.039981127, 8.380537)
 node_a = NodePath("../../../../../../../FDownArm")
 node_b = NodePath("../../../../../../../FFHand")
 angular_limit_enabled = true
@@ -2428,7 +2427,7 @@ ik_damping = 0.0
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="HAND" type="PinJoint2D" parent="RigidBodies/skeleton/Skeleton2D/PinJoints/Back/BArm/BDArm" unique_id=1162834353]
-position = Vector2(0.039981008, 8.380537)
+position = Vector2(0.039981127, 8.380537)
 node_a = NodePath("../../../../../../../BDownArm")
 node_b = NodePath("../../../../../../../BHand")
 angular_limit_enabled = true
