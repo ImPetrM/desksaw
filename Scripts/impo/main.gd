@@ -21,7 +21,6 @@ func _ready():
 	if OS.get_name() == "Linux" and OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland" and not TransparentWindow.UsesInputRegions():
 		OS.alert("DeskSaw could not enable its XWayland input-region workaround. Click-through interaction may not work correctly. Make sure DeskSaw is running through X11/XWayland with the XShape extension available, or use an X11 session.")
 
-	GlobalVariable.console.connect(yeah)
 	#fix()
 	createBorders()
 
@@ -50,13 +49,6 @@ func _ready():
 		)
 		GlobalVariable._apply_renderer_and_restart(use_vulkan)
 	"""
-
-
-func yeah(t: bool):
-	console.visible = t
-	if t:
-		console.showw()
-
 
 func createBorders():
 	taskbarPos = clampi(taskbarPos, 0, screenHeight)

@@ -27,9 +27,6 @@ func ragaa():
 func skinswapFunc(data):
 	skinswap.emit(data)
 
-func consoleF(t: bool):
-	console.emit(t)
-
 func raisemoodF(t: int):
 	raisemood.emit(t)
 

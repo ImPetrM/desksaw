@@ -241,7 +241,7 @@ func _on_body_part_input(_viewport: Node, event: InputEvent, _shape_idx: int, bo
 		#dragging
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if Input.is_action_pressed("ctrl"):
-				GlobalVariable.consoleF(true)
+				InputManager.TerminalOpenPressed.emit()
 				return
 			var mouse_pos := rigid_bodies_container.get_global_mouse_position()
 			_startDrag(body, mouse_pos)
