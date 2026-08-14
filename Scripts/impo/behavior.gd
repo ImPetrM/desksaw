@@ -148,7 +148,7 @@ func sleep():
 			faceSys.setEmotion("sleep")
 			moveSys.ragdoll(false)
 			ragdolled = true
-			sleepHandler.tiredness -= 0.125
+			sleepHandler.tiredness -= randf_range(0.11, 0.14)
 			moodSys.mood += 0.025
 
 
@@ -220,7 +220,7 @@ func checker():
 		statUpd.stat.id = ("#" + GlobalVariable.getNumFromString(petId))
 		statUpd.stat.mood = moodN
 		statUpd.stat.hunger = hungerHandler.hungry
-		statUpd.stat.sleep = sleepN
+		statUpd.stat.sleep = randf_range(sleepN, sleepN + 0.02)
 		statUpd.upd(statUpd.stat)
 
 		await get_tree().create_timer(tick).timeout
