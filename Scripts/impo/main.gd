@@ -35,6 +35,7 @@ func _ready():
 	if gbData.settings["expiePersistence"]:
 		loadExpiePersistence()
 	else:
+		GlobalVariable.data["saw"] = {}
 		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
 
 	#lol()
