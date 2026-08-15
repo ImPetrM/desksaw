@@ -4,6 +4,13 @@
 extends Container
 #define item shit
 #var items = []
+
+
+#since godot wants to bitch about exporting this item list will remain until it does
+#this exact bug messed up my first game jam submission but basically it doesnt like when you use diraccess in the exported build and then it just
+#treats them as if they dont exist
+
+
 var itemsPath = "res://scenes/objects/"
 
 @onready
@@ -14,14 +21,13 @@ var list = $ScrollContainer/iList
 
 func _ready() -> void:
 	$ScrollContainer.custom_minimum_size = get_parent().size
-	itemTemplate.visible = false
+	#itemTemplate.visible = false
+	itemTemplate.pressed.connect(openWiki.bind())
 	scanItems()
 
 
-func _process(delta: float) -> void:
-	pass
-
 #get items inside it
+
 func scanItems():
 	#items.clear()
 	var dir = DirAccess.open(itemsPath)
@@ -35,7 +41,7 @@ func scanItems():
 			var itemName = nameF.get_basename()
 			var scenePath = itemsPath + nameF
 			var image = getSceneTexture(scenePath)
-
+			print(itemName)
 			#items.append(itemName)
 			makeButtons(itemName, image)
 
@@ -71,9 +77,10 @@ func makeButtons(itemName: String, texture: Texture) -> void:
 	#connect to the add command
 	newbutton.pressed.connect(_additem.bind(itemName))
 
-#literally just the one from commands.gd word for wrd
-
-func _additem(item: String = "crate"):
+func openWiki():
+	OS.shell_open("https://casualtiesunknown.miraheze.org/wiki/")
+func _additem(item: String = "containercrate"):
+	$ScrollContainer.custom_minimum_size = get_parent().size
 	var path = "res://scenes/objects/" + item + ".tscn"
 	if !ResourceLoader.exists(path):
 		Console.error("No such object '" + item + "'")

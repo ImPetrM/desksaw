@@ -58,6 +58,7 @@ shape = SubResource("WorldBoundaryShape2D_fn1ne")
 script = ExtResource("3_wpfx3")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=590503007]
+visible = false
 material = SubResource("ShaderMaterial_1ywsh")
 anchors_preset = 15
 anchor_right = 1.0

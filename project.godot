@@ -50,6 +50,10 @@ display_server/driver.linuxbsd="x11"
 
 project/assembly_name="StartingOver"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-console/plugin.cfg", "res://addons/soupik/plugin.cfg")

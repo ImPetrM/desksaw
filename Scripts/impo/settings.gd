@@ -13,7 +13,7 @@ var sMAP = {
 	"lobotomize": {"key": "lobotomize", "type": "toggle"},
 	"useVulkan": {"key": "useVulkan", "type": "toggle"},
 	"expiePersistence": {"key": "expiePersistence", "type": "toggle"},
-	"pixel": {"key": "pixel", "type": "toggle"},
+	#"pixel": {"key": "pixel", "type": "toggle"},
 	"expieFontSize": {"key": "expieDialogueSize", "type": "text"},
 	"hungerRate": {"key": "hungerDecayRate", "type": "text"},
 	"openAlert": {"key": "messageEnabled", "type": "toggle"},
@@ -151,8 +151,6 @@ func _on_audio_tab_pressed():
 	AudioTabN.button_mask = 0 # disable mouse clicks, so user cannot disable the button
 	hide_all_settings()
 	show_all_tab_type("Audio")
-
-
 
 
 func _on_use_vulkan_toggled(toggled_on: bool) -> void:
