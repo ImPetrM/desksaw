@@ -29,5 +29,6 @@
 	"outdated": false,
 	"soundVolume": 1.0,
 	"defaultSkin": "Body",
+	"defaultMonitor": 0,
 	"useVulkan": false
 }

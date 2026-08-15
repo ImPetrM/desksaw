@@ -160,7 +160,7 @@ func _ready():
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
 	Console.print("[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]")
-	Console.execute("setMonitor 2")
+	Console.execute("setMonitor {0}".format([int(gbData.settings["defaultMonitor"])]))
 	#setting stuff that would probably have a better solution to it
 
 
