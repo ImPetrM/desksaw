@@ -37,7 +37,10 @@ func hungercheck():
 
 
 func _onItemEnter(body: Node2D) -> void:
+	#consolidate this later
 	if foodDb == true:
+		return
+	if get_parent().isSleeping or get_parent().shocked:
 		return
 	if not body.has_node("properties"):
 		return

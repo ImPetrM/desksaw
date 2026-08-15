@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c54ytulfgcsuk" path="res://Scripts/impo/skinSpawner.gd" id="7_emer2"]
 [ext_resource type="Script" uid="uid://di2ndevvlwtlo" path="res://Scripts/nimpo/item_spawner.gd" id="9_o0bys"]
 [ext_resource type="Theme" uid="uid://bl462l5byyohh" path="res://assets/themes/ConsoleTheme.tres" id="10_m5wgn"]
+[ext_resource type="Texture2D" uid="uid://btgnk8vpemq7w" path="res://assets/objectSpr/Site-logo.png" id="11_p45lu"]
 [ext_resource type="Script" uid="uid://ckp8r8xr5vm48" path="res://Scripts/nimpo/soundVolumeSlider.gd" id="19_emer2"]
 
 [node name="Console" type="Control" unique_id=2061047100 node_paths=PackedStringArray("Handle", "Minimize", "Exit", "ConsoleN", "SettingsN", "SkinsN", "ItemsN")]
@@ -558,6 +559,7 @@ scroll_active = false
 vertical_alignment = 1
 
 [node name="pixel" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=808715694]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_gicfb")
@@ -750,7 +752,11 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 70.0
 offset_bottom = 70.0
+scale = Vector2(0.9, 0.9)
 pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("11_p45lu")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="name" type="RichTextLabel" parent="Main/ItemSpawner/ScrollContainer/iList/Button" unique_id=2117883067]
 layout_mode = 1
@@ -761,11 +767,13 @@ anchor_right = 10.28
 anchor_bottom = -3.66
 offset_left = 790.65
 offset_top = 275.5
-offset_right = 280.55005
+offset_right = -221.0
 offset_bottom = 347.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Toggle expie petting sounds"
+bbcode_enabled = true
+text = "[color=red] MOST IF NOT ALL ASSETS ARE RIPPED FROM 
+[color=cyan]https://casualtiesunknown.miraheze.org/wiki/"
 scroll_active = false
 vertical_alignment = 1
 

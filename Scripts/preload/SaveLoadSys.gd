@@ -19,7 +19,7 @@ var template = "res://Scripts/singletons/SaveTemplate.json"
 
 
 # DO NOT FORGET TO DISABLE THIS WHENBUILDING 
-var devMode = true
+var devMode = false
 #turns out you can literally make a custom project setting that does something like this
 #but im too  in too deep to go back now
 
