@@ -55,8 +55,6 @@ func _update_state() -> void:
 	_slider.step = sliderStep
 
 	var init_v = gbData.settings.get(key)
-	print("%s is %s" % [label, init_v])
-
 	if init_v == null:
 		# if the key doesn't exist, create it!
 		_init_variable(false)
