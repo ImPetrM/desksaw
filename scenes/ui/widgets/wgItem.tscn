@@ -34,6 +34,7 @@ offset_bottom = 13.75
 grow_vertical = 2
 texture = ExtResource("4_fmg37")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Button" unique_id=1494399342]
 layout_mode = 1

@@ -37,9 +37,12 @@ func _resize_console(v) -> void:
 func _on_terminal_open_press(_is_native: bool) -> void:
 	# is_native defines if it was called via an input (true)
 	# or by clicking on an expie (false)
-	# we currently don't do anything with this information, but you
+	# we currently don't do much with this information, but you
 	# could add additional logic if you want.
-	visible = true
+	if _is_native:
+		visible = !visible
+	else:
+		visible = true
 
 func _on_submenu_picker_item_selected(index: int) -> void:
 	for i in submenuPanels.size():

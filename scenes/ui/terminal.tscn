@@ -69,7 +69,7 @@ border_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
 
 [node name="ConsoleWindowPanel" type="Panel" unique_id=2084845338 node_paths=PackedStringArray("windowControl", "submenuButton", "submenuPanels")]
 offset_right = 580.0
-offset_bottom = 313.0
+offset_bottom = 320.0
 theme = ExtResource("1_qw8t2")
 script = ExtResource("1_28y5k")
 windowControl = NodePath("WindowController")
@@ -158,7 +158,6 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4tatb")
 
 [node name="ConsoleView" type="VBoxContainer" parent="MarginContainer/ViewportPanel" unique_id=368875547]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -496,11 +495,12 @@ label = "Toggle disclaimer at bootup
 key = "messageEnabled"
 flipValue = true
 
-[node name="Normalize" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/DebugPanel/ScrollContainer/VBoxContainer" unique_id=65486334 instance=ExtResource("5_hils5")]
+[node name="Normalize" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/DebugPanel/ScrollContainer/VBoxContainer" unique_id=168003765 instance=ExtResource("9_r80vr")]
 visible = false
 layout_mode = 2
 label = "Normalize"
 key = "normalize"
+sliderMinimum = -1.0
 
 [node name="SkinsView" type="Panel" parent="MarginContainer/ViewportPanel" unique_id=1098396453 node_paths=PackedStringArray("defaultSkinButton", "spawnButton", "openFolderButton", "refreshButton", "openDBButton", "expieDisplayWidget", "skinsButtonList", "skinNameLabel")]
 visible = false
@@ -671,6 +671,7 @@ layout_mode = 2
 text = ">"
 
 [node name="ItemsView" type="Panel" parent="MarginContainer/ViewportPanel" unique_id=1530645209 node_paths=PackedStringArray("itemContainer", "root", "wikiButton", "wikiButtonClose")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
