@@ -82,6 +82,8 @@ func play_sfx(stream: AudioStream,
 			return null
 	if stream == thudwoosh and !gbData.settings.pettingSoundEnabled:
 		return null
+	if stream == eat and !gbData.settings.eatingSoundEnabled:
+		return null
 
 	if not stream or randf() > chance:
 		return null

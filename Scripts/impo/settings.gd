@@ -23,6 +23,7 @@ var sMAP = {
 	"whiningSoundBool": {"key": "whiningSoundEnabled", "type": "toggle"},
 	"barkSoundBool": {"key": "barkSoundEnabled", "type": "toggle"},
 	"pettingSoundBool": {"key": "pettingSoundEnabled", "type": "toggle"},
+	"eatingSoundBool": {"key": "eatingSoundEnabled", "type": "toggle"},
 	"hungerEnable": {"key": "hungerEnabled", "type": "toggle"},
 	"sleepEnable": {"key": "sleepEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},
@@ -30,6 +31,7 @@ var sMAP = {
 	"normalize": {"key": "normalize", "type": "text"},
 	"soundVolume": {"key": "soundVolume", "type": "slider"},
 	"defaultSkin": {"key": "defaultSkin", "type": "string"},
+	"defaultMonitor": {"key": "defaultMonitor", "type": "string"},
 }
 
 
@@ -105,6 +107,7 @@ func _on_expie_persistence_pressed(): # special case, as if disabled we want to 
 
 @onready var GeneralTabN = $VSplitContainer/TabsScrollContainer/HBoxContainer/GeneralTab
 @onready var AudioTabN = $VSplitContainer/TabsScrollContainer/HBoxContainer/AudioTab
+@onready var SysTabN = $VSplitContainer/TabsScrollContainer/HBoxContainer/SysTab
 
 func assign_tab_meta_to_leftovers():
 	var children: Array[Node] = $VSplitContainer/ScrollContainer/ItemList.get_children()
@@ -139,21 +142,32 @@ func show_all_tab_type(type):
 
 func _on_general_tab_pressed():
 	AudioTabN.button_pressed = false
+	SysTabN.button_pressed = false
 	GeneralTabN.button_mask = 0 # disable mouse clicks, so user cannot disable the button
 	AudioTabN.button_mask = 1 # enable mouse click for other tab
+	SysTabN.button_mask = 1 # enable mouse click for other tab
 	hide_all_settings()
 	show_all_tab_type("General")
 
 
 func _on_audio_tab_pressed():
 	GeneralTabN.button_pressed = false
+	SysTabN.button_pressed = false
 	GeneralTabN.button_mask = 1 # enable mouse click for other tab
 	AudioTabN.button_mask = 0 # disable mouse clicks, so user cannot disable the button
+	SysTabN.button_mask = 1 # enable mouse click for other tab
 	hide_all_settings()
 	show_all_tab_type("Audio")
 
+func _on_sys_tab_pressed():
+	GeneralTabN.button_pressed = false
+	AudioTabN.button_pressed = false
+	GeneralTabN.button_mask = 1 # enable mouse click for other tab
+	AudioTabN.button_mask = 1 # enable mouse click for other tab
+	SysTabN.button_mask = 0 # disable mouse clicks, so user cannot disable the button
+	hide_all_settings()
+	show_all_tab_type("Sys")
 
 func _on_use_vulkan_toggled(toggled_on: bool) -> void:
 	if toggled_on == gbData.settings.useVulkan: return
 	GlobalVariable._apply_renderer_and_restart(toggled_on)
-	pass # Replace with function body.

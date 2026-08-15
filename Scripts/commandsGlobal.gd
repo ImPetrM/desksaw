@@ -116,17 +116,20 @@ func setmonitor(monitorIndex: int = 1):
 func resize(nx, ny, isForce = "no") -> String:
 	var ex = str(nx).to_float()
 	var ey = str(ny).to_float()
-	if (ex < 200 or ey < 100) and isForce == "no":
-		Console.warning("Resizing the console this small is not reccomended!")
-		return "Type '[url=resizeConsole {0} {1} force]resizeConsole {0} {1} force[/url]' if you are sure".format([nx, ny])
-
+	if (
+		(ex < 200 or ey < 100)
+		or (ex > float(GlobalVariable.screenWidth) / 2 or ey > GlobalVariable.screenHeight)
+		) and isForce == "no":
+		Console.warning("Resizing the console to this size is not recommended!")
+		Console.print("Type '[url=resizeConsole {0} {1} force]resizeConsole {0} {1} force[/url]' if you are sure".format([nx, ny]))
+		return "[color=gray]NOTE: console size will NOT be saved if forced![/color]"
 	# if it goes through, call a resize
 	var _target_size = Vector2(ex, ey)
 	resizeCommandCalled.emit(_target_size)
 	#save to config
-	gbData.settings.ConsoleSize.x = ex
-	gbData.settings.ConsoleSize.y = ey
-
+	if isForce == "no":
+		gbData.settings.ConsoleSize.x = ex
+		gbData.settings.ConsoleSize.y = ey
 
 	#debugshit
 	if gbData.devMode == true:
@@ -171,7 +174,7 @@ func _do_i_cmds():
 	has_run_commands = true
 
 	# i thought this had to be run from the console node itself but turns out its reflected on all consoles! hooray!
-	Console.execute("setMonitor 0")
+	Console.execute("setMonitor {0}".format([int(gbData.settings["defaultMonitor"])]))
 	Console.execute("help")
 	Console.print("[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]")
 	Console.print("EXPIE OR ANY CHARACTERS THAT MAY BE PRESENT HERE ARE NOT MINE. THIS IS A FAN PROJECT")

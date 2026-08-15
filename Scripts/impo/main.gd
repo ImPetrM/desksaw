@@ -34,6 +34,7 @@ func _ready():
 	if gbData.settings["expiePersistence"]:
 		loadExpiePersistence()
 	else:
+		GlobalVariable.data["saw"] = {}
 		CommandsGlobal.spawnExpie()
 
 	#lol()

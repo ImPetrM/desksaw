@@ -25,7 +25,7 @@ var global_bottom_right: Vector2
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	_on_tab_switch_item_selected(1)
+	_on_tab_switch_item_selected(0)
 
 	position = Vector2i(GlobalVariable.screenWidth / 2, GlobalVariable.screenHeight / 2)
 
