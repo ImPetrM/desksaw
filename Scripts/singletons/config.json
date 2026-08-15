@@ -22,6 +22,7 @@
 	"whiningSoundEnabled": true,
 	"barkSoundEnabled": true,
 	"pettingSoundEnabled": true,
+	"eatingSoundEnabled": true,
 	"messageEnabled": true,
 	"hungerEnabled": true,
 	"sleepEnabled": true,
@@ -29,5 +30,6 @@
 	"outdated": false,
 	"soundVolume": 1.0,
 	"defaultSkin": "Body",
+	"defaultMonitor": 0,
 	"useVulkan": false
 }

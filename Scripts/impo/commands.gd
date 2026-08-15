@@ -111,16 +111,18 @@ func setmonitor(monitorIndex: int = 1):
 func resize(nx, ny, isForce = "no") -> String:
 	var ex = str(nx).to_float()
 	var ey = str(ny).to_float()
-	if (ex < 200 or ey < 100) and isForce == "no":
-		Console.warning("Resizing the console this small is not reccomended!")
-		return "Type '[url=resizeConsole {0} {1} force]resizeConsole {0} {1} force[/url]' if you are sure".format([nx, ny])
+	if ((ex < 200 or ey < 100) or (ex > GlobalVariable.screenWidth/2 or ey > GlobalVariable.screenHeight)) and isForce == "no":
+		Console.warning("Resizing the console to this size is not reccomended!")
+		Console.print("Type '[url=resizeConsole {0} {1} force]resizeConsole {0} {1} force[/url]' if you are sure".format([nx, ny]))
+		return "[color=gray]NOTE: console size will NOT be saved if forced![/color]"
 	root.size.x = ex
 	root.size.y = ey
 
 	#save to config
 
-	gbData.settings.ConsoleSize.x = ex
-	gbData.settings.ConsoleSize.y = ey
+	if isForce == "no":
+		gbData.settings.ConsoleSize.x = ex
+		gbData.settings.ConsoleSize.y = ey
 
 
 	#debugshit
@@ -158,7 +160,7 @@ func _ready():
 	#Console.create_command("deathLoop", deathLoop, "please dont crash")
 	Console.execute("help")
 	Console.print("[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]")
-	Console.execute("setMonitor 2")
+	Console.execute("setMonitor {0}".format([int(gbData.settings["defaultMonitor"])]))
 	#setting stuff that would probably have a better solution to it
 
 
