@@ -61,6 +61,10 @@ enabled=PackedStringArray("res://addons/godot-console/plugin.cfg", "res://addons
 
 k=false
 
+[gui]
+
+theme/custom_font="uid://3iqts0pa6rby"
+
 [input]
 
 click={
