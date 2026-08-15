@@ -399,6 +399,7 @@ sliderStep = 1.0
 valueType = "int"
 
 [node name="Pixel" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=1687074210 instance=ExtResource("5_hils5")]
+visible = false
 layout_mode = 2
 label = "Enable pixel rendering"
 key = "pixel"
