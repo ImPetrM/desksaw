@@ -88,16 +88,21 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		refresh()
 		_slider.value_changed.connect(_on_slider_changed)
+		GlobalVariable.dataNuked.connect(_read_refresh)
 
-func _update_volume() -> void:
-	# really ugly way of doing things! mimics previous volume slider 
-	# FIXME: actually connect "soundVolume" to AudioManager.
-	# 		 maybe make it update via a signal?
-	AudioManager.soundMult = gbData.settings.get("soundVolume", 1.0)
-
+var _ignore_next_change: bool = false
+func _read_refresh() -> void:
+	# currently calling this when we nuke our config to
+	# correctly display all values.
+	_ignore_next_change = true
+	refresh()
 
 func _on_slider_changed(v) -> void:
 	_update_value()
+
+	if _ignore_next_change:
+		_ignore_next_change = false
+		return
 
 	# clamp value to their proper types
 	match valueType:
@@ -113,3 +118,9 @@ func _on_slider_changed(v) -> void:
 
 	if updateVolume:
 		_update_volume()
+
+func _update_volume() -> void:
+	# really ugly way of doing things! mimics previous volume slider 
+	# FIXME: actually connect "soundVolume" to AudioManager.
+	# 		 maybe make it update via a signal?
+	AudioManager.soundMult = gbData.settings.get("soundVolume", 1.0)

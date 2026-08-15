@@ -33,6 +33,10 @@ func raisemoodF(t: int):
 func feedf(t: int):
 	feed.emit(t)
 
+@warning_ignore("unused_signal") # for now, we use other scripts to emit these
+signal TerminalOpenPressed(is_native: bool)
+@warning_ignore("unused_signal")
+signal dataNuked
 
 func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
 	var path = "res://scenes/popUp.tscn"
@@ -70,9 +74,6 @@ func getNumFromString(inputString: String):
 			number_string += character
             
 	return number_string
-
-@warning_ignore("unused_signal") # for now, we use other scripts to emit it
-signal TerminalOpenPressed(is_native: bool)
 
 func _process(_d: float) -> void:
 	if Input.is_action_just_pressed("Open Terminal"):

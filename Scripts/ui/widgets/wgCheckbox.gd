@@ -56,8 +56,20 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		refresh()
 		_checkbox.toggled.connect(_on_check_box_toggled)
+		GlobalVariable.dataNuked.connect(_read_refresh)
+
+var _ignore_next_change: bool = false
+func _read_refresh() -> void:
+	# currently calling this when we nuke our config to
+	# correctly display all values.
+	_ignore_next_change = true
+	refresh()
 
 func _on_check_box_toggled(v: bool) -> void:
+	if _ignore_next_change:
+		_ignore_next_change = false
+		return
+
 	if flipValue:
 		v = !v
 	gbData.settings.set(key, v)

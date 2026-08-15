@@ -107,6 +107,7 @@ func clearObj(category: String = "object"):
 func nukesettings():
 	#command that fixes the "terror" bug
 	gbData.killEverything()
+	GlobalVariable.dataNuked.emit()
 
 func setmonitor(monitorIndex: int = 1):
 	DisplayServer.window_set_current_screen(monitorIndex)

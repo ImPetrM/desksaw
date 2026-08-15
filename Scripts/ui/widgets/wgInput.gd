@@ -52,8 +52,20 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		refresh()
 		_textEdit.text_changed.connect(_on_text_edit_changed)
+		GlobalVariable.dataNuked.connect(_read_refresh)
+
+var _ignore_next_change: bool = false
+func _read_refresh() -> void:
+	# currently calling this when we nuke our config to
+	# correctly display all values.
+	_ignore_next_change = true
+	refresh()
 
 func _on_text_edit_changed() -> void:
+	if _ignore_next_change:
+		_ignore_next_change = false
+		return
+
 	var v = _textEdit.text
 	gbData.settings.set(key, v)
 	print("Key '%s' [%s] set to '%s'" % [label, key, v])
