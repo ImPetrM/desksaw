@@ -43,18 +43,21 @@ var _cursor_offset: Vector2 = Vector2(0,0)
 func window_drag() -> void:
 	root.global_position = root.get_global_mouse_position() - _cursor_offset
 
-func window_resize(size_target = null) -> void:
+func window_resize(size_target = null, force: bool = false) -> void:
 	# note: so this works but i want the size to offset the position
 	# of where the user clicked the resize button so it doesnt snap on
 	# resize, but im like way too stupid to figure that out right now
 	if size_target == null or !size_target is Vector2:
 		size_target = root.get_local_mouse_position() - _cursor_offset
 
-	# clamping to prevent comically small or big windows
-	root.size = Vector2(
-		min(max(size_target.x, _min.x),_max.x),
-		min(max(size_target.y, _min.y),_max.y)
-	)
+	if force:
+		root.size = size_target
+	else:
+		# clamping to prevent comically small or big windows
+		root.size = Vector2(
+			min(max(size_target.x, _min.x),_max.x),
+			min(max(size_target.y, _min.y),_max.y)
+		)
 
 func _can_alter_window() -> bool:
 	return !_is_dragging_window && !_is_resizing_window

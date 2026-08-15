@@ -25,14 +25,14 @@ func _ready() -> void:
 		and gbData.settings.ConsoleSize.x
 		and gbData.settings.ConsoleSize.y
 	):
-		_resize_console(Vector2(gbData.settings.ConsoleSize.x,gbData.settings.ConsoleSize.y))
+		_resize_console(Vector2(gbData.settings.ConsoleSize.x,gbData.settings.ConsoleSize.y), false)
 		print("%s: initial resize called properly!" % [name])
 	
 	CommandsGlobal.runInitialCommands.emit()
 
 ## Resizes the console using stored data variables
-func _resize_console(v) -> void:
-	windowControl.window_resize(v)
+func _resize_console(v, force) -> void:
+	windowControl.window_resize(v, force)
 
 func _on_terminal_open_press(_is_native: bool) -> void:
 	# is_native defines if it was called via an input (true)

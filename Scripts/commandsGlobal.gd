@@ -1,7 +1,7 @@
 extends Node
 
 signal toggleDebugText
-signal resizeCommandCalled(size: Vector2)
+signal resizeCommandCalled(size: Vector2, force: bool)
 
 signal runInitialCommands
 var has_run_commands: bool = false
@@ -125,7 +125,7 @@ func resize(nx, ny, isForce = "no") -> String:
 		return "[color=gray]NOTE: console size will NOT be saved if forced![/color]"
 	# if it goes through, call a resize
 	var _target_size = Vector2(ex, ey)
-	resizeCommandCalled.emit(_target_size)
+	resizeCommandCalled.emit(_target_size, true)
 	#save to config
 	if isForce == "no":
 		gbData.settings.ConsoleSize.x = ex
