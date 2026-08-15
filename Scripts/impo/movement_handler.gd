@@ -23,7 +23,7 @@ extends Node
 
 @export var ragdollspeed: float = 575.0
 
-#@export var pinNode: Node2D
+@export var pinNode: Node2D
 
 signal sigragdoll()
 
@@ -229,18 +229,17 @@ func detFlip():
 #test function 
 #invert pinjoin angular limits
 
-"""
 func invertPoints(val: bool, setup: bool = false):
 	print(pinNode)
 	var descendants = pinNode.find_children("*", "", true, false)
 
 	for child in descendants:
 		if child is PinJoint2D or child is RapierPinJoint2D:
-			
+			"""
 			var fuckyou: RapierPinJoint2D
 			fuckyou.angular_limit_lower
 			fuckyou.angular_limit_upper
-			
+			"""
 
 			if setup:
 				#reset default limits i do not recommend calling this more than one time
@@ -255,7 +254,7 @@ func invertPoints(val: bool, setup: bool = false):
 			else:
 				child.angular_limit_lower = valAngularPinDown
 				child.angular_limit_upper = valAngularPinUp
-"""
+
 
 func checkJump():
 	if wallDetect.is_colliding() and !heightDetect.is_colliding() and dir != 0.0 and !backwards:
@@ -292,8 +291,8 @@ func ragdoll(val: bool):
 	for child in moredesc:
 		if child is RigidBody2D:
 			child.freeze = val
-
 			if !val:
+			#rigid.scale.x = -1.0 if flip else 1.0
 				child.linear_velocity = rigid.linear_velocity
 				child.angular_velocity = rigid.angular_velocity
 
