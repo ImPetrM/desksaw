@@ -365,6 +365,12 @@ label = "Mute petting sounds"
 key = "pettingSoundEnabled"
 flipValue = true
 
+[node name="MuteEating" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/AudioPanel/ScrollContainer/VBoxContainer" unique_id=369630809 instance=ExtResource("5_hils5")]
+layout_mode = 2
+label = "Mute eating sounds"
+key = "eatingSoundEnabled"
+flipValue = true
+
 [node name="GeneralPanel" type="Panel" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer" unique_id=1035660472]
 visible = false
 layout_mode = 2
@@ -383,6 +389,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = -1
+
+[node name="Monitor" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=27978876 instance=ExtResource("9_r80vr")]
+layout_mode = 2
+label = "Default monitor"
+key = "defaultMonitor"
+sliderMaximum = 9.0
+sliderStep = 1.0
+valueType = "int"
 
 [node name="Persistence" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=671056008 instance=ExtResource("5_hils5")]
 layout_mode = 2
