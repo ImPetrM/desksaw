@@ -23,6 +23,7 @@ var sMAP = {
 	"whiningSoundBool": {"key": "whiningSoundEnabled", "type": "toggle"},
 	"barkSoundBool": {"key": "barkSoundEnabled", "type": "toggle"},
 	"pettingSoundBool": {"key": "pettingSoundEnabled", "type": "toggle"},
+	"eatingSoundBool": {"key": "eatingSoundEnabled", "type": "toggle"},
 	"hungerEnable": {"key": "hungerEnabled", "type": "toggle"},
 	"sleepEnable": {"key": "sleepEnabled", "type": "toggle"},
 	"minMood": {"key": "minMood", "type": "text"},

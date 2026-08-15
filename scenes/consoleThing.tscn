@@ -559,6 +559,35 @@ text = "Toggle expie petting sounds"
 scroll_active = false
 vertical_alignment = 1
 
+[node name="eatingSoundBool" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=1613162462]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gicfb")
+toggle_mode = true
+icon = ExtResource("6_7udsa")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+metadata/type = "bool"
+metadata/Tab = "Audio"
+
+[node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/eatingSoundBool" unique_id=1692611238]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.382
+anchor_top = -3.66
+anchor_right = 10.28
+anchor_bottom = -3.66
+offset_left = 526.1
+offset_top = 187.975
+offset_right = 20.0
+offset_bottom = 227.975
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toggle expie petting sounds"
+scroll_active = false
+vertical_alignment = 1
+
 [node name="pixel" type="Button" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=808715694]
 visible = false
 custom_minimum_size = Vector2(50, 50)
@@ -637,6 +666,7 @@ metadata/_edit_use_anchors_ = true
 [node name="defaultMonitor" type="LineEdit" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList" unique_id=628928793]
 layout_mode = 2
 placeholder_text = "0"
+max_length = 1
 metadata/Tab = "Sys"
 
 [node name="name" type="RichTextLabel" parent="Main/Settings/VSplitContainer/ScrollContainer/ItemList/defaultMonitor" unique_id=1743805253]
