@@ -93,7 +93,10 @@ func loadExpiePersistence():
 	print("loading expies...")
 	
 
-	if gbData.data["saw"].size() > 20:
+	if (
+		gbData.data["saw"].size() > 20
+		and !gbData.settings.get("noPersPopup", false)
+	):
 		GlobalVariable.persistenceWarning.emit()
 		print("Awaiting response from warning popup...")
 		await GlobalVariable.persistenceWarning

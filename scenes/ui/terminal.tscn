@@ -389,6 +389,11 @@ layout_mode = 2
 label = "Keep spawned expies across sessions"
 key = "expiePersistence"
 
+[node name="NoPersPopup" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=783160364 instance=ExtResource("5_hils5")]
+layout_mode = 2
+label = "Disable 'too many expies!?' popup"
+key = "noPersPopup"
+
 [node name="FontSize" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=1753755982 instance=ExtResource("9_r80vr")]
 layout_mode = 2
 label = "Dialogue font size"
