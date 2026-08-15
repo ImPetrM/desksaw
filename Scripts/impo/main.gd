@@ -21,7 +21,6 @@ func _ready():
 	if OS.get_name() == "Linux" and OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland" and not TransparentWindow.UsesInputRegions():
 		OS.alert("DeskSaw could not enable its XWayland input-region workaround. Click-through interaction may not work correctly. Make sure DeskSaw is running through X11/XWayland with the XShape extension available, or use an X11 session.")
 
-	GlobalVariable.console.connect(yeah)
 	#fix()
 	createBorders()
 
@@ -36,7 +35,7 @@ func _ready():
 		loadExpiePersistence()
 	else:
 		GlobalVariable.data["saw"] = {}
-		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie()
+		CommandsGlobal.spawnExpie()
 
 	#lol()
 	"""
@@ -52,18 +51,11 @@ func _ready():
 		GlobalVariable._apply_renderer_and_restart(use_vulkan)
 	"""
 
-
-func yeah(t: bool):
-	console.visible = t
-	if t:
-		console.showw()
-
-
 func createBorders():
 	taskbarPos = clampi(taskbarPos, 0, screenHeight)
-	$Floor.position = Vector2(screenWidth / 2, taskbarPos)
-	$SideL.position = Vector2(0, screenHeight / 2)
-	$SideR.position = Vector2(screenWidth, screenHeight / 2)
+	$Floor.position = Vector2(float(screenWidth) / 2, taskbarPos)
+	$SideL.position = Vector2(0, float(screenHeight) / 2)
+	$SideR.position = Vector2(screenWidth, float(screenHeight) / 2)
 
 
 func updateBorders():
@@ -82,27 +74,33 @@ func updateBorders():
 
 func update_obj_metas():
 	"""Assign 'catagory' meta with 'object' to all scenes in the object path."""
-	
+	# so, not quite! instead of tagging stuff, it spawns them into the scene.
+	# disabling this for now.
+	"""
 	var dir = DirAccess.open("res://scenes/objects")
 	dir.list_dir_begin()
 	var fileName = dir.get_next()
 	
 	while fileName != "":
 		if fileName.ends_with(".tscn"):
-			var path = "res://scenes/object".path_join(fileName)
+			var path = "res://scenes/objects".path_join(fileName)
 			var object = load(path)
 			if object is PackedScene:
 				var instance = object.instantiate()
 				add_child(instance)
 		fileName = dir.get_next()
 	dir.list_dir_end()
+	"""
 
 
 func loadExpiePersistence():
 	print("loading expies...")
 	
 
-	if gbData.data["saw"].size() > 20:
+	if (
+		gbData.data["saw"].size() > 20
+		and !gbData.settings.get("noPersPopup", false)
+	):
 		GlobalVariable.persistenceWarning.emit()
 		print("Awaiting response from warning popup...")
 		await GlobalVariable.persistenceWarning
@@ -113,7 +111,7 @@ func loadExpiePersistence():
 		print("loading '", petId, "' (skin: ", petData.get("skin", "Default"), ")...")
 		await get_tree().create_timer(0.25).timeout
 		GlobalVariable.userSkinPath = "user://skin/" + petData.get("skin", "Default") + "/"
-		$CanvasLayer2/ConsoleContainer/Main/ConsoleContainer/Commands.spawnExpie(petId)
+		CommandsGlobal.spawnExpie(petId)
 		print("loaded ", petId)
 """
 func lol():

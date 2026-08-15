@@ -9,11 +9,13 @@ var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
 var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
 var clickZoneSum: int = 0
+@warning_ignore("unused_signal")
 signal persistenceWarning() # used to warn user if they have more than 20 expies stored in persistence save
 signal raga()
 signal skinswap()
 signal resize()
 signal pet(t: bool)
+@warning_ignore("unused_signal")
 signal console(t: bool)
 signal raisemood(t: int)
 signal feed(t: int)
@@ -27,18 +29,19 @@ func ragaa():
 func skinswapFunc(data):
 	skinswap.emit(data)
 
-func consoleF(t: bool):
-	console.emit(t)
-
 func raisemoodF(t: int):
 	raisemood.emit(t)
 
 func feedf(t: int):
 	feed.emit(t)
 
+@warning_ignore("unused_signal") # for now, we use other scripts to emit these
+signal TerminalOpenPressed(is_native: bool)
+@warning_ignore("unused_signal")
+signal dataNuked
 
 func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
-	var path = "res://scenes/popUp.tscn"
+	var path = "res://scenes/ui/popUp.tscn"
 	var scene = load(path)
 	var instance = scene.instantiate()
 	parent.add_child(instance)
@@ -73,3 +76,7 @@ func getNumFromString(inputString: String):
 			number_string += character
             
 	return number_string
+
+func _process(_d: float) -> void:
+	if Input.is_action_just_pressed("Open Terminal"):
+		TerminalOpenPressed.emit(true)

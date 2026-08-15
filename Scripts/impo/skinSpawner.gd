@@ -76,14 +76,16 @@ func reloadDisplayExpie():
 		if child.has_meta("display"):
 			child.queue_free()
 
-	var scene = load("res://scenes/displayExpie.tscn")
+	var scene = load("res://scenes/ui/widgets/wgExpie.tscn")
 	var instance = scene.instantiate()
 	var disp = instance.get_node_or_null("DisplayExpie")
 
-	var wrapper = Node2D.new()
+	var wrapper = Control.new()
 	wrapper.set_meta("display", false)
 	wrapper.add_child(instance)
+	wrapper.position = Vector2(80,160)
 	add_child(wrapper)
+	instance.ApplyTextures(GlobalVariable.userSkinPath)
 
 func _on_folder_access_pressed():
 	OS.shell_open(ProjectSettings.globalize_path("user://skin"))
