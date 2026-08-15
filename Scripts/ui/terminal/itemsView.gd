@@ -4,6 +4,8 @@ extends Panel
 @export var itemContainer: Container
 @export var buttonScene: PackedScene
 @export var root: Panel
+@export var wikiButton: Button
+@export var wikiButtonClose: Button
 
 class ItemEntry:
 	var name: String
@@ -15,6 +17,10 @@ var _itemsPath = "res://scenes/objects/"
 
 func  _ready() -> void:
 	root.resized.connect(_recalculate_columns)
+	if wikiButton:
+		wikiButton.pressed.connect(_on_wiki_button_press)
+	if wikiButton and wikiButtonClose:
+		wikiButtonClose.pressed.connect(_on_wiki_close_button_press)
 	_recalculate_columns()
 	_refresh()
 
@@ -81,3 +87,12 @@ func _on_item_button_press(item: ItemEntry) -> void:
 func _recalculate_columns() -> void:
 	# (sort of) compensate for margin, how many times root fits into widget width
 	itemContainer.columns = round((root.size.x - 132) / 180)
+
+# wiki stuff
+# i feel like this should be it's own node scene but i felt way too lazy tbh.
+
+func _on_wiki_button_press() -> void:
+	OS.shell_open("https://casualtiesunknown.miraheze.org/wiki/")
+
+func _on_wiki_close_button_press() -> void:
+	wikiButton.hide()
