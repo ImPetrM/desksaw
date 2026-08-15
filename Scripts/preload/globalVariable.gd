@@ -70,3 +70,10 @@ func getNumFromString(inputString: String):
 			number_string += character
             
 	return number_string
+
+@warning_ignore("unused_signal") # for now, we use other scripts to emit it
+signal TerminalOpenPressed(is_native: bool)
+
+func _process(_d: float) -> void:
+	if Input.is_action_just_pressed("Open Terminal"):
+		TerminalOpenPressed.emit(true)

@@ -17,7 +17,7 @@ func _ready() -> void:
 	submenuButton.item_selected.connect(_on_submenu_picker_item_selected)
 	_on_submenu_picker_item_selected(0)
 
-	InputManager.TerminalOpenPressed.connect(_on_terminal_open_press)
+	GlobalVariable.TerminalOpenPressed.connect(_on_terminal_open_press)
 	CommandsGlobal.resizeCommandCalled.connect(_resize_console)
 	if ( # added this stupid check because i broke things and got scared
 		gbData.settings
@@ -34,7 +34,11 @@ func _ready() -> void:
 func _resize_console(v) -> void:
 	windowControl.window_resize(v)
 
-func _on_terminal_open_press() -> void:
+func _on_terminal_open_press(_is_native: bool) -> void:
+	# is_native defines if it was called via an input (true)
+	# or by clicking on an expie (false)
+	# we currently don't do anything with this information, but you
+	# could add additional logic if you want.
 	visible = true
 
 func _on_submenu_picker_item_selected(index: int) -> void:

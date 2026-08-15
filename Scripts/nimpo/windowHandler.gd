@@ -34,7 +34,7 @@ func _ready() -> void:
 	global_bottom_left = global_position + Vector2(0, size.y)
 	global_bottom_right = global_position + size
 
-	InputManager.TerminalOpenPressed.connect(showw)
+	GlobalVariable.TerminalOpenPressed.connect(showw)
 
 func _process(_delta: float) -> void:
 	if dragging:
