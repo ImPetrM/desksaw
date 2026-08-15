@@ -67,7 +67,7 @@ rotation = -0.06447744
 scale = Vector2(4, 4)
 texture = ExtResource("7_dyytx")
 
-[node name="HandF" type="Sprite2D" parent="." unique_id=829069375]
+[node name="HandB" type="Sprite2D" parent="." unique_id=829069375]
 modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
 texture_filter = 1
 position = Vector2(25.639307, 33.86541)
@@ -139,7 +139,7 @@ rotation = -0.16399373
 scale = Vector2(3.9999967, 3.9999967)
 texture = ExtResource("7_dyytx")
 
-[node name="HandB" type="Sprite2D" parent="." unique_id=162973056]
+[node name="HandF" type="Sprite2D" parent="." unique_id=162973056]
 texture_filter = 1
 position = Vector2(32.756363, 33.04889)
 rotation = -0.16399373
