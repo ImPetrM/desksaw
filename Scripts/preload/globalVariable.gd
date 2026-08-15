@@ -39,7 +39,7 @@ signal TerminalOpenPressed(is_native: bool)
 signal dataNuked
 
 func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
-	var path = "res://scenes/popUp.tscn"
+	var path = "res://scenes/ui/popUp.tscn"
 	var scene = load(path)
 	var instance = scene.instantiate()
 	parent.add_child(instance)

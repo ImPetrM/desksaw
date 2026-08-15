@@ -68,11 +68,11 @@ func _ready() -> void:
 
 	update_labels()
 
-	yesButton.pressed.connect(_has_pressed.bind(GlobalVariable.popupResultEnum.YES))
+	yesButton.pressed.connect(_has_pressed.bind(popupResultEnum.YES))
 	if noButton:
-		noButton.pressed.connect(_has_pressed.bind(GlobalVariable.popupResultEnum.NO))
+		noButton.pressed.connect(_has_pressed.bind(popupResultEnum.NO))
 	if closeButton:
-		closeButton.pressed.connect(_has_pressed.bind(GlobalVariable.popupResultEnum.CLOSE))
+		closeButton.pressed.connect(_has_pressed.bind(popupResultEnum.CANCEL))
 
 func _has_pressed(pEnum: popupResultEnum) -> void:
 	hasPressedSignal.emit(pEnum)
