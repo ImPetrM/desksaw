@@ -29,6 +29,10 @@ SkinsN = NodePath("Main/SkinSpawner")
 ItemsN = NodePath("Main/ItemSpawner")
 metadata/_edit_use_anchors_ = true
 
+[node name="Commands" type="Node" parent="." unique_id=43375570 node_paths=PackedStringArray("root")]
+script = ExtResource("1_spxfo")
+root = NodePath("..")
+
 [node name="Handle" type="Button" parent="." unique_id=473127369]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
@@ -121,10 +125,6 @@ metadata/_edit_use_anchors_ = true
 modulate = Color(1, 1, 1, 0.21568628)
 layout_mode = 2
 mouse_filter = 2
-
-[node name="Commands" type="Node" parent="Main/ConsoleContainer" unique_id=43375570 node_paths=PackedStringArray("root")]
-script = ExtResource("1_spxfo")
-root = NodePath("../../..")
 
 [node name="Settings" type="Container" parent="Main" unique_id=1394294527 node_paths=PackedStringArray("list", "partent")]
 layout_mode = 1
@@ -660,7 +660,6 @@ expand_icon = true
 metadata/type = "bool"
 
 [node name="SkinSpawner" type="Container" parent="Main" unique_id=2070923109]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15

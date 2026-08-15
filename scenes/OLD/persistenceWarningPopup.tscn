@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://8783oa6y8ofh"]
+[gd_scene format=3 uid="uid://cbioh2cl8qr8e"]
 
 [ext_resource type="Script" uid="uid://cwx8tm7xk2yyg" path="res://Scripts/nimpo/warningWindowHandler.gd" id="1_b6fkn"]
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://assets/themes/MinimalUI.tres" id="2_r6os0"]

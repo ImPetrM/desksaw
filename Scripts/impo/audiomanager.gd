@@ -29,6 +29,8 @@ var soundMult := 1.0
 func _ready() -> void:
 	expie_whine = _load_sounds("res://assets/sounds/expie/whine/")
 	expie_bark = _load_sounds("res://assets/sounds/expie/bark/")
+	# set config volume
+	AudioManager.soundMult = gbData.settings.get("soundVolume", 1.0)
 
 
 ## Loads all sounds from this folder into an array.
