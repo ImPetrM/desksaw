@@ -174,7 +174,7 @@ func switch_hitbox(state: int):
 	layingdown.disabled = (state != 3)
 
 
-func phystate(delta: float):
+func phystate(_delta: float):
 	match currstate:
 		states.idle:
 			rigid.linear_velocity.x = move_toward(rigid.linear_velocity.x, 0, friction)

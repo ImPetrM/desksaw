@@ -34,6 +34,8 @@ func _ready() -> void:
 	global_bottom_left = global_position + Vector2(0, size.y)
 	global_bottom_right = global_position + size
 
+	GlobalVariable.TerminalOpenPressed.connect(showw)
+
 func _process(_delta: float) -> void:
 	if dragging:
 		global_position = get_global_mouse_position() - offset
