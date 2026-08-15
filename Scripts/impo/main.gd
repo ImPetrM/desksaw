@@ -52,9 +52,9 @@ func _ready():
 
 func createBorders():
 	taskbarPos = clampi(taskbarPos, 0, screenHeight)
-	$Floor.position = Vector2(screenWidth / 2, taskbarPos)
-	$SideL.position = Vector2(0, screenHeight / 2)
-	$SideR.position = Vector2(screenWidth, screenHeight / 2)
+	$Floor.position = Vector2(float(screenWidth) / 2, taskbarPos)
+	$SideL.position = Vector2(0, float(screenHeight) / 2)
+	$SideR.position = Vector2(screenWidth, float(screenHeight) / 2)
 
 
 func updateBorders():
@@ -73,20 +73,23 @@ func updateBorders():
 
 func update_obj_metas():
 	"""Assign 'catagory' meta with 'object' to all scenes in the object path."""
-	
+	# so, not quite! instead of tagging stuff, it spawns them into the scene.
+	# disabling this for now.
+	"""
 	var dir = DirAccess.open("res://scenes/objects")
 	dir.list_dir_begin()
 	var fileName = dir.get_next()
 	
 	while fileName != "":
 		if fileName.ends_with(".tscn"):
-			var path = "res://scenes/object".path_join(fileName)
+			var path = "res://scenes/objects".path_join(fileName)
 			var object = load(path)
 			if object is PackedScene:
 				var instance = object.instantiate()
 				add_child(instance)
 		fileName = dir.get_next()
 	dir.list_dir_end()
+	"""
 
 
 func loadExpiePersistence():

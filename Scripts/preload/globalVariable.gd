@@ -9,11 +9,13 @@ var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
 var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
 var clickZoneSum: int = 0
+@warning_ignore("unused_signal")
 signal persistenceWarning() # used to warn user if they have more than 20 expies stored in persistence save
 signal raga()
 signal skinswap()
 signal resize()
 signal pet(t: bool)
+@warning_ignore("unused_signal")
 signal console(t: bool)
 signal raisemood(t: int)
 signal feed(t: int)

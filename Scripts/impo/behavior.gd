@@ -115,8 +115,8 @@ func _initalSpawn() -> void:
 
 
 	#this dont even work properly it always puts it somewhere else.
-	moveSys.rigid.global_position.x = GlobalVariable.screenWidth / 2
-	moveSys.rigid.global_position.y = GlobalVariable.screenHeight * 2
+	moveSys.rigid.global_position.x = float(GlobalVariable.screenWidth) / 2
+	moveSys.rigid.global_position.y = float(GlobalVariable.screenHeight) * 2
 
 	#load the stats from the id (for presistance)
 	moodSys.loadFromSave(petId)
@@ -225,7 +225,7 @@ func checker():
 
 		await get_tree().create_timer(tick).timeout
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#detect speed and aiosdhfopjkasfguopjasfgsdfhcvio[]
 	#and ragdoll based on taht
 	if not ragdolled and (abs(moveSys.rigid.linear_velocity.x) > moveSys.ragdollspeed or beingDragged):

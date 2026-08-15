@@ -76,6 +76,11 @@ func loadUserTex(userPath: String):
 	if not FileAccess.file_exists(userPath):
 		return null
 
+	# load internal resources directly, prevents the
+	# debugger from getting pissed off
+	if userPath.begins_with("res:"):
+		return load(userPath)
+
 	var image = Image.new()
 	var loadResult = image.load(userPath)
 

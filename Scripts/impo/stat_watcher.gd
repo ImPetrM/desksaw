@@ -30,5 +30,5 @@ func upd(stats: Dictionary) -> void:
 		ilist.add_child(new_stat)
 		
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
