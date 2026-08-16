@@ -11,6 +11,8 @@ var taskbarPos: int = DisplayServer.screen_get_usable_rect().end.y
 
 @export
 var console: Node
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
@@ -34,20 +36,24 @@ func _ready():
 	if gbData.settings["expiePersistence"]:
 		loadExpiePersistence()
 	else:
-		GlobalVariable.data["saw"] = {}
+		gbData.data["saw"] = {}
 		CommandsGlobal.spawnExpie()
 
 	#lol()
-
+"""
 	if gbData.data["firstLaunch"]:
 		gbData.data["firstLaunch"] = false
+		var method := RenderingServer.get_current_rendering_method()
 		var use_vulkan: bool = await GlobalVariable.makePopUp(
-			"Do you currently see a black screen behind the application? \n\n Clicking yes will switch the rendering to [wave]Vulkan[/wave] \n This can be changed later in settings.",
+			"Do you currently see a black screen behind the application? \n\n Clicking yes will lead you to the [wave]Vulkan[/wave] based release for Desksaw",
 			$CanvasLayer2,
 			Vector2(screenWidth / 2, screenHeight / 2)
 		)
-		GlobalVariable._apply_renderer_and_restart(use_vulkan)
-
+		print(use_vulkan)
+		if use_vulkan:
+			OS.shell_open('https://github.com/dee-dee-catorce/desksaw/issues')
+"""
+	
 
 func createBorders():
 	taskbarPos = clampi(taskbarPos, 0, screenHeight)
@@ -111,15 +117,3 @@ func loadExpiePersistence():
 		GlobalVariable.userSkinPath = "user://skin/" + petData.get("skin", "Default") + "/"
 		CommandsGlobal.spawnExpie(petId)
 		print("loaded ", petId)
-"""
-func lol():
-	while get_tree():
-		await get_tree().create_timer(1).timeout
-		var r = randi_range(1, 200)
-		$CanvasLayer2/TextureRect.visible = (r == 1)
-		if (r == 1):
-			AudioManager.play_sfx(preload("res://assets/sounds/effects/stalkerscream.wav"))
-		await get_tree().create_timer(.2).timeout
-		
-		$CanvasLayer2/TextureRect.visible = false
-"""

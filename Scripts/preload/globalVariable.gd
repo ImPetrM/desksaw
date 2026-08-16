@@ -2,6 +2,7 @@ extends Node
 
 #i probably shouldve put these here earlier but better late than never
 
+var pop = preload("res://scenes/ui/popup.tscn")
 #ill fix the scripts that redefine these when it bothers me enough
 var screenWidth: int = DisplayServer.screen_get_usable_rect().size.x
 var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
@@ -12,6 +13,7 @@ var clickZoneSum: int = 0
 @warning_ignore("unused_signal")
 signal persistenceWarning() # used to warn user if they have more than 20 expies stored in persistence save
 signal raga()
+@warning_ignore("unused_signal")
 signal vulkanToggle()
 signal skinswap()
 signal resize()
@@ -40,19 +42,31 @@ func feedf(t: int):
 signal TerminalOpenPressed(is_native: bool)
 @warning_ignore("unused_signal")
 signal dataNuked
-
+#make this
 func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
-	#add the scene
-	var pop = preload("res://scenes/ui/popup.tscn")
-	parent.add_child(pop)
+	#add the scene properly this time
+	var newpop = pop.instantiate()
+	parent.add_child(newpop)
 
-	# configure 
-	pop.labelText = text
-	pop.titleText = "Hey!"
-	pop.yesButtonText = "Yes"
-	pop.yesButtonText = "no"
-	#temporarily return false to prevent error throwing
-	return false
+	newpop.labelText = text
+
+	#configure
+	newpop.titleText = "Hey!"
+	newpop.yesButtonText = "Yes"
+	newpop.noButtonText = "No"
+	newpop.position = position
+	#ts dont work
+	newpop.get_node("WindowController").minimumWindowSize = Vector2(500, 300)
+	#apply
+	newpop.update_labels()
+	newpop.update_buttons()
+
+
+	var result = await newpop.hasPressedSignal
+
+	newpop.queue_free()
+	
+	return result == CustomPopup.popupResultEnum.YES
 
 """
 func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
@@ -84,12 +98,12 @@ var userSkinPath = "user://skin/Body/"
 
 func getNumFromString(inputString: String):
 	var number_string = ""
-    
+	
 	for i in range(inputString.length()):
 		var character = inputString[i]
 		if character.is_valid_int():
 			number_string += character
-            
+			
 	return number_string
 
 func _process(_d: float) -> void:

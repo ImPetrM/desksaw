@@ -64,17 +64,25 @@ func _ready():
 		newSkinFile()
 
 
+
+
 	InitAutosave()
 
 #this bug fuxking sucks so im removing it once and for all
 #automatically detect if the user is missing a setting or something related to that
 #should fix the shocked face bug PERMANANTLY
 func fixMissing(base: Dictionary, default: Dictionary):
+
 	for key in default.keys():
 		if not base.has(key):
-			base[key] = default[key]
+			if typeof(default[key]) == TYPE_DICTIONARY:
+				base[key] = default[key].duplicate(true)
+			else:
+				base[key] = default[key]
+
 		elif typeof(base[key]) == TYPE_DICTIONARY and typeof(default[key]) == TYPE_DICTIONARY:
 			fixMissing(base[key], default[key])
+
 
 func newsave():
 	# Read the save template
