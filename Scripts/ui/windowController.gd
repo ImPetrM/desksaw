@@ -1,6 +1,8 @@
 class_name WindowController
 extends Node
 
+#note this doesnt support wayland as of the time im writing this so i will get onto that
+
 @onready var root: Control = self.get_parent()
 
 @export_category("Window")
@@ -22,6 +24,10 @@ extends Node
 ## If 'false', it will instead be hidden and not interactable with.
 @export var killOnClose: bool = false
 
+#### clickArea.gd
+var _use_x11_input_regions: bool = false
+var _input_region_id: int = 0
+
 var shouldStoreResize: bool = false
 
 var enabled: bool = true:
@@ -38,7 +44,7 @@ var contributing: bool = false
 var _is_dragging_window: bool = false
 var _is_resizing_window: bool = false
 ## Vector taken from the user's cursor to properly position the window.
-var _cursor_offset: Vector2 = Vector2(0,0)
+var _cursor_offset: Vector2 = Vector2(0, 0)
 
 func window_drag() -> void:
 	root.global_position = root.get_global_mouse_position() - _cursor_offset
@@ -55,14 +61,16 @@ func window_resize(size_target = null, force: bool = false) -> void:
 	else:
 		# clamping to prevent comically small or big windows
 		root.size = Vector2(
-			min(max(size_target.x, _min.x),_max.x),
-			min(max(size_target.y, _min.y),_max.y)
+			min(max(size_target.x, _min.x), _max.x),
+			min(max(size_target.y, _min.y), _max.y)
 		)
 
 func _can_alter_window() -> bool:
 	return !_is_dragging_window && !_is_resizing_window
 
 func _ready() -> void:
+	_use_x11_input_regions = TransparentWindow.UsesInputRegions()
+	_input_region_id = get_instance_id()
 	# link root window visibility to our contribution enabled logic
 	root.visibility_changed.connect(_update_enabled)
 	_update_enabled()
@@ -83,18 +91,25 @@ func _update_enabled() -> void:
 	enabled = root.visible
 
 func _process(_delta: float) -> void:
-	var mouse_pos: Vector2 = root.get_global_mouse_position()
-	var inside: bool = (
-		mouse_pos.x >= root.global_position.x and
-		mouse_pos.x <= root.global_position.x + root.size.x and
-		mouse_pos.y >= root.global_position.y and
-		mouse_pos.y <= root.global_position.y + root.size.y
-	)
-	change(inside)
+	####clickthrough.gd
+	if _use_x11_input_regions:
+		TransparentWindow.SetInputRect(
+			_input_region_id,
+			root.get_global_rect().grow(2.0),
+			enabled and root.is_visible_in_tree()
+		)
+	else:
+		var mouse_pos: Vector2 = root.get_global_mouse_position()
+		var inside: bool = (
+			mouse_pos.x >= root.global_position.x and
+			mouse_pos.x <= root.global_position.x + root.size.x and
+			mouse_pos.y >= root.global_position.y and
+			mouse_pos.y <= root.global_position.y + root.size.y
+		)
+		change(inside)
 
 	if _is_dragging_window: window_drag()
 	if _is_resizing_window: window_resize()
-
 # window passthrough logic
 
 func change(t: bool) -> void:
