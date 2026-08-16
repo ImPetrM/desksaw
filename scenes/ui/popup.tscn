@@ -30,9 +30,10 @@ closeButton = NodePath("TitleBar/Close")
 resizeButton = NodePath("Resize")
 metadata/_edit_horizontal_guides_ = [-593.0]
 
-[node name="WindowController" type="Node" parent="." unique_id=123827946 node_paths=PackedStringArray("TitleBar", "ResizeButton")]
+[node name="WindowController" type="Node" parent="." unique_id=123827946 node_paths=PackedStringArray("TitleBar", "CloseButton", "ResizeButton")]
 script = ExtResource("2_bvlua")
 TitleBar = NodePath("../TitleBar")
+CloseButton = NodePath("../TitleBar/Close")
 ResizeButton = NodePath("../Resize")
 minimumWindowSize = Vector2(250, 180)
 enableMaximumWindowSize = true

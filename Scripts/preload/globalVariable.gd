@@ -12,6 +12,7 @@ var clickZoneSum: int = 0
 @warning_ignore("unused_signal")
 signal persistenceWarning() # used to warn user if they have more than 20 expies stored in persistence save
 signal raga()
+signal vulkanToggle()
 signal skinswap()
 signal resize()
 signal pet(t: bool)
@@ -41,6 +42,20 @@ signal TerminalOpenPressed(is_native: bool)
 signal dataNuked
 
 func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
+	#add the scene
+	var pop = preload("res://scenes/ui/popup.tscn")
+	parent.add_child(pop)
+
+	# configure 
+	pop.labelText = text
+	pop.titleText = "Hey!"
+	pop.yesButtonText = "Yes"
+	pop.yesButtonText = "no"
+	#temporarily return false to prevent error throwing
+	return false
+
+"""
+func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
 	var path = "res://scenes/ui/popUp.tscn"
 	var scene = load(path)
 	var instance = scene.instantiate()
@@ -49,7 +64,7 @@ func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
 	instance.position = position
 	var result: bool = await instance.setup(text)
 	return result
-
+"""
 #just ignore this. pretend like i didnt waste time adding this and it just doesnt work
 func _apply_renderer_and_restart(use_vulkan: bool) -> void:
 	var method := "forward_plus" if use_vulkan else "gl_compatibility"

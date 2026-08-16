@@ -38,9 +38,7 @@ func _ready():
 		CommandsGlobal.spawnExpie()
 
 	#lol()
-	"""
 
-	this doesnt even fucking work outside of the editor i hate my life
 	if gbData.data["firstLaunch"]:
 		gbData.data["firstLaunch"] = false
 		var use_vulkan: bool = await GlobalVariable.makePopUp(
@@ -49,7 +47,7 @@ func _ready():
 			Vector2(screenWidth / 2, screenHeight / 2)
 		)
 		GlobalVariable._apply_renderer_and_restart(use_vulkan)
-	"""
+
 
 func createBorders():
 	taskbarPos = clampi(taskbarPos, 0, screenHeight)
