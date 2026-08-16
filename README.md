@@ -21,11 +21,11 @@ It's true! Experiments from hit games [Casualties: Unknown](https://store.steamp
 * You will also need the ``godot-console`` addon to load the project correctly
   * Via git, run the following commands inside the project's path:
 
-    ```console
-    cd addons/godot-console
-    git submodule init
-    git submodule update
-    ```
+	```console
+	cd addons/godot-console
+	git submodule init
+	git submodule update
+	```
   
   * or [manually download the godot-console repository](https://github.com/4d49/godot-console) and move its contents inside the ``addons/godot-console`` folder
 
