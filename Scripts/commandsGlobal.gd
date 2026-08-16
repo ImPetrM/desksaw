@@ -162,7 +162,7 @@ func _ready():
 	#Console.create_command("setMood", _setmood, "debugging tool that doesnt work because i disabled mood stuff for this build")
 	Console.create_command("spawn", _additem, "")
 	Console.create_command("clearItems", clearObj, "clears by 'entity', 'object' or specific item name/ expie skin name.")
-	Console.create_command("spawnExpie", spawnExpie, "please refer to the spawn menu rather than this command. Will be removed later")
+	Console.create_command("spawnExpie", spawnExpie, "Spawn a Sawian based on whatever your default skin is set to.")
 	#Console.create_command("openSkinFolder", openskinfold, "opens the skin folder")
 	Console.create_command("nukeData", nukesettings, "resets EVERYTHING. Save file, settings, etc. Run at your own risk.")
 	#Console.create_command("expieID", toggleExpieDebugIDs, "toggles debug IDs for expies")
@@ -179,4 +179,3 @@ func _do_i_cmds():
 	Console.print("[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]")
 	Console.print("EXPIE OR ANY CHARACTERS THAT MAY BE PRESENT HERE ARE NOT MINE. THIS IS A FAN PROJECT")
 	Console.print("IF YOU PAID FOR THIS OR GOT IT FROM SOMEWHERE NOT ON GITHUB, YOU DID IT WRONG!")
-

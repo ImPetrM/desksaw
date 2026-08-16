@@ -516,10 +516,10 @@ label = "Normalize"
 key = "normalize"
 sliderMinimum = -1.0
 
-[node name="SilenceSoft" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/DebugPanel/ScrollContainer/VBoxContainer" unique_id=556117969 instance=ExtResource("5_hils5")]
+[node name="UseVulkan" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/DebugPanel/ScrollContainer/VBoxContainer" unique_id=556117969 instance=ExtResource("5_hils5")]
 layout_mode = 2
-label = "idk"
-key = "mutePassive"
+label = "Use Vulkan Rendering [color=red][wave] (REQUIRES RESTART)"
+key = "useVulkan"
 
 [node name="SkinsView" type="Panel" parent="MarginContainer/ViewportPanel" unique_id=1098396453 node_paths=PackedStringArray("defaultSkinButton", "spawnButton", "openFolderButton", "refreshButton", "openDBButton", "expieDisplayWidget", "skinsButtonList", "skinNameLabel")]
 visible = false

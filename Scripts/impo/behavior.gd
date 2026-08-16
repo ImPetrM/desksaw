@@ -222,7 +222,7 @@ func checker():
 		statUpd.stat.id = ("#" + GlobalVariable.getNumFromString(petId))
 		statUpd.stat.mood = moodN
 		statUpd.stat.hunger = hungerHandler.hungry
-		statUpd.stat.sleep = randf_range(sleepN, sleepN + 0.02)
+		statUpd.stat.sleep = snapped(sleepN, 0.1) #???? why was it like that before?
 		statUpd.upd(statUpd.stat)
 
 		await get_tree().create_timer(tick).timeout
