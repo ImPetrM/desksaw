@@ -310,7 +310,7 @@ func tempRagdoll() -> void:
 # periodically send a message based on mood
 func passivetalk() -> void:
 	while true:
-		if !gbData.settings["mutePassive"]:
+		if !gbData.settings.get("mutePassive", false):
 			# get rid of magic numbers later pls       \/    \/
 			await get_tree().create_timer(randf_range(33.5, 67.5)).timeout
 			if not beingDragged and not isSleeping and not shocked:
