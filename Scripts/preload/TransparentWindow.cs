@@ -5,6 +5,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 
 public partial class TransparentWindow : Node
@@ -64,6 +65,13 @@ public partial class TransparentWindow : Node
     private IntPtr _xDisplay = IntPtr.Zero;
     private nuint _xWindow;
 
+    private bool _lastClickthroughState;
+
+    private Node gbData;
+
+    private int _maxFPSIdle;
+    private int _maxFPSInteract;
+
     private readonly Dictionary<long, Rect2I> _inputRects = new();
     private bool _inputRectsDirty;
 
@@ -74,6 +82,30 @@ public partial class TransparentWindow : Node
 
         GetWindow().Transparent = true;
         GetWindow().TransparentBg = true;
+
+        _lastClickthroughState = false;
+
+        _maxFPSIdle = 45;
+        _maxFPSInteract = 60;
+
+        // can't directly call "gbData" from a cs script.
+        // we're directly referencing the global script created and calling a function to get our settings.
+        gbData = GetNodeOrNull("/root/gbData");
+        if (gbData == null) {
+            GD.PushWarning(
+                "DeskSaw: Failed to get 'gbData' from root scene.",
+                "Updating framerate limits won't be possible this session.",
+                "Make sure pointers are up-to-date."
+            );
+            return;
+        }
+        else
+        {
+            // thinking whether its correct to update framerate every time ANY config setting
+            // changes or only when the FPS config entries do. not sure how perfomance chugging it is.
+            gbData.Connect("SettingsChanged", new Callable(this, MethodName.UpdateFramerateLimit));
+            UpdateFramerateLimit();
+        }
 
         if (_isWindows)
         {
@@ -88,12 +120,12 @@ public partial class TransparentWindow : Node
         if (_isX11)
         {
             InitX11InputRegions();
-            Engine.MaxFps = 45;
+            Engine.MaxFps = _maxFPSIdle;
             return;
         }
 
         GetWindow().MousePassthrough = true;
-        Engine.MaxFps = 45;
+        Engine.MaxFps = _maxFPSIdle;
     }
 
     public override void _Process(double _delta)
@@ -150,6 +182,18 @@ public partial class TransparentWindow : Node
             GD.PushWarning($"DeskSaw: X11 input-region function missing: {e.Message}");
             GetWindow().MousePassthrough = true;
         }
+    }
+
+    public void UpdateFramerateLimit()
+    {
+        if (gbData == null)
+        { // shouldnt be able to reach this, but just in case.
+            return;
+        }
+        _maxFPSIdle = (int)gbData.Call("GetSetting", "maxFPSIdle", 45);
+        _maxFPSInteract = (int)gbData.Call("GetSetting", "maxFPSInteract", 60);
+        // GD.Print($"{_maxFPSIdle} : {_maxFPSInteract}");
+        Engine.MaxFps = _lastClickthroughState ? _maxFPSIdle : _maxFPSInteract;
     }
 
     public void SetInputRect(long id, Rect2 rect, bool enabled)
@@ -255,17 +299,18 @@ public partial class TransparentWindow : Node
     // This function sets the property of being clickable or not.
     public void SetClickThrough(bool clickthrough)
     {
+        _lastClickthroughState = clickthrough;
         if (_isWindows)
         {
             if (clickthrough)
             {
                 SetWindowLong(_hWnd, GwlExStyle, WsExLayered | WsExTransparent);
-                Engine.MaxFps = 45;
+                Engine.MaxFps = _maxFPSIdle;
             }
             else
             {
                 SetWindowLong(_hWnd, GwlExStyle, WsExLayered);
-                Engine.MaxFps = 60;
+                Engine.MaxFps = _maxFPSInteract;
             }
 
             return;
@@ -273,12 +318,12 @@ public partial class TransparentWindow : Node
 
         if (UsesInputRegions())
         {
-            Engine.MaxFps = clickthrough ? 45 : 60;
+            Engine.MaxFps = clickthrough ? _maxFPSIdle : _maxFPSInteract;
             return;
         }
 
         GetWindow().MousePassthrough = clickthrough;
-        Engine.MaxFps = clickthrough ? 45 : 60;
+        Engine.MaxFps = clickthrough ? _maxFPSIdle : _maxFPSInteract;
     }
 
     /* What is a layered window? 

@@ -398,6 +398,30 @@ sliderMaximum = 9.0
 sliderStep = 1.0
 valueType = "int"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=816225973]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FPSIdle" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1765739864 instance=ExtResource("9_r80vr")]
+layout_mode = 2
+label = "Max FPS: Idle"
+key = "maxFPSIdle"
+defaultValue = 45.0
+sliderMinimum = 30.0
+sliderMaximum = 144.0
+sliderStep = 1.0
+valueType = "int"
+
+[node name="FPSInteract" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1759542382 instance=ExtResource("9_r80vr")]
+layout_mode = 2
+label = "Max FPS: Interacting"
+key = "maxFPSInteract"
+defaultValue = 60.0
+sliderMinimum = 30.0
+sliderMaximum = 144.0
+sliderStep = 1.0
+valueType = "int"
+
 [node name="Persistence" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=671056008 instance=ExtResource("5_hils5")]
 layout_mode = 2
 label = "Keep spawned expies across sessions"

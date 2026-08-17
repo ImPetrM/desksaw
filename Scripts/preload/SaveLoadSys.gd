@@ -240,3 +240,11 @@ func checkupdated():
 	if !settings.outdated: return
 	print("version is current")
 	settings.outdated = false
+
+@warning_ignore("unused_signal") # called externally
+signal SettingsChanged()
+
+# used for getting settings in csharp scripts
+# let me know if there's a better way to do this
+func GetSetting(key: String, default):
+	return settings.get(key, default) 

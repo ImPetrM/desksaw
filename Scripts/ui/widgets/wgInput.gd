@@ -69,3 +69,4 @@ func _on_text_edit_changed() -> void:
 	var v = _textEdit.text
 	gbData.settings.set(key, v)
 	print("Key '%s' [%s] set to '%s'" % [label, key, v])
+	gbData.SettingsChanged.emit()
