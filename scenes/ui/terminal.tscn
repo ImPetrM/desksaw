@@ -427,6 +427,12 @@ layout_mode = 2
 label = "Keep spawned expies across sessions"
 key = "expiePersistence"
 
+[node name="UpdateNotif" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=1210967685 instance=ExtResource("5_hils5")]
+layout_mode = 2
+label = "Update notification"
+key = "updNotif"
+defaultValue = true
+
 [node name="NoPersPopup" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=783160364 instance=ExtResource("5_hils5")]
 layout_mode = 2
 label = "Disable 'too many expies!?' popup"
@@ -541,6 +547,7 @@ key = "normalize"
 sliderMinimum = -1.0
 
 [node name="UseVulkan" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/DebugPanel/ScrollContainer/VBoxContainer" unique_id=556117969 instance=ExtResource("5_hils5")]
+visible = false
 layout_mode = 2
 label = "Use Vulkan Rendering [color=red][wave] (REQUIRES RESTART)"
 key = "useVulkan"

@@ -24,6 +24,7 @@
 	"pettingSoundEnabled": true,
 	"eatingSoundEnabled": true,
 	"messageEnabled": true,
+	"updNotif": true,
 	"hungerEnabled": true,
 	"sleepEnabled": true,
 	"normalize": 1.0,

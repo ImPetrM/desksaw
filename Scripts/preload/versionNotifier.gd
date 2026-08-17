@@ -1,6 +1,6 @@
 extends Node
 @onready
-var VERSION = "0.2"
+var VERSION = "0.2.1"
 const RELEASES = "https://api.github.com/repos/dee-dee-catorce/deskpublic/releases"
 
 var http: HTTPRequest
@@ -38,12 +38,14 @@ func _request_done(_result, code, _headers, body):
 	if version_is_newer(latest, VERSION):
 		# LOL
 		#get_tree().change_scene_to_file("res://scenes/OLD/what.tscn")
-		OS.alert(
-			"You're using an outdated version of DeskSaw.\n\n" +
-			"Latest: " + latest + "\n" +
-			"Current: " + VERSION + "\n
-			https://github.com/dee-dee-catorce/desksaw"
-		)
+		if gbData.settings["updNotif"]:
+			OS.alert(
+				"You're using an outdated version of DeskSaw.\n\n" +
+				"Latest: " + latest + "\n" +
+				"Current: " + VERSION + "\n
+				https://github.com/dee-dee-catorce/desksaw\n\n" +
+				"You can disable this popup in settings."
+			)
 		#gbData.outdated()
 
 
