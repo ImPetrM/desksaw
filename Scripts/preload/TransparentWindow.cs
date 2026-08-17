@@ -300,29 +300,17 @@ public partial class TransparentWindow : Node
     public void SetClickThrough(bool clickthrough)
     {
         _lastClickthroughState = clickthrough;
+        // on windows, update window flags
         if (_isWindows)
         {
-            if (clickthrough)
-            {
-                SetWindowLong(_hWnd, GwlExStyle, WsExLayered | WsExTransparent);
-                Engine.MaxFps = _maxFPSIdle;
-            }
-            else
-            {
-                SetWindowLong(_hWnd, GwlExStyle, WsExLayered);
-                Engine.MaxFps = _maxFPSInteract;
-            }
-
-            return;
+            uint newLong = clickthrough ? (uint)WsExLayered | WsExTransparent : WsExLayered;
+            _ = SetWindowLong(_hWnd, GwlExStyle, newLong);
         }
-
-        if (UsesInputRegions())
+        // on linux while not using inputregions, set window passthrough
+        else if (!UsesInputRegions())
         {
-            Engine.MaxFps = clickthrough ? _maxFPSIdle : _maxFPSInteract;
-            return;
+            GetWindow().MousePassthrough = clickthrough;
         }
-
-        GetWindow().MousePassthrough = clickthrough;
         Engine.MaxFps = clickthrough ? _maxFPSIdle : _maxFPSInteract;
     }
 
