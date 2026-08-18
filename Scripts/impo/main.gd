@@ -40,21 +40,20 @@ func _ready():
 		CommandsGlobal.spawnExpie()
 
 	#lol()
-"""
+
 	if gbData.data["firstLaunch"]:
 		gbData.data["firstLaunch"] = false
 		var method := RenderingServer.get_current_rendering_method()
 		var use_vulkan: bool = await GlobalVariable.makePopUp(
-			"Do you currently see a black screen behind the application? \n\n Clicking yes will lead you to the [wave]Vulkan[/wave] based release for Desksaw",
+			"This is your first time launching DeskSaw!\n\nWould you like to be linked to a guide on how to use it?",
 			$CanvasLayer2,
 			Vector2(screenWidth / 2, screenHeight / 2)
 		)
 		print(use_vulkan)
 		if use_vulkan:
 			OS.shell_open('https://github.com/dee-dee-catorce/desksaw/issues')
-"""
-	
 
+	
 func createBorders():
 	taskbarPos = clampi(taskbarPos, 0, screenHeight)
 	$Floor.position = Vector2(float(screenWidth) / 2, taskbarPos)

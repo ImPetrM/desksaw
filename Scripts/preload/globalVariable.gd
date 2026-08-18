@@ -56,7 +56,7 @@ func makePopUp(text: String, parent: CanvasLayer, position: Vector2) -> bool:
 	newpop.noButtonText = "No"
 	newpop.position = position
 	#ts dont work
-	newpop.get_node("WindowController").minimumWindowSize = Vector2(500, 300)
+	newpop.size = Vector2(500, 300)
 	#apply
 	newpop.update_labels()
 	newpop.update_buttons()
