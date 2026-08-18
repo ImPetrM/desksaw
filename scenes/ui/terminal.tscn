@@ -172,7 +172,6 @@ script = ExtResource("3_scr57")
 metadata/_edit_use_anchors_ = true
 
 [node name="SettingsView" type="Panel" parent="MarginContainer/ViewportPanel" unique_id=1702886988 node_paths=PackedStringArray("TabButtons", "TabPanels")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -314,6 +313,18 @@ key = "mute"
 layout_mode = 2
 label = "Disable passive speech"
 key = "mutePassive"
+
+[node name="MinDialogue" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/BehaviorPanel/ScrollContainer/VBoxContainer" unique_id=1077227112 instance=ExtResource("12_qw8t2")]
+layout_mode = 2
+label = "Minimum time between passive dialouge"
+key = "minDialogueTime"
+defaultValue = "30.0"
+
+[node name="MaxDialogue" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/BehaviorPanel/ScrollContainer/VBoxContainer" unique_id=628375292 instance=ExtResource("12_qw8t2")]
+layout_mode = 2
+label = "Maximum time between passive dialouge"
+key = "maxDialogueTime"
+defaultValue = "120.0"
 
 [node name="AudioPanel" type="Panel" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer" unique_id=68479689]
 visible = false

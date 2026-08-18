@@ -26,6 +26,8 @@ im putting this here as a reminder
 
 @onready var data = gbData.text.diaGlobal
 @onready var settings = gbData.settings
+#settings for dialoguetimer
+
 ##Timer used for keeping time since the last recent pet.
 @onready var pet_timer: Timer = $petTimer
 
@@ -222,7 +224,7 @@ func checker():
 		statUpd.stat.id = ("#" + GlobalVariable.getNumFromString(petId))
 		statUpd.stat.mood = moodN
 		statUpd.stat.hunger = hungerHandler.hungry
-		statUpd.stat.sleep = snapped(sleepN, 0.1) #???? why was it like that before?
+		statUpd.stat.sleep = snapped(sleepN, 0.1) # ???? why was it like that before?
 		statUpd.upd(statUpd.stat)
 
 		await get_tree().create_timer(tick).timeout
@@ -311,8 +313,9 @@ func tempRagdoll() -> void:
 func passivetalk() -> void:
 	while true:
 		if !gbData.settings["mutePassive"]:
-			# get rid of magic numbers later pls       \/    \/
-			await get_tree().create_timer(randf_range(33.5, 67.5)).timeout
+			var diaTimerMinimum: float = gbData.settings["minDialogueTime"]
+			var diaTimerMaximum: float = gbData.settings["maxDialogueTime"]
+			await get_tree().create_timer(randf_range(float(diaTimerMinimum), float(diaTimerMaximum))).timeout
 			if not beingDragged and not isSleeping and not shocked:
 				dialogueSys.pool = data.Passive
 				match currentEmotion:
@@ -321,7 +324,8 @@ func passivetalk() -> void:
 					emotionz.happy:
 						dialogueSys.pool = data.HappyPassive
 					emotionz.sad:
-						dialogueSys.pool = data.VeryLowPassive
+						#oops
+						dialogueSys.pool = data.LowPassive
 						if moodSys.mood < -30.0:
 							dialogueSys.pool = data.VeryLowPassive
 
