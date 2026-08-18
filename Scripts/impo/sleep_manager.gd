@@ -15,7 +15,7 @@ func loadFromSave(id: String) -> void:
 	tiredness = pet.get("tired", tiredness)
 
 func sleepCheck():
-		if gbData.settings["sleepEnabled"]:
+		if gbData.settings.get("sleepEnabled", true):
 			#await get_tree().create_timer(5).timeout
 			print(str(tiredness) + " tiredness")
 			tiredness = snappedf(tiredness, 0.01)

@@ -22,7 +22,7 @@ func loadFromSave(id: String) -> void:
 
 
 func hungercheck():
-		if gbData.settings["hungerEnabled"]:
+		if gbData.settings.get("hungerEnabled", true):
 			#await get_tree().create_timer(5).timeout
 			hungry -= 0.05
 			#print(str(hungry) + " hunger")

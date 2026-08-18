@@ -312,7 +312,7 @@ func tempRagdoll() -> void:
 # periodically send a message based on mood
 func passivetalk() -> void:
 	while true:
-		if !gbData.settings["mutePassive"]:
+		if !gbData.settings.get("mutePassive", false):
 			var diaTimerMinimum: float = gbData.settings["minDialogueTime"]
 			var diaTimerMaximum: float = gbData.settings["maxDialogueTime"]
 			await get_tree().create_timer(randf_range(float(diaTimerMinimum), float(diaTimerMaximum))).timeout

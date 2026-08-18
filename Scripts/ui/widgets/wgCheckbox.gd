@@ -76,3 +76,4 @@ func _on_check_box_toggled(v: bool) -> void:
 	print("Key '%s' [%s] set to '%s'" % [label, key, v])
 	# save!
 	gbData.savetodisk(gbData.conPath, gbData.settings)
+	gbData.SettingsChanged.emit()
