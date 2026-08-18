@@ -175,6 +175,9 @@ If your skin is only on the head, try restarting the app. That usually fixes it.
 	#Copy each file and folder into the new folder
 	var old_files: PackedStringArray = DirAccess.get_files_at(folder_to_copy)
 	for f: String in old_files:
+		# only copy images
+		if !f.get_extension().to_lower() == "png":
+			continue
 		DirAccess.copy_absolute(folder_to_copy + "/" + f, new_dir_path + "/" + f)
 	#var old_directories: PackedStringArray = DirAccess.get_directories_at(folder_to_copy)
 
@@ -245,3 +248,11 @@ func checkupdated():
 	if !settings.outdated: return
 	print("version is current")
 	settings.outdated = false
+
+@warning_ignore("unused_signal") # called externally
+signal SettingsChanged()
+
+# used for getting settings in csharp scripts
+# let me know if there's a better way to do this
+func GetSetting(key: String, default):
+	return settings.get(key, default) 

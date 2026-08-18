@@ -16,9 +16,9 @@ var trust: float = 10.0
 var petId: String = ""
 
 @onready
-var minmood = gbData.settings["minMood"]
+var minmood = gbData.settings.get("minMood", -100)
 @onready
-var maxmood = gbData.settings["maxMood"]
+var maxmood = gbData.settings.get("maxMood", 100)
 var pet
 #for temporary events
 var tempOffset: float = 0.0
@@ -32,8 +32,8 @@ func loadFromSave(id: String) -> void:
 	trust = pet.get("trust", trust)
 
 func _sync_mood() -> void:
-	minmood = gbData.settings["minMood"]
-	maxmood = gbData.settings["maxMood"]
+	minmood = gbData.settings.get("minMood", -100)
+	maxmood = gbData.settings.get("maxMood", 100)
 
 	pet["mood"] = mood
 	gbData.data["saw"][petId]["mood"] = mood
@@ -63,7 +63,7 @@ func moodCheck(delta: float = 1.0) -> float:
 	if gbData.devMode:
 		print(str("mood: ", clamp(mood + snappedf(tempOffset, 0.05), minmood, maxmood), "(temporary offset: ", snappedf(tempOffset, 0.05), ")"))
 		print(str("tick: ", calcmood(1.0)))
-	if gbData.settings["lobotomize"]:
+	if gbData.settings.get("lobotomize", true):
 		mood = 0.0
 
 	_sync_mood()

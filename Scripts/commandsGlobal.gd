@@ -174,7 +174,7 @@ func _do_i_cmds():
 	has_run_commands = true
 
 	# i thought this had to be run from the console node itself but turns out its reflected on all consoles! hooray!
-	Console.execute("setMonitor {0}".format([int(gbData.settings["defaultMonitor"])]))
+	Console.execute("setMonitor {0}".format([int(gbData.settings.get("defaultMonitor", 0))]))
 	Console.execute("help")
 	Console.print("[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]")
 	Console.print("EXPIE OR ANY CHARACTERS THAT MAY BE PRESENT HERE ARE NOT MINE. THIS IS A FAN PROJECT")

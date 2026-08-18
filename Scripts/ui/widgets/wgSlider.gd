@@ -113,6 +113,7 @@ func _on_slider_changed(v) -> void:
 	print("Key '%s' [%s] set to '%s'" % [label, key, v])
 	# save!
 	gbData.savetodisk(gbData.conPath, gbData.settings)
+	gbData.SettingsChanged.emit()
 
 	if updateVolume:
 		_update_volume()
