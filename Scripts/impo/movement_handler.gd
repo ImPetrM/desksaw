@@ -193,7 +193,7 @@ func phystate(_delta: float):
 		
 			var normlized = abs(remap(rigid.linear_velocity.x, 0, maxspeed, 0.0, 1.0))
 			#there used to be a long if statement here and my ass got flamed when i posted it
-			backwards = checkpositive(dir) == flip
+			backwards = GlobalVariable.checkpositive(dir) == flip
 			var target_anim = "moveB" if backwards else "moveF"
 
 			if animplay.current_animation != target_anim:
@@ -270,6 +270,8 @@ func jump():
 
 
 func ragdoll(val: bool):
+	#true = not ragdolled
+	#false = ragdolled
 	if val == notragdolled:
 		return
 
@@ -296,14 +298,10 @@ func ragdoll(val: bool):
 				child.linear_velocity = rigid.linear_velocity
 				child.angular_velocity = rigid.angular_velocity
 
+	#lmao
+	rigid.global_position.x = rigidtorso.global_position.x
+	rigid.global_position.y = rigidtorso.global_position.y
+
 	if !val:
 		sigragdoll.emit()
 
-"""
-literally useless function that i added because i saw that older games source code had helper functions for everything because
-they had it way harder than i did and i want to larp
-"""
-func checkpositive(num):
-	if num is int or num is float:
-		return num >= 0
-	return false

@@ -286,8 +286,7 @@ func tempRagdoll() -> void:
 	moveSys.rigid.freeze = false
 	moveSys.rigid.linear_velocity.x = 0.0
 	moveSys.rigid.linear_velocity.y = 0.0
-	moveSys.rigid.global_position.x = moveSys.rigidtorso.global_position.x
-	moveSys.rigid.global_position.y = moveSys.rigidtorso.global_position.y
+
 	moveSys.ragdoll(true)
 
 	ragdolled = false
@@ -313,8 +312,8 @@ func tempRagdoll() -> void:
 func passivetalk() -> void:
 	while true:
 		if !gbData.settings.get("mutePassive", false):
-			var diaTimerMinimum: float = gbData.settings["minDialogueTime"]
-			var diaTimerMaximum: float = gbData.settings["maxDialogueTime"]
+			var diaTimerMinimum: float = float(gbData.settings["minDialogueTime"]) or 30.0
+			var diaTimerMaximum: float = float(gbData.settings["maxDialogueTime"]) or 90.0
 			await get_tree().create_timer(randf_range(float(diaTimerMinimum), float(diaTimerMaximum))).timeout
 			if not beingDragged and not isSleeping and not shocked:
 				dialogueSys.pool = data.Passive

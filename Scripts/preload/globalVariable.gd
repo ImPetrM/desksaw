@@ -106,6 +106,13 @@ func getNumFromString(inputString: String):
 			
 	return number_string
 
+
+func checkpositive(num):
+	if num is int or num is float:
+		return num >= 0
+	return false
+
+
 func _process(_d: float) -> void:
 	if Input.is_action_just_pressed("Open Terminal"):
 		TerminalOpenPressed.emit(true)
