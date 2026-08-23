@@ -13,6 +13,8 @@ var data = {}
 var text = {}
 var settings = {}
 
+var dialogueCache = {}
+
 var skinData = []
 
 var template = "res://Scripts/singletons/SaveTemplate.json"
@@ -164,7 +166,11 @@ If you want multiple skins, just rename your 'Body' folder to whatever you want 
 (however you have to keep a 'Body' folder with any skin in it for it to work!)
 If you have both a 'Body' and 'Head' folder, combine the files inside them into a new folder and drag them in here.
 
-If your skin is only on the head, try restarting the app. That usually fixes it.""")
+If your skin is only on the head, try restarting the app. That usually fixes it.
+
+If you want custom dialogue for a specific skin, just copy the 'TRANSLATION.json' file from outside the folder and paste it into skin’s folder!
+Skin with TRANSLATION.json file will use it's own dialogue instead of the default one.
+""")
 				txt.close()
 	
 	var folder_to_copy = "res://assets/Body"
@@ -212,6 +218,22 @@ func loadjson(filepath: String):
 		if gbData.devMode:
 			print("File not found: " + filepath)
 		return {}
+
+# looks for a TRANSLATION.json in the skin folder, falls back to the global one
+func getDialogueForSkin(skinPath: String):
+	if skinPath.begins_with("res:"):
+		return text.diaGlobal
+	if dialogueCache.has(skinPath):
+		return dialogueCache[skinPath]
+	var merged = text.diaGlobal.duplicate(true)
+	var skinFile = skinPath + "TRANSLATION.json"
+	if FileAccess.file_exists(skinFile):
+		var skinText = loadjson(skinFile)
+		if skinText is Dictionary and skinText.get("diaGlobal") is Dictionary:
+			for key in skinText["diaGlobal"]:
+				merged[key] = skinText["diaGlobal"][key]
+			dialogueCache[skinPath] = merged
+	return merged
 
 func savetodisk(path, dt):
 		var file = FileAccess.open(path, FileAccess.WRITE)

@@ -24,7 +24,6 @@ im putting this here as a reminder
 @onready var detectRange = $detRadius
 @onready var statUpd = $statWatcher
 
-@onready var data = gbData.text.diaGlobal
 @onready var settings = gbData.settings
 #settings for dialoguetimer
 
@@ -173,7 +172,7 @@ func checker():
 				if !isTired:
 					sleepflag1 = false
 					if randi() % 4 == 0:
-						dialogueSys.pool = data.sleepy
+						dialogueSys.pool = dialogueSys.data.sleepy
 						dialogueSys.send()
 				isTired = true
 				currentEmotion = emotionz.tired
@@ -185,7 +184,7 @@ func checker():
 						sleepflag1 = true
 						moveSys.initswithc(moveSys.states.resting)
 						if randi() % 2 == 0:
-							dialogueSys.pool = data.reallySleepy
+							dialogueSys.pool = dialogueSys.data.reallySleepy
 							dialogueSys.send()
 
 
@@ -210,13 +209,13 @@ func checker():
 				#ungry
 			if hungerHandler.hungry < 30.0:
 				if !isHungry:
-					dialogueSys.pool = data.hungry
+					dialogueSys.pool = dialogueSys.data.hungry
 					dialogueSys.send()
 					isHungry = true
 				var r = randf_range(30.0 - hungerHandler.hungry, 40.0)
 				#print("hunger notif chance ", r)
 				if r > 38.0:
-						dialogueSys.pool = data.hungry
+						dialogueSys.pool = dialogueSys.data.hungry
 						dialogueSys.send()
 
 			#update
@@ -251,7 +250,7 @@ func shock() -> void:
 	moodSys.mood -= 2.5
 	faceSys.setEmotion("panic")
 
-	dialogueSys.pool = data.screamBIG
+	dialogueSys.pool = dialogueSys.data.screamBIG
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
 	AudioManager.play_random(AudioManager.expie_whine)
@@ -274,7 +273,7 @@ func tempRagdoll() -> void:
 		await get_tree().create_timer(getUpTimer + randf_range(0, 5)).timeout
 		if beingDragged:
 			AudioManager.play_random(AudioManager.expie_whine)
-			dialogueSys.pool = data.beingDragged
+			dialogueSys.pool = dialogueSys.data.beingDragged
 			dialogueSys.send(10, false)
 			#fix the weird ghost collision during ragdoll
 			continue
@@ -295,12 +294,12 @@ func tempRagdoll() -> void:
 	moveSys.initswithc(moveSys.states.idle)
 	if launchflag:
 		if not pet_timer.is_stopped() and pet_count >= 5:
-			dialogueSys.pool = data.getUpPet
+			dialogueSys.pool = dialogueSys.data.getUpPet
 		else:
-			dialogueSys.pool = data.getUp
+			dialogueSys.pool = dialogueSys.data.getUp
 
 	else:
-		dialogueSys.pool = data.start
+		dialogueSys.pool = dialogueSys.data.start
 	dialogueSys.speedMod = 1.3
 	dialogueSys.send()
 	AudioManager.play_random(AudioManager.expie_whine)
@@ -317,17 +316,17 @@ func passivetalk() -> void:
 			var diaTimerMaximum: float = gbData.settings["maxDialogueTime"]
 			await get_tree().create_timer(randf_range(float(diaTimerMinimum), float(diaTimerMaximum))).timeout
 			if not beingDragged and not isSleeping and not shocked:
-				dialogueSys.pool = data.Passive
+				dialogueSys.pool = dialogueSys.data.Passive
 				match currentEmotion:
 					emotionz.normal:
-						dialogueSys.pool = data.Passive
+						dialogueSys.pool = dialogueSys.data.Passive
 					emotionz.happy:
-						dialogueSys.pool = data.HappyPassive
+						dialogueSys.pool = dialogueSys.data.HappyPassive
 					emotionz.sad:
 						#oops
-						dialogueSys.pool = data.LowPassive
+						dialogueSys.pool = dialogueSys.data.LowPassive
 						if moodSys.mood < -30.0:
-							dialogueSys.pool = data.VeryLowPassive
+							dialogueSys.pool = dialogueSys.data.VeryLowPassive
 
 
 				dialogueSys.speedMod = 1.0
@@ -361,7 +360,7 @@ func wandering() -> void:
 			await get_tree().create_timer(randi_range(4, 8)).timeout
 
 func petReject() -> void:
-	dialogueSys.pool = data.petReject
+	dialogueSys.pool = dialogueSys.data.petReject
 	dialogueSys.speedMod = 1.2
 	dialogueSys.send(2, false)
 	AudioManager.play_random(AudioManager.expie_bark, 0.25, 0, 1, true, 0.5, 'exp_pet')
@@ -406,7 +405,7 @@ func petLimb(limb: RigidBody2D):
 		tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.25)
 	
 	if not dialogueSys.is_dialogue_playing():
-		dialogueSys.pool = data.pet
+		dialogueSys.pool = dialogueSys.data.pet
 		dialogueSys.speedMod = 0.7
 		dialogueSys.send(2, false)
 		
