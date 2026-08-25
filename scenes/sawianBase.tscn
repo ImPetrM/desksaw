@@ -2295,8 +2295,8 @@ texture = ExtResource("10_7eycm")
 shape = SubResource("CapsuleShape2D_7p3rp")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=69657827]
-position = Vector2(0.17327929, -15.684528)
-rotation = 0.19817501
+position = Vector2(0.17327905, -15.684528)
+rotation = 0.19817506
 scale = Vector2(0.999997, 0.999997)
 collision_layer = 8
 mass = 0.5
@@ -2317,9 +2317,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
-position = Vector2(-4.4846344, -10.594877)
-rotation = 0.11549569
-scale = Vector2(0.999996, 0.999996)
+position = Vector2(-4.484634, -10.594876)
+rotation = 0.11549546
+scale = Vector2(0.99999607, 0.99999607)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2338,8 +2338,8 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=2058845088]
-position = Vector2(-5.7586694, -6.4672933)
-rotation = 0.5563424
+position = Vector2(-5.7586684, -6.467292)
+rotation = 0.5563422
 scale = Vector2(0.999996, 0.999996)
 collision_layer = 8
 mass = 0.5

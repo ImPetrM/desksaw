@@ -299,9 +299,12 @@ func ragdoll(val: bool):
 				child.angular_velocity = rigid.angular_velocity
 
 	#lmao
-	rigid.global_position.x = rigidtorso.global_position.x
-	rigid.global_position.y = rigidtorso.global_position.y
+	
 
 	if !val:
 		sigragdoll.emit()
+	else:
+		rigid.global_position.x = rigidtorso.global_position.x
+		rigid.global_position.y = rigidtorso.global_position.y
+
 

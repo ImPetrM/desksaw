@@ -79,7 +79,7 @@ var hungryRemind := 90.0
 
 
 #ricktate in seconds for updating status
-var tick: float = 5
+var tick: float = 5.0
 
 # table for every emotion avaibalekl to them
 enum emotionz {
@@ -142,10 +142,16 @@ func sleep():
 			if sleepHandler.sleepCheck() < 5.0:
 				#break if its below 10 (aka good enough to get up)
 				sleepParticle.emitting = false
+				moveSys.rigid.global_position = moveSys.rigidtorso.global_position
+				moveSys.rigid.linear_velocity = Vector2.ZERO
+				moveSys.rigid.freeze = false
 				isSleeping = false
 				moveSys.ragdoll(true)
 				ragdolled = false
 				break
+
+				
+			moveSys.rigid.freeze = true
 			sleepParticle.emitting = true
 			faceSys.setEmotion("sleep")
 			moveSys.ragdoll(false)
@@ -191,6 +197,8 @@ func checker():
 
 				if sleepN > 95.0:
 					isSleeping = true
+
+					moveSys.rigidtorso.linear_velocity = Vector2(0, 0)
 					print("sleeping")
 					sleep()
 			else:
@@ -286,7 +294,8 @@ func tempRagdoll() -> void:
 	moveSys.rigid.freeze = false
 	moveSys.rigid.linear_velocity.x = 0.0
 	moveSys.rigid.linear_velocity.y = 0.0
-
+	moveSys.rigid.global_position.x = moveSys.rigidtorso.global_position.x
+	moveSys.rigid.global_position.y = moveSys.rigidtorso.global_position.y
 	moveSys.ragdoll(true)
 
 	ragdolled = false
@@ -312,8 +321,12 @@ func tempRagdoll() -> void:
 func passivetalk() -> void:
 	while true:
 		if !gbData.settings.get("mutePassive", false):
-			var diaTimerMinimum: float = float(gbData.settings["minDialogueTime"]) or 30.0
-			var diaTimerMaximum: float = float(gbData.settings["maxDialogueTime"]) or 90.0
+			var diaTimerMinimum = float(GlobalVariable.getNumFromString(str(gbData.settings["minDialogueTime"])))
+
+			var diaTimerMaximum = float(GlobalVariable.getNumFromString(str(gbData.settings["maxDialogueTime"])))
+
+			print(diaTimerMinimum, "max")
+			print(diaTimerMaximum, "min")
 			await get_tree().create_timer(randf_range(float(diaTimerMinimum), float(diaTimerMaximum))).timeout
 			if not beingDragged and not isSleeping and not shocked:
 				dialogueSys.pool = data.Passive
