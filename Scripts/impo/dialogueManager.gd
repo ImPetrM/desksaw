@@ -1,7 +1,7 @@
 extends Node
 class_name Dialogue
 
-@onready var data = gbData.text.diaGlobal
+var data
 @onready var dialogueTimer = $dialogueTimer
 @export var richtextlabel: RichTextLabel
 @export var textspeed: float = 0.04
@@ -25,6 +25,7 @@ var base_db: float = -10 # Set base audio level of text
 var variance_db: float = 3.0
 
 func _ready() -> void:
+	data = gbData.getDialogueForSkin(GlobalVariable.userSkinPath)
 	richtextlabel.add_theme_font_size_override("normal_font_size", gbData.settings.expieDialogueSize)
 	print("LOADED DIALOGUE KEYS: ", data.keys())
 

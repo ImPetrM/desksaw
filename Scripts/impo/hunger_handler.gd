@@ -52,12 +52,12 @@ func _onItemEnter(body: Node2D) -> void:
 	foodDb = true
 
 	if hungry >= 98.0:
-		dialogue.pool = gbData.text.diaGlobal.Full
+		dialogue.pool = dialogue.data.Full
 		dialogue.send()
 		awaitDB()
 		return
 	if props.tasteIfConsumable == 0:
-		dialogue.pool = gbData.text.diaGlobal.EatReject
+		dialogue.pool = dialogue.data.EatReject
 		dialogue.send()
 		awaitDB()
 		return
@@ -77,14 +77,14 @@ func awaitDB() -> void:
 	pass
 func _getTasteDialogue(taste: int) -> Array:
 	if taste <= 3:
-		return gbData.text.diaGlobal.EatBad
+		return dialogue.data.EatBad
 	elif taste <= 6:
-		return gbData.text.diaGlobal.EatOk
+		return dialogue.data.EatOk
 	else:
-		return gbData.text.diaGlobal.EatGood
+		return dialogue.data.EatGood
 
 """
-					dialogueSys.pool = data.sleepy
+					dialogueSys.pool = dialogue.data.sleepy
 					dialogueSys.send()
 					ao[sdkfopasdifpas pfasip[df pasdf p[asdp[asjdfjsdpfjasoi dfjiopasdfjiopasdfjiopasfjipasdjf[ipasjfipj]]]]]
 					"""
