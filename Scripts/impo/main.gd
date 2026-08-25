@@ -3,7 +3,6 @@ extends Node2D
 @onready
 var settings = gbData.settings
 
-
 var screenWidth: int = DisplayServer.screen_get_usable_rect().size.x
 var screenHeight: int = DisplayServer.screen_get_usable_rect().size.y
 
@@ -99,7 +98,6 @@ func update_obj_metas():
 func loadExpiePersistence():
 	print("loading expies...")
 	
-
 	if (
 		gbData.data["saw"].size() > 20
 		and !gbData.settings.get("noPersPopup", false)

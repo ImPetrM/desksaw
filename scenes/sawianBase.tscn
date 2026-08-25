@@ -1947,6 +1947,7 @@ playback_default_blend_time = 0.4
 blend_times = [&"fall", &"fall", 1.0, &"fall", &"idleagain", 0.3, &"fall", &"moveF", 0.6, &"jump", &"idleagain", 0.5, &"jump", &"jump", 1.0]
 
 [node name="RigidBodies" type="RigidBody2D" parent="." unique_id=623013340]
+scale = Vector2(4, 4)
 collision_layer = 4
 mass = 0.001
 physics_material_override = SubResource("PhysicsMaterial_kv3oh")
@@ -2121,9 +2122,9 @@ script = ExtResource("13_re48v")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.33962607, -15.576901)
-rotation = 0.3154294
-scale = Vector2(0.9999974, 0.9999974)
+position = Vector2(-0.33962667, -15.576901)
+rotation = 0.3154295
+scale = Vector2(0.9999973, 0.9999973)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2143,9 +2144,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.226667, -9.810161)
-rotation = -0.0073857373
-scale = Vector2(0.99999607, 0.99999607)
+position = Vector2(-5.2266674, -9.810161)
+rotation = -0.0073857084
+scale = Vector2(0.99999595, 0.99999595)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2164,9 +2165,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-5.867559, -5.674835)
-rotation = 0.433461
-scale = Vector2(0.9999961, 0.9999961)
+position = Vector2(-5.867559, -5.6748366)
+rotation = 0.43346104
+scale = Vector2(0.99999595, 0.99999595)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2223,8 +2224,8 @@ texture = ExtResource("6_gq855")
 shape = SubResource("CapsuleShape2D_y6net")
 
 [node name="BDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=1599016473]
-position = Vector2(-0.35579175, -23.270868)
-rotation = -0.06447744
+position = Vector2(-0.3557914, -23.270868)
+rotation = -0.06447756
 scale = Vector2(0.9999984, 0.9999984)
 collision_layer = 8
 mass = 0.5
@@ -2241,8 +2242,8 @@ texture = ExtResource("7_2dgiw")
 shape = SubResource("CapsuleShape2D_gnewh")
 
 [node name="BHand" type="RigidBody2D" parent="RigidBodies" unique_id=1774083656]
-position = Vector2(0.15982416, -15.283657)
-rotation = -0.06447744
+position = Vector2(0.15982547, -15.283657)
+rotation = -0.06447756
 scale = Vector2(0.9999984, 0.9999984)
 collision_layer = 8
 mass = 0.5
@@ -2295,8 +2296,8 @@ texture = ExtResource("10_7eycm")
 shape = SubResource("CapsuleShape2D_7p3rp")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=69657827]
-position = Vector2(0.17327905, -15.684528)
-rotation = 0.19817506
+position = Vector2(0.17327929, -15.684528)
+rotation = 0.19817501
 scale = Vector2(0.999997, 0.999997)
 collision_layer = 8
 mass = 0.5
@@ -2317,7 +2318,7 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
-position = Vector2(-4.484634, -10.594876)
+position = Vector2(-4.4846334, -10.594876)
 rotation = 0.11549546
 scale = Vector2(0.99999607, 0.99999607)
 collision_layer = 8
@@ -2338,7 +2339,7 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=2058845088]
-position = Vector2(-5.7586684, -6.467292)
+position = Vector2(-5.758668, -6.467292)
 rotation = 0.5563422
 scale = Vector2(0.999996, 0.999996)
 collision_layer = 8
@@ -2463,8 +2464,8 @@ texture = ExtResource("6_gq855")
 shape = SubResource("CapsuleShape2D_y6net")
 
 [node name="FDownArm" type="RigidBody2D" parent="RigidBodies" unique_id=757190963]
-position = Vector2(0.6779822, -23.391905)
-rotation = -0.1686083
+position = Vector2(0.67798257, -23.391907)
+rotation = -0.16860844
 scale = Vector2(0.999996, 0.999996)
 collision_layer = 8
 mass = 0.5
@@ -2482,8 +2483,8 @@ position = Vector2(-2.3559012e-05, 2)
 shape = SubResource("CapsuleShape2D_gnewh")
 
 [node name="FFHand" type="RigidBody2D" parent="RigidBodies" unique_id=712634110]
-position = Vector2(2.021016, -15.501566)
-rotation = -0.1686083
+position = Vector2(2.0210173, -15.501567)
+rotation = -0.16860844
 scale = Vector2(0.999996, 0.999996)
 collision_layer = 8
 mass = 0.5
@@ -2730,7 +2731,7 @@ editor_settings/show_bone_gizmo = false
 
 [node name="LegCrus" type="Bone2D" parent="RigidBodies/skeleton/Skeleton2D/hip/LegB" unique_id=87380162]
 position = Vector2(3.2502916, 7.515524)
-scale = Vector2(0.9999987, 0.9999987)
+scale = Vector2(0.9999986, 0.9999986)
 rest = Transform2D(0.99984556, 0, 0, 0.99984556, 5.9999323, 5.7500706)
 editor_settings/show_bone_gizmo = false
 
@@ -2847,7 +2848,7 @@ script = ExtResource("17_6mwry")
 behaviornode = NodePath("../../behavior")
 
 [node name="textParent" type="Node2D" parent="." unique_id=797776170]
-position = Vector2(-0.1618814, -40.91852)
+position = Vector2(-0.6475256, -163.67409)
 rotation = -1.1779506e-05
 scale = Vector2(0.999981, 0.99997854)
 
@@ -2867,11 +2868,10 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="Control" parent="textParent" unique_id=101072280 instance=ExtResource("32_oiscl")]
-visible = false
-offset_left = -15.837868
-offset_top = -57.137337
-offset_right = 16.162132
-offset_bottom = -7.0826797
+offset_left = -100.0
+offset_top = -330.0
+offset_right = 100.0
+offset_bottom = -30.0
 
 [node name="DebugText" type="Label" parent="textParent" unique_id=739158021]
 visible = false
