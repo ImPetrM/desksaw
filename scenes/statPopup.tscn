@@ -2,8 +2,6 @@
 
 [ext_resource type="FontFile" uid="uid://bh21v7uuhl7i4" path="res://assets/fonts/Retro.Gaming.Extended.ttf" id="1_3i00r"]
 
-[sub_resource type="Theme" id="Theme_oiscl"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_wfk6r"]
 font = ExtResource("1_3i00r")
 font_size = 24
@@ -36,9 +34,8 @@ offset_bottom = 213.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="stat" type="RichTextLabel" parent="ItemList" unique_id=600548670]
+[node name="StatsNameLabel" type="RichTextLabel" parent="ItemList" unique_id=600548670]
 layout_mode = 2
-theme = SubResource("Theme_oiscl")
 theme_override_font_sizes/normal_font_size = 24
 text = "#0001"
 fit_content = true

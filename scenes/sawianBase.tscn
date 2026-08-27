@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://pg0ohwt8ba8h" path="res://Scripts/impo/faceSys.gd" id="20_l2ler"]
 [ext_resource type="Theme" uid="uid://byc077a5abgew" path="res://assets/themes/dialogue.tres" id="21_57y4j"]
 [ext_resource type="Script" uid="uid://jnsq0pscs6et" path="res://Scripts/impo/sleep_manager.gd" id="22_dvaus"]
+[ext_resource type="Script" uid="uid://tmx3dt000c1y" path="res://scenes/stat_popup.gd" id="22_lxv65"]
 [ext_resource type="Script" uid="uid://bhc642h64r7ev" path="res://Scripts/impo/moodSys.gd" id="22_un334"]
 [ext_resource type="Script" uid="uid://cmppv0optma7o" path="res://Scripts/impo/damageHandler.gd" id="25_3pkli"]
 [ext_resource type="Script" uid="uid://bvssnx7cofbpp" path="res://Scripts/impo/hunger_handler.gd" id="26_84wtd"]
@@ -2122,9 +2123,9 @@ script = ExtResource("13_re48v")
 metadata/_custom_type_script = "uid://bv2bc4lt5v7hu"
 
 [node name="BThigh" type="RigidBody2D" parent="RigidBodies" unique_id=2126889720]
-position = Vector2(-0.33962667, -15.576901)
-rotation = 0.3154295
-scale = Vector2(0.9999973, 0.9999973)
+position = Vector2(-0.3396269, -15.576901)
+rotation = 0.31542957
+scale = Vector2(0.9999974, 0.9999974)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2144,9 +2145,9 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="BCrus" type="RigidBody2D" parent="RigidBodies" unique_id=823988093]
-position = Vector2(-5.2266674, -9.810161)
-rotation = -0.0073857084
-scale = Vector2(0.99999595, 0.99999595)
+position = Vector2(-5.2266665, -9.810162)
+rotation = -0.0073857396
+scale = Vector2(0.99999577, 0.99999577)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2165,9 +2166,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="BFoot" type="RigidBody2D" parent="RigidBodies" unique_id=638804334]
-position = Vector2(-5.867559, -5.6748366)
-rotation = 0.43346104
-scale = Vector2(0.99999595, 0.99999595)
+position = Vector2(-5.867558, -5.674837)
+rotation = 0.43346098
+scale = Vector2(0.99999577, 0.99999577)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2296,8 +2297,8 @@ texture = ExtResource("10_7eycm")
 shape = SubResource("CapsuleShape2D_7p3rp")
 
 [node name="FThigh" type="RigidBody2D" parent="RigidBodies" unique_id=69657827]
-position = Vector2(0.17327929, -15.684528)
-rotation = 0.19817501
+position = Vector2(0.17327905, -15.684528)
+rotation = 0.19817506
 scale = Vector2(0.999997, 0.999997)
 collision_layer = 8
 mass = 0.5
@@ -2318,8 +2319,8 @@ rotation = -0.1972222
 shape = SubResource("CapsuleShape2D_xrsx0")
 
 [node name="FCrus" type="RigidBody2D" parent="RigidBodies" unique_id=251590417]
-position = Vector2(-4.4846334, -10.594876)
-rotation = 0.11549546
+position = Vector2(-4.4846344, -10.594877)
+rotation = 0.11549569
 scale = Vector2(0.99999607, 0.99999607)
 collision_layer = 8
 mass = 0.5
@@ -2339,9 +2340,9 @@ rotation = 1.1065388
 shape = SubResource("CapsuleShape2D_s1ecb")
 
 [node name="FFoot" type="RigidBody2D" parent="RigidBodies" unique_id=2058845088]
-position = Vector2(-5.758668, -6.467292)
-rotation = 0.5563422
-scale = Vector2(0.999996, 0.999996)
+position = Vector2(-5.7586694, -6.4672933)
+rotation = 0.55634236
+scale = Vector2(0.99999607, 0.99999607)
 collision_layer = 8
 mass = 0.5
 gravity_scale = 0.8
@@ -2731,7 +2732,7 @@ editor_settings/show_bone_gizmo = false
 
 [node name="LegCrus" type="Bone2D" parent="RigidBodies/skeleton/Skeleton2D/hip/LegB" unique_id=87380162]
 position = Vector2(3.2502916, 7.515524)
-scale = Vector2(0.9999986, 0.9999986)
+scale = Vector2(0.99999845, 0.99999845)
 rest = Transform2D(0.99984556, 0, 0, 0.99984556, 5.9999323, 5.7500706)
 editor_settings/show_bone_gizmo = false
 
@@ -2867,11 +2868,12 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Control" parent="textParent" unique_id=101072280 instance=ExtResource("32_oiscl")]
+[node name="StatsPanel" parent="textParent" unique_id=101072280 instance=ExtResource("32_oiscl")]
 offset_left = -100.0
 offset_top = -330.0
 offset_right = 100.0
 offset_bottom = -30.0
+script = ExtResource("22_lxv65")
 
 [node name="DebugText" type="Label" parent="textParent" unique_id=739158021]
 visible = false
@@ -2948,7 +2950,7 @@ script = ExtResource("30_873iu")
 
 [node name="statWatcher" type="Node" parent="behavior" unique_id=464220213 node_paths=PackedStringArray("window")]
 script = ExtResource("31_873iu")
-window = NodePath("../../textParent/Control")
+window = NodePath("../../textParent/StatsPanel")
 
 [connection signal="body_entered" from="RigidBodies/Head/Dect" to="behavior/detRadius" method="_on_dect_body_entered"]
 [connection signal="body_exited" from="RigidBodies/Head/Dect" to="behavior/detRadius" method="_on_dect_body_exited"]
