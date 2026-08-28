@@ -51,7 +51,7 @@ func _ready():
 		)
 		print(use_vulkan)
 		if use_vulkan:
-			OS.shell_open('https://github.com/dee-dee-catorce/desksaw/issues')
+			OS.shell_open('https://github.com/dee-dee-catorce/desksaw/wiki')
 
 	
 func createBorders():
