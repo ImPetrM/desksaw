@@ -2,6 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://bh21v7uuhl7i4" path="res://assets/fonts/Retro.Gaming.Extended.ttf" id="1_3i00r"]
 
+[sub_resource type="Theme" id="Theme_suvua"]
+default_font = ExtResource("1_3i00r")
+
 [sub_resource type="LabelSettings" id="LabelSettings_wfk6r"]
 font = ExtResource("1_3i00r")
 font_size = 24
@@ -36,12 +39,16 @@ alignment = 1
 
 [node name="StatsNameLabel" type="RichTextLabel" parent="ItemList" unique_id=600548670]
 layout_mode = 2
+theme = SubResource("Theme_suvua")
 theme_override_font_sizes/normal_font_size = 24
 text = "#0001"
 fit_content = true
 scroll_active = false
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="NameStatsSeparator" type="HSeparator" parent="ItemList" unique_id=482405702]
+layout_mode = 2
 
 [node name="StatsContainer" type="VBoxContainer" parent="ItemList" unique_id=1443254777]
 clip_contents = true
@@ -86,7 +93,7 @@ show_percentage = false
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Label" type="Label" parent="ItemList/StatsContainer/HungerContainer" unique_id=1422891053]
+[node name="HungerLabel" type="Label" parent="ItemList/StatsContainer/HungerContainer" unique_id=1422891053]
 layout_mode = 2
 text = "Hunger"
 label_settings = SubResource("LabelSettings_wfk6r")
@@ -118,15 +125,15 @@ show_percentage = false
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Label" type="Label" parent="ItemList/StatsContainer/SleepContainer" unique_id=1310333363]
+[node name="RestLabel" type="Label" parent="ItemList/StatsContainer/SleepContainer" unique_id=1310333363]
 layout_mode = 2
-text = "Sleep"
+text = "Rest"
 label_settings = SubResource("LabelSettings_wfk6r")
 
 [node name="ValueDescription" type="HBoxContainer" parent="ItemList/StatsContainer/SleepContainer" unique_id=1055740085]
 layout_mode = 2
 
-[node name="HungryLabel" type="Label" parent="ItemList/StatsContainer/SleepContainer/ValueDescription" unique_id=1601755891]
+[node name="TiredLabel" type="Label" parent="ItemList/StatsContainer/SleepContainer/ValueDescription" unique_id=1601755891]
 layout_mode = 2
 text = "Tired"
 label_settings = SubResource("LabelSettings_0ltmj")
@@ -135,9 +142,9 @@ label_settings = SubResource("LabelSettings_0ltmj")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FullLabel" type="Label" parent="ItemList/StatsContainer/SleepContainer/ValueDescription" unique_id=1560921387]
+[node name="RestedLabel" type="Label" parent="ItemList/StatsContainer/SleepContainer/ValueDescription" unique_id=1560921387]
 layout_mode = 2
-text = "Rest"
+text = "Rested"
 label_settings = SubResource("LabelSettings_0ltmj")
 
 [node name="SleepProgressBar" type="ProgressBar" parent="ItemList/StatsContainer/SleepContainer" unique_id=714344306]
