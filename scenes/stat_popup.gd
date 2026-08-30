@@ -27,11 +27,11 @@ func set_stats(stats : Dictionary):
 # Ensures that the stats control is always fully visible,
 # even if sawian stands at the edge of the screen.
 func ensure_visibility():
-	if !visible:
-		return
-	 
 	offset_left = original_offset_left
 	offset_right = original_offset_right
+	
+	if !visible:
+		return
 
 	var viewport_rect := get_viewport_rect()
 	var rect := get_global_rect()
