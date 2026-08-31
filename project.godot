@@ -99,6 +99,11 @@ testl={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/localization.cs.translation", "res://localization/localization.en.translation")
+locale/translation_add_builtin_strings_to_pot=true
+
 [physics]
 
 2d/run_on_separate_thread=true

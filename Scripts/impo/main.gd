@@ -45,7 +45,7 @@ func _ready():
 		gbData.data["firstLaunch"] = false
 		var method := RenderingServer.get_current_rendering_method()
 		var use_vulkan: bool = await GlobalVariable.makePopUp(
-			"This is your first time launching DeskSaw!\n\nWould you like to be linked to a guide on how to use it?",
+			tr("FIRST_LAUNCH_MESSAGE"),
 			$CanvasLayer2,
 			Vector2(screenWidth / 2, screenHeight / 2)
 		)
