@@ -17,6 +17,9 @@ var console: Node
 func _ready():
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
+	
+	_init_language()
+	
 	if OS.get_name() == "Linux":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
@@ -116,3 +119,12 @@ func loadExpiePersistence():
 		GlobalVariable.userSkinPath = "user://skin/" + petData.get("skin", "Default") + "/"
 		CommandsGlobal.spawnExpie(petId)
 		print("loaded ", petId)
+
+
+func _init_language() -> void:
+	TranslationServer.set_locale(gbData.settings.language)
+	gbData.SettingsChanged.connect(_update_language)
+
+
+func _update_language() -> void:
+	TranslationServer.set_locale(gbData.settings.language)

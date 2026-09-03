@@ -1,4 +1,5 @@
 @tool
+
 extends PanelContainer
 
 @export_category("Settings")
@@ -19,10 +20,34 @@ extends PanelContainer
 @export var _optionButton: OptionButton
 @export var _label: Label
 
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		refresh()
+		_optionButton.item_selected.connect(_on_option_button_item_selected)
+		GlobalVariable.dataNuked.connect(_read_refresh)
+		
+		var index = 0
+		_optionButton.clear()
+		for item in values:
+			_optionButton.add_item(item, index)
+			if(item == selectedValue):
+				_optionButton.select(index)
+			
+			index = index + 1
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
 func refresh() -> void:
 	_update_label()
 	_update_state()
-	
+
+
 func _update_state() -> void:
 	var init_v = gbData.settings.get(key)
 	if init_v == null:
@@ -31,7 +56,7 @@ func _update_state() -> void:
 		selectedValue = defaultValue
 	elif !(init_v is String):
 		# if the key is not a boolean, fuss about it!
-		push_error("Key '%s' is not a string! checkbox widgets are not made for these!" % [key])
+		push_error("Key '%s' is not a string! Only string values are supported in this list" % [key])
 		# for the sake of preventing confusion, we won't initiate the variable on
 		# failure to load. instead, make sure you're not mixing up key types and widgets!
 	else:
@@ -40,27 +65,18 @@ func _update_state() -> void:
 		selectedValue= value
 
 
+var _ignore_next_change: bool = false
+func _read_refresh() -> void:
+	# currently calling this when we nuke our config to
+	# correctly display all values.
+	_ignore_next_change = true
+	refresh()
+
+
 func _init_variable(save: bool = false) -> void:
 	gbData.settings.set(key, defaultValue)
 	if save:
 		gbData.savetodisk(gbData.conPath, gbData.settings)
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if not Engine.is_editor_hint():
-		refresh()
-		#_checkbox.toggled.connect(_on_check_box_toggled)
-		#GlobalVariable.dataNuked.connect(_read_refresh)
-	
-	var index = 0
-	for item in values:
-		_optionButton.add_item(item, index)
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func _update_label() -> void:
@@ -71,5 +87,20 @@ func _update_label() -> void:
 	_label.text = label
 
 
+func _set_selected_value(index : int) -> void:
+	if values.size() - 1 < index :
+		push_error("Key '%s' is not a string! checkbox widgets are not made for these!" % [key])
+		return
+	
+	selectedValue = values[index]
+
+
 func _on_option_button_item_selected(index: int) -> void:
+	_set_selected_value(index)
+	
+	gbData.settings.set(key, selectedValue)
+	print("Key '%s' [%s] set to '%s'" % [label, key, selectedValue])
+	# save!
+	gbData.savetodisk(gbData.conPath, gbData.settings)
+	gbData.SettingsChanged.emit()
 	pass # Replace with function body.
