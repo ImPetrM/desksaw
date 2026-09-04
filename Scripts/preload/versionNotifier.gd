@@ -39,13 +39,7 @@ func _request_done(_result, code, _headers, body):
 		# LOL
 		#get_tree().change_scene_to_file("res://scenes/OLD/what.tscn")
 		if gbData.settings["updNotif"]:
-			OS.alert(
-				"You're using an outdated version of DeskSaw.\n\n" +
-				"Latest: " + latest + "\n" +
-				"Current: " + VERSION + "\n
-				https://github.com/dee-dee-catorce/desksaw\n\n" +
-				"You can disable this popup in settings."
-			)
+			OS.alert(tr("VERSION_DIALOG_MESSAGE") % [latest, VERSION], tr("VERSION_DIALOG_TITLE"))
 		#gbData.outdated()
 
 
