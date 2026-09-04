@@ -120,9 +120,9 @@ func resize(nx, ny, isForce = "no") -> String:
 		(ex < 200 or ey < 100)
 		or (ex > float(GlobalVariable.screenWidth) / 2 or ey > GlobalVariable.screenHeight)
 		) and isForce == "no":
-		Console.warning("Resizing the console to this size is not recommended!")
-		Console.print("Type '[url=resizeConsole {0} {1} force]resizeConsole {0} {1} force[/url]' if you are sure".format([nx, ny]))
-		return "[color=gray]NOTE: console size will NOT be saved if forced![/color]"
+		Console.warning(tr("CONSOLE_RESIZING_WARNING_MESSAGE"))
+		Console.print(tr("CONSOLE_RESIZE_OVERRIDE_MESSAGE").format([nx, ny]))
+		return tr("CONSOLE_RESIZE_NOTE")
 	# if it goes through, call a resize
 	var _target_size = Vector2(ex, ey)
 	resizeCommandCalled.emit(_target_size, true)
