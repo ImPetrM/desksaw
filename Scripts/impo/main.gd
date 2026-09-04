@@ -17,14 +17,12 @@ var console: Node
 func _ready():
 	DisplayServer.window_set_size(Vector2i(screenWidth, screenHeight) - Vector2i(1, 1))
 	DisplayServer.window_set_position(DisplayServer.screen_get_position())
-	
-	_init_language()
-	
+
 	if OS.get_name() == "Linux":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
 	if OS.get_name() == "Linux" and OS.get_environment("XDG_SESSION_TYPE").to_lower() == "wayland" and not TransparentWindow.UsesInputRegions():
-		OS.alert("DeskSaw could not enable its XWayland input-region workaround. Click-through interaction may not work correctly. Make sure DeskSaw is running through X11/XWayland with the XShape extension available, or use an X11 session.")
+		OS.alert(tr("WAYLAND_DIALOG_MESSAGE"), tr("WAYLAND_DIALOG_TITLE"))
 
 	#fix()
 	createBorders()
@@ -119,12 +117,3 @@ func loadExpiePersistence():
 		GlobalVariable.userSkinPath = "user://skin/" + petData.get("skin", "Default") + "/"
 		CommandsGlobal.spawnExpie(petId)
 		print("loaded ", petId)
-
-
-func _init_language() -> void:
-	TranslationServer.set_locale(gbData.settings.language)
-	gbData.SettingsChanged.connect(_update_language)
-
-
-func _update_language() -> void:
-	TranslationServer.set_locale(gbData.settings.language)

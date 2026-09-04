@@ -59,8 +59,11 @@ CONSOLE_SETMONITOR_COMMAND_DESCRIPTION,Temporary command,Dočasný příkaz
 CONSOLE_SPAWN_COMMAND_DESCRIPTION,Spawns item,Vytvoří položku
 CONSOLE_CLEARITEMS_COMMAND_DESCRIPTION,"Clears by 'entity', 'object' or specific item name/ expie skin name","Vymaže podle 'entity', 'object' nebo konkrétního názvu položky / názvu skinu expie"
 CONSOLE_SPAWNEXPIE_COMMAND_DESCRIPTION,Spawn a Sawian based on whatever your default skin is set to,Vytvoří Sawiana podle aktuálně nastaveného výchozího skinu
-CONSOLE_NUKEDATA_COMMAND_DESCRIPTION,"Resets EVERYTHING. Save file, settings, etc. Run at your own risk","Resetuje ÚPLNĚ VŠE. Uložená data, nastavení atd. Používej na vlastní nebezpečí"
+CONSOLE_NUKEDATA_COMMAND_DESCRIPTION,"Resets EVERYTHING (TEST). Save file, settings, etc. Run at your own risk","Resetuje ÚPLNĚ VŠE. Uložená data, nastavení atd. Používej na vlastní nebezpečí"
 CONSOLE_DISCLAIMER_MESSAGE,"[color=PURPLE]You can reopen this console any time by Ctrl + Right Clicking on any Desksawian![/color]\nEXPIE OR ANY CHARACTERS THAT MAY BE PRESENT HERE ARE NOT MINE. THIS IS A FAN PROJECT\nIF YOU PAID FOR THIS OR GOT IT FROM SOMEWHERE NOT ON GITHUB, YOU DID IT WRONG!","[color=PURPLE]Tuto konzoli můžeš kdykoliv otevřít pomocí Ctrl + kliknutí pravým tlačítkem na libovolného Desksawiana![/color]\nEXPIE ANI ŽÁDNÉ DALŠÍ POSTAVY, KTERÉ SE ZDE MOHOU OBJEVIT, NEJSOU MOJE. TOTO JE FANOUŠKOVSKÝ PROJEKT\nPOKUD JSI ZA NĚJ ZAPLATIL NEBO JEJ ZÍSKAL ODJINUD NEŽ Z GITHUBU, UDĚLAL JSI TO ŠPATNĚ!"
 VERSION_DIALOG_MESSAGE, "You're using an outdated version of DeskSaw.\n\n\tLatest: %s (https://github.com/dee-dee-catorce/desksaw)\n\tCurrent: %s\n\nYou can disable this popup in settings.","Používáš zastaralou verzi DeskSaw.\n\n\tNejnovější: %s\n\tAktuální: %s (https://github.com/dee-dee-catorce/desksaw)\n\nToto vyskakovací okno můžeš vypnout v nastavení."
 VERSION_DIALOG_TITLE, "New version available!", "Dostupná novější verze!"
+WAYLAND_DIALOG_MESSAGE, "DeskSaw could not enable its XWayland input-region workaround. Click-through interaction may not work correctly. Make sure DeskSaw is running through X11/XWayland with the XShape extension available, or use an X11 session.", "DeskSaw nemohl aktivovat potřebné řešení pro klikání skrz okno v XWaylandu. Tato funkce proto nemusí fungovat správně. Ujisti se, že DeskSaw běží přes X11/XWayland a že je dostupné rozšíření XShape, případně použij relaci X11."
+WAYLAND_DIALOG_TITLE, "Alert!", "Upozornění!"
+
 
