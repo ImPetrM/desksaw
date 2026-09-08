@@ -11,7 +11,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
 func _init_language() -> void:
+	if !gbData.settings.has("language"):
+		gbData.settings["language"] = "en"
+		gbData.savetodisk(gbData.conPath, gbData.settings)
+		
+	# var availableTranslations = TranslationServer.get_all_languages()
 	TranslationServer.set_locale(gbData.settings.language)
 	gbData.SettingsChanged.connect(_update_language)
 
