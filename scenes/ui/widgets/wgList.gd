@@ -12,7 +12,7 @@ extends PanelContainer
 @export var key: String
 
 @export_category("Values")
-@export var values: Array[String]
+@export var values: Array[String] = []
 @export var selectedValue: String
 @export var defaultValue: String
 
@@ -28,14 +28,7 @@ func _ready() -> void:
 		_optionButton.item_selected.connect(_on_option_button_item_selected)
 		GlobalVariable.dataNuked.connect(_read_refresh)
 		
-		var index = 0
-		_optionButton.clear()
-		for item in values:
-			_optionButton.add_item(item, index)
-			if(item == selectedValue):
-				_optionButton.select(index)
-			
-			index = index + 1
+		set_items(values)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,3 +97,16 @@ func _on_option_button_item_selected(index: int) -> void:
 	gbData.savetodisk(gbData.conPath, gbData.settings)
 	gbData.SettingsChanged.emit()
 	pass # Replace with function body.
+
+
+func set_items(items : Array[String]) -> void:
+	values = items
+	var index = 0
+		_optionButton.clear()
+		for item in values:
+			_optionButton.add_item(item, index)
+			if(item == selectedValue):
+				_optionButton.select(index)
+			
+			index = index + 1
+	

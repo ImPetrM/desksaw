@@ -17,7 +17,7 @@ func _init_language() -> void:
 		gbData.settings["language"] = "en"
 		gbData.savetodisk(gbData.conPath, gbData.settings)
 		
-	# var availableTranslations = TranslationServer.get_all_languages()
+	gbData.availableLanguages = TranslationServer.get_loaded_locales()
 	TranslationServer.set_locale(gbData.settings.language)
 	gbData.SettingsChanged.connect(_update_language)
 

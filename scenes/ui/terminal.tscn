@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://g6u2oy10y4g4" path="res://scenes/ui/widgets/wgExpie.tscn" id="8_fbkat"]
 [ext_resource type="PackedScene" uid="uid://bjcybvcgu670s" path="res://scenes/ui/widgets/wgSlider.tscn" id="9_r80vr"]
 [ext_resource type="PackedScene" uid="uid://divfv87tysima" path="res://scenes/ui/widgets/wgList.tscn" id="11_0qnbf"]
+[ext_resource type="Script" uid="uid://ufqkwiq81vuc" path="res://scenes/ui/general_panel.gd" id="11_uyiol"]
 [ext_resource type="PackedScene" uid="uid://bjaud4bo61wh3" path="res://scenes/ui/widgets/wgInput.tscn" id="12_qw8t2"]
 [ext_resource type="Script" uid="uid://8lhbbrprbbpc" path="res://Scripts/ui/terminal/itemsView.gd" id="15_0e1f5"]
 [ext_resource type="PackedScene" uid="uid://ci0xelx1tte0f" path="res://scenes/ui/widgets/wgItem.tscn" id="15_r80vr"]
@@ -387,6 +388,7 @@ flipValue = true
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8hy2h")
+script = ExtResource("11_uyiol")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel" unique_id=1481478214]
 layout_mode = 1
@@ -402,8 +404,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = -1
 
-[node name="PanelContainer" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=107599576 instance=ExtResource("11_0qnbf")]
+[node name="Language" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=107599576 instance=ExtResource("11_0qnbf")]
 layout_mode = 2
+values = Array[String]([])
 
 [node name="Monitor" parent="MarginContainer/ViewportPanel/SettingsView/MarginContainer/VBoxContainer/SettingsPanel/MarginContainer/GeneralPanel/ScrollContainer/VBoxContainer" unique_id=27978876 instance=ExtResource("9_r80vr")]
 layout_mode = 2

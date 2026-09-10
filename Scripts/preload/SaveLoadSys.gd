@@ -19,6 +19,7 @@ var skinData = []
 
 var template = "res://Scripts/singletons/SaveTemplate.json"
 
+var availableLanguages = []
 
 # DO NOT FORGET TO DISABLE THIS WHENBUILDING 
 var devMode = false
