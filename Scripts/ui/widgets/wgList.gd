@@ -55,7 +55,7 @@ func _update_state() -> void:
 	else:
 		# update starting pressed state according to value
 		var value: String = init_v
-		selectedValue= value
+		selectedValue = value
 
 
 var _ignore_next_change: bool = false
@@ -102,11 +102,11 @@ func _on_option_button_item_selected(index: int) -> void:
 func set_items(items : Array[String]) -> void:
 	values = items
 	var index = 0
-		_optionButton.clear()
-		for item in values:
-			_optionButton.add_item(item, index)
-			if(item == selectedValue):
-				_optionButton.select(index)
-			
-			index = index + 1
+	_optionButton.clear()
+	for item in values:
+		_optionButton.add_item(item, index)
+		if(item == selectedValue):
+			_optionButton.select(index)
+		
+		index = index + 1
 	

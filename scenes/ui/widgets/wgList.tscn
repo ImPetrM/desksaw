@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://divfv87tysima"]
 
 [ext_resource type="Theme" uid="uid://cle2qxvhrms2" path="res://assets/themes/ui/CasMenuTheme.tres" id="1_d8pcb"]
-[ext_resource type="Script" uid="uid://cl62iyf1mlxuq" path="res://scenes/ui/widgets/wgList.gd" id="1_ynq7o"]
+[ext_resource type="Script" uid="uid://cl62iyf1mlxuq" path="res://Scripts/ui/widgets/wgList.gd" id="1_ynq7o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3q11"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
