@@ -26,9 +26,22 @@ func upd(stats: Dictionary) -> void:
 		
 
 		new_stat.show()
-		new_stat.text = str(key) + ": " + str(val)
+		new_stat.text = _get_translation(str(key)) + ": " + str(val)
 		ilist.add_child(new_stat)
 		
+
+
+func _get_translation(key : String) -> String:
+	match key:
+		"mood": 
+			return tr("STATS_MOOD_TEXT")
+		"hunger":
+			return tr("STATS_HUNGER_TEXT")
+		"sleep":
+			return tr("STATS_SLEEP_TEXT")
+		_ : 
+			return key
+
 
 func _process(_delta: float) -> void:
 	pass

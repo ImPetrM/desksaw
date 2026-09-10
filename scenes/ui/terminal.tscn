@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://g6u2oy10y4g4" path="res://scenes/ui/widgets/wgExpie.tscn" id="8_fbkat"]
 [ext_resource type="PackedScene" uid="uid://bjcybvcgu670s" path="res://scenes/ui/widgets/wgSlider.tscn" id="9_r80vr"]
 [ext_resource type="PackedScene" uid="uid://divfv87tysima" path="res://scenes/ui/widgets/wgList.tscn" id="11_0qnbf"]
-[ext_resource type="Script" uid="uid://ufqkwiq81vuc" path="res://scenes/ui/general_panel.gd" id="11_uyiol"]
+[ext_resource type="Script" uid="uid://ufqkwiq81vuc" path="res://Scripts/ui/generalSettingsPanel.gd" id="11_uyiol"]
 [ext_resource type="PackedScene" uid="uid://bjaud4bo61wh3" path="res://scenes/ui/widgets/wgInput.tscn" id="12_qw8t2"]
 [ext_resource type="Script" uid="uid://8lhbbrprbbpc" path="res://Scripts/ui/terminal/itemsView.gd" id="15_0e1f5"]
 [ext_resource type="PackedScene" uid="uid://ci0xelx1tte0f" path="res://scenes/ui/widgets/wgItem.tscn" id="15_r80vr"]
