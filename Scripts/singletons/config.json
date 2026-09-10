@@ -35,5 +35,6 @@
 	"defaultSkin": "Body",
 	"defaultMonitor": 0,
 	"useVulkan": false,
-	"noPersPopup": false
+	"noPersPopup": false,
+	"language": "cs",
 }
